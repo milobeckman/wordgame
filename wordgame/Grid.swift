@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+class Grid {
+    
+    var tiles : [Tile]
+    
+    init() {
+        
+        tiles = []
+        for _ in 0...15 {
+            let tile = Tile(type: "null", text: "")
+            tiles.append(tile)
+        }
+        
+    }
+    
+}

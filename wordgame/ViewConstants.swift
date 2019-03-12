@@ -39,6 +39,9 @@ class ViewConstants {
     var tileTextSize = CGFloat(40)
     var tileFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
     
+    // animations
+    var evaporateDuration = 0.5
+    var evaporateHeight = CGFloat(6.0)
     
     
     init() {

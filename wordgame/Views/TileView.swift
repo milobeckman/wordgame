@@ -69,8 +69,20 @@ class TileView {
         label.text = tile.text
         view.addSubview(label)
         
-        updateView()
-        
+        // tile position is not initialized
+        // always use a convenience init
+    }
+    
+    convenience init(tile: Tile, gridPosition: Int) {
+        self.init(tile: tile)
+        moveToGridPosition(position: gridPosition)
+    }
+    
+    func updateView() {
+        depthView.frame = depthFrame
+        tileView.frame = tileFrame
+        glintLabel.frame = tileFrame.offsetBy(dx: vc.tileGlintSize, dy: vc.tileGlintSize)
+        label.frame = tileFrame
     }
     
     func moveToGridPosition(position: Int) {
@@ -80,16 +92,22 @@ class TileView {
         updateView()
     }
     
-    func updateView() {
-    
-        depthView.frame = depthFrame
-        tileView.frame = tileFrame
-        glintLabel.frame = tileFrame.offsetBy(dx: vc.tileGlintSize, dy: vc.tileGlintSize)
-        label.frame = tileFrame
+    func evaporate() {
+        
+        depthView.backgroundColor = UIColor.black
+        tileView.backgroundColor = UIColor.white
+        tileView.layer.borderWidth = CGFloat(3)
+        tileView.layer.borderColor = UIColor.black.cgColor
+        
+        glintLabel.alpha = 0
+        label.textColor = UIColor.black
+        
+        UIView.animate(withDuration: vc.evaporateDuration, animations: {
+            self.view.alpha = 0.0
+            self.view.frame = vc.screenBounds.offsetBy(dx: 0, dy: -vc.evaporateHeight)
+        }, completion: nil)
         
     }
-    
-    
     
     
     

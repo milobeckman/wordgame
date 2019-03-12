@@ -9,31 +9,26 @@
 import UIKit
 
 var vc = ViewConstants()
-
-var gridSlotViews = [GridSlotView]()
-
+var gameView = GameView()
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = vc.backgroundColor
+        view.addSubview(gameView.view)
         
-        gridSlotViews = []
-        for i in 0...15 {
-            let newGridSlot = GridSlotView(position: i)
-            gridSlotViews.append(newGridSlot)
-            
-            view.addSubview(newGridSlot.view)
-        }
-        
-        
+        /*
         let testTile = Tile(type: "letter", text: "m")
         let testTileView = TileView(tile: testTile)
         testTileView.moveToGridPosition(position: 5)
-        view.addSubview(testTileView.view)
-        
+        view.addSubview(testTileView.view)*/
+
+        /*
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            testTileView.evaporate()
+        }
+        */
     }
 
     override func didReceiveMemoryWarning() {
