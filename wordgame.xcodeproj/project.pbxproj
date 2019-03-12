@@ -14,6 +14,12 @@
 		2663D91A2236028700A59810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2663D9182236028700A59810 /* LaunchScreen.storyboard */; };
 		2663D9252236028700A59810 /* wordgameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663D9242236028700A59810 /* wordgameTests.swift */; };
 		2663D9302236028700A59810 /* wordgameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663D92F2236028700A59810 /* wordgameUITests.swift */; };
+		2663D93E2236039800A59810 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663D93D2236039800A59810 /* TileView.swift */; };
+		2663D940223604C100A59810 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663D93F223604C100A59810 /* ViewConstants.swift */; };
+		2663D9442236206A00A59810 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663D9432236206A00A59810 /* Tile.swift */; };
+		26745C6322378CD8000BCD1B /* Rack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C6222378CD8000BCD1B /* Rack.swift */; };
+		26745C6522378CDF000BCD1B /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C6422378CDF000BCD1B /* Grid.swift */; };
+		26745C6722379932000BCD1B /* GridSlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C6622379932000BCD1B /* GridSlotView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +45,7 @@
 		2663D9112236028700A59810 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2663D9142236028700A59810 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2663D9162236028700A59810 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2663D9192236028700A59810 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2663D9192236028700A59810 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2663D91B2236028700A59810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2663D9202236028700A59810 /* wordgameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wordgameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2663D9242236028700A59810 /* wordgameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordgameTests.swift; sourceTree = "<group>"; };
@@ -47,6 +53,12 @@
 		2663D92B2236028700A59810 /* wordgameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wordgameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2663D92F2236028700A59810 /* wordgameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordgameUITests.swift; sourceTree = "<group>"; };
 		2663D9312236028700A59810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2663D93D2236039800A59810 /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
+		2663D93F223604C100A59810 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
+		2663D9432236206A00A59810 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		26745C6222378CD8000BCD1B /* Rack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rack.swift; sourceTree = "<group>"; };
+		26745C6422378CDF000BCD1B /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		26745C6622379932000BCD1B /* GridSlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridSlotView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +110,12 @@
 			isa = PBXGroup;
 			children = (
 				2663D90F2236028700A59810 /* AppDelegate.swift */,
+				2663D93F223604C100A59810 /* ViewConstants.swift */,
 				2663D9112236028700A59810 /* ViewController.swift */,
+				2663D9432236206A00A59810 /* Tile.swift */,
+				26745C6222378CD8000BCD1B /* Rack.swift */,
+				26745C6422378CDF000BCD1B /* Grid.swift */,
+				26745C6122378C85000BCD1B /* Views */,
 				2663D9132236028700A59810 /* Main.storyboard */,
 				2663D9162236028700A59810 /* Assets.xcassets */,
 				2663D9182236028700A59810 /* LaunchScreen.storyboard */,
@@ -123,6 +140,15 @@
 				2663D9312236028700A59810 /* Info.plist */,
 			);
 			path = wordgameUITests;
+			sourceTree = "<group>";
+		};
+		26745C6122378C85000BCD1B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2663D93D2236039800A59810 /* TileView.swift */,
+				26745C6622379932000BCD1B /* GridSlotView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2663D93E2236039800A59810 /* TileView.swift in Sources */,
 				2663D9122236028700A59810 /* ViewController.swift in Sources */,
+				2663D940223604C100A59810 /* ViewConstants.swift in Sources */,
+				26745C6522378CDF000BCD1B /* Grid.swift in Sources */,
+				2663D9442236206A00A59810 /* Tile.swift in Sources */,
+				26745C6322378CD8000BCD1B /* Rack.swift in Sources */,
+				26745C6722379932000BCD1B /* GridSlotView.swift in Sources */,
 				2663D9102236028700A59810 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
