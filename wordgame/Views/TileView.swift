@@ -78,6 +78,11 @@ class TileView {
         moveToGridPosition(position: gridPosition)
     }
     
+    convenience init(tile: Tile, rackPosition: Int) {
+        self.init(tile: tile)
+        moveToRackPosition(position: rackPosition)
+    }
+    
     func updateView() {
         depthView.frame = depthFrame
         tileView.frame = tileFrame
@@ -87,6 +92,13 @@ class TileView {
     
     func moveToGridPosition(position: Int) {
         depthFrame = vc.gridSlotFrame(position: position)
+        tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
+        
+        updateView()
+    }
+    
+    func moveToRackPosition(position: Int) {
+        depthFrame = vc.rackSlotFrame(position: position)
         tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
         
         updateView()

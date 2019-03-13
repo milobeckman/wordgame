@@ -21,7 +21,7 @@ class Game {
         let testTile1 = Tile(type: "letter", text: "p")
         let testTile2 = Tile(type: "letter", text: "qu")
         grid.tiles[6] = testTile1
-        grid.tiles[8] = testTile2
+        rack.tiles[3] = testTile2
     }
     
 }

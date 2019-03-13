@@ -23,6 +23,8 @@
 		26745C6922383762000BCD1B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C6822383762000BCD1B /* Game.swift */; };
 		26745C6B22383800000BCD1B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C6A22383800000BCD1B /* GameView.swift */; };
 		26745C6D223838A3000BCD1B /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C6C223838A3000BCD1B /* GridView.swift */; };
+		26745C6F2238628F000BCD1B /* RackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C6E2238628F000BCD1B /* RackView.swift */; };
+		26745C71223862C6000BCD1B /* RackSlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C70223862C6000BCD1B /* RackSlotView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		26745C6822383762000BCD1B /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		26745C6A22383800000BCD1B /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		26745C6C223838A3000BCD1B /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		26745C6E2238628F000BCD1B /* RackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RackView.swift; sourceTree = "<group>"; };
+		26745C70223862C6000BCD1B /* RackSlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RackSlotView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,8 +158,10 @@
 			children = (
 				26745C6A22383800000BCD1B /* GameView.swift */,
 				26745C6C223838A3000BCD1B /* GridView.swift */,
+				26745C6E2238628F000BCD1B /* RackView.swift */,
 				2663D93D2236039800A59810 /* TileView.swift */,
 				26745C6622379932000BCD1B /* GridSlotView.swift */,
+				26745C70223862C6000BCD1B /* RackSlotView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2663D93E2236039800A59810 /* TileView.swift in Sources */,
+				26745C6F2238628F000BCD1B /* RackView.swift in Sources */,
 				26745C6922383762000BCD1B /* Game.swift in Sources */,
 				2663D9122236028700A59810 /* ViewController.swift in Sources */,
 				26745C6D223838A3000BCD1B /* GridView.swift in Sources */,
@@ -305,6 +312,7 @@
 				26745C6322378CD8000BCD1B /* Rack.swift in Sources */,
 				26745C6722379932000BCD1B /* GridSlotView.swift in Sources */,
 				2663D9102236028700A59810 /* AppDelegate.swift in Sources */,
+				26745C71223862C6000BCD1B /* RackSlotView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

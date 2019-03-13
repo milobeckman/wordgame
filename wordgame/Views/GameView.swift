@@ -14,6 +14,7 @@ class GameView {
     var game: Game
     
     var gridView: GridView
+    var rackView : RackView
     
     var view: UIView
     
@@ -22,10 +23,12 @@ class GameView {
         game = Game()
         
         gridView = GridView(grid: game.grid)
+        rackView = RackView(rack: game.rack)
         
         view = UIView(frame: vc.screenBounds)
         view.backgroundColor = vc.backgroundColor
         view.addSubview(gridView.view)
+        view.addSubview(rackView.view)
     }
     
 }

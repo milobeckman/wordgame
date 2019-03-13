@@ -13,14 +13,12 @@ class Rack {
     var tiles: [Tile]
     
     init() {
-        /*
-        tiles = []
-        for _ in 0...3 {
-            let newTile = Tile()
-            tiles.append(newTile)
-        }*/
         
         tiles = []
+        for _ in 0...3 {
+            let tile = Tile(type: "null", text: "")
+            tiles.append(tile)
+        }
         
     }
     
