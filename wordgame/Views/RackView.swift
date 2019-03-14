@@ -21,8 +21,6 @@ class RackView {
     var view: UIView
     var rackView: UIView
     
-    var tileViewForTouch: [UITouch: TileView]
-    
     init(rack: Rack) {
         
         self.rack = rack
@@ -41,8 +39,6 @@ class RackView {
         rackFrame = vc.rackFrame()
         rackView = UIView(frame: rackFrame)
         view.addSubview(rackView)
-        
-        tileViewForTouch = [:]
         
         updateTiles()
     }
@@ -66,28 +62,6 @@ class RackView {
         // draw
         for tileView in tileViews {
             view.addSubview(tileView.view)
-        }
-    }
-    
-    func liftTile(touch: UITouch) {
-        let point = touch.location(in: view)
-        for tileView in tileViews {
-            if tileView.tileFrame.contains(point) && tileView.tile.type != "null" {
-                tileView.lift(point: point)
-                tileViewForTouch[touch] = tileView
-            }
-        }
-    }
-    
-    func dragTile(touch: UITouch) {
-        if let tileView = tileViewForTouch[touch] {
-            tileView.drag(point: touch.location(in: view))
-        }
-    }
-    
-    func dropTile(touch: UITouch) {
-        if let tileView = tileViewForTouch[touch] {
-            tileView.drop(point: touch.location(in: view))
         }
     }
 }

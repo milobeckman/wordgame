@@ -10,6 +10,7 @@ import UIKit
 
 var vc = ViewConstants()
 var gameView = GameView()
+var touchHandler = TouchHandler(gameView: gameView)
 
 class ViewController: UIViewController {
     
@@ -22,7 +23,7 @@ class ViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             if vc.rackFrame().contains(touch.location(in: gameView.view)) {
-                gameView.rackView.liftTile(touch: touch)
+                touchHandler.liftTile(touch: touch)
             }
         }
         
@@ -31,7 +32,7 @@ class ViewController: UIViewController {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            gameView.rackView.dragTile(touch: touch)
+            touchHandler.dragTile(touch: touch)
         }
         
         super.touchesBegan(touches, with: event)
@@ -39,7 +40,7 @@ class ViewController: UIViewController {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            gameView.rackView.dropTile(touch: touch)
+            touchHandler.dropTile(touch: touch)
         }
         
         super.touchesEnded(touches, with: event)
