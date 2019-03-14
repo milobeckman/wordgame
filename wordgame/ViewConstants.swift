@@ -39,6 +39,7 @@ class ViewConstants {
     var tileGlintColor = UIColor(red: 0.95, green: 0.89, blue: 0.78, alpha: 1)
     
     var gridSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
+    var gridSlotColorHighlight = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
     
     var rackColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var rackSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
@@ -95,5 +96,31 @@ class ViewConstants {
     
     func rackFrame() -> CGRect {
         return CGRect(x: 0, y: rackY, width: screenBounds.width, height: tileSize + 2*paddingBetweenTiles)
+    }
+    
+    func gridFrame() -> CGRect {
+        return CGRect(x: 0, y: gridY, width: screenBounds.width, height: 4*tileSize + 3*paddingBetweenTiles)
+    }
+    
+    // efficiency could be improved
+    func rackPositionForPoint(point: CGPoint) -> Int {
+        for i in 0...3 {
+            if rackSlotFrame(position: i).contains(point) {
+                return i
+            }
+        }
+        
+        return -1
+    }
+    
+    // efficiency could be improved
+    func gridPositionForPoint(point: CGPoint) -> Int {
+        for i in 0...15 {
+            if gridSlotFrame(position: i).contains(point) {
+                return i
+            }
+        }
+        
+        return -1
     }
 }

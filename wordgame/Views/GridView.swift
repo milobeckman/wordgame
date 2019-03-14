@@ -58,4 +58,12 @@ class GridView {
         }
     }
     
+    func highlight(position: Int) {
+        gridSlotViews[position].highlight()
+    }
+    
+    func unhighlight(position: Int) {
+        gridSlotViews[position].unhighlight()
+    }
+    
 }
