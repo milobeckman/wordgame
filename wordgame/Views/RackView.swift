@@ -16,7 +16,12 @@ class RackView {
     var rackSlotViews: [RackSlotView]
     var tileViews: [TileView]
     
+    var rackFrame: CGRect
+    
     var view: UIView
+    var rackView: UIView
+    
+    var tileViewForTouch: [UITouch: TileView]
     
     init(rack: Rack) {
         
@@ -32,6 +37,12 @@ class RackView {
             rackSlotViews.append(newRackSlot)
             view.addSubview(newRackSlot.view)
         }
+        
+        rackFrame = vc.rackFrame()
+        rackView = UIView(frame: rackFrame)
+        view.addSubview(rackView)
+        
+        tileViewForTouch = [:]
         
         updateTiles()
     }
@@ -58,4 +69,44 @@ class RackView {
         }
     }
     
+    func liftTile(touch: UITouch) {
+        let point = touch.location(in: view)
+        for tileView in tileViews {
+            if tileView.tileFrame.contains(point) && tileView.tile.type != "null" {
+                tileView.lift(point: point)
+                tileViewForTouch[touch] = tileView
+            }
+        }
+    }
+    
+    func dragTile(touch: UITouch) {
+        if let tileView = tileViewForTouch[touch] {
+            tileView.drag(point: touch.location(in: view))
+        }
+    }
+    
+    func dropTile(touch: UITouch) {
+        if let tileView = tileViewForTouch[touch] {
+            tileView.drop(point: touch.location(in: view))
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -45,6 +45,9 @@ class RackSlotView {
         plusView.text = "+"
         view.addSubview(plusView)
         
+        // todo -- figure out what rack slots should look like
+        view.alpha = 0
+        
     }
     
     convenience init() {

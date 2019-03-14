@@ -13,9 +13,8 @@ class TileView {
     
     var tile: Tile
     
-    // screen location
-    var xPos: CGFloat
-    var yPos: CGFloat
+    // position
+    var rackPosition: Int
     
     // frames
     var depthFrame: CGRect
@@ -32,11 +31,10 @@ class TileView {
         
         self.tile = tile
         
-        xPos = CGFloat(0)
-        yPos = CGFloat(0)
+        rackPosition = -1
         
-        depthFrame = CGRect(x: xPos, y: yPos, width: vc.tileSize, height: vc.tileSize)
-        tileFrame = CGRect(x: xPos - vc.tileDepth, y: yPos - vc.tileDepth, width: vc.tileDepth, height: vc.tileDepth)
+        depthFrame = CGRect()
+        tileFrame = CGRect()
         
         // views
         view = UIView(frame: vc.screenBounds)
@@ -100,9 +98,34 @@ class TileView {
     func moveToRackPosition(position: Int) {
         depthFrame = vc.rackSlotFrame(position: position)
         tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
+        rackPosition = position
         
         updateView()
     }
+    
+    func recenter(point: CGPoint) {
+        // not new home
+        let newX = point.x - vc.tileSize/2
+        let newY = point.y - vc.tileSize/2
+        
+        self.depthFrame = CGRect(x: newX, y: newY, width: vc.tileSize, height: vc.tileSize)
+        self.tileFrame = self.depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
+        self.updateView()
+    }
+    
+    func lift(point: CGPoint) {
+        recenter(point: point)
+    }
+    
+    func drag(point: CGPoint) {
+        recenter(point: point)
+    }
+    
+    func drop(point: CGPoint) {
+        moveToRackPosition(position: rackPosition)
+    }
+    
+    
     
     func evaporate() {
         

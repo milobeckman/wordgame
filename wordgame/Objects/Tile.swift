@@ -8,6 +8,21 @@
 
 import Foundation
 
+
+/*
+ TYPES:
+
+ null       - not a tile
+ dead       - not a tile
+ 
+ letter
+ wild
+ trash
+ bomb
+ sweep
+*/
+
+
 class Tile {
     
     var type: String

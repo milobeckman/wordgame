@@ -40,6 +40,7 @@ class ViewConstants {
     
     var gridSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     
+    var rackColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var rackSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var rackSlotWidth = CGFloat(4)
     
@@ -50,6 +51,7 @@ class ViewConstants {
     var rackSlotFont = UIFont(name: "BanglaSangamMN-Bold", size: 80)
     
     // animations
+    var dragDuration = 0.2
     var evaporateDuration = 0.5
     var evaporateHeight = CGFloat(6.0)
     
@@ -66,7 +68,7 @@ class ViewConstants {
         tileSize = (screenWidth - paddingToSideOfGrid*2 - paddingBetweenTiles*3) / 4
         
         gridX = paddingToSideOfGrid
-        rackX = paddingToSideOfGrid
+        
         rackY = gridY + 4*tileSize + 3*paddingBetweenTiles + paddingAboveRack
         
         tileFont = UIFont(name: "BanglaSangamMN-Bold", size: tileTextSize)
@@ -87,8 +89,11 @@ class ViewConstants {
     }
     
     func rackSlotFrame(position: Int) -> CGRect {
-        let x = rackX + CGFloat(position) * (tileSize + paddingBetweenTiles)
-        return CGRect(x: x, y: rackY, width: tileSize, height: tileSize)
+        let x = paddingToSideOfGrid + CGFloat(position) * (tileSize + paddingBetweenTiles)
+        return CGRect(x: x, y: rackY + paddingBetweenTiles, width: tileSize, height: tileSize)
     }
     
+    func rackFrame() -> CGRect {
+        return CGRect(x: 0, y: rackY, width: screenBounds.width, height: tileSize + 2*paddingBetweenTiles)
+    }
 }
