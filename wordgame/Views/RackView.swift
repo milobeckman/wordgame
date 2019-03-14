@@ -64,6 +64,11 @@ class RackView {
             view.addSubview(tileView.view)
         }
     }
+    
+    func giveTile(tileView: TileView, position: Int) {
+        rack.tiles[position] = Tile(type: "null", text: "")
+        updateTiles()
+    }
 }
 
 

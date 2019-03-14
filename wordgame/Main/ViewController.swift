@@ -9,6 +9,7 @@
 import UIKit
 
 var vc = ViewConstants()
+var rules = Rules()
 var gameView = GameView()
 var touchHandler = TouchHandler(gameView: gameView)
 

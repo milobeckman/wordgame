@@ -46,7 +46,6 @@ class TouchHandler {
             // if in grid, highlight drop slot
             if vc.gridFrame().contains(point) {
                 let gridPosition = gridPositionForTouch[touch]!
-                print(gridPosition)
                 
                 // unhighlight
                 if gridPosition != -1 && !gameView.gridView.gridSlotViews[gridPosition].slotFrame.contains(point) {
@@ -58,7 +57,8 @@ class TouchHandler {
                 if gridPosition == -1 {
                     let newGridPosition = vc.gridPositionForPoint(point: point)
                     if newGridPosition != -1 {
-                        if gameView.gridView.grid.tiles[newGridPosition].type == "null" {
+                        let gridTile = gameView.gridView.grid.tiles[newGridPosition]
+                        if rules.canDrop(tile: tileView.tile, gridTile: gridTile) {
                             gameView.gridView.highlight(position: newGridPosition)
                             gridPositionForTouch[touch] = newGridPosition
                         }
@@ -72,10 +72,23 @@ class TouchHandler {
     }
     
     func dropTile(touch: UITouch) {
-        let point = touch.location(in: gameView.view)
         if let tileView = tileViewForTouch[touch] {
-            tileView.drop(point: point)
+            
+            let gridPosition = gridPositionForTouch[touch]!
+            let rackPosition = rackPositionForTouch[touch]!
+            
+            if gridPosition == -1 {
+                tileView.moveToRackPosition(position: rackPosition)
+            } else {
+                gameView.rackView.giveTile(tileView: tileView, position: rackPosition)
+                gameView.gridView.takeTile(tileView: tileView, position: gridPosition)
+            }
+            
+            //tileView.drop(point: point)
             tileViewForTouch.removeValue(forKey: touch)
+            rackPositionForTouch.removeValue(forKey: touch)
+            gridPositionForTouch.removeValue(forKey: touch)
+            
         }
     }
     

@@ -66,4 +66,11 @@ class GridView {
         gridSlotViews[position].unhighlight()
     }
     
+    func takeTile(tileView: TileView, position: Int) {
+        grid.tiles[position] = tileView.tile
+        tileViews.append(tileView)
+        tileView.moveToGridPosition(position: position)
+        updateTiles()
+    }
+    
 }
