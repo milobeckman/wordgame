@@ -27,13 +27,17 @@ class TouchHandler {
     
     func liftTile(touch: UITouch) {
         let point = touch.location(in: gameView.view)
+        let rackPosition = vc.rackPositionForPoint(point: point)
+        
         for tileView in gameView.rackView.tileViews {
             if tileView.tileFrame.contains(point) && tileView.tile.type != "null" {
                 tileView.lift(point: point)
                 
                 tileViewForTouch[touch] = tileView
-                rackPositionForTouch[touch] = vc.rackPositionForPoint(point: point)
+                rackPositionForTouch[touch] = rackPosition
                 gridPositionForTouch[touch] = -1
+                
+                gameView.rackView.giveTile(tileView: tileView, position: rackPosition)
             }
         }
     }
@@ -68,6 +72,20 @@ class TouchHandler {
             }
             
             // if in rack, rearrange rack
+            if vc.rackFrame().contains(point) {
+                let rackPosition = rackPositionForTouch[touch]!
+                let newRackPosition = vc.rackPositionForPoint(point: point)
+                
+                if newRackPosition != -1 && newRackPosition != rackPosition {
+                    if newRackPosition < rackPosition {
+                        gameView.rackView.push(from: newRackPosition, direction: 1)
+                    } else {
+                        gameView.rackView.push(from: newRackPosition, direction: -1)
+                    }
+                    
+                    rackPositionForTouch[touch] = newRackPosition
+                }
+            }
         }
     }
     
@@ -79,6 +97,7 @@ class TouchHandler {
             
             if gridPosition == -1 {
                 tileView.moveToRackPosition(position: rackPosition)
+                gameView.rackView.takeTile(tileView: tileView, position: rackPosition)
             } else {
                 gameView.rackView.giveTile(tileView: tileView, position: rackPosition)
                 gameView.gridView.takeTile(tileView: tileView, position: gridPosition)

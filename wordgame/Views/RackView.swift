@@ -46,29 +46,53 @@ class RackView {
     func updateTiles() {
         
         // clean
+        var newTileViews = [TileView]()
         for tileView in tileViews {
-            tileView.view.removeFromSuperview()
+            if tileView.lifted {
+                newTileViews.append(tileView)
+            } else {
+                tileView.view.removeFromSuperview()
+            }
         }
         
         // update
-        tileViews = []
         for i in 0...3 {
             if rack.tiles[i].type != "null" {
                 let tileView = TileView(tile: rack.tiles[i], rackPosition: i)
-                tileViews.append(tileView)
+                newTileViews.append(tileView)
             }
         }
         
         // draw
-        for tileView in tileViews {
+        tileViews = newTileViews
+        for tileView in tileViews where !tileView.lifted {
             view.addSubview(tileView.view)
         }
     }
     
     func giveTile(tileView: TileView, position: Int) {
-        rack.tiles[position] = Tile(type: "null", text: "")
+        rack.tiles[position] = Tile()
         updateTiles()
     }
+    
+    func moveTile(from: Int, to: Int) {
+        rack.moveTile(from: from, to: to)
+        updateTiles()
+    }
+    
+    func takeTile(tileView: TileView, position: Int) {
+        rack.tiles[position] = tileView.tile
+        tileView.lifted = false
+        //tileView.moveToRackPosition(position: position)
+        updateTiles()
+    }
+    
+    func push(from: Int, direction: Int) {
+        rack.push(from: from, direction: direction)
+        updateTiles()
+    }
+    
+    
 }
 
 

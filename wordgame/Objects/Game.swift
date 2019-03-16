@@ -18,10 +18,14 @@ class Game {
         rack = Rack()
         
         // temp -- for testing
-        let testTile1 = Tile(type: "letter", text: "p")
-        let testTile2 = Tile(type: "letter", text: "qu")
-        rack.tiles[2] = testTile1
-        rack.tiles[3] = testTile2
+        let testTile1 = Tile(type: "letter", text: "a")
+        let testTile2 = Tile(type: "letter", text: "b")
+        let testTile3 = Tile(type: "letter", text: "c")
+        let testTile4 = Tile(type: "letter", text: "d")
+        rack.tiles[0] = testTile1
+        rack.tiles[1] = testTile2
+        rack.tiles[2] = testTile3
+        rack.tiles[3] = testTile4
     }
     
 }

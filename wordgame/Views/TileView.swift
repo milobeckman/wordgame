@@ -27,6 +27,9 @@ class TileView {
     var glintLabel: UILabel
     var label: UILabel
     
+    // dragging
+    var lifted: Bool
+    
     init(tile: Tile) {
         
         self.tile = tile
@@ -67,6 +70,8 @@ class TileView {
         label.text = tile.text
         view.addSubview(label)
         
+        lifted = false
+        
         // tile position is not initialized
         // always use a convenience init
     }
@@ -92,6 +97,8 @@ class TileView {
         depthFrame = vc.gridSlotFrame(position: position)
         tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
         
+        lifted = false
+        
         updateView()
     }
     
@@ -99,6 +106,8 @@ class TileView {
         depthFrame = vc.rackSlotFrame(position: position)
         tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
         rackPosition = position
+        
+        lifted = false
         
         updateView()
     }
@@ -114,11 +123,17 @@ class TileView {
     }
     
     func lift(point: CGPoint) {
+        lifted = true
         recenter(point: point)
+        print("lift")
+        
+        // a lifted tileView is NOT in the rack.tiles array
+        // it is still in rack.tileViews
     }
     
     func drag(point: CGPoint) {
         recenter(point: point)
+        print("drag")
     }
     
     func drop(point: CGPoint) {

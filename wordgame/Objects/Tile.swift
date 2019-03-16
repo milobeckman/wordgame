@@ -33,4 +33,7 @@ class Tile {
         self.text = text
     }
     
+    convenience init() {
+        self.init(type: "null", text: "")
+    }
 }

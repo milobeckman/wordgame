@@ -22,4 +22,42 @@ class Rack {
         
     }
     
+    func moveTile(from: Int, to: Int) {
+        
+        if tiles[to].type == "null" {
+            swap(a: from, b: to)
+            return
+        }
+        
+        let tileToMove = tiles[from]
+        tiles[from] = Tile()
+        
+        if from > to {
+            push(from: to, direction: 1)
+        } else {
+            push(from: to, direction: -1)
+        }
+        
+        tiles[to] = tileToMove
+    }
+    
+    func push(from: Int, direction: Int) {
+        let target = from + direction
+        
+        if tiles[target].type == "null" {
+            swap(a: from, b: target)
+        } else {
+            push(from: target, direction: direction)
+            tiles[target] = tiles[from]
+            tiles[from] = Tile()
+        }
+        
+    }
+    
+    func swap(a: Int, b: Int) {
+        let temp = tiles[a]
+        tiles[a] = tiles[b]
+        tiles[b] = temp
+    }
+    
 }
