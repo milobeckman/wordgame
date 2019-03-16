@@ -48,27 +48,24 @@ class TouchHandler {
             tileView.drag(point: point)
             
             // if in grid, highlight drop slot
-            if vc.gridFrame().contains(point) {
-                let gridPosition = gridPositionForTouch[touch]!
-                
-                // unhighlight
-                if gridPosition != -1 && !gameView.gridView.gridSlotViews[gridPosition].slotFrame.contains(point) {
-                    gameView.gridView.unhighlight(position: gridPosition)
-                    gridPositionForTouch[touch] = -1
-                }
-                
-                // highlight
-                if gridPosition == -1 {
-                    let newGridPosition = vc.gridPositionForPoint(point: point)
-                    if newGridPosition != -1 {
-                        let gridTile = gameView.gridView.grid.tiles[newGridPosition]
-                        if rules.canDrop(tile: tileView.tile, gridTile: gridTile) {
-                            gameView.gridView.highlight(position: newGridPosition)
-                            gridPositionForTouch[touch] = newGridPosition
-                        }
+            let gridPosition = gridPositionForTouch[touch]!
+            
+            // unhighlight
+            if gridPosition != -1 && !gameView.gridView.gridSlotViews[gridPosition].slotFrame.contains(point) {
+                gameView.gridView.unhighlight(position: gridPosition)
+                gridPositionForTouch[touch] = -1
+            }
+            
+            // highlight
+            if gridPosition == -1 {
+                let newGridPosition = vc.gridPositionForPoint(point: point)
+                if newGridPosition != -1 {
+                    let gridTile = gameView.gridView.grid.tiles[newGridPosition]
+                    if rules.canDrop(tile: tileView.tile, gridTile: gridTile) {
+                        gameView.gridView.highlight(position: newGridPosition)
+                        gridPositionForTouch[touch] = newGridPosition
                     }
                 }
-                
             }
             
             // if in rack, rearrange rack

@@ -50,9 +50,9 @@ class RackView {
         for tileView in tileViews {
             if tileView.lifted {
                 newTileViews.append(tileView)
-            } else {
-                tileView.view.removeFromSuperview()
             }
+            
+            tileView.view.removeFromSuperview()
         }
         
         // update
@@ -66,6 +66,9 @@ class RackView {
         // draw
         tileViews = newTileViews
         for tileView in tileViews where !tileView.lifted {
+            view.addSubview(tileView.view)
+        }
+        for tileView in tileViews where tileView.lifted {
             view.addSubview(tileView.view)
         }
     }
