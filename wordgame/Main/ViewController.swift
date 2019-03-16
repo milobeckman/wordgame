@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.isMultipleTouchEnabled = true
         view.addSubview(gameView.view)
+        gameView.view.isUserInteractionEnabled = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
