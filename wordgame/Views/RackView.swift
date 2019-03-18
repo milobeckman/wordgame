@@ -87,7 +87,7 @@ class RackView {
     func slideTile(from: Int, direction: Int) {
         for tileView in tileViews {
             if vc.rackPositionForPoint(point: tileView.depthFrame.origin) == from {
-                tileView.moveToRackPosition(position: from + direction)
+                tileView.moveToRackPosition(position: from + direction, duration: vc.slideDuration)
             }
         }
     }

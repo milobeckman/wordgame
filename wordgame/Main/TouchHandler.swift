@@ -29,6 +29,10 @@ class TouchHandler {
         let point = touch.location(in: gameView.view)
         let rackPosition = vc.rackPositionForPoint(point: point)
         
+        if rackPosition == -1 {
+            return
+        }
+        
         for tileView in gameView.rackView.tileViews {
             if tileView.tileFrame.contains(point) && tileView.tile.type != "null" {
                 tileView.lift(point: point)
@@ -97,10 +101,10 @@ class TouchHandler {
             tileView.view.removeFromSuperview()
             
             if gridPosition == -1 {
-                tileView.moveToRackPosition(position: rackPosition)
+                tileView.moveToRackPosition(position: rackPosition, duration: vc.dropDuration)
                 gameView.rackView.takeTile(tileView: tileView, position: rackPosition)
             } else {
-                tileView.moveToGridPosition(position: gridPosition)
+                tileView.moveToGridPosition(position: gridPosition, duration: vc.dropDuration)
                 gameView.gridView.takeTile(tileView: tileView, position: gridPosition)
                 gameView.gridView.unhighlight(position: gridPositionForTouch[touch]!)
             }

@@ -52,7 +52,8 @@ class ViewConstants {
     var rackSlotFont = UIFont(name: "BanglaSangamMN-Bold", size: 80)
     
     // animations
-    var dragDuration = 0.2
+    var slideDuration = 0.2
+    var dropDuration = 0.1
     var evaporateDuration = 0.5
     var evaporateHeight = CGFloat(6.0)
     

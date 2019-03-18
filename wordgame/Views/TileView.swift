@@ -107,12 +107,14 @@ class TileView: Hashable {
         label.frame = tileFrame
     }
     
-    func moveToGridPosition(position: Int) {
+    func moveToGridPosition(position: Int, duration: Double = 0) {
         depthFrame = vc.gridSlotFrame(position: position)
         tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
         lifted = false
         
-        updateView()
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
+            self.updateView()
+        }, completion: nil)
     }
     
     func moveToRackPosition(position: Int, duration: Double = 0) {
@@ -120,7 +122,9 @@ class TileView: Hashable {
         tileFrame = self.depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
         lifted = false
         
-        updateView()
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
+            self.updateView()
+        }, completion: nil)
         
     }
     
