@@ -19,8 +19,7 @@ class TimerView {
     var view: UIView
     var backgroundView: UIView
     var barView: UIView
-    var topShadowView: UIView
-    var bottomShadowView: UIView
+    var shadowView: UIView
     
     init() {
         ticker = Timer()
@@ -34,22 +33,15 @@ class TimerView {
         
         barView = UIView(frame: vc.timerFrame())
         
-        topShadowView = UIView(frame: vc.timerTopShadowFrame())
-        let topShadow = CAGradientLayer()
-        topShadow.frame = topShadowView.bounds
-        topShadow.colors = [vc.timerShadowStartColor.cgColor, vc.timerShadowEndColor.cgColor]
-        topShadowView.layer.insertSublayer(topShadow, at: 0)
-        
-        bottomShadowView = UIView(frame: vc.timerBottomShadowFrame())
-        let bottomShadow = CAGradientLayer()
-        bottomShadow.frame = bottomShadowView.bounds
-        bottomShadow.colors = [vc.timerShadowEndColor.cgColor, vc.timerShadowStartColor.cgColor]
-        bottomShadowView.layer.insertSublayer(bottomShadow, at: 0)
+        shadowView = UIView(frame: vc.timerShadowFrame())
+        let shadow = CAGradientLayer()
+        shadow.frame = shadowView.bounds
+        shadow.colors = [vc.timerShadowStartColor.cgColor, vc.timerShadowEndColor.cgColor]
+        shadowView.layer.insertSublayer(shadow, at: 0)
         
         view.addSubview(backgroundView)
         view.addSubview(barView)
-        view.addSubview(topShadowView)
-        //view.addSubview(bottomShadowView)
+        view.addSubview(shadowView)
         
         resetTimer()
     }

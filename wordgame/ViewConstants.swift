@@ -130,12 +130,8 @@ class ViewConstants {
         return CGRect(x: 0, y: timerY, width: CGFloat(fraction)*screenBounds.width, height: timerHeight)
     }
     
-    func timerTopShadowFrame() -> CGRect {
+    func timerShadowFrame() -> CGRect {
         return CGRect(x: 0, y: timerY, width: screenWidth, height: timerShadowSize)
-    }
-    
-    func timerBottomShadowFrame() -> CGRect {
-        return CGRect(x: 0, y: timerY+timerHeight-timerShadowSize, width: screenWidth, height: timerShadowSize)
     }
     
     func timerBarColor(fraction: Double) -> UIColor {
