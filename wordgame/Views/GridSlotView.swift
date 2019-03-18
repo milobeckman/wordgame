@@ -41,7 +41,6 @@ class GridSlotView {
     }
     
     func highlight() {
-        
         slotView.backgroundColor = vc.gridSlotColorHighlight
     }
     

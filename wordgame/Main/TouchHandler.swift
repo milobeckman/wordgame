@@ -37,7 +37,9 @@ class TouchHandler {
                 rackPositionForTouch[touch] = rackPosition
                 gridPositionForTouch[touch] = -1
                 
+                // gameView takes over custody of tile
                 gameView.rackView.giveTile(tileView: tileView, position: rackPosition)
+                gameView.view.addSubview(tileView.view)
             }
         }
     }
@@ -92,15 +94,17 @@ class TouchHandler {
             let gridPosition = gridPositionForTouch[touch]!
             let rackPosition = rackPositionForTouch[touch]!
             
+            tileView.view.removeFromSuperview()
+            
             if gridPosition == -1 {
                 tileView.moveToRackPosition(position: rackPosition)
                 gameView.rackView.takeTile(tileView: tileView, position: rackPosition)
             } else {
-                gameView.rackView.giveTile(tileView: tileView, position: rackPosition)
+                tileView.moveToGridPosition(position: gridPosition)
                 gameView.gridView.takeTile(tileView: tileView, position: gridPosition)
+                gameView.gridView.unhighlight(position: gridPositionForTouch[touch]!)
             }
             
-            //tileView.drop(point: point)
             tileViewForTouch.removeValue(forKey: touch)
             rackPositionForTouch.removeValue(forKey: touch)
             gridPositionForTouch.removeValue(forKey: touch)

@@ -14,7 +14,10 @@ class RackView {
     var rack: Rack
     
     var rackSlotViews: [RackSlotView]
-    var tileViews: [TileView]
+    var tileViews: Set<TileView>
+    
+    // rack object keeps track of [0,1,2,3] what's going on at each slot
+    // tileViews is a set of moving tileView objects
     
     var rackFrame: CGRect
     
@@ -26,7 +29,7 @@ class RackView {
         self.rack = rack
         
         rackSlotViews = []
-        tileViews = []
+        tileViews = Set<TileView>()
         view = UIView(frame: vc.screenBounds)
         
         // slots
@@ -40,59 +43,38 @@ class RackView {
         rackView = UIView(frame: rackFrame)
         view.addSubview(rackView)
         
-        refreshTiles()
+        createTiles()
     }
     
-    func refreshTiles() {
+    func createTiles() {
         
-        // clean
-        var newTileViews = [TileView]()
-        for tileView in tileViews {
-            if tileView.lifted {
-                newTileViews.append(tileView)
-            }
-            
-            tileView.view.removeFromSuperview()
-        }
-        
-        // update
         for i in 0...3 {
             if rack.tiles[i].type != "null" {
                 let tileView = TileView(tile: rack.tiles[i], rackPosition: i)
-                newTileViews.append(tileView)
+                tileViews.insert(tileView)
+                view.addSubview(tileView.view)
             }
         }
         
-        // draw
-        tileViews = newTileViews
-        for tileView in tileViews where !tileView.lifted {
-            view.addSubview(tileView.view)
-        }
-        for tileView in tileViews where tileView.lifted {
-            view.addSubview(tileView.view)
-        }
     }
     
     func giveTile(tileView: TileView, position: Int) {
         rack.tiles[position] = Tile()
-        refreshTiles()
-    }
-    
-    func moveTile(from: Int, to: Int) {
-        rack.moveTile(from: from, to: to)
-        refreshTiles()
+        tileViews.remove(tileView)
+        tileView.view.removeFromSuperview()
     }
     
     func takeTile(tileView: TileView, position: Int) {
         rack.tiles[position] = tileView.tile
-        tileView.lifted = false
-        tileView.moveToRackPosition(position: position, duration: 1.0)
-        //refreshTiles()
+        tileViews.insert(tileView)
+        view.addSubview(tileView.view)
     }
     
+
+    // BAD!
     func push(from: Int, direction: Int) {
         rack.push(from: from, direction: direction)
-        refreshTiles()
+        //createTiles()
     }
     
     

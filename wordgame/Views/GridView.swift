@@ -14,7 +14,7 @@ class GridView {
     var grid: Grid
     
     var gridSlotViews: [GridSlotView]
-    var tileViews: [TileView]
+    var tileViews: Set<TileView>
     
     var view: UIView
     
@@ -33,28 +33,17 @@ class GridView {
             view.addSubview(newGridSlot.view)
         }
         
-        updateTiles()
+        createTiles()
     }
     
-    func updateTiles() {
-        
-        // clean
-        for tileView in tileViews {
-            tileView.view.removeFromSuperview()
-        }
-        
-        // update
-        tileViews = []
+    func createTiles() {
+
         for i in 0...15 {
             if grid.tiles[i].type != "null" {
                 let tileView = TileView(tile: grid.tiles[i], gridPosition: i)
-                tileViews.append(tileView)
+                tileViews.insert(tileView)
+                view.addSubview(tileView.view)
             }
-        }
-        
-        // draw
-        for tileView in tileViews {
-            view.addSubview(tileView.view)
         }
     }
     
@@ -66,11 +55,16 @@ class GridView {
         gridSlotViews[position].unhighlight()
     }
     
+    func giveTile(tileView: TileView, position: Int) {
+        grid.tiles[position] = Tile()
+        tileViews.remove(tileView)
+        tileView.view.removeFromSuperview()
+    }
+    
     func takeTile(tileView: TileView, position: Int) {
         grid.tiles[position] = tileView.tile
-        tileViews.append(tileView)
-        tileView.moveToGridPosition(position: position)
-        updateTiles()
+        tileViews.insert(tileView)
+        view.addSubview(tileView.view)
     }
     
 }

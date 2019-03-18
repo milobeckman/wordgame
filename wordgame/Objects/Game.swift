@@ -13,9 +13,13 @@ class Game {
     var grid : Grid
     var rack : Rack
     
+    var tilesServed : Int
+    
     init() {
         grid = Grid()
         rack = Rack()
+        
+        tilesServed = 0
         
         // temp -- for testing
         let testTile1 = Tile(type: "letter", text: "a")

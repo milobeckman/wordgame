@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TileView {
+class TileView: Hashable {
     
     var tile: Tile
     
@@ -26,6 +26,25 @@ class TileView {
     
     // dragging
     var lifted: Bool
+    
+    // conform to hashable
+    var uniqueID: String {
+        var id = ""
+        id += tile.type + ";"
+        id += tile.text + ";"
+        id += depthFrame.minX.description + ";"
+        id += depthFrame.minY.description + ";"
+        id += lifted.description
+        return id
+    }
+    
+    var hashValue: Int {
+        return uniqueID.hashValue
+    }
+    
+    static func ==(lhs: TileView, rhs: TileView) -> Bool {
+        return lhs.uniqueID == rhs.uniqueID
+    }
     
     init(tile: Tile) {
         
