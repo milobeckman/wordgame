@@ -70,11 +70,26 @@ class RackView {
         view.addSubview(tileView.view)
     }
     
-
-    // BAD!
     func push(from: Int, direction: Int) {
+        
+        var i = from + direction
+        while (rack.tiles[i].type != "null") {
+            i += direction
+        }
+        while i != from {
+            slideTile(from: i-direction, direction: direction)
+            i -= direction
+        }
+        
         rack.push(from: from, direction: direction)
-        //createTiles()
+    }
+    
+    func slideTile(from: Int, direction: Int) {
+        for tileView in tileViews {
+            if vc.rackPositionForPoint(point: tileView.depthFrame.origin) == from {
+                tileView.moveToRackPosition(position: from + direction)
+            }
+        }
     }
     
     
