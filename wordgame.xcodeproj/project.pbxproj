@@ -27,6 +27,7 @@
 		26745C71223862C6000BCD1B /* RackSlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C70223862C6000BCD1B /* RackSlotView.swift */; };
 		26745C78223B0291000BCD1B /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C77223B0291000BCD1B /* TouchHandler.swift */; };
 		26745C7A223B0D49000BCD1B /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C79223B0D49000BCD1B /* Rules.swift */; };
+		26F341EC223FFD8D006CAA0A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F341EB223FFD8D006CAA0A /* TimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		26745C70223862C6000BCD1B /* RackSlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RackSlotView.swift; sourceTree = "<group>"; };
 		26745C77223B0291000BCD1B /* TouchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
 		26745C79223B0D49000BCD1B /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+		26F341EB223FFD8D006CAA0A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				26745C6A22383800000BCD1B /* GameView.swift */,
 				26745C6C223838A3000BCD1B /* GridView.swift */,
 				26745C6E2238628F000BCD1B /* RackView.swift */,
+				26F341EB223FFD8D006CAA0A /* TimerView.swift */,
 				2663D93D2236039800A59810 /* TileView.swift */,
 				26745C6622379932000BCD1B /* GridSlotView.swift */,
 				26745C70223862C6000BCD1B /* RackSlotView.swift */,
@@ -328,6 +331,7 @@
 				2663D9122236028700A59810 /* ViewController.swift in Sources */,
 				26745C6D223838A3000BCD1B /* GridView.swift in Sources */,
 				2663D940223604C100A59810 /* ViewConstants.swift in Sources */,
+				26F341EC223FFD8D006CAA0A /* TimerView.swift in Sources */,
 				26745C6B22383800000BCD1B /* GameView.swift in Sources */,
 				26745C6522378CDF000BCD1B /* Grid.swift in Sources */,
 				26745C78223B0291000BCD1B /* TouchHandler.swift in Sources */,

@@ -22,4 +22,8 @@ class Rules {
         return false
     }
     
+    func currentTimerLength() -> Double {
+        return 10.0
+    }
+    
 }

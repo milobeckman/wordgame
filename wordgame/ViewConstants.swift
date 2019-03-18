@@ -19,6 +19,8 @@ class ViewConstants {
     var paddingToSideOfGrid = CGFloat(15)
     var paddingBetweenTiles = CGFloat(10)
     var paddingAboveRack = CGFloat(80)
+    var paddingAboveTimer = CGFloat(40)
+    var timerHeight = CGFloat(15) // temp: hard-coded
     var tileRadius = CGFloat(10)
     var tileDepth = CGFloat(3)
     var tileGlintSize = CGFloat(2)
@@ -29,6 +31,8 @@ class ViewConstants {
     var rackX = CGFloat(0)
     var rackY = CGFloat(0)
     var tileSize = CGFloat(0)
+    var timerX = CGFloat(0)
+    var timerY = CGFloat(0)
     
     // colors
     var backgroundColor = UIColor(red: 0.83, green: 0.83, blue: 0.83, alpha: 1)
@@ -57,6 +61,9 @@ class ViewConstants {
     var evaporateDuration = 0.5
     var evaporateHeight = CGFloat(6.0)
     
+    // other times
+    var tickInterval = 0.02
+    
     
     init() {
         screenBounds = UIScreen.main.bounds
@@ -72,6 +79,9 @@ class ViewConstants {
         gridX = paddingToSideOfGrid
         
         rackY = gridY + 4*tileSize + 3*paddingBetweenTiles + paddingAboveRack
+        
+        timerY = rackY + tileSize + paddingAboveTimer
+        timerHeight = screenBounds.height - timerY
         
         tileFont = UIFont(name: "BanglaSangamMN-Bold", size: tileTextSize)
         rackSlotFont = UIFont(name: "BanglaSangamMN-Bold", size: rackSlotTextSize)
@@ -101,6 +111,14 @@ class ViewConstants {
     
     func gridFrame() -> CGRect {
         return CGRect(x: 0, y: gridY, width: screenBounds.width, height: 4*tileSize + 3*paddingBetweenTiles)
+    }
+    
+    func timerFrame() -> CGRect {
+        return CGRect(x: 0, y: timerY, width: screenBounds.width, height: timerHeight)
+    }
+    
+    func timerBarFrame(fraction: Double) -> CGRect {
+        return CGRect(x: 0, y: timerY, width: CGFloat(fraction)*screenBounds.width, height: timerHeight)
     }
     
     // efficiency could be improved
