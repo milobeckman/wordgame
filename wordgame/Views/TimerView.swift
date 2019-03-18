@@ -26,9 +26,11 @@ class TimerView {
         timeLeft = 0
         
         view = UIView(frame: vc.screenBounds)
+        
         backgroundView = UIView(frame: vc.timerFrame())
+        backgroundView.backgroundColor = vc.timerBackgroundColor
+        
         barView = UIView(frame: vc.timerFrame())
-        barView.backgroundColor = UIColor.red
         
         view.addSubview(backgroundView)
         view.addSubview(barView)
@@ -68,6 +70,7 @@ class TimerView {
     func updateView() {
         let fraction = timeLeft / totalTime
         barView.frame = vc.timerBarFrame(fraction: fraction)
+        barView.backgroundColor = vc.timerBarColor(fraction: fraction)
     }
     
     

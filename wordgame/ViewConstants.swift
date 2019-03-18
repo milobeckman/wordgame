@@ -19,7 +19,7 @@ class ViewConstants {
     var paddingToSideOfGrid = CGFloat(15)
     var paddingBetweenTiles = CGFloat(10)
     var paddingAboveRack = CGFloat(80)
-    var paddingAboveTimer = CGFloat(40)
+    var paddingAboveTimer = CGFloat(0)
     var timerHeight = CGFloat(15) // temp: hard-coded
     var tileRadius = CGFloat(10)
     var tileDepth = CGFloat(3)
@@ -48,6 +48,12 @@ class ViewConstants {
     var rackColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var rackSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var rackSlotWidth = CGFloat(4)
+    
+    var timerBackgroundColor = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
+    var timerBarStartRGB = [0.0,1.0,0.0]
+    var timerBarMidRGB = [1.0,1.0,0.0]
+    var timerBarEndRGB = [1.0,0.0,0.0]
+    var timerBarMidpoint = 0.3
     
     // fonts
     var tileTextSize = CGFloat(40)
@@ -80,7 +86,7 @@ class ViewConstants {
         
         rackY = gridY + 4*tileSize + 3*paddingBetweenTiles + paddingAboveRack
         
-        timerY = rackY + tileSize + paddingAboveTimer
+        timerY = rackY + tileSize + 2*paddingBetweenTiles + paddingAboveTimer
         timerHeight = screenBounds.height - timerY
         
         tileFont = UIFont(name: "BanglaSangamMN-Bold", size: tileTextSize)
@@ -119,6 +125,23 @@ class ViewConstants {
     
     func timerBarFrame(fraction: Double) -> CGRect {
         return CGRect(x: 0, y: timerY, width: CGFloat(fraction)*screenBounds.width, height: timerHeight)
+    }
+    
+    func timerBarColor(fraction: Double) -> UIColor {
+        if fraction > timerBarMidpoint {
+            let p = (1.0 - fraction) / (1.0 - timerBarMidpoint)
+            return interpolateColor(start: timerBarStartRGB, end: timerBarMidRGB, fraction: p)
+        } else {
+            let p = (timerBarMidpoint - fraction) / (timerBarMidpoint)
+            return interpolateColor(start: timerBarMidRGB, end: timerBarEndRGB, fraction: p)
+        }
+    }
+    
+    func interpolateColor(start: [Double], end: [Double], fraction: Double) -> UIColor {
+        let r = CGFloat(start[0]*(1-fraction) + end[0]*fraction)
+        let g = CGFloat(start[1]*(1-fraction) + end[1]*fraction)
+        let b = CGFloat(start[2]*(1-fraction) + end[2]*fraction)
+        return UIColor(red: r, green: g, blue: b, alpha: 1.0)
     }
     
     // efficiency could be improved
