@@ -40,10 +40,10 @@ class RackView {
         rackView = UIView(frame: rackFrame)
         view.addSubview(rackView)
         
-        updateTiles()
+        refreshTiles()
     }
     
-    func updateTiles() {
+    func refreshTiles() {
         
         // clean
         var newTileViews = [TileView]()
@@ -75,24 +75,24 @@ class RackView {
     
     func giveTile(tileView: TileView, position: Int) {
         rack.tiles[position] = Tile()
-        updateTiles()
+        refreshTiles()
     }
     
     func moveTile(from: Int, to: Int) {
         rack.moveTile(from: from, to: to)
-        updateTiles()
+        refreshTiles()
     }
     
     func takeTile(tileView: TileView, position: Int) {
         rack.tiles[position] = tileView.tile
         tileView.lifted = false
-        //tileView.moveToRackPosition(position: position)
-        updateTiles()
+        tileView.moveToRackPosition(position: position, duration: 1.0)
+        //refreshTiles()
     }
     
     func push(from: Int, direction: Int) {
         rack.push(from: from, direction: direction)
-        updateTiles()
+        refreshTiles()
     }
     
     

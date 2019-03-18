@@ -102,14 +102,15 @@ class TileView {
         updateView()
     }
     
-    func moveToRackPosition(position: Int) {
-        depthFrame = vc.rackSlotFrame(position: position)
-        tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
-        rackPosition = position
+    func moveToRackPosition(position: Int, duration: Double = 0) {
         
+        depthFrame = vc.rackSlotFrame(position: position)
+        tileFrame = self.depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
+        rackPosition = position
         lifted = false
         
         updateView()
+        
     }
     
     func recenter(point: CGPoint) {
@@ -125,7 +126,6 @@ class TileView {
     func lift(point: CGPoint) {
         lifted = true
         recenter(point: point)
-        print("lift")
         
         // a lifted tileView is NOT in the rack.tiles array
         // it is still in rack.tileViews
@@ -133,7 +133,6 @@ class TileView {
     
     func drag(point: CGPoint) {
         recenter(point: point)
-        print("drag")
     }
     
     func drop(point: CGPoint) {
