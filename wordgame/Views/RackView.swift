@@ -41,6 +41,12 @@ class RackView {
         
         rackFrame = vc.rackFrame()
         rackView = UIView(frame: rackFrame)
+        rackView.backgroundColor = vc.rackColor
+        rackView.layer.shadowColor = UIColor.black.cgColor
+        //rackView.layer.shadowOpacity = 0.5
+        rackView.layer.shadowRadius = 3
+        rackView.layer.shadowOffset = CGSize(width: 0, height: 5)
+        
         view.addSubview(rackView)
         
         createTiles()

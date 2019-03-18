@@ -45,7 +45,7 @@ class ViewConstants {
     var gridSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var gridSlotColorHighlight = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
     
-    var rackColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
+    var rackColor = UIColor(red: 0.83, green: 0.83, blue: 0.83, alpha: 1)
     var rackSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var rackSlotWidth = CGFloat(4)
     
@@ -54,6 +54,9 @@ class ViewConstants {
     var timerBarMidRGB = [1.0,1.0,0.0]
     var timerBarEndRGB = [1.0,0.0,0.0]
     var timerBarMidpoint = 0.3
+    var timerShadowSize = CGFloat(7)
+    let timerShadowStartColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+    let timerShadowEndColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
     
     // fonts
     var tileTextSize = CGFloat(40)
@@ -125,6 +128,14 @@ class ViewConstants {
     
     func timerBarFrame(fraction: Double) -> CGRect {
         return CGRect(x: 0, y: timerY, width: CGFloat(fraction)*screenBounds.width, height: timerHeight)
+    }
+    
+    func timerTopShadowFrame() -> CGRect {
+        return CGRect(x: 0, y: timerY, width: screenWidth, height: timerShadowSize)
+    }
+    
+    func timerBottomShadowFrame() -> CGRect {
+        return CGRect(x: 0, y: timerY+timerHeight-timerShadowSize, width: screenWidth, height: timerShadowSize)
     }
     
     func timerBarColor(fraction: Double) -> UIColor {

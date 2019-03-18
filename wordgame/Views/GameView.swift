@@ -30,8 +30,8 @@ class GameView {
         view = UIView(frame: vc.screenBounds)
         view.backgroundColor = vc.backgroundColor
         view.addSubview(gridView.view)
-        view.addSubview(rackView.view)
         view.addSubview(timerView.view)
+        view.addSubview(rackView.view)
     }
     
 }
