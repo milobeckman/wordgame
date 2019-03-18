@@ -23,8 +23,8 @@ class ViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-            if vc.rackFrame().contains(touch.location(in: gameView.view)) {
+        for touch in touches {
+            if vc.rackPositionForPoint(point: touch.location(in: gameView.view)) != -1 {
                 touchHandler.liftTile(touch: touch)
             }
         }
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
+        for touch in touches {
             touchHandler.dragTile(touch: touch)
         }
         
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
+        for touch in touches {
             touchHandler.dropTile(touch: touch)
         }
         
