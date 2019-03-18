@@ -13,9 +13,6 @@ class TileView {
     
     var tile: Tile
     
-    // position
-    var rackPosition: Int
-    
     // frames
     var depthFrame: CGRect
     var tileFrame: CGRect
@@ -33,8 +30,6 @@ class TileView {
     init(tile: Tile) {
         
         self.tile = tile
-        
-        rackPosition = -1
         
         depthFrame = CGRect()
         tileFrame = CGRect()
@@ -96,17 +91,14 @@ class TileView {
     func moveToGridPosition(position: Int) {
         depthFrame = vc.gridSlotFrame(position: position)
         tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
-        
         lifted = false
         
         updateView()
     }
     
     func moveToRackPosition(position: Int, duration: Double = 0) {
-        
         depthFrame = vc.rackSlotFrame(position: position)
         tileFrame = self.depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
-        rackPosition = position
         lifted = false
         
         updateView()
@@ -114,7 +106,6 @@ class TileView {
     }
     
     func recenter(point: CGPoint) {
-        // not new home
         let newX = point.x - vc.tileSize/2
         let newY = point.y - vc.tileSize/2
         
@@ -130,16 +121,6 @@ class TileView {
         // a lifted tileView is NOT in the rack.tiles array
         // it is still in rack.tileViews
     }
-    
-    func drag(point: CGPoint) {
-        recenter(point: point)
-    }
-    
-    func drop(point: CGPoint) {
-        moveToRackPosition(position: rackPosition)
-    }
-    
-    
     
     func evaporate() {
         

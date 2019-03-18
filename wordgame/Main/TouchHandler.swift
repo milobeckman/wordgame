@@ -45,7 +45,7 @@ class TouchHandler {
     func dragTile(touch: UITouch) {
         let point = touch.location(in: gameView.view)
         if let tileView = tileViewForTouch[touch] {
-            tileView.drag(point: point)
+            tileView.recenter(point: point)
             
             // if in grid, highlight drop slot
             let gridPosition = gridPositionForTouch[touch]!
