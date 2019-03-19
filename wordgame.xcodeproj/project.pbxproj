@@ -27,7 +27,16 @@
 		26745C71223862C6000BCD1B /* RackSlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C70223862C6000BCD1B /* RackSlotView.swift */; };
 		26745C78223B0291000BCD1B /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C77223B0291000BCD1B /* TouchHandler.swift */; };
 		26745C7A223B0D49000BCD1B /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C79223B0D49000BCD1B /* Rules.swift */; };
-		268F9D0222414BA100953E73 /* WordList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268F9D0122414BA100953E73 /* WordList.txt */; };
+		2682695C2241880D00915F4D /* WordList-8.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269522241880B00915F4D /* WordList-8.txt */; };
+		2682695D2241880D00915F4D /* WordList-11.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269532241880B00915F4D /* WordList-11.txt */; };
+		2682695E2241880D00915F4D /* WordList-4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269542241880C00915F4D /* WordList-4.txt */; };
+		2682695F2241880D00915F4D /* WordList-5.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269552241880C00915F4D /* WordList-5.txt */; };
+		268269602241880D00915F4D /* WordList-6.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269562241880C00915F4D /* WordList-6.txt */; };
+		268269612241880D00915F4D /* WordList-10.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269572241880C00915F4D /* WordList-10.txt */; };
+		268269622241880D00915F4D /* WordList-9.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269582241880D00915F4D /* WordList-9.txt */; };
+		268269632241880D00915F4D /* WordList-3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269592241880D00915F4D /* WordList-3.txt */; };
+		268269642241880D00915F4D /* WordList-7.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2682695A2241880D00915F4D /* WordList-7.txt */; };
+		268269652241880D00915F4D /* WordList-12.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2682695B2241880D00915F4D /* WordList-12.txt */; };
 		26F341EC223FFD8D006CAA0A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F341EB223FFD8D006CAA0A /* TimerView.swift */; };
 		26F341EF22407131006CAA0A /* TileFrequency-0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 26F341EE22407131006CAA0A /* TileFrequency-0.txt */; };
 		26F341F12240725E006CAA0A /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F341F02240725E006CAA0A /* IO.swift */; };
@@ -79,7 +88,16 @@
 		26745C70223862C6000BCD1B /* RackSlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RackSlotView.swift; sourceTree = "<group>"; };
 		26745C77223B0291000BCD1B /* TouchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
 		26745C79223B0D49000BCD1B /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
-		268F9D0122414BA100953E73 /* WordList.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = WordList.txt; sourceTree = "<group>"; };
+		268269522241880B00915F4D /* WordList-8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-8.txt"; sourceTree = "<group>"; };
+		268269532241880B00915F4D /* WordList-11.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-11.txt"; sourceTree = "<group>"; };
+		268269542241880C00915F4D /* WordList-4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-4.txt"; sourceTree = "<group>"; };
+		268269552241880C00915F4D /* WordList-5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-5.txt"; sourceTree = "<group>"; };
+		268269562241880C00915F4D /* WordList-6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-6.txt"; sourceTree = "<group>"; };
+		268269572241880C00915F4D /* WordList-10.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-10.txt"; sourceTree = "<group>"; };
+		268269582241880D00915F4D /* WordList-9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-9.txt"; sourceTree = "<group>"; };
+		268269592241880D00915F4D /* WordList-3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-3.txt"; sourceTree = "<group>"; };
+		2682695A2241880D00915F4D /* WordList-7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-7.txt"; sourceTree = "<group>"; };
+		2682695B2241880D00915F4D /* WordList-12.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-12.txt"; sourceTree = "<group>"; };
 		26F341EB223FFD8D006CAA0A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		26F341EE22407131006CAA0A /* TileFrequency-0.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-0.txt"; sourceTree = "<group>"; };
 		26F341F02240725E006CAA0A /* IO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO.swift; sourceTree = "<group>"; };
@@ -203,11 +221,28 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		26826951224187FB00915F4D /* WordLists */ = {
+			isa = PBXGroup;
+			children = (
+				268269592241880D00915F4D /* WordList-3.txt */,
+				268269542241880C00915F4D /* WordList-4.txt */,
+				268269552241880C00915F4D /* WordList-5.txt */,
+				268269562241880C00915F4D /* WordList-6.txt */,
+				2682695A2241880D00915F4D /* WordList-7.txt */,
+				268269522241880B00915F4D /* WordList-8.txt */,
+				268269582241880D00915F4D /* WordList-9.txt */,
+				268269572241880C00915F4D /* WordList-10.txt */,
+				268269532241880B00915F4D /* WordList-11.txt */,
+				2682695B2241880D00915F4D /* WordList-12.txt */,
+			);
+			path = WordLists;
+			sourceTree = "<group>";
+		};
 		26F341ED224070EB006CAA0A /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				26826951224187FB00915F4D /* WordLists */,
 				26F341EE22407131006CAA0A /* TileFrequency-0.txt */,
-				268F9D0122414BA100953E73 /* WordList.txt */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -329,11 +364,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				268F9D0222414BA100953E73 /* WordList.txt in Resources */,
+				268269612241880D00915F4D /* WordList-10.txt in Resources */,
+				268269652241880D00915F4D /* WordList-12.txt in Resources */,
+				268269622241880D00915F4D /* WordList-9.txt in Resources */,
 				2663D91A2236028700A59810 /* LaunchScreen.storyboard in Resources */,
 				2663D9172236028700A59810 /* Assets.xcassets in Resources */,
+				2682695F2241880D00915F4D /* WordList-5.txt in Resources */,
+				2682695C2241880D00915F4D /* WordList-8.txt in Resources */,
 				26F341EF22407131006CAA0A /* TileFrequency-0.txt in Resources */,
+				268269642241880D00915F4D /* WordList-7.txt in Resources */,
+				268269632241880D00915F4D /* WordList-3.txt in Resources */,
+				2682695E2241880D00915F4D /* WordList-4.txt in Resources */,
 				2663D9152236028700A59810 /* Main.storyboard in Resources */,
+				2682695D2241880D00915F4D /* WordList-11.txt in Resources */,
+				268269602241880D00915F4D /* WordList-6.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

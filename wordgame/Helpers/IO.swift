@@ -30,20 +30,6 @@ func readlines(filename: String) -> [String] {
 }
 
 // TODO : WORDLIST DOESN'T INCLUDE ALL WORD LENGTHS
-func loadWordLists(filename: String) -> [Int : [String]] {
-    var wordLists = [Int : [String]]()
-    
-    for i in 3...12 {
-        wordLists[i] = []
-    }
-    
-    let lines = readlines(filename: filename)
-    for line in lines {
-        if (3...12).contains(line.count) {
-            wordLists[line.count]!.append(line)
-        }
-    }
-    
-    print(wordLists[9]!)
-    return wordLists
+func wordListForLength(length: Int) -> [String] {
+    return readlines(filename: "WordList-" + String(length) + ".txt")
 }

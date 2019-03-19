@@ -13,7 +13,18 @@ class Rules {
     var wordLists: [Int : [String]]
     
     init() {
-        wordLists = loadWordLists(filename: "WordList.txt")
+        wordLists = [:]
+        startLoadingWordLists()
+    }
+    
+    func startLoadingWordLists() {
+        
+        for length in 3...12 {
+            DispatchQueue.main.async {
+                self.wordLists[length] = wordListForLength(length: length)
+                print("done with " + String(length))
+            }
+        }
     }
     
     func canDrop(tile: Tile, gridTile: Tile) -> Bool {
