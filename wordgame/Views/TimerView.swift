@@ -47,6 +47,7 @@ class TimerView {
     }
     
     func resetTimer() {
+        ticker.invalidate()
         totalTime = rules.currentTimerLength()
         timeLeft = totalTime
         startTicker()
@@ -70,8 +71,6 @@ class TimerView {
     }
     
     func timesUp() {
-        print("time's up!")
-        ticker.invalidate()
         resetTimer()
     }
     

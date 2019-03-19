@@ -107,6 +107,7 @@ class TouchHandler {
                 tileView.moveToGridPosition(position: gridPosition, duration: vc.dropDuration)
                 gameView.gridView.takeTile(tileView: tileView, position: gridPosition)
                 gameView.gridView.unhighlight(position: gridPositionForTouch[touch]!)
+                gameView.timerView.resetTimer()
             }
             
             tileViewForTouch.removeValue(forKey: touch)
