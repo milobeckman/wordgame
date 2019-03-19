@@ -10,10 +10,10 @@ import Foundation
 
 class Rules {
     
-    var wordList: [String]
+    var wordLists: [Int : [String]]
     
     init() {
-        wordList = wordListFromFile(filename: "WordList.txt")
+        wordLists = loadWordLists(filename: "WordList.txt")
     }
     
     func canDrop(tile: Tile, gridTile: Tile) -> Bool {
@@ -30,13 +30,18 @@ class Rules {
     
     func legalWordPaths(level: Int) -> [[Int]] {
         
-        return [[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15]]
+        return [[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15],
+                [0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15],
+                [0,5,10,15],[12,9,6,3]]
     }
     
     func isWord(word: String) -> Bool {
-        return true
+        if (3...12).contains(word.count) {
+            return wordLists[word.count]!.contains(word)
+        }
         
-        // todo: check dict
+        return false
+        
         // todo: handle wilds
     }
     
@@ -60,11 +65,9 @@ class Rules {
         
         for line in freqs {
             let lineComponents = line.components(separatedBy: ",")
-            if lineComponents.count == 2 {
-                tileIDs.append(lineComponents[0])
-                cumulativeFreq += Double(lineComponents[1])!
-                cumulativeFreqs.append(cumulativeFreq)
-            }
+            tileIDs.append(lineComponents[0])
+            cumulativeFreq += Double(lineComponents[1])!
+            cumulativeFreqs.append(cumulativeFreq)
         }
         
         let rand = randomDouble()*cumulativeFreq
