@@ -10,8 +10,10 @@ import Foundation
 
 class Rules {
     
+    var wordList: [String]
+    
     init() {
-        
+        wordList = wordListFromFile(filename: "WordList.txt")
     }
     
     func canDrop(tile: Tile, gridTile: Tile) -> Bool {
@@ -22,8 +24,20 @@ class Rules {
         return false
     }
     
-    func currentTimerLength() -> Double {
+    func timerLength(level: Int) -> Double {
         return 1000.0
+    }
+    
+    func legalWordPaths(level: Int) -> [[Int]] {
+        
+        return [[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15]]
+    }
+    
+    func isWord(word: String) -> Bool {
+        return true
+        
+        // todo: check dict
+        // todo: handle wilds
     }
     
     func newTile() -> Tile {

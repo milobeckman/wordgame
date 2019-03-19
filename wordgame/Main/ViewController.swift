@@ -10,7 +10,8 @@ import UIKit
 
 var vc = ViewConstants()
 var rules = Rules()
-var gameView = GameView()
+var game = Game()
+var gameView = GameView(game: game)
 var touchHandler = TouchHandler(gameView: gameView)
 
 class ViewController: UIViewController {

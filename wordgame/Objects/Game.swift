@@ -14,12 +14,18 @@ class Game {
     var rack : Rack
     
     var tilesServed : Int
+    var currentLevel : Int
     
     init() {
         grid = Grid()
         rack = Rack()
         
         tilesServed = 0
+        currentLevel = 0
+    }
+    
+    func scoreWordPaths(wordPaths: [[Int]]) {
+        
     }
     
 }

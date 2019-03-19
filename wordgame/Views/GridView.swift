@@ -58,13 +58,48 @@ class GridView {
     func giveTile(tileView: TileView, position: Int) {
         grid.tiles[position] = Tile()
         tileViews.remove(tileView)
-        tileView.view.removeFromSuperview()
+        
+        tileView.evaporate()
     }
     
     func takeTile(tileView: TileView, position: Int) {
         grid.tiles[position] = tileView.tile
         tileViews.insert(tileView)
         view.addSubview(tileView.view)
+        
+        checkWords()
+    }
+    
+    func checkWords() {
+        let wordPathsToClear = grid.wordPathsToClear()
+        if wordPathsToClear.count > 0 {
+            scoreAndClearWordPaths(wordPaths: wordPathsToClear)
+        }
+    }
+    
+    func scoreAndClearWordPaths(wordPaths: [[Int]]) {
+        game.scoreWordPaths(wordPaths: wordPaths)
+        
+        var gridPositions = [Int]()
+        for wordPath in wordPaths {
+            for i in wordPath {
+                if !gridPositions.contains(i) {
+                    gridPositions.append(i)
+                }
+            }
+        }
+        
+        grid.clearPositions(positions: gridPositions)
+        
+        for tileView in tileViews {
+            let position = vc.gridPositionForFrame(frame: tileView.depthFrame)
+            
+            if gridPositions.contains(position) {
+                giveTile(tileView: tileView, position: position)
+            }
+        }
+        
+        
     }
     
 }

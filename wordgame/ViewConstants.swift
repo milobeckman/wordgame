@@ -175,4 +175,15 @@ class ViewConstants {
         
         return -1
     }
+    
+    // efficiency could be improved
+    func gridPositionForFrame(frame: CGRect) -> Int {
+        for i in 0...15 {
+            if gridSlotFrame(position: i) == frame {
+                return i
+            }
+        }
+        
+        return -1
+    }
 }

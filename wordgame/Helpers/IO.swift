@@ -23,3 +23,7 @@ func readlines(filename: String) -> [String] {
     print("file read error")
     return []
 }
+
+func wordListFromFile(filename: String) -> [String] {
+    return ["butt"]
+}

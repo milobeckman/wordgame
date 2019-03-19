@@ -188,7 +188,9 @@ class TileView: Hashable {
         UIView.animate(withDuration: vc.evaporateDuration, animations: {
             self.view.alpha = 0.0
             self.view.frame = vc.screenBounds.offsetBy(dx: 0, dy: -vc.evaporateHeight)
-        }, completion: nil)
+        }, completion: { (finished: Bool) in
+            self.view.removeFromSuperview()
+        })
         
     }
     

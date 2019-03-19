@@ -48,7 +48,7 @@ class TimerView {
     
     func resetTimer() {
         ticker.invalidate()
-        totalTime = rules.currentTimerLength()
+        totalTime = rules.timerLength(level: game.currentLevel)
         timeLeft = totalTime
         startTicker()
     }

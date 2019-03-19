@@ -19,9 +19,9 @@ class GameView {
     
     var view: UIView
     
-    init() {
+    init(game: Game) {
         
-        game = Game()
+        self.game = game
         
         gridView = GridView(grid: game.grid)
         rackView = RackView(rack: game.rack)
