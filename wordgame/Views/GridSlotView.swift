@@ -49,8 +49,18 @@ class GridSlotView {
     }
     
     func die() {
-        // will animate
-        slotView.removeFromSuperview()
+        let anchorX = slotFrame.midX/view.frame.width
+        let anchorY = slotFrame.midY/view.frame.height
+        setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: view)
+
+        UIView.animate(withDuration: vc.dieDuration, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 0.01, y: 0.01).rotated(by: vc.dieAngle)
+            self.view.alpha = 0.0
+        }, completion: { (finished: Bool) in
+            self.view.removeFromSuperview()
+        })
+        
+        // todo: can't drop on dead square
     }
     
     
