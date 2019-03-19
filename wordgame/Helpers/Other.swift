@@ -14,3 +14,8 @@ func randomDouble() -> Double {
     let rand = Int(arc4random_uniform(UInt32(max)))
     return Double(rand)/Double(max)
 }
+
+func randomElement(array: [Int]) -> Int {
+    let rand = Int(randomDouble()*Double(array.count))
+    return array[rand]
+}

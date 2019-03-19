@@ -36,7 +36,7 @@ class Rules {
     }
     
     func timerLength(level: Int) -> Double {
-        return 1000.0
+        return 5.0
     }
     
     func legalWordPaths(level: Int) -> [[Int]] {

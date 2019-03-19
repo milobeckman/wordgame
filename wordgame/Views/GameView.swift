@@ -49,4 +49,25 @@ class GameView {
         rackView.serveNewTile(position: rackPosition)
     }
     
+    func timesUp() {
+        var candidatesToDie = [Int]()
+        
+        for i in 0...15 {
+            if game.grid.tiles[i].type == "null" {
+                candidatesToDie.append(i)
+            }
+        }
+        
+        if candidatesToDie.count == 0 {
+            gameOver()
+        } else {
+            let positionToDie = randomElement(array: candidatesToDie)
+            gridView.kill(position: positionToDie)
+        }
+    }
+    
+    func gameOver() {
+        print("game over!")
+    }
+    
 }

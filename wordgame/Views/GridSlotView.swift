@@ -48,6 +48,10 @@ class GridSlotView {
         slotView.backgroundColor = vc.gridSlotColor
     }
     
+    func die() {
+        // will animate
+        slotView.removeFromSuperview()
+    }
     
     
     

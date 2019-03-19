@@ -55,6 +55,11 @@ class GridView {
         gridSlotViews[position].unhighlight()
     }
     
+    func kill(position: Int) {
+        grid.tiles[position].type = "dead"
+        gridSlotViews[position].die()
+    }
+    
     func giveTile(tileView: TileView, position: Int) {
         grid.tiles[position] = Tile()
         tileViews.remove(tileView)
