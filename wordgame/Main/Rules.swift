@@ -23,7 +23,7 @@ class Rules {
     }
     
     func currentTimerLength() -> Double {
-        return 10.0
+        return 1000.0
     }
     
     func newTile() -> Tile {

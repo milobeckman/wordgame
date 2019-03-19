@@ -67,7 +67,13 @@ class RackView {
     func serveNewTile(position: Int) {
         let tile = rules.newTile()
         let tileView = TileView(tile: tile, rackPosition: position)
-        takeTile(tileView: tileView, position: position)
+
+        rack.tiles[position] = tileView.tile
+        tileViews.insert(tileView)
+        
+        view.addSubview(tileView.view)
+        tileView.prepareToPop()
+        tileView.pop()
     }
     
     func giveTile(tileView: TileView, position: Int) {

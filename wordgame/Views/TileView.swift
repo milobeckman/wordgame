@@ -159,6 +159,22 @@ class TileView: Hashable {
         // it is still in rack.tileViews
     }
     
+    
+    // animations
+    
+    func prepareToPop() {
+        let anchorX = depthFrame.midX/view.frame.width
+        let anchorY = depthFrame.midY/view.frame.height
+        setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: view)
+        view.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
+    }
+    
+    func pop() {
+        UIView.animate(withDuration: vc.popDuration, delay: 0, usingSpringWithDamping: vc.popDamping, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            self.view.transform = .identity
+        }, completion: nil)
+    }
+    
     func evaporate() {
         
         depthView.backgroundColor = UIColor.black
