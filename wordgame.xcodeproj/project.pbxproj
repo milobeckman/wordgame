@@ -28,6 +28,8 @@
 		26745C78223B0291000BCD1B /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C77223B0291000BCD1B /* TouchHandler.swift */; };
 		26745C7A223B0D49000BCD1B /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C79223B0D49000BCD1B /* Rules.swift */; };
 		26F341EC223FFD8D006CAA0A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F341EB223FFD8D006CAA0A /* TimerView.swift */; };
+		26F341EF22407131006CAA0A /* TileFrequency-0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 26F341EE22407131006CAA0A /* TileFrequency-0.txt */; };
+		26F341F12240725E006CAA0A /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F341F02240725E006CAA0A /* IO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		26745C77223B0291000BCD1B /* TouchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
 		26745C79223B0D49000BCD1B /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		26F341EB223FFD8D006CAA0A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		26F341EE22407131006CAA0A /* TileFrequency-0.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-0.txt"; sourceTree = "<group>"; };
+		26F341F02240725E006CAA0A /* IO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 				26745C762239931A000BCD1B /* Main */,
 				26745C6122378C85000BCD1B /* Views */,
 				26745C75223992F0000BCD1B /* Objects */,
+				26F341ED224070EB006CAA0A /* Files */,
 				2663D9132236028700A59810 /* Main.storyboard */,
 				2663D9162236028700A59810 /* Assets.xcassets */,
 				2663D9182236028700A59810 /* LaunchScreen.storyboard */,
@@ -187,8 +192,17 @@
 				2663D9112236028700A59810 /* ViewController.swift */,
 				26745C77223B0291000BCD1B /* TouchHandler.swift */,
 				26745C79223B0D49000BCD1B /* Rules.swift */,
+				26F341F02240725E006CAA0A /* IO.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		26F341ED224070EB006CAA0A /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				26F341EE22407131006CAA0A /* TileFrequency-0.txt */,
+			);
+			path = Files;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +314,7 @@
 			files = (
 				2663D91A2236028700A59810 /* LaunchScreen.storyboard in Resources */,
 				2663D9172236028700A59810 /* Assets.xcassets in Resources */,
+				26F341EF22407131006CAA0A /* TileFrequency-0.txt in Resources */,
 				2663D9152236028700A59810 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +345,7 @@
 				26745C6922383762000BCD1B /* Game.swift in Sources */,
 				2663D9122236028700A59810 /* ViewController.swift in Sources */,
 				26745C6D223838A3000BCD1B /* GridView.swift in Sources */,
+				26F341F12240725E006CAA0A /* IO.swift in Sources */,
 				2663D940223604C100A59810 /* ViewConstants.swift in Sources */,
 				26F341EC223FFD8D006CAA0A /* TimerView.swift in Sources */,
 				26745C6B22383800000BCD1B /* GameView.swift in Sources */,
