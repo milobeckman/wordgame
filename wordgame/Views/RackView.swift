@@ -64,6 +64,12 @@ class RackView {
         
     }
     
+    func serveNewTile(position: Int) {
+        let tile = rules.newTile()
+        let tileView = TileView(tile: tile, rackPosition: position)
+        takeTile(tileView: tileView, position: position)
+    }
+    
     func giveTile(tileView: TileView, position: Int) {
         rack.tiles[position] = Tile()
         tileViews.remove(tileView)
@@ -93,7 +99,7 @@ class RackView {
     func slideTile(from: Int, direction: Int) {
         for tileView in tileViews {
             if vc.rackPositionForPoint(point: tileView.depthFrame.origin) == from {
-                tileView.moveToRackPosition(position: from + direction, duration: vc.slideDuration)
+                tileView.slideToRackPosition(position: from + direction, duration: vc.slideDuration)
             }
         }
     }

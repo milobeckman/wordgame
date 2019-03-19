@@ -101,13 +101,14 @@ class TouchHandler {
             tileView.view.removeFromSuperview()
             
             if gridPosition == -1 {
-                tileView.moveToRackPosition(position: rackPosition, duration: vc.dropDuration)
+                tileView.slideToRackPosition(position: rackPosition, duration: vc.dropDuration)
                 gameView.rackView.takeTile(tileView: tileView, position: rackPosition)
             } else {
-                tileView.moveToGridPosition(position: gridPosition, duration: vc.dropDuration)
+                tileView.slideToGridPosition(position: gridPosition, duration: vc.dropDuration)
                 gameView.gridView.takeTile(tileView: tileView, position: gridPosition)
-                gameView.gridView.unhighlight(position: gridPositionForTouch[touch]!)
-                gameView.timerView.resetTimer()
+                gameView.gridView.unhighlight(position: gridPosition)
+                
+                gameView.serveNewTile(rackPosition: rackPosition)
             }
             
             tileViewForTouch.removeValue(forKey: touch)

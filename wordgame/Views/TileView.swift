@@ -107,7 +107,7 @@ class TileView: Hashable {
         label.frame = tileFrame
     }
     
-    func moveToGridPosition(position: Int, duration: Double = 0) {
+    func slideToGridPosition(position: Int, duration: Double) {
         depthFrame = vc.gridSlotFrame(position: position)
         tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
         lifted = false
@@ -117,7 +117,14 @@ class TileView: Hashable {
         }, completion: nil)
     }
     
-    func moveToRackPosition(position: Int, duration: Double = 0) {
+    func moveToGridPosition(position: Int) {
+        depthFrame = vc.gridSlotFrame(position: position)
+        tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
+        lifted = false
+        self.updateView()
+    }
+    
+    func slideToRackPosition(position: Int, duration: Double) {
         depthFrame = vc.rackSlotFrame(position: position)
         tileFrame = self.depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
         lifted = false
@@ -126,6 +133,13 @@ class TileView: Hashable {
             self.updateView()
         }, completion: nil)
         
+    }
+    
+    func moveToRackPosition(position: Int) {
+        depthFrame = vc.rackSlotFrame(position: position)
+        tileFrame = self.depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
+        lifted = false
+        self.updateView()
     }
     
     func recenter(point: CGPoint) {

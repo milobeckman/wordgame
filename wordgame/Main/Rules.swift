@@ -26,4 +26,8 @@ class Rules {
         return 10.0
     }
     
+    func newTile() -> Tile {
+        return Tile(type: "letter", text: "m")
+    }
+    
 }

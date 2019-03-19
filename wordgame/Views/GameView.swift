@@ -34,4 +34,9 @@ class GameView {
         view.addSubview(rackView.view)
     }
     
+    func serveNewTile(rackPosition: Int) {
+        timerView.resetTimer()
+        rackView.serveNewTile(position: rackPosition)
+    }
+    
 }

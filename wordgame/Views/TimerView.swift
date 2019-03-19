@@ -71,6 +71,7 @@ class TimerView {
     }
     
     func timesUp() {
+        print("lose a square!!")
         resetTimer()
     }
     
