@@ -53,7 +53,7 @@ class Rules {
             }
         }
         
-        let rand = drand48()*cumulativeFreq
+        let rand = randomDouble()*cumulativeFreq
         
         for i in 0..<tileIDs.count {
             if rand < cumulativeFreqs[i] {

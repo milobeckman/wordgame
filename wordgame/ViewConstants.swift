@@ -68,6 +68,7 @@ class ViewConstants {
     var slideDuration = 0.2
     var dropDuration = 0.1
     var popDuration = 0.5
+    var popDelay = 0.15
     var popDamping = CGFloat(0.6)
     var evaporateDuration = 0.5
     var evaporateHeight = CGFloat(6.0)

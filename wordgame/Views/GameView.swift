@@ -32,6 +32,16 @@ class GameView {
         view.addSubview(gridView.view)
         view.addSubview(timerView.view)
         view.addSubview(rackView.view)
+        
+        newGame()
+    }
+    
+    func newGame() {
+        for i in 0...3 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)*vc.popDelay, execute: {
+                self.rackView.serveNewTile(position: i)
+            })
+        }
     }
     
     func serveNewTile(rackPosition: Int) {
