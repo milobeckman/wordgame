@@ -44,11 +44,17 @@ class ViewConstants {
     
     var wildColor = UIColor(red: 0.9843, green: 0.8078, blue: 0.2471, alpha: 1.0)
     var wildDepthColor = UIColor(red: 0.749, green: 0.6078, blue: 0.1882, alpha: 1.0)
-    var wildTextColor = UIColor(red: 0.9882, green: 0.8667, blue: 0.502, alpha: 1.0)
-    var wildGlintColor = UIColor(red: 0.9765, green: 0.749, blue: 0.1961, alpha: 0.0)
+    var wildTextColor = UIColor.black
+    var wildGlintColor = UIColor.black
+    
+    var trashColor = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1.0)
+    var trashDepthColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1.0)
+    var trashTextColor = UIColor.black
+    var trashGlintColor = UIColor.black
     
     var gridSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var gridSlotColorHighlight = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
+    var gridSlotAlpha = CGFloat(1.0)
     
     var rackColor = UIColor(red: 0.83, green: 0.83, blue: 0.83, alpha: 1)
     var rackSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
@@ -165,6 +171,8 @@ class ViewConstants {
         switch type {
         case "wild":
             return wildDepthColor
+        case "trash":
+            return trashDepthColor
         default:
             return tileDepthColor
         }
@@ -174,6 +182,8 @@ class ViewConstants {
         switch type {
         case "wild":
             return wildColor
+        case "trash":
+            return trashColor
         default:
             return tileColor
         }
@@ -183,6 +193,8 @@ class ViewConstants {
         switch type {
         case "wild":
             return wildGlintColor
+        case "trash":
+            return trashGlintColor
         default:
             return tileGlintColor
         }
@@ -192,6 +204,8 @@ class ViewConstants {
         switch type {
         case "wild":
             return wildTextColor
+        case "trash":
+            return trashTextColor
         default:
             return tileTextColor
         }
@@ -228,5 +242,15 @@ class ViewConstants {
         }
         
         return -1
+    }
+    
+    func tileViewWithGridPosition(tileViews: Set<TileView>, position: Int) -> TileView? {
+        for tileView in tileViews {
+            if gridPositionForFrame(frame: tileView.depthFrame) == position {
+                return tileView
+            }
+        }
+        
+        return nil
     }
 }

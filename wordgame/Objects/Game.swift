@@ -28,4 +28,9 @@ class Game {
         
     }
     
+    func tileServer() -> Int {
+        tilesServed += 1
+        return tilesServed
+    }
+    
 }

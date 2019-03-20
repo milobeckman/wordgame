@@ -34,11 +34,15 @@ class Rules {
             return gridTile.type == "null"
         }
         
+        if tile.type == "trash" {
+            return gridTile.isLetterLike()
+        }
+        
         return false
     }
     
     func timerLength(level: Int) -> Double {
-        return 5.0
+        return 5000.0
     }
     
     func legalWordPaths(level: Int) -> [[Int]] {

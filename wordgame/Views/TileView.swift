@@ -29,16 +29,7 @@ class TileView: Hashable {
     var shouldShowText: Bool
     
     // conform to hashable
-    var uniqueID: String {
-        var id = ""
-        id += tile.type + ";"
-        id += tile.text + ";"
-        id += depthFrame.minX.description + ";"
-        id += depthFrame.minY.description + ";"
-        id += lifted.description
-        return id
-    }
-    
+    var uniqueID: Int
     var hashValue: Int {
         return uniqueID.hashValue
     }
@@ -50,6 +41,8 @@ class TileView: Hashable {
     init(tile: Tile) {
         
         self.tile = tile
+        
+        uniqueID = game.tileServer()
         
         depthFrame = CGRect()
         tileFrame = CGRect()
@@ -164,6 +157,14 @@ class TileView: Hashable {
     func lift(point: CGPoint) {
         lifted = true
         recenter(point: point)
+    }
+    
+    func fade() {
+        view.alpha = 0.5
+    }
+    
+    func unfade() {
+        view.alpha = 1.0
     }
     
     func updateAndShowText() {

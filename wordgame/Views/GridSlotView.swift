@@ -28,6 +28,7 @@ class GridSlotView {
         
         // views
         view = UIView(frame: vc.screenBounds)
+        view.alpha = vc.gridSlotAlpha
         
         slotView = UIView(frame: slotFrame)
         slotView.layer.cornerRadius = vc.tileRadius
@@ -46,6 +47,14 @@ class GridSlotView {
     
     func unhighlight() {
         slotView.backgroundColor = vc.gridSlotColor
+    }
+    
+    func hide() {
+        view.alpha = 0.0
+    }
+    
+    func unhide() {
+        view.alpha = vc.gridSlotAlpha
     }
     
     func die() {

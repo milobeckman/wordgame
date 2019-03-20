@@ -137,7 +137,9 @@ class Grid {
     }
     
     func clearPositions(positions: [Int]) {
-        
+        for position in positions {
+            tiles[position] = Tile()
+        }
     }
     
 }

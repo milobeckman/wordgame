@@ -56,11 +56,23 @@ class GridView {
     }
     
     func highlight(position: Int) {
+        
         gridSlotViews[position].highlight()
+        
+        if let tileViewToFade = vc.tileViewWithGridPosition(tileViews: tileViews, position: position) {
+            tileViewToFade.fade()
+            gridSlotViews[position].hide()
+        }
     }
     
     func unhighlight(position: Int) {
+        
         gridSlotViews[position].unhighlight()
+        
+        if let tileViewToUnfade = vc.tileViewWithGridPosition(tileViews: tileViews, position: position) {
+            tileViewToUnfade.unfade()
+            gridSlotViews[position].unhide()
+        }
     }
     
     func kill(position: Int) {

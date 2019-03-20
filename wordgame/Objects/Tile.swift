@@ -12,18 +12,21 @@ import Foundation
 /*
  TYPES:
 
- null       - not a tile
- dead       - not a tile
+ null       not a tile
+ dead       not a tile
  
- letter
- wild
- trash
- bomb
- sweep
+ letter     (any 1-3 letter string)
+ wild       *, **, ***
+ trash      .trash
+ life       .life
+ bomb       .bomb
+ sweep      .sweep
+ ice        .ice
+ arrow      .u, .d, .l, .r, .ul, .ur, .dl, .dr
 */
 
 
-class Tile {
+class Tile: CustomStringConvertible {
     
     var type: String
     var text: String
@@ -33,6 +36,10 @@ class Tile {
         self.text = text
     }
     
+    var description: String {
+        return type + "," + text
+    }
+    
     convenience init() {
         self.init(type: "null", text: "")
     }
@@ -40,14 +47,27 @@ class Tile {
     convenience init(tileID: String) {
         self.init()
         
-        if tileID == "wild" {
-            type = "wild"
-            text = "*"
-        }
+        type = typeForTileID(tileID: tileID)
+        text = textForTileID(tileID: tileID)
+    }
+    
+    func typeForTileID(tileID: String) -> String {
         
-        else {
-            type = "letter"
-            text = tileID
+        if tileID.contains("*") {
+            return "wild"
+        } else if tileID == ".trash" {
+            return "trash"
+        } else {
+            return "letter"
+        }
+    }
+    
+    func textForTileID(tileID: String) -> String {
+        
+        if tileID.contains(".") {
+            return ""
+        } else {
+            return tileID
         }
     }
     
