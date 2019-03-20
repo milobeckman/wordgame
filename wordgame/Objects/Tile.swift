@@ -36,4 +36,18 @@ class Tile {
     convenience init() {
         self.init(type: "null", text: "")
     }
+    
+    convenience init(tileID: String) {
+        self.init()
+        
+        if tileID == "wild" {
+            type = "wild"
+            text = "\u{2605}"
+        }
+        
+        else {
+            type = "letter"
+            text = tileID
+        }
+    }
 }

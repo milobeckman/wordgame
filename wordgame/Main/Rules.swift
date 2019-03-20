@@ -28,7 +28,7 @@ class Rules {
     }
     
     func canDrop(tile: Tile, gridTile: Tile) -> Bool {
-        if tile.type == "letter" {
+        if tile.type == "letter" || tile.type == "wild" {
             return gridTile.type == "null"
         }
         
@@ -36,7 +36,7 @@ class Rules {
     }
     
     func timerLength(level: Int) -> Double {
-        return 5.0
+        return 5000.0
     }
     
     func legalWordPaths(level: Int) -> [[Int]] {
@@ -61,7 +61,7 @@ class Rules {
         let letterFreqs = readlines(filename: filename)
         let tileID = randomTileIDFromFreqs(freqs: letterFreqs)
         
-        return Tile(type: "letter", text: tileID)
+        return Tile(tileID: tileID)
     }
     
     func letterFrequencyFilename(level: Int) -> String {

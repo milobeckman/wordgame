@@ -42,6 +42,11 @@ class ViewConstants {
     var tileTextColor = UIColor(red: 0.3, green: 0.24, blue: 0.1, alpha: 1)
     var tileGlintColor = UIColor(red: 0.95, green: 0.89, blue: 0.78, alpha: 1)
     
+    var wildColor = UIColor(red: 0.9843, green: 0.8078, blue: 0.2471, alpha: 1.0)
+    var wildDepthColor = UIColor(red: 0.749, green: 0.6078, blue: 0.1882, alpha: 1.0)
+    var wildTextColor = UIColor(red: 0.9882, green: 0.8667, blue: 0.502, alpha: 1.0)
+    var wildGlintColor = UIColor(red: 0.9765, green: 0.749, blue: 0.1961, alpha: 0.0)
+    
     var gridSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var gridSlotColorHighlight = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
     
@@ -154,6 +159,42 @@ class ViewConstants {
         let g = CGFloat(start[1]*(1-fraction) + end[1]*fraction)
         let b = CGFloat(start[2]*(1-fraction) + end[2]*fraction)
         return UIColor(red: r, green: g, blue: b, alpha: 1.0)
+    }
+    
+    func tileDepthColor(type: String) -> UIColor {
+        switch type {
+        case "wild":
+            return wildDepthColor
+        default:
+            return tileDepthColor
+        }
+    }
+    
+    func tileColor(type: String) -> UIColor {
+        switch type {
+        case "wild":
+            return wildColor
+        default:
+            return tileColor
+        }
+    }
+    
+    func tileGlintColor(type: String) -> UIColor {
+        switch type {
+        case "wild":
+            return wildGlintColor
+        default:
+            return tileGlintColor
+        }
+    }
+    
+    func tileTextColor(type: String) -> UIColor {
+        switch type {
+        case "wild":
+            return wildTextColor
+        default:
+            return tileTextColor
+        }
     }
     
     // efficiency could be improved

@@ -58,17 +58,17 @@ class TileView: Hashable {
         
         depthView = UIView(frame: depthFrame)
         depthView.layer.cornerRadius = vc.tileRadius
-        depthView.backgroundColor = vc.tileDepthColor
+        depthView.backgroundColor = vc.tileDepthColor(type: tile.type)
         view.addSubview(depthView)
         
         tileView = UIView(frame: tileFrame)
         tileView.layer.cornerRadius = vc.tileRadius
-        tileView.backgroundColor = vc.tileColor
+        tileView.backgroundColor = vc.tileColor(type: tile.type)
         view.addSubview(tileView)
         
         glintLabel = UILabel(frame: tileFrame)
         glintLabel.font = vc.tileFont
-        glintLabel.textColor = vc.tileGlintColor
+        glintLabel.textColor = vc.tileGlintColor(type: tile.type)
         glintLabel.textAlignment = .center
         glintLabel.adjustsFontSizeToFitWidth = true
         glintLabel.baselineAdjustment = .alignCenters
@@ -77,7 +77,7 @@ class TileView: Hashable {
         
         label = UILabel(frame: tileFrame)
         label.font = vc.tileFont
-        label.textColor = vc.tileTextColor
+        label.textColor = vc.tileTextColor(type: tile.type)
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.baselineAdjustment = .alignCenters
