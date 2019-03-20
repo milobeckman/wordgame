@@ -62,7 +62,7 @@ class TouchHandler {
             
             // unhighlight
             if gridPosition != -1 && !gameView.gridView.gridSlotViews[gridPosition].slotFrame.contains(point) {
-                gameView.gridView.unhighlight(position: gridPosition)
+                gameView.gridView.endActiveHover(tileView: tileView, position: gridPosition)
                 gridPositionForTouch[touch] = -1
             }
             
@@ -72,7 +72,7 @@ class TouchHandler {
                 if newGridPosition != -1 {
                     let gridTile = gameView.gridView.grid.tiles[newGridPosition]
                     if rules.canDrop(tile: tileView.tile, gridTile: gridTile) {
-                        gameView.gridView.highlight(position: newGridPosition)
+                        gameView.gridView.beginActiveHover(tileView: tileView, position: newGridPosition)
                         gridPositionForTouch[touch] = newGridPosition
                     }
                 }
@@ -119,10 +119,7 @@ class TouchHandler {
                 tileView.slideToRackPosition(position: rackPosition, duration: vc.dropDuration)
                 gameView.rackView.takeTile(tileView: tileView, position: rackPosition)
             } else {
-                tileView.slideToGridPosition(position: gridPosition, duration: vc.dropDuration)
-                gameView.gridView.takeTile(tileView: tileView, position: gridPosition)
-                gameView.gridView.unhighlight(position: gridPosition)
-                
+                gameView.gridView.handleDrop(tileView: tileView, position: gridPosition)
                 gameView.serveNewTile(rackPosition: rackPosition)
             }
             

@@ -47,33 +47,61 @@ class GridView {
         }
     }
     
-    func showChoicesForWilds() {
-        for tileView in tileViews {
-            if tileView.tile.type == "wild" && !tileView.tile.text.contains("*") {
-                tileView.updateAndShowText()
-            }
-        }
-    }
     
-    func highlight(position: Int) {
+    /* HOVERS AND DROPS */
+    
+    func beginActiveHover(tileView: TileView, position: Int) {
         
-        gridSlotViews[position].highlight()
+        // hover over blank
+        if grid.tiles[position].type == "null" {
+            gridSlotViews[position].highlight()
+        }
         
-        if let tileViewToFade = vc.tileViewWithGridPosition(tileViews: tileViews, position: position) {
+        // hover over tile
+        else if tileView.tile.type == "trash" {
+            let tileViewToFade = vc.tileViewWithGridPosition(tileViews: tileViews, position: position)
             tileViewToFade.fade()
-            gridSlotViews[position].hide()
+            //gridSlotViews[position].hide()
         }
     }
     
-    func unhighlight(position: Int) {
+    func endActiveHover(tileView: TileView, position: Int) {
         
-        gridSlotViews[position].unhighlight()
+        // hover over blank
+        if grid.tiles[position].type == "null" {
+            gridSlotViews[position].unhighlight()
+        }
         
-        if let tileViewToUnfade = vc.tileViewWithGridPosition(tileViews: tileViews, position: position) {
+        // hover over tile
+        else if tileView.tile.type == "trash" {
+            let tileViewToUnfade = vc.tileViewWithGridPosition(tileViews: tileViews, position: position)
             tileViewToUnfade.unfade()
             gridSlotViews[position].unhide()
         }
     }
+    
+    func handleDrop(tileView: TileView, position: Int) {
+        
+        endActiveHover(tileView: tileView, position: position)
+        
+        // drop on blank
+        if grid.tiles[position].type == "null" {
+            tileView.slideToGridPosition(position: position, duration: vc.dropDuration)
+            takeTile(tileView: tileView, position: position)
+            endActiveHover(tileView: tileView, position: position)
+        }
+        
+        // drop on tile
+        else if tileView.tile.type == "trash" {
+            let tileToTrash = vc.tileViewWithGridPosition(tileViews: tileViews, position: position)
+            giveTile(tileView: tileToTrash, position: position)
+            endActiveHover(tileView: tileView, position: position)
+        }
+    }
+    
+    
+    
+    /* BASIC CHANGES TO GRID COMPONENTS */
     
     func kill(position: Int) {
         grid.tiles[position].type = "dead"
@@ -83,8 +111,7 @@ class GridView {
     func giveTile(tileView: TileView, position: Int) {
         grid.tiles[position] = Tile()
         tileViews.remove(tileView)
-        
-        tileView.evaporate()
+        tileView.view.removeFromSuperview()
     }
     
     func takeTile(tileView: TileView, position: Int) {
@@ -95,6 +122,10 @@ class GridView {
         clearWordsIfPossible(position: position)
     }
     
+    
+    
+    /* CLEARING WORDS */
+    
     func clearWordsIfPossible(position: Int) {
         
         grid.optimizeWilds(position: position)
@@ -103,6 +134,14 @@ class GridView {
         let wordPathsToClear = grid.wordPathsToClear()
         if wordPathsToClear.count > 0 {
             scoreAndClearWordPaths(wordPaths: wordPathsToClear)
+        }
+    }
+    
+    func showChoicesForWilds() {
+        for tileView in tileViews {
+            if tileView.tile.type == "wild" && !tileView.tile.text.contains("*") {
+                tileView.updateAndShowText()
+            }
         }
     }
     
@@ -124,11 +163,16 @@ class GridView {
             let position = vc.gridPositionForFrame(frame: tileView.depthFrame)
             
             if gridPositions.contains(position) {
-                giveTile(tileView: tileView, position: position)
+                giveAndEvaporateTile(tileView: tileView, position: position)
             }
         }
+    }
+    
+    func giveAndEvaporateTile(tileView: TileView, position: Int) {
+        grid.tiles[position] = Tile()
+        tileViews.remove(tileView)
         
-        
+        tileView.evaporate()
     }
     
 }

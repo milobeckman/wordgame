@@ -160,7 +160,7 @@ class TileView: Hashable {
     }
     
     func fade() {
-        view.alpha = 0.5
+        view.alpha = vc.fadedTileViewAlpha
     }
     
     func unfade() {

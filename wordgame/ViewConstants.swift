@@ -41,6 +41,7 @@ class ViewConstants {
     var tileDepthColor = UIColor(red: 0.7, green: 0.64, blue: 0.5, alpha: 1)
     var tileTextColor = UIColor(red: 0.3, green: 0.24, blue: 0.1, alpha: 1)
     var tileGlintColor = UIColor(red: 0.95, green: 0.89, blue: 0.78, alpha: 1)
+    var fadedTileViewAlpha = CGFloat(0.3)
     
     var wildColor = UIColor(red: 0.9843, green: 0.8078, blue: 0.2471, alpha: 1.0)
     var wildDepthColor = UIColor(red: 0.749, green: 0.6078, blue: 0.1882, alpha: 1.0)
@@ -244,13 +245,14 @@ class ViewConstants {
         return -1
     }
     
-    func tileViewWithGridPosition(tileViews: Set<TileView>, position: Int) -> TileView? {
+    func tileViewWithGridPosition(tileViews: Set<TileView>, position: Int) -> TileView {
         for tileView in tileViews {
             if gridPositionForFrame(frame: tileView.depthFrame) == position {
                 return tileView
             }
         }
         
-        return nil
+        print("error finding tileView")
+        return TileView(tile: Tile())
     }
 }
