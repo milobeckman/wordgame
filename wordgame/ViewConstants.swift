@@ -75,7 +75,7 @@ class ViewConstants {
     var popDuration = 0.5
     var popDelay = 0.15
     var popDamping = CGFloat(0.6)
-    var evaporateDuration = 0.5
+    var evaporateDuration = 2.0
     var evaporateHeight = CGFloat(6.0)
     var dieDuration = 1.0
     var dieAngle = CGFloat(1.0 * .pi)
