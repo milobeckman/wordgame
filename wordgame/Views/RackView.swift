@@ -12,8 +12,6 @@ import UIKit
 class RackView {
     
     var rack: Rack
-    
-    var rackSlotViews: [RackSlotView]
     var tileViews: Set<TileView>
     
     // rack object keeps track of [0,1,2,3] what's going on at each slot
@@ -28,17 +26,10 @@ class RackView {
         
         self.rack = rack
         
-        rackSlotViews = []
         tileViews = Set<TileView>()
         view = UIView(frame: vc.screenBounds)
         
-        // slots
-        for i in 0...3 {
-            let newRackSlot = RackSlotView(position: i)
-            rackSlotViews.append(newRackSlot)
-            view.addSubview(newRackSlot.view)
-        }
-        
+        // THIS ISN'T USED ATM
         rackFrame = vc.rackFrame()
         rackView = UIView(frame: rackFrame)
         rackView.backgroundColor = vc.rackColor

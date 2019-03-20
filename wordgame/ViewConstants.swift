@@ -45,13 +45,12 @@ class ViewConstants {
     
     var wildColor = UIColor(red: 0.9843, green: 0.8078, blue: 0.2471, alpha: 1.0)
     var wildDepthColor = UIColor(red: 0.749, green: 0.6078, blue: 0.1882, alpha: 1.0)
-    var wildTextColor = UIColor.black
-    var wildGlintColor = UIColor.black
     
     var trashColor = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1.0)
     var trashDepthColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1.0)
-    var trashTextColor = UIColor.black
-    var trashGlintColor = UIColor.black
+    
+    var lifeColor = UIColor(red: 0.9451, green: 0.5686, blue: 0.6706, alpha: 1.0)
+    var lifeDepthColor = UIColor(red: 0.749, green: 0.3373, blue: 0.4039, alpha: 1.0)
     
     var gridSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var gridSlotColorHighlight = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
@@ -174,6 +173,8 @@ class ViewConstants {
             return wildDepthColor
         case "trash":
             return trashDepthColor
+        case "life":
+            return lifeDepthColor
         default:
             return tileDepthColor
         }
@@ -185,6 +186,8 @@ class ViewConstants {
             return wildColor
         case "trash":
             return trashColor
+        case "life":
+            return lifeColor
         default:
             return tileColor
         }
@@ -192,10 +195,6 @@ class ViewConstants {
     
     func tileGlintColor(type: String) -> UIColor {
         switch type {
-        case "wild":
-            return wildGlintColor
-        case "trash":
-            return trashGlintColor
         default:
             return tileGlintColor
         }
@@ -203,10 +202,6 @@ class ViewConstants {
     
     func tileTextColor(type: String) -> UIColor {
         switch type {
-        case "wild":
-            return wildTextColor
-        case "trash":
-            return trashTextColor
         default:
             return tileTextColor
         }

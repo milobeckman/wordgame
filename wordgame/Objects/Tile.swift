@@ -57,6 +57,8 @@ class Tile: CustomStringConvertible {
             return "wild"
         } else if tileID == ".trash" {
             return "trash"
+        } else if tileID == ".life" {
+            return "life"
         } else {
             return "letter"
         }
