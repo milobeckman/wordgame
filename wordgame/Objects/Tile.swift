@@ -42,7 +42,7 @@ class Tile {
         
         if tileID == "wild" {
             type = "wild"
-            text = "\u{2605}"
+            text = "*"
         }
         
         else {

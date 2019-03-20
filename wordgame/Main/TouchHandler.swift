@@ -123,6 +123,13 @@ class TouchHandler {
                 gameView.gridView.takeTile(tileView: tileView, position: gridPosition)
                 gameView.gridView.unhighlight(position: gridPosition)
                 
+                // TESTING
+                if tileView.tile.type == "wild" {
+                    print(game.grid.bestChoiceForWild(position: gridPosition))
+                }
+                
+                // TESTING
+                
                 gameView.serveNewTile(rackPosition: rackPosition)
             }
             
