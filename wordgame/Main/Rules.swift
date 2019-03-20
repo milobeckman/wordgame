@@ -8,6 +8,9 @@
 
 import Foundation
 
+
+let noneString = "!NONE"
+
 class Rules {
     
     var wordLists: [Int : [String]]
@@ -22,7 +25,6 @@ class Rules {
         for length in 3...12 {
             DispatchQueue.main.async {
                 self.wordLists[length] = wordListForLength(length: length)
-                print("done with " + String(length))
             }
         }
     }
@@ -36,7 +38,7 @@ class Rules {
     }
     
     func timerLength(level: Int) -> Double {
-        return 5000.0
+        return 5.0
     }
     
     func legalWordPaths(level: Int) -> [[Int]] {

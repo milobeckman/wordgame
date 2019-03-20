@@ -26,6 +26,7 @@ class TileView: Hashable {
     
     // dragging
     var lifted: Bool
+    var shouldShowText: Bool
     
     // conform to hashable
     var uniqueID: String {
@@ -85,6 +86,7 @@ class TileView: Hashable {
         view.addSubview(label)
         
         lifted = false
+        shouldShowText = tile.type == "letter"
         
         // tile position is not initialized
         // always use a convenience init
@@ -105,6 +107,14 @@ class TileView: Hashable {
         tileView.frame = tileFrame
         glintLabel.frame = tileFrame.offsetBy(dx: vc.tileGlintSize, dy: vc.tileGlintSize)
         label.frame = tileFrame
+        
+        if shouldShowText {
+            glintLabel.alpha = 1.0
+            label.alpha = 1.0
+        } else {
+            glintLabel.alpha = 0.0
+            label.alpha = 0.0
+        }
     }
     
     func slideToGridPosition(position: Int, duration: Double) {
@@ -154,9 +164,13 @@ class TileView: Hashable {
     func lift(point: CGPoint) {
         lifted = true
         recenter(point: point)
-        
-        // a lifted tileView is NOT in the rack.tiles array
-        // it is still in rack.tileViews
+    }
+    
+    func updateAndShowText() {
+        shouldShowText = true
+        glintLabel.text = tile.text
+        label.text = tile.text
+        updateView()
     }
     
     

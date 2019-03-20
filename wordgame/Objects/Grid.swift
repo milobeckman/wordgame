@@ -38,7 +38,7 @@ class Grid {
     func wordPathShouldClear(wordPath: [Int]) -> Bool {
         var word = ""
         for i in wordPath {
-            if tiles[i].type == "letter" || tiles[i].type == "wild" {
+            if tiles[i].isLetterLike() {
                 word += tiles[i].text
             } else {
                 return false
@@ -48,17 +48,48 @@ class Grid {
         return rules.isWord(word: word)
     }
     
-    func stringForWordPath(wordPath: [Int]) -> String {
-        var word = ""
+    func wordPathIsFull(wordPath: [Int]) -> Bool {
         for i in wordPath {
-            if tiles[i].type == "letter" || tiles[i].type == "wild" {
-                word += tiles[i].text
-            } else {
-                return ""
+            if !tiles[i].isLetterLike() {
+                return false
             }
         }
         
-        return word
+        return true
+    }
+    
+    func optimizeWilds(position: Int) {
+        var activeWordPaths = [[Int]]()
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) {
+            if wordPath.contains(position) && wordPathIsFull(wordPath: wordPath) {
+                activeWordPaths.append(wordPath)
+            }
+        }
+        
+        if activeWordPaths.count == 0 {
+            return
+        }
+        
+        // optimize active position first, then all
+        optimizeWildAtPosition(position: position)
+        for wordPath in activeWordPaths {
+            for i in wordPath {
+                if i != position {
+                    optimizeWildAtPosition(position: i)
+                }
+            }
+        }
+    }
+    
+    func optimizeWildAtPosition(position: Int) {
+        if tiles[position].type != "wild" {
+            return
+        }
+        
+        let bestChoice = bestChoiceForWild(position: position)
+        if bestChoice != noneString {
+            tiles[position].text = bestChoice
+        }
     }
     
     func patternForWordPath(wordPath: [Int], position: Int) -> String {
@@ -89,10 +120,9 @@ class Grid {
             }
         }
         
-        print(choices)
-        
         if choices.count == 0 {
-            return "none" /// TEMP
+            // no way to clear this wild
+            return noneString
         }
         
         // most words cleared

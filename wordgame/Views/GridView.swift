@@ -47,6 +47,14 @@ class GridView {
         }
     }
     
+    func showChoicesForWilds() {
+        for tileView in tileViews {
+            if tileView.tile.type == "wild" && !tileView.tile.text.contains("*") {
+                tileView.updateAndShowText()
+            }
+        }
+    }
+    
     func highlight(position: Int) {
         gridSlotViews[position].highlight()
     }
@@ -72,10 +80,14 @@ class GridView {
         tileViews.insert(tileView)
         view.addSubview(tileView.view)
         
-        checkWords()
+        clearWordsIfPossible(position: position)
     }
     
-    func checkWords() {
+    func clearWordsIfPossible(position: Int) {
+        
+        grid.optimizeWilds(position: position)
+        showChoicesForWilds()
+        
         let wordPathsToClear = grid.wordPathsToClear()
         if wordPathsToClear.count > 0 {
             scoreAndClearWordPaths(wordPaths: wordPathsToClear)

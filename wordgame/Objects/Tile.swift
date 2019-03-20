@@ -50,4 +50,15 @@ class Tile {
             text = tileID
         }
     }
+    
+    func isLetterLike() -> Bool {
+        switch type {
+        case "letter":
+            return true
+        case "wild":
+            return true
+        default:
+            return false
+        }
+    }
 }
