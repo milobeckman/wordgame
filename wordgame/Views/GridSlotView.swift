@@ -60,7 +60,8 @@ class GridSlotView {
             self.view.removeFromSuperview()
         })
         
-        // todo: can't drop on dead square
+        // make sure we don't drop on dead square
+        touchHandler.doubleCheckBeforeDropping = true
     }
     
     

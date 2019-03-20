@@ -17,12 +17,16 @@ class TouchHandler {
     var rackPositionForTouch: [UITouch: Int]
     var gridPositionForTouch: [UITouch: Int]
     
+    var doubleCheckBeforeDropping: Bool
+    
     init(gameView: GameView) {
         self.gameView = gameView
         
         tileViewForTouch = [:]
         rackPositionForTouch = [:]
         gridPositionForTouch = [:]
+        
+        doubleCheckBeforeDropping = false
     }
     
     func liftTile(touch: UITouch) {
@@ -95,6 +99,17 @@ class TouchHandler {
     func dropTile(touch: UITouch) {
         if let tileView = tileViewForTouch[touch] {
             
+            if doubleCheckBeforeDropping {
+                if gridPositionForTouch[touch]! != -1 {
+                    let gridTile = gameView.gridView.grid.tiles[gridPositionForTouch[touch]!]
+                    if !rules.canDrop(tile: tileView.tile, gridTile: gridTile) {
+                        gridPositionForTouch[touch] = -1
+                    }
+                }
+                
+                doubleCheckBeforeDropping = false
+            }
+            
             let gridPosition = gridPositionForTouch[touch]!
             let rackPosition = rackPositionForTouch[touch]!
             
@@ -117,5 +132,6 @@ class TouchHandler {
             
         }
     }
+
     
 }
