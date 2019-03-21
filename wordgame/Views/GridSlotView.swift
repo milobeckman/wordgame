@@ -57,6 +57,16 @@ class GridSlotView {
         view.alpha = vc.gridSlotAlpha
     }
     
+    func suggestRebirth() {
+        view.alpha = vc.gridSlotAlpha
+        slotView.backgroundColor = vc.gridSlotColorRebirth
+    }
+    
+    func unsuggestRebirth() {
+        view.alpha = 0.0
+        slotView.backgroundColor = vc.gridSlotColor
+    }
+    
     func die() {
         let anchorX = slotFrame.midX/view.frame.width
         let anchorY = slotFrame.midY/view.frame.height
@@ -66,11 +76,23 @@ class GridSlotView {
             self.view.transform = CGAffineTransform(scaleX: 0.01, y: 0.01).rotated(by: vc.dieAngle)
             self.view.alpha = 0.0
         }, completion: { (finished: Bool) in
-            self.view.removeFromSuperview()
+
+            // grid slot is still hidden, but back to normal size/shape
+            self.view.transform = .identity
         })
         
         // make sure we don't drop on dead square
         touchHandler.doubleCheckBeforeDropping = true
+    }
+    
+    func rebirth() {
+        suggestRebirth()
+        
+        UIView.animate(withDuration: vc.rebirthDuration, animations: {
+            self.slotView.backgroundColor = vc.gridSlotColor
+        }, completion: nil)
+        
+        // check that completion nil is fine
     }
     
     

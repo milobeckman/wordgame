@@ -54,6 +54,7 @@ class ViewConstants {
     
     var gridSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var gridSlotColorHighlight = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
+    var gridSlotColorRebirth = UIColor(red: 0.8471, green: 0.7451, blue: 0.7686, alpha: 1.0)
     var gridSlotAlpha = CGFloat(1.0)
     
     var rackColor = UIColor(red: 0.83, green: 0.83, blue: 0.83, alpha: 1)
@@ -84,6 +85,7 @@ class ViewConstants {
     var evaporateDuration = 2.0
     var evaporateHeight = CGFloat(6.0)
     var dieDuration = 1.0
+    var rebirthDuration = 0.5
     var dieAngle = CGFloat(1.0 * .pi)
     
     // other times

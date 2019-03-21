@@ -57,11 +57,16 @@ class GridView {
             gridSlotViews[position].highlight()
         }
         
-        // hover over tile
+        // hover trash over tile
         else if tileView.tile.type == "trash" {
             let tileViewToFade = vc.tileViewWithGridPosition(tileViews: tileViews, position: position)
             tileViewToFade.fade()
             //gridSlotViews[position].hide()
+        }
+        
+        // hover life over dead
+        else if tileView.tile.type == "life" {
+            gridSlotViews[position].suggestRebirth()
         }
     }
     
@@ -77,6 +82,11 @@ class GridView {
             let tileViewToUnfade = vc.tileViewWithGridPosition(tileViews: tileViews, position: position)
             tileViewToUnfade.unfade()
             gridSlotViews[position].unhide()
+        }
+        
+        // hover life over dead
+        else if tileView.tile.type == "life" {
+            gridSlotViews[position].unsuggestRebirth()
         }
     }
     
@@ -97,6 +107,10 @@ class GridView {
             giveTile(tileView: tileToTrash, position: position)
             endActiveHover(tileView: tileView, position: position)
         }
+        
+        else if tileView.tile.type == "life" {
+            rebirth(position: position)
+        }
     }
     
     
@@ -106,6 +120,11 @@ class GridView {
     func kill(position: Int) {
         grid.tiles[position].type = "dead"
         gridSlotViews[position].die()
+    }
+    
+    func rebirth(position: Int) {
+        grid.tiles[position].type = "null"
+        gridSlotViews[position].rebirth()
     }
     
     func giveTile(tileView: TileView, position: Int) {

@@ -30,19 +30,18 @@ class Rules {
     }
     
     func canDrop(tile: Tile, gridTile: Tile) -> Bool {
-        if tile.type == "letter" || tile.type == "wild" {
+        switch tile.type {
+        case "trash":
+            return gridTile.isLetterLike()
+        case "life":
+            return gridTile.type == "dead"
+        default:
             return gridTile.type == "null"
         }
-        
-        if tile.type == "trash" {
-            return gridTile.isLetterLike()
-        }
-        
-        return false
     }
     
     func timerLength(level: Int) -> Double {
-        return 4000.0
+        return 5.0
     }
     
     func legalWordPaths(level: Int) -> [[Int]] {
