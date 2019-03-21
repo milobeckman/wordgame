@@ -10,22 +10,52 @@ import Foundation
 
 class Game {
     
-    var grid : Grid
-    var rack : Rack
+    var grid: Grid
+    var rack: Rack
     
-    var tilesServed : Int
-    var currentLevel : Int
+    var tilesServed: Int
+    var currentScore: Int
+    var currentLevel: Int
+    
+    var currentMultiplier: Int
     
     init() {
         grid = Grid()
         rack = Rack()
         
         tilesServed = 0
+        currentScore = 0
         currentLevel = 0
+        
+        currentMultiplier = 1
     }
     
     func scoreWordPaths(wordPaths: [[Int]]) {
         
+        if wordPaths.count > 1 {
+            if currentMultiplier < rules.maxMultiplier {
+                currentMultiplier += 1
+            }
+        } else {
+            currentMultiplier = 1
+        }
+        
+        for wordPath in wordPaths {
+            scoreWordPath(wordPath: wordPath)
+        }
+        
+        print("TOTAL:" + String(currentScore))
+    }
+    
+    func scoreWordPath(wordPath: [Int]) {
+        var tiles = [Tile]()
+        for position in wordPath {
+            tiles.append(grid.tiles[position])
+        }
+        
+        let score = rules.scoreForTiles(tiles: tiles, multiplier: currentMultiplier)
+        print("+" + String(score))
+        currentScore += score
     }
     
     func tileServer() -> Int {

@@ -13,21 +13,11 @@ let noneString = "!NONE"
 
 class Rules {
     
-    var wordLists: [Int : [String]]
+    var maxMultiplier = 5
     
-    init() {
-        wordLists = [:]
-        startLoadingWordLists()
-    }
     
-    func startLoadingWordLists() {
-        
-        for length in 3...12 {
-            DispatchQueue.main.async {
-                self.wordLists[length] = wordListForLength(length: length)
-            }
-        }
-    }
+    
+    
     
     func canDrop(tile: Tile, gridTile: Tile) -> Bool {
         switch tile.type {
@@ -41,7 +31,8 @@ class Rules {
     }
     
     func timerLength(level: Int) -> Double {
-        return 5.0
+        // TEMP!!!
+        return 2.0 + (100.0 / Double(game.tilesServed + 1))
     }
     
     func legalWordPaths(level: Int) -> [[Int]] {
@@ -51,15 +42,10 @@ class Rules {
                 [0,5,10,15],[12,9,6,3]]
     }
     
-    func isWord(word: String) -> Bool {
-        if (3...12).contains(word.count) {
-            return wordLists[word.count]!.contains(word)
-        }
-        
-        return false
-        
-        // todo: handle wilds
-    }
+    
+    
+    
+    /* NEW TILE GENERATOR */
     
     func newTile() -> Tile {
         let filename = letterFrequencyFilename(level: 0) // temp: hard-coded
@@ -96,5 +82,64 @@ class Rules {
         
         return "err"
     }
+    
+    
+    
+    /* WHAT'S A WORD */
+    
+    var wordLists: [Int : [String]]
+    
+    init() {
+        wordLists = [:]
+        startLoadingWordLists()
+    }
+    
+    func startLoadingWordLists() {
+        
+        for length in 3...12 {
+            DispatchQueue.main.async {
+                self.wordLists[length] = wordListForLength(length: length)
+            }
+        }
+    }
+    
+    func isWord(word: String) -> Bool {
+        if (3...12).contains(word.count) {
+            return wordLists[word.count]!.contains(word)
+        }
+        
+        return false
+    }
+    
+    
+    
+    /* SCORING */
+    
+    func scoreForTiles(tiles: [Tile], multiplier: Int = 1) -> Int {
+        
+        var score = 0
+        
+        for tile in tiles {
+            if tile.type == "letter" {
+                for letter in Array(tile.text) {
+                    score += scoreForLetter(letter: String(letter))
+                }
+            }
+        }
+        
+        return score * multiplier
+    }
+    
+    func scoreForLetter(letter: String) -> Int {
+        if "etaoinshrdlu".contains(letter) {
+            return 1
+        } else if "zxqjk".contains(letter) {
+            return 3
+        } else {
+            return 2
+        }
+    }
+    
+    
     
 }
