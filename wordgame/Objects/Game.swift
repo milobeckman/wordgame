@@ -70,4 +70,26 @@ class Game {
         }
     }
     
+    func numDeadTiles() -> Int {
+        var count = 0
+        for tile in grid.tiles {
+            if tile.type == "dead" {
+                count += 1
+            }
+        }
+        
+        return count
+    }
+    
+    func numFullTiles() -> Int {
+        var count = 0
+        for tile in grid.tiles {
+            if tile.isLetterLike() {
+                count += 1
+            }
+        }
+        
+        return count
+    }
+    
 }

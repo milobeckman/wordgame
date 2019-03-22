@@ -55,7 +55,17 @@ class Rules {
         let letterFreqs = readlines(filename: filename)
         let tileID = randomTileIDFromFreqs(freqs: letterFreqs)
         
-        return Tile(tileID: tileID)
+        let tile = Tile(tileID: tileID)
+        
+        // in some cases we shouldn't serve special tiles, serve wild instead
+        if tile.type == "life" && game.numDeadTiles() == 0 {
+            return Tile(tileID: "*")
+        }
+        if tile.type == "trash" && game.numFullTiles() < 8 {
+            return Tile(tileID: "*")
+        }
+        
+        return tile
     }
     
     func letterFrequencyFilename(level: Int) -> String {
