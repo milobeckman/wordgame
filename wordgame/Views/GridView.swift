@@ -153,6 +153,7 @@ class GridView {
         let wordPathsToClear = grid.wordPathsToClear()
         if wordPathsToClear.count > 0 {
             scoreAndClearWordPaths(wordPaths: wordPathsToClear)
+            game.updateLevelIfNeeded()
         }
         
         gameView.scoreView.update()

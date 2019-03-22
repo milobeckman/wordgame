@@ -63,4 +63,11 @@ class Game {
         return tilesServed
     }
     
+    func updateLevelIfNeeded() {
+        let level = Int((tilesServed-4) / rules.tilesPerLevel) + 1
+        if level > currentLevel {
+            currentLevel = level
+        }
+    }
+    
 }

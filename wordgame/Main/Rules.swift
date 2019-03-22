@@ -13,8 +13,11 @@ let noneString = "!NONE"
 
 class Rules {
     
-    var maxMultiplier = 5
-    
+    /* RULES */
+    let maxMultiplier = 5
+    let tilesPerLevel = 7
+    let timerStart = 20.0
+    let timerDecrement = 0.933
     
     
     
@@ -32,7 +35,7 @@ class Rules {
     
     func timerLength(level: Int) -> Double {
         // TEMP!!!
-        return 2.0 + (100.0 / Double(game.tilesServed + 1))
+        return timerStart * pow(timerDecrement, Double(game.currentLevel-1))
     }
     
     func legalWordPaths(level: Int) -> [[Int]] {
