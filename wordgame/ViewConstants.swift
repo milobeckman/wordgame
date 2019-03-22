@@ -16,6 +16,11 @@ class ViewConstants {
     var screenWidth: CGFloat
     
     // generators
+    var paddingAboveScore = CGFloat(20)
+    var scoreHeight = CGFloat(60)
+    var paddingAboveLevel = CGFloat(0)
+    var levelHeight = CGFloat(14)
+    var paddingAboveGrid = CGFloat(10)
     var paddingToSideOfGrid = CGFloat(15)
     var paddingBetweenTiles = CGFloat(10)
     var paddingAboveRack = CGFloat(80)
@@ -26,8 +31,12 @@ class ViewConstants {
     var tileGlintSize = CGFloat(2)
     
     // calculated
+    var scoreX = CGFloat(0)
+    var scoreY = CGFloat(0)
+    var levelX = CGFloat(0)
+    var levelY = CGFloat(0)
     var gridX = CGFloat(0)
-    var gridY = CGFloat(100) // temp: hard-coded
+    var gridY = CGFloat(0)
     var rackX = CGFloat(0)
     var rackY = CGFloat(0)
     var tileSize = CGFloat(0)
@@ -36,6 +45,9 @@ class ViewConstants {
     
     // colors
     var backgroundColor = UIColor(red: 0.83, green: 0.83, blue: 0.83, alpha: 1)
+    
+    var scoreTextColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+    var levelTextColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)
     
     var tileColor = UIColor(red: 0.9, green: 0.84, blue: 0.7, alpha: 1)
     var tileDepthColor = UIColor(red: 0.7, green: 0.64, blue: 0.5, alpha: 1)
@@ -71,6 +83,10 @@ class ViewConstants {
     let timerShadowEndColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
     
     // fonts
+    var scoreTextSize = CGFloat(60)
+    var scoreFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
+    var levelTextSize = CGFloat(13)
+    var levelFont = UIFont(name: "BanglaSangamMN", size: 40)
     var tileTextSize = CGFloat(40)
     var tileFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
     var rackSlotTextSize = CGFloat(60)
@@ -101,18 +117,35 @@ class ViewConstants {
     
     func calculateValues() {
         
-        tileSize = (screenWidth - paddingToSideOfGrid*2 - paddingBetweenTiles*3) / 4
+        scoreY = paddingAboveScore
+        levelY = scoreY + scoreHeight + paddingAboveLevel
+        gridY = levelY + levelHeight + paddingAboveGrid
         
         gridX = paddingToSideOfGrid
+        tileSize = (screenWidth - paddingToSideOfGrid*2 - paddingBetweenTiles*3) / 4
         
         rackY = gridY + 4*tileSize + 3*paddingBetweenTiles + paddingAboveRack
         
         timerY = rackY + tileSize + 2*paddingBetweenTiles + paddingAboveTimer
         timerHeight = screenBounds.height - timerY
         
+        scoreFont = UIFont(name: "BanglaSangamMN-Bold", size: scoreTextSize)
+        levelFont = UIFont(name: "BanglaSangamMN-Bold", size: levelTextSize)
         tileFont = UIFont(name: "BanglaSangamMN-Bold", size: tileTextSize)
         rackSlotFont = UIFont(name: "BanglaSangamMN-Bold", size: rackSlotTextSize)
         
+    }
+    
+    
+    
+    /* FRAMES */
+    
+    func scoreFrame() -> CGRect {
+        return CGRect(x: 0, y: scoreY, width: screenWidth, height: scoreHeight)
+    }
+    
+    func levelFrame() -> CGRect {
+        return CGRect(x: 0, y: levelY, width: screenWidth, height: levelHeight)
     }
     
     func gridSlotFrame(x: Int, y: Int) -> CGRect {
@@ -151,6 +184,11 @@ class ViewConstants {
     func timerShadowFrame() -> CGRect {
         return CGRect(x: 0, y: timerY, width: screenWidth, height: timerShadowSize)
     }
+    
+    
+    
+    
+    /* COLORS */
     
     func timerBarColor(fraction: Double) -> UIColor {
         if fraction > timerBarMidpoint {
@@ -208,6 +246,11 @@ class ViewConstants {
             return tileTextColor
         }
     }
+    
+    
+    
+    
+    /* FINDING STUFF */
     
     // efficiency could be improved
     func rackPositionForPoint(point: CGPoint) -> Int {

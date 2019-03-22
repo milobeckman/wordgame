@@ -154,6 +154,8 @@ class GridView {
         if wordPathsToClear.count > 0 {
             scoreAndClearWordPaths(wordPaths: wordPathsToClear)
         }
+        
+        gameView.scoreView.update()
     }
     
     func showChoicesForWilds() {

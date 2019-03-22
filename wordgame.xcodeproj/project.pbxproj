@@ -36,6 +36,7 @@
 		268269632241880D00915F4D /* WordList-3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269592241880D00915F4D /* WordList-3.txt */; };
 		268269642241880D00915F4D /* WordList-7.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2682695A2241880D00915F4D /* WordList-7.txt */; };
 		268269652241880D00915F4D /* WordList-12.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2682695B2241880D00915F4D /* WordList-12.txt */; };
+		269AB8A822453FAB00F7F005 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269AB8A722453FAB00F7F005 /* ScoreView.swift */; };
 		26F341EC223FFD8D006CAA0A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F341EB223FFD8D006CAA0A /* TimerView.swift */; };
 		26F341EF22407131006CAA0A /* TileFrequency-0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 26F341EE22407131006CAA0A /* TileFrequency-0.txt */; };
 		26F341F12240725E006CAA0A /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F341F02240725E006CAA0A /* IO.swift */; };
@@ -96,6 +97,7 @@
 		268269592241880D00915F4D /* WordList-3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-3.txt"; sourceTree = "<group>"; };
 		2682695A2241880D00915F4D /* WordList-7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-7.txt"; sourceTree = "<group>"; };
 		2682695B2241880D00915F4D /* WordList-12.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-12.txt"; sourceTree = "<group>"; };
+		269AB8A722453FAB00F7F005 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		26F341EB223FFD8D006CAA0A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		26F341EE22407131006CAA0A /* TileFrequency-0.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-0.txt"; sourceTree = "<group>"; };
 		26F341F02240725E006CAA0A /* IO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				26745C6A22383800000BCD1B /* GameView.swift */,
+				269AB8A722453FAB00F7F005 /* ScoreView.swift */,
 				26745C6C223838A3000BCD1B /* GridView.swift */,
 				26745C6E2238628F000BCD1B /* RackView.swift */,
 				26F341EB223FFD8D006CAA0A /* TimerView.swift */,
@@ -400,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2663D93E2236039800A59810 /* TileView.swift in Sources */,
+				269AB8A822453FAB00F7F005 /* ScoreView.swift in Sources */,
 				26745C6F2238628F000BCD1B /* RackView.swift in Sources */,
 				26745C6922383762000BCD1B /* Game.swift in Sources */,
 				2663D9122236028700A59810 /* ViewController.swift in Sources */,
