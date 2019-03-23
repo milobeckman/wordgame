@@ -68,17 +68,7 @@ class Grid {
         
         if activeWordPaths.count == 0 {
             return
-        } /*else if activeWordPaths.count == 1 {
-            // no hard choices, just choose the best word
-            let wordPath = activeWordPaths[0]
-            for i in wordPath {
-                if tiles[i].type == "wild" {
-                    let pattern = patternForWordPath(wordPath: wordPath, position: i)
-                    let choices = choicesForWild(pattern: pattern)
-                    tiles[i].text = choices[0]
-                }
-            }
-        }*/
+        }
         
         // optimize active position first, then all
         optimizeWildAtPosition(position: position)

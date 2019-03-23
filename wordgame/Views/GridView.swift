@@ -158,7 +158,7 @@ class GridView {
             game.updateLevelIfNeeded()
         }
         
-        gameView.scoreView.update()
+        gameView.scoreView.showyUpdate()
     }
     
     func showChoicesForWilds() {

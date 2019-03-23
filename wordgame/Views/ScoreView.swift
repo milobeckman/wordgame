@@ -15,6 +15,7 @@ let levelPrefix = "Level: "
 class ScoreView {
     
     var game: Game
+    var displayScore: Int
     
     var view: UIView
     var scoreView: UILabel
@@ -23,7 +24,7 @@ class ScoreView {
     init(game: Game) {
         
         self.game = game
-        
+        displayScore = 0
         
         view = UIView(frame: vc.screenBounds)
         
@@ -47,9 +48,20 @@ class ScoreView {
         
     }
     
-    func update() {
-        scoreView.text = String(game.currentScore)
+    func updateView() {
+        scoreView.text = String(displayScore)
         levelView.text = levelPrefix + String(game.currentLevel)
+    }
+    
+    func showyUpdate() {
+        updateView()
+        
+        if displayScore < game.currentScore {
+            displayScore += 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + vc.scoreTickInterval, execute: {
+                self.showyUpdate()
+            })
+        }
     }
     
 }

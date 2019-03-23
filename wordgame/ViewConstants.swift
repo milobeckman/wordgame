@@ -106,6 +106,7 @@ class ViewConstants {
     
     // other times
     var tickInterval = 0.02
+    var scoreTickInterval = 0.02
     
     
     init() {
