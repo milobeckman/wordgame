@@ -51,25 +51,50 @@ class Rules {
     /* NEW TILE GENERATOR */
     
     func newTile() -> Tile {
-        let filename = letterFrequencyFilename(level: 0) // temp: hard-coded
+        let filename = letterFrequencyFilename(level: game.currentLevel) // temp: hard-coded
         let letterFreqs = readlines(filename: filename)
         let tileID = randomTileIDFromFreqs(freqs: letterFreqs)
         
         let tile = Tile(tileID: tileID)
         
+        // never serve a triple tile
+        var sameCount = 0
+        for rackTile in game.rack.tiles {
+            if rackTile.type == tile.type && rackTile.text == tile.text {
+                sameCount += 1
+            }
+        }
+        if sameCount >= 2 {
+            return newTile()
+        }
+        
         // in some cases we shouldn't serve special tiles, serve wild instead
         if tile.type == "life" && game.numDeadTiles() == 0 {
             return Tile(tileID: "*")
         }
-        if tile.type == "trash" && game.numFullTiles() < 8 {
-            return Tile(tileID: "*")
+        
+        if tile.type == "trash" {
+            if game.numFullTiles() < 5 {
+                return Tile(tileID: "*")
+            }
+            
+            for rackTile in game.rack.tiles {
+                if rackTile.type == "trash" {
+                    return Tile(tileID: "*")
+                }
+            }
         }
         
         return tile
     }
     
     func letterFrequencyFilename(level: Int) -> String {
-        return "TileFrequency-0.txt"
+        let freqFile = level/5
+        if freqFile < 5 {
+            return "TileFrequency-" + String(freqFile) + ".txt"
+        } else {
+            return "TileFrequency-5.txt"
+        }
     }
     
     func randomTileIDFromFreqs(freqs: [String]) -> String {
@@ -133,26 +158,10 @@ class Rules {
         var score = 0
         
         for tile in tiles {
-            if tile.type == "letter" {
-                for letter in Array(tile.text) {
-                    score += scoreForLetter(letter: String(letter))
-                }
-            }
+            score += tile.score()
         }
         
         return score * multiplier
     }
-    
-    func scoreForLetter(letter: String) -> Int {
-        if "etaoinshrdlu".contains(letter) {
-            return 1
-        } else if "zxqjk".contains(letter) {
-            return 3
-        } else {
-            return 2
-        }
-    }
-    
-    
     
 }

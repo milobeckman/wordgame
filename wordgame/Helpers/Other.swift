@@ -40,7 +40,7 @@ func choicesForWild(pattern: String) -> [String] {
         choices.append(choice)
     }
     
-    return Array(Set(choices))
+    return unique(array: choices)
 }
 
 // "*u??d" -> ["humid", "lurid", "cubed", ...]
@@ -78,4 +78,18 @@ func modes(array: [String]) -> [String] {
     }
     
     return modes
+}
+
+func unique(array: [String]) -> [String] {
+    
+    var uniques = [String]()
+    for s in array {
+        if !uniques.contains(s) {
+            uniques.append(s)
+        }
+    }
+    
+    return uniques
+    
+    
 }

@@ -26,6 +26,12 @@
 		26745C6F2238628F000BCD1B /* RackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C6E2238628F000BCD1B /* RackView.swift */; };
 		26745C78223B0291000BCD1B /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C77223B0291000BCD1B /* TouchHandler.swift */; };
 		26745C7A223B0D49000BCD1B /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C79223B0D49000BCD1B /* Rules.swift */; };
+		267ED5DE224596A9000E2F19 /* TileFrequency-1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5DD224596A9000E2F19 /* TileFrequency-1.txt */; };
+		267ED5E0224596BA000E2F19 /* TileFrequency-2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5DF224596BA000E2F19 /* TileFrequency-2.txt */; };
+		267ED5E2224596CB000E2F19 /* TileFrequency-3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5E1224596CB000E2F19 /* TileFrequency-3.txt */; };
+		267ED5E4224596DF000E2F19 /* TileFrequency-4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5E3224596DF000E2F19 /* TileFrequency-4.txt */; };
+		267ED5E6224596EA000E2F19 /* TileFrequency-5.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5E5224596EA000E2F19 /* TileFrequency-5.txt */; };
+		267ED5E92245E380000E2F19 /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ED5E82245E380000E2F19 /* PauseView.swift */; };
 		2682695C2241880D00915F4D /* WordList-8.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269522241880B00915F4D /* WordList-8.txt */; };
 		2682695D2241880D00915F4D /* WordList-11.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269532241880B00915F4D /* WordList-11.txt */; };
 		2682695E2241880D00915F4D /* WordList-4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269542241880C00915F4D /* WordList-4.txt */; };
@@ -87,6 +93,12 @@
 		26745C6E2238628F000BCD1B /* RackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RackView.swift; sourceTree = "<group>"; };
 		26745C77223B0291000BCD1B /* TouchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
 		26745C79223B0D49000BCD1B /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+		267ED5DD224596A9000E2F19 /* TileFrequency-1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-1.txt"; sourceTree = "<group>"; };
+		267ED5DF224596BA000E2F19 /* TileFrequency-2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-2.txt"; sourceTree = "<group>"; };
+		267ED5E1224596CB000E2F19 /* TileFrequency-3.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-3.txt"; sourceTree = "<group>"; };
+		267ED5E3224596DF000E2F19 /* TileFrequency-4.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-4.txt"; sourceTree = "<group>"; };
+		267ED5E5224596EA000E2F19 /* TileFrequency-5.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-5.txt"; sourceTree = "<group>"; };
+		267ED5E82245E380000E2F19 /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
 		268269522241880B00915F4D /* WordList-8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-8.txt"; sourceTree = "<group>"; };
 		268269532241880B00915F4D /* WordList-11.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-11.txt"; sourceTree = "<group>"; };
 		268269542241880C00915F4D /* WordList-4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-4.txt"; sourceTree = "<group>"; };
@@ -194,6 +206,7 @@
 				26745C6C223838A3000BCD1B /* GridView.swift */,
 				26745C6E2238628F000BCD1B /* RackView.swift */,
 				26F341EB223FFD8D006CAA0A /* TimerView.swift */,
+				267ED5E82245E380000E2F19 /* PauseView.swift */,
 				2663D93D2236039800A59810 /* TileView.swift */,
 				26745C6622379932000BCD1B /* GridSlotView.swift */,
 			);
@@ -221,6 +234,19 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		267ED5E7224596EE000E2F19 /* TileFrequencies */ = {
+			isa = PBXGroup;
+			children = (
+				26F341EE22407131006CAA0A /* TileFrequency-0.txt */,
+				267ED5DD224596A9000E2F19 /* TileFrequency-1.txt */,
+				267ED5DF224596BA000E2F19 /* TileFrequency-2.txt */,
+				267ED5E1224596CB000E2F19 /* TileFrequency-3.txt */,
+				267ED5E3224596DF000E2F19 /* TileFrequency-4.txt */,
+				267ED5E5224596EA000E2F19 /* TileFrequency-5.txt */,
+			);
+			path = TileFrequencies;
+			sourceTree = "<group>";
+		};
 		26826951224187FB00915F4D /* WordLists */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,8 +267,8 @@
 		26F341ED224070EB006CAA0A /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				267ED5E7224596EE000E2F19 /* TileFrequencies */,
 				26826951224187FB00915F4D /* WordLists */,
-				26F341EE22407131006CAA0A /* TileFrequency-0.txt */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -364,17 +390,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				267ED5E0224596BA000E2F19 /* TileFrequency-2.txt in Resources */,
 				268269612241880D00915F4D /* WordList-10.txt in Resources */,
 				268269652241880D00915F4D /* WordList-12.txt in Resources */,
 				268269622241880D00915F4D /* WordList-9.txt in Resources */,
 				2663D91A2236028700A59810 /* LaunchScreen.storyboard in Resources */,
 				2663D9172236028700A59810 /* Assets.xcassets in Resources */,
+				267ED5DE224596A9000E2F19 /* TileFrequency-1.txt in Resources */,
 				2682695F2241880D00915F4D /* WordList-5.txt in Resources */,
+				267ED5E4224596DF000E2F19 /* TileFrequency-4.txt in Resources */,
 				2682695C2241880D00915F4D /* WordList-8.txt in Resources */,
 				26F341EF22407131006CAA0A /* TileFrequency-0.txt in Resources */,
+				267ED5E2224596CB000E2F19 /* TileFrequency-3.txt in Resources */,
 				268269642241880D00915F4D /* WordList-7.txt in Resources */,
 				268269632241880D00915F4D /* WordList-3.txt in Resources */,
 				2682695E2241880D00915F4D /* WordList-4.txt in Resources */,
+				267ED5E6224596EA000E2F19 /* TileFrequency-5.txt in Resources */,
 				2663D9152236028700A59810 /* Main.storyboard in Resources */,
 				2682695D2241880D00915F4D /* WordList-11.txt in Resources */,
 				268269602241880D00915F4D /* WordList-6.txt in Resources */,
@@ -409,6 +440,7 @@
 				2663D9122236028700A59810 /* ViewController.swift in Sources */,
 				26745C6D223838A3000BCD1B /* GridView.swift in Sources */,
 				26F341F12240725E006CAA0A /* IO.swift in Sources */,
+				267ED5E92245E380000E2F19 /* PauseView.swift in Sources */,
 				2663D940223604C100A59810 /* ViewConstants.swift in Sources */,
 				26F341EC223FFD8D006CAA0A /* TimerView.swift in Sources */,
 				26745C6B22383800000BCD1B /* GameView.swift in Sources */,

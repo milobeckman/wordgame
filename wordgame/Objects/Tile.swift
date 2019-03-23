@@ -83,4 +83,31 @@ class Tile: CustomStringConvertible {
             return false
         }
     }
+    
+    func score() -> Int {
+        
+        if type == "wild" {
+            return 0
+        }
+        
+
+        
+        switch text.count {
+        case 3:
+            return 20
+        case 2:
+            return 10
+            
+        // single letter tile
+        default:
+            if "qxjz".contains(text) {
+                return 3
+            } else if "vwfbcgyhkmp".contains(text) {
+                return 2
+            } else {
+                return 1
+            }
+        }
+        
+    }
 }

@@ -25,7 +25,7 @@ class Game {
         
         tilesServed = 0
         currentScore = 0
-        currentLevel = 0
+        currentLevel = 1
         
         currentMultiplier = 1
     }
@@ -36,6 +36,21 @@ class Game {
             if currentMultiplier < rules.maxMultiplier {
                 currentMultiplier += 1
             }
+            
+            // temp
+            switch currentMultiplier {
+            case 2:
+                print("CROSS BONUS!   x2")
+            case 3:
+                print("CROSS COMBO!   x3")
+            case 4:
+                print("TRIPLE COMBO!  x4")
+            case 5:
+                print("COMBO MAX!     x5")
+            default:
+                print("error")
+            }
+            
         } else {
             currentMultiplier = 1
         }
@@ -43,8 +58,6 @@ class Game {
         for wordPath in wordPaths {
             scoreWordPath(wordPath: wordPath)
         }
-        
-        print("TOTAL:" + String(currentScore))
     }
     
     func scoreWordPath(wordPath: [Int]) {
@@ -54,7 +67,6 @@ class Game {
         }
         
         let score = rules.scoreForTiles(tiles: tiles, multiplier: currentMultiplier)
-        print("+" + String(score))
         currentScore += score
     }
     
