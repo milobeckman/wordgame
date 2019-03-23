@@ -19,6 +19,8 @@ class Game {
     
     var currentMultiplier: Int
     
+    var over: Bool
+    
     init() {
         grid = Grid()
         rack = Rack()
@@ -28,6 +30,8 @@ class Game {
         currentLevel = 1
         
         currentMultiplier = 1
+        
+        over = false
     }
     
     func scoreWordPaths(wordPaths: [[Int]]) {
@@ -121,6 +125,7 @@ class Game {
                 }
             }
             
+            over = true
             gameView.gameOver()
         }
         

@@ -89,8 +89,8 @@ class ViewConstants {
     var levelFont = UIFont(name: "BanglaSangamMN", size: 40)
     var tileTextSize = CGFloat(40)
     var tileFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
-    var rackSlotTextSize = CGFloat(60)
-    var rackSlotFont = UIFont(name: "BanglaSangamMN-Bold", size: 80)
+    var tileScoreTextSize = CGFloat(18)
+    var tileScoreFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
     
     // animations
     var slideDuration = 0.2
@@ -132,8 +132,7 @@ class ViewConstants {
         scoreFont = UIFont(name: "BanglaSangamMN-Bold", size: scoreTextSize)
         levelFont = UIFont(name: "BanglaSangamMN-Bold", size: levelTextSize)
         tileFont = UIFont(name: "BanglaSangamMN-Bold", size: tileTextSize)
-        rackSlotFont = UIFont(name: "BanglaSangamMN-Bold", size: rackSlotTextSize)
-        
+        tileScoreFont = UIFont(name: "BanglaSangamMN-Bold", size: tileScoreTextSize)
     }
     
     
@@ -163,6 +162,13 @@ class ViewConstants {
     func rackSlotFrame(position: Int) -> CGRect {
         let x = paddingToSideOfGrid + CGFloat(position) * (tileSize + paddingBetweenTiles)
         return CGRect(x: x, y: rackY + paddingBetweenTiles, width: tileSize, height: tileSize)
+    }
+    
+    func scoreLabelFrame(tileFrame: CGRect) -> CGRect {
+        let x = tileFrame.minX + 0.68*tileSize
+        let y = tileFrame.minY
+        let size = 0.32*tileSize
+        return CGRect(x: x, y: y, width: size, height: size)
     }
     
     func rackFrame() -> CGRect {

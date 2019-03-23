@@ -45,6 +45,8 @@ class GameView {
                 self.rackView.serveNewTile(position: i)
             })
         }
+        
+        game.over = false
     }
     
     func serveNewTile(rackPosition: Int) {
@@ -72,6 +74,7 @@ class GameView {
     func gameOver() {
         print("game over!")
         timerView.pauseTimer()
+        game.over = true
     }
     
 }

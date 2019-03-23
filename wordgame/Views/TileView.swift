@@ -16,6 +16,7 @@ class TileView: Hashable {
     // frames
     var depthFrame: CGRect
     var tileFrame: CGRect
+    var scoreFrame: CGRect
     
     // views
     var view: UIView
@@ -23,10 +24,13 @@ class TileView: Hashable {
     var tileView: UIView
     var glintLabel: UILabel
     var label: UILabel
+    var scoreGlintLabel: UILabel
+    var scoreLabel: UILabel
     
     // dragging
     var lifted: Bool
     var shouldShowText: Bool
+    var shouldShowScore: Bool
     
     // conform to hashable
     var uniqueID: Int
@@ -46,6 +50,7 @@ class TileView: Hashable {
         
         depthFrame = CGRect()
         tileFrame = CGRect()
+        scoreFrame = CGRect()
         
         // views
         view = UIView(frame: vc.screenBounds)
@@ -78,8 +83,27 @@ class TileView: Hashable {
         label.text = tile.text
         view.addSubview(label)
         
+        scoreGlintLabel = UILabel(frame: scoreFrame)
+        scoreGlintLabel.font = vc.tileScoreFont
+        scoreGlintLabel.textColor = vc.tileGlintColor(type: tile.type)
+        scoreGlintLabel.textAlignment = .center
+        scoreGlintLabel.adjustsFontSizeToFitWidth = true
+        scoreGlintLabel.baselineAdjustment = .alignCenters
+        scoreGlintLabel.text = String(tile.score())
+        view.addSubview(scoreGlintLabel)
+        
+        scoreLabel = UILabel(frame: scoreFrame)
+        scoreLabel.font = vc.tileScoreFont
+        scoreLabel.textColor = vc.tileTextColor(type: tile.type)
+        scoreLabel.textAlignment = .center
+        scoreLabel.adjustsFontSizeToFitWidth = true
+        scoreLabel.baselineAdjustment = .alignCenters
+        scoreLabel.text = String(tile.score())
+        view.addSubview(scoreLabel)
+        
         lifted = false
         shouldShowText = tile.type == "letter"
+        shouldShowScore = false
         
         // tile position is not initialized
         // always use a convenience init
@@ -95,11 +119,20 @@ class TileView: Hashable {
         moveToRackPosition(position: rackPosition)
     }
     
+    func updateFramesFromDepthFrame() {
+        tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
+        scoreFrame = vc.scoreLabelFrame(tileFrame: tileFrame)
+    }
+    
     func updateView() {
+        updateFramesFromDepthFrame()
+        
         depthView.frame = depthFrame
         tileView.frame = tileFrame
         glintLabel.frame = tileFrame.offsetBy(dx: vc.tileGlintSize, dy: vc.tileGlintSize)
         label.frame = tileFrame
+        scoreGlintLabel.frame = scoreFrame.offsetBy(dx: vc.tileGlintSize, dy: vc.tileGlintSize)
+        scoreLabel.frame = scoreFrame
         
         if shouldShowText {
             glintLabel.alpha = 1.0
@@ -108,11 +141,18 @@ class TileView: Hashable {
             glintLabel.alpha = 0.0
             label.alpha = 0.0
         }
+        
+        if shouldShowScore {
+            scoreGlintLabel.alpha = 1.0
+            scoreLabel.alpha = 1.0
+        } else {
+            scoreGlintLabel.alpha = 0.0
+            scoreLabel.alpha = 0.0
+        }
     }
     
     func slideToGridPosition(position: Int, duration: Double) {
         depthFrame = vc.gridSlotFrame(position: position)
-        tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
         lifted = false
         
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
@@ -122,14 +162,12 @@ class TileView: Hashable {
     
     func moveToGridPosition(position: Int) {
         depthFrame = vc.gridSlotFrame(position: position)
-        tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
         lifted = false
         self.updateView()
     }
     
     func slideToRackPosition(position: Int, duration: Double) {
         depthFrame = vc.rackSlotFrame(position: position)
-        tileFrame = self.depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
         lifted = false
         
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
@@ -199,6 +237,12 @@ class TileView: Hashable {
         
         glintLabel.alpha = 0
         label.textColor = UIColor.black
+        
+        scoreGlintLabel.alpha = 0
+        if tile.score() > 0 {
+            scoreLabel.alpha = 1.0
+            scoreLabel.textColor = UIColor.black
+        }
         
         UIView.animate(withDuration: vc.evaporateDuration, animations: {
             self.view.alpha = 0.0
