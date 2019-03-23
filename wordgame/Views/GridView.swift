@@ -120,6 +120,8 @@ class GridView {
     func kill(position: Int) {
         grid.tiles[position].type = "dead"
         gridSlotViews[position].die()
+        
+        game.checkIfGameOver()
     }
     
     func rebirth(position: Int) {

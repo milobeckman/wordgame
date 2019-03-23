@@ -65,6 +65,8 @@ class RackView {
         view.addSubview(tileView.view)
         tileView.prepareToPop()
         tileView.pop()
+        
+        game.checkIfGameOver()
     }
     
     func giveTile(tileView: TileView, position: Int) {

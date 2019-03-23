@@ -61,6 +61,10 @@ class TimerView {
                                       repeats: true)
     }
     
+    func pauseTimer() {
+        ticker.invalidate()
+    }
+    
     @objc func tick() {
         timeLeft -= vc.tickInterval
         if timeLeft <= 0 {

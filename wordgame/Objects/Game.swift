@@ -104,4 +104,26 @@ class Game {
         return count
     }
     
+    func checkIfGameOver() {
+        
+        if numDeadTiles() + numFullTiles() == 16 {
+            for tile in rack.tiles {
+                if tile.type == "trash" {
+                    return
+                }
+            }
+            
+            if numDeadTiles() > 0 {
+                for tile in rack.tiles {
+                    if tile.type == "life" {
+                        return
+                    }
+                }
+            }
+            
+            gameView.gameOver()
+        }
+        
+    }
+    
 }

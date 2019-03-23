@@ -71,6 +71,7 @@ class GameView {
     
     func gameOver() {
         print("game over!")
+        timerView.pauseTimer()
     }
     
 }
