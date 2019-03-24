@@ -20,6 +20,7 @@ class ViewConstants {
     var scoreHeight = CGFloat(60)
     var paddingAboveLevel = CGFloat(0)
     var levelHeight = CGFloat(14)
+    var paddingAroundPauseBar = CGFloat(8)
     var paddingAboveGrid = CGFloat(10)
     var paddingToSideOfGrid = CGFloat(15)
     var paddingBetweenTiles = CGFloat(10)
@@ -35,6 +36,8 @@ class ViewConstants {
     var scoreY = CGFloat(0)
     var levelX = CGFloat(0)
     var levelY = CGFloat(0)
+    var pauseBarX = CGFloat(0)
+    var pauseBarY = CGFloat(0)
     var gridX = CGFloat(0)
     var gridY = CGFloat(0)
     var rackX = CGFloat(0)
@@ -48,6 +51,8 @@ class ViewConstants {
     
     var scoreTextColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
     var levelTextColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)
+    
+    var pauseBarColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1)
     
     var tileColor = UIColor(red: 0.9, green: 0.84, blue: 0.7, alpha: 1)
     var tileDepthColor = UIColor(red: 0.7, green: 0.64, blue: 0.5, alpha: 1)
@@ -95,14 +100,19 @@ class ViewConstants {
     // animations
     var slideDuration = 0.2
     var dropDuration = 0.1
+    
     var popDuration = 0.5
     var popDelay = 0.15
     var popDamping = CGFloat(0.6)
+    
     var evaporateDuration = 2.0
     var evaporateHeight = CGFloat(6.0)
+    
     var dieDuration = 1.0
-    var rebirthDuration = 0.5
     var dieAngle = CGFloat(1.0 * .pi)
+    var reviveDuration = 0.5
+    
+    var pauseDuration = 0.8
     
     // other times
     var tickInterval = 0.02
@@ -120,8 +130,10 @@ class ViewConstants {
         
         scoreY = paddingAboveScore
         levelY = scoreY + scoreHeight + paddingAboveLevel
-        gridY = levelY + levelHeight + paddingAboveGrid
+        pauseBarY = levelY + levelHeight + paddingAroundPauseBar
+        gridY = pauseBarY + paddingAroundPauseBar + tileDepth
         
+        pauseBarX = paddingToSideOfGrid - tileDepth
         gridX = paddingToSideOfGrid
         tileSize = (screenWidth - paddingToSideOfGrid*2 - paddingBetweenTiles*3) / 4
         
@@ -146,6 +158,18 @@ class ViewConstants {
     
     func levelFrame() -> CGRect {
         return CGRect(x: 0, y: levelY, width: screenWidth, height: levelHeight)
+    }
+    
+    func pauseBarFrame() -> CGRect {
+        return CGRect(x: pauseBarX, y: pauseBarY, width: screenWidth - 2.0*pauseBarX, height: 1)
+    }
+    
+    func pauseBarFramePaused() -> CGRect {
+        return CGRect(x: pauseBarX, y: timerY-1, width: screenWidth - 2.0*pauseBarX, height: 1)
+    }
+    
+    func pauseCurtainFramePaused() -> CGRect {
+        return CGRect(x: pauseBarX, y: pauseBarY, width: screenWidth - 2.0*pauseBarX, height: timerY-1-pauseBarY)
     }
     
     func gridSlotFrame(x: Int, y: Int) -> CGRect {

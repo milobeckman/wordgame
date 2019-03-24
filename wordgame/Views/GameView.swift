@@ -17,6 +17,7 @@ class GameView {
     var gridView: GridView
     var rackView: RackView
     var timerView: TimerView
+    var pauseView: PauseView
     
     var view: UIView
     
@@ -25,6 +26,7 @@ class GameView {
         self.game = game
         
         scoreView = ScoreView(game: game)
+        pauseView = PauseView()
         gridView = GridView(grid: game.grid)
         rackView = RackView(rack: game.rack)
         timerView = TimerView()
@@ -35,6 +37,7 @@ class GameView {
         view.addSubview(gridView.view)
         view.addSubview(timerView.view)
         view.addSubview(rackView.view)
+        view.addSubview(pauseView.view)
         
         newGame()
     }
@@ -69,6 +72,20 @@ class GameView {
             let positionToDie = randomElement(array: candidatesToDie)
             gridView.kill(position: positionToDie)
         }
+    }
+    
+    func pause() {
+        timerView.pauseTimer()
+        pauseView.pause()
+        game.paused = true
+    }
+    
+    func unpause() {
+        game.paused = false
+        pauseView.unpause()
+        DispatchQueue.main.asyncAfter(deadline: .now() + vc.pauseDuration, execute: {
+            self.timerView.resumeTimer()
+        })
     }
     
     func gameOver() {

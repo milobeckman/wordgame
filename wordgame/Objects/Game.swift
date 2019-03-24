@@ -19,6 +19,7 @@ class Game {
     
     var currentMultiplier: Int
     
+    var paused: Bool
     var over: Bool
     
     init() {
@@ -31,6 +32,7 @@ class Game {
         
         currentMultiplier = 1
         
+        paused = false
         over = false
     }
     

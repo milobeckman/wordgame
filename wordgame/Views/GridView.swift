@@ -66,7 +66,7 @@ class GridView {
         
         // hover life over dead
         else if tileView.tile.type == "life" {
-            gridSlotViews[position].suggestRebirth()
+            gridSlotViews[position].suggestRevival()
         }
     }
     
@@ -86,7 +86,7 @@ class GridView {
         
         // hover life over dead
         else if tileView.tile.type == "life" {
-            gridSlotViews[position].unsuggestRebirth()
+            gridSlotViews[position].unsuggestRevival()
         }
     }
     
@@ -126,7 +126,7 @@ class GridView {
     
     func rebirth(position: Int) {
         grid.tiles[position].type = "null"
-        gridSlotViews[position].rebirth()
+        gridSlotViews[position].revive()
     }
     
     func giveTile(tileView: TileView, position: Int) {

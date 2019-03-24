@@ -57,12 +57,12 @@ class GridSlotView {
         view.alpha = vc.gridSlotAlpha
     }
     
-    func suggestRebirth() {
+    func suggestRevival() {
         view.alpha = vc.gridSlotAlpha
         slotView.backgroundColor = vc.gridSlotColorRebirth
     }
     
-    func unsuggestRebirth() {
+    func unsuggestRevival() {
         view.alpha = 0.0
         slotView.backgroundColor = vc.gridSlotColor
     }
@@ -85,10 +85,10 @@ class GridSlotView {
         touchHandler.doubleCheckBeforeDropping = true
     }
     
-    func rebirth() {
-        suggestRebirth()
+    func revive() {
+        suggestRevival()
         
-        UIView.animate(withDuration: vc.rebirthDuration, animations: {
+        UIView.animate(withDuration: vc.reviveDuration, animations: {
             self.slotView.backgroundColor = vc.gridSlotColor
         }, completion: nil)
         
