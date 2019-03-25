@@ -24,6 +24,7 @@ class TileView: Hashable {
     var tileView: UIView
     var glintLabel: UILabel
     var label: UILabel
+    var image: UIImageView
     var scoreGlintLabel: UILabel
     var scoreLabel: UILabel
     
@@ -83,6 +84,12 @@ class TileView: Hashable {
         label.text = tile.text
         view.addSubview(label)
         
+        image = UIImageView(frame: tileFrame)
+        if tile.type != "letter" {
+            image.image = UIImage(named: tile.type)
+            view.addSubview(image)
+        }
+        
         scoreGlintLabel = UILabel(frame: scoreFrame)
         scoreGlintLabel.font = vc.tileScoreFont
         scoreGlintLabel.textColor = vc.tileGlintColor(type: tile.type)
@@ -131,15 +138,18 @@ class TileView: Hashable {
         tileView.frame = tileFrame
         glintLabel.frame = tileFrame.offsetBy(dx: vc.tileGlintSize, dy: vc.tileGlintSize)
         label.frame = tileFrame
+        image.frame = tileFrame
         scoreGlintLabel.frame = scoreFrame.offsetBy(dx: vc.tileGlintSize, dy: vc.tileGlintSize)
         scoreLabel.frame = scoreFrame
         
         if shouldShowText {
             glintLabel.alpha = 1.0
             label.alpha = 1.0
+            image.alpha = 0.0
         } else {
             glintLabel.alpha = 0.0
             label.alpha = 0.0
+            image.alpha = 1.0
         }
         
         if shouldShowScore {

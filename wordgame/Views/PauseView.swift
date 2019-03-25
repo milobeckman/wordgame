@@ -16,7 +16,7 @@ class PauseView {
     
     var view: UIView
     
-    var pauseButton: UIView
+    var pauseButton: UIImageView
     var barView: UIView
     var curtainView: UIView
     
@@ -26,8 +26,8 @@ class PauseView {
         
         view = UIView(frame: vc.screenBounds)
         
-        pauseButton = UIView(frame: vc.pauseButtonFrame())
-        pauseButton.backgroundColor = vc.gridSlotColor
+        pauseButton = UIImageView(frame: vc.pauseButtonFrame())
+        pauseButton.image = UIImage(named: "pause")
         buttonHandler.addButton(frame: pauseButton.frame, action: "pause")
         view.addSubview(pauseButton)
         
@@ -42,6 +42,8 @@ class PauseView {
     }
     
     func pause() {
+        pauseButton.image = UIImage(named: "resume")
+        
         UIView.animate(withDuration: vc.pauseDuration, animations: {
             self.curtainView.frame = vc.pauseCurtainFramePaused()
             self.barView.frame = vc.pauseBarFramePaused()
@@ -51,6 +53,7 @@ class PauseView {
     }
     
     func unpause() {
+        pauseButton.image = UIImage(named: "pause")
         self.barView.alpha = 1.0
         
         UIView.animate(withDuration: vc.pauseDuration, animations: {
