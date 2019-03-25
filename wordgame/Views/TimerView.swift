@@ -21,8 +21,6 @@ class TimerView {
     var barView: UIView
     var shadowView: UIView
     
-    var paused: Bool
-    
     init() {
         ticker = Timer()
         totalTime = 0
@@ -45,8 +43,6 @@ class TimerView {
         view.addSubview(barView)
         view.addSubview(shadowView)
         
-        paused = false
-        
         resetTimer()
     }
     
@@ -62,7 +58,6 @@ class TimerView {
     }
     
     func startTicker() {
-        paused = false
         ticker = Timer.scheduledTimer(timeInterval: vc.tickInterval,
                                       target: self,
                                       selector: #selector(tick),
@@ -70,18 +65,8 @@ class TimerView {
                                       repeats: true)
     }
     
-    func pauseTimer() {
-        print("pausing")
-        paused = true
-    }
-    
-    func resumeTimer() {
-        paused = false
-    }
-    
     @objc func tick() {
-        if paused {
-            print("paused")
+        if game.paused || game.over {
             return
         }
         

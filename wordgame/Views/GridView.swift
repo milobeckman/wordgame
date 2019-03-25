@@ -109,7 +109,7 @@ class GridView {
         }
         
         else if tileView.tile.type == "life" {
-            rebirth(position: position)
+            revive(position: position)
         }
     }
     
@@ -124,7 +124,7 @@ class GridView {
         game.checkIfGameOver()
     }
     
-    func rebirth(position: Int) {
+    func revive(position: Int) {
         grid.tiles[position].type = "null"
         gridSlotViews[position].revive()
     }

@@ -32,6 +32,7 @@
 		267ED5E4224596DF000E2F19 /* TileFrequency-4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5E3224596DF000E2F19 /* TileFrequency-4.txt */; };
 		267ED5E6224596EA000E2F19 /* TileFrequency-5.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5E5224596EA000E2F19 /* TileFrequency-5.txt */; };
 		267ED5E92245E380000E2F19 /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ED5E82245E380000E2F19 /* PauseView.swift */; };
+		267ED5EE22495B69000E2F19 /* ButtonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ED5ED22495B69000E2F19 /* ButtonHandler.swift */; };
 		2682695C2241880D00915F4D /* WordList-8.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269522241880B00915F4D /* WordList-8.txt */; };
 		2682695D2241880D00915F4D /* WordList-11.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269532241880B00915F4D /* WordList-11.txt */; };
 		2682695E2241880D00915F4D /* WordList-4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269542241880C00915F4D /* WordList-4.txt */; };
@@ -99,6 +100,7 @@
 		267ED5E3224596DF000E2F19 /* TileFrequency-4.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-4.txt"; sourceTree = "<group>"; };
 		267ED5E5224596EA000E2F19 /* TileFrequency-5.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-5.txt"; sourceTree = "<group>"; };
 		267ED5E82245E380000E2F19 /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
+		267ED5ED22495B69000E2F19 /* ButtonHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonHandler.swift; sourceTree = "<group>"; };
 		268269522241880B00915F4D /* WordList-8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-8.txt"; sourceTree = "<group>"; };
 		268269532241880B00915F4D /* WordList-11.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-11.txt"; sourceTree = "<group>"; };
 		268269542241880C00915F4D /* WordList-4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-4.txt"; sourceTree = "<group>"; };
@@ -206,9 +208,9 @@
 				26745C6C223838A3000BCD1B /* GridView.swift */,
 				26745C6E2238628F000BCD1B /* RackView.swift */,
 				26F341EB223FFD8D006CAA0A /* TimerView.swift */,
-				267ED5E82245E380000E2F19 /* PauseView.swift */,
 				2663D93D2236039800A59810 /* TileView.swift */,
 				26745C6622379932000BCD1B /* GridSlotView.swift */,
+				267ED5E82245E380000E2F19 /* PauseView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -229,6 +231,7 @@
 			children = (
 				2663D9112236028700A59810 /* ViewController.swift */,
 				26745C77223B0291000BCD1B /* TouchHandler.swift */,
+				267ED5ED22495B69000E2F19 /* ButtonHandler.swift */,
 				26745C79223B0D49000BCD1B /* Rules.swift */,
 			);
 			path = Main;
@@ -450,6 +453,7 @@
 				26745C6322378CD8000BCD1B /* Rack.swift in Sources */,
 				26745C6722379932000BCD1B /* GridSlotView.swift in Sources */,
 				26F341F622408158006CAA0A /* Other.swift in Sources */,
+				267ED5EE22495B69000E2F19 /* ButtonHandler.swift in Sources */,
 				26F341F322407CE9006CAA0A /* AnimationHelper.swift in Sources */,
 				2663D9102236028700A59810 /* AppDelegate.swift in Sources */,
 				26745C7A223B0D49000BCD1B /* Rules.swift in Sources */,

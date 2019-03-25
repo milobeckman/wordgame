@@ -160,6 +160,12 @@ class ViewConstants {
         return CGRect(x: 0, y: levelY, width: screenWidth, height: levelHeight)
     }
     
+    func pauseButtonFrame() -> CGRect {
+        let size = pauseBarY - paddingAroundPauseBar - scoreY
+        let x = screenWidth - paddingAboveScore - size
+        return CGRect(x: x, y: scoreY, width: size, height: size)
+    }
+    
     func pauseBarFrame() -> CGRect {
         return CGRect(x: pauseBarX, y: pauseBarY, width: screenWidth - 2.0*pauseBarX, height: 1)
     }
@@ -196,12 +202,12 @@ class ViewConstants {
         return CGRect(x: x, y: y, width: size, height: size)
     }
     
-    func rackFrame() -> CGRect {
-        return CGRect(x: 0, y: rackY, width: screenBounds.width, height: tileSize + 2*paddingBetweenTiles)
-    }
-    
     func gridFrame() -> CGRect {
         return CGRect(x: 0, y: gridY, width: screenBounds.width, height: 4*tileSize + 3*paddingBetweenTiles)
+    }
+    
+    func rackFrame() -> CGRect {
+        return CGRect(x: 0, y: rackY, width: screenBounds.width, height: tileSize + 2*paddingBetweenTiles)
     }
     
     func timerFrame() -> CGRect {

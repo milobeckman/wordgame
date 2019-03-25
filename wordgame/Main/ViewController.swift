@@ -10,26 +10,33 @@ import UIKit
 
 var vc = ViewConstants()
 var rules = Rules()
+
 var game = Game()
 var gameView = GameView(game: game)
+
 var touchHandler = TouchHandler(gameView: gameView)
+var buttonHandler = ButtonHandler()
 
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.isMultipleTouchEnabled = true
+        
         view.addSubview(gameView.view)
         gameView.view.isUserInteractionEnabled = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if game.paused {
-            return
-        }
         
         for touch in touches {
-            if vc.rackPositionForPoint(point: touch.location(in: gameView.view)) != -1 {
+            // pressing button
+            if buttonHandler.press(touch: touch) {
+                return
+            }
+            
+            // dragging
+            if !game.paused && vc.rackPositionForPoint(point: touch.location(in: gameView.view)) != -1 {
                 touchHandler.liftTile(touch: touch)
             }
         }
@@ -38,24 +45,30 @@ class ViewController: UIViewController {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if game.paused {
-            return
-        }
-        
+
         for touch in touches {
-            touchHandler.dragTile(touch: touch)
+            // no need to handle buttons (temp)
+            
+            if !game.paused {
+                touchHandler.dragTile(touch: touch)
+            }
         }
         
         super.touchesMoved(touches, with: event)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if game.paused {
-            gameView.unpause()
-        }
         
         for touch in touches {
-            touchHandler.dropTile(touch: touch)
+            // pressing button
+            if buttonHandler.release(touch: touch) {
+                return
+            }
+            
+            // dragging
+            if !game.paused {
+                touchHandler.dropTile(touch: touch)
+            }
         }
         
         super.touchesEnded(touches, with: event)

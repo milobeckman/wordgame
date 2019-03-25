@@ -26,10 +26,10 @@ class GameView {
         self.game = game
         
         scoreView = ScoreView(game: game)
-        pauseView = PauseView()
         gridView = GridView(grid: game.grid)
         rackView = RackView(rack: game.rack)
         timerView = TimerView()
+        pauseView = PauseView()
         
         view = UIView(frame: vc.screenBounds)
         view.backgroundColor = vc.backgroundColor
@@ -75,7 +75,6 @@ class GameView {
     }
     
     func pause() {
-        timerView.pauseTimer()
         pauseView.pause()
         game.paused = true
     }
@@ -83,14 +82,10 @@ class GameView {
     func unpause() {
         game.paused = false
         pauseView.unpause()
-        DispatchQueue.main.asyncAfter(deadline: .now() + vc.pauseDuration, execute: {
-            self.timerView.resumeTimer()
-        })
     }
     
     func gameOver() {
         print("game over!")
-        timerView.pauseTimer()
         game.over = true
     }
     
