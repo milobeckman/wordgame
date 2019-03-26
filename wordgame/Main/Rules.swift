@@ -70,17 +70,17 @@ class Rules {
         
         // in some cases we shouldn't serve special tiles, serve wild instead
         if tile.type == "life" && game.numDeadTiles() == 0 {
-            return Tile(tileID: "*")
+            return newTile()
         }
         
         if tile.type == "trash" {
             if game.numFullTiles() < 5 {
-                return Tile(tileID: "*")
+                return newTile()
             }
             
             for rackTile in game.rack.tiles {
                 if rackTile.type == "trash" {
-                    return Tile(tileID: "*")
+                    return newTile()
                 }
             }
         }
