@@ -110,4 +110,17 @@ class Tile: CustomStringConvertible {
         }
         
     }
+    
+    func imageName() -> String {
+        switch type {
+        case "wild":
+            return text
+        case "trash":
+            return "trash"
+        case "life":
+            return "life"
+        default:
+            return ""
+        }
+    }
 }

@@ -86,7 +86,7 @@ class TileView: Hashable {
         
         image = UIImageView(frame: tileFrame)
         if tile.type != "letter" {
-            image.image = UIImage(named: tile.type)
+            image.image = UIImage(named: tile.imageName())
             view.addSubview(image)
         }
         
