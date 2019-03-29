@@ -82,7 +82,7 @@ class GridSlotView {
         })
         
         // make sure we don't drop on dead square
-        touchHandler.doubleCheckBeforeDropping = true
+        dragHandler.doubleCheckBeforeDropping = true
     }
     
     func revive() {

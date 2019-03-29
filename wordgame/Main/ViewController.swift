@@ -14,7 +14,7 @@ var rules = Rules()
 var game = Game()
 var gameView = GameView(game: game)
 
-var touchHandler = TouchHandler(gameView: gameView)
+var dragHandler = DragHandler(gameView: gameView)
 var buttonHandler = ButtonHandler()
 
 class ViewController: UIViewController {
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
             
             // dragging
             if !game.paused && vc.rackPositionForPoint(point: touch.location(in: gameView.view)) != -1 {
-                touchHandler.liftTile(touch: touch)
+                dragHandler.liftTile(touch: touch)
             }
         }
         
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
             // no need to handle buttons (temp)
             
             if !game.paused {
-                touchHandler.dragTile(touch: touch)
+                dragHandler.dragTile(touch: touch)
             }
         }
         
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
             
             // dragging
             if !game.paused {
-                touchHandler.dropTile(touch: touch)
+                dragHandler.dropTile(touch: touch)
             }
         }
         

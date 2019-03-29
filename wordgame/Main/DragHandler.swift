@@ -1,5 +1,5 @@
 //
-//  TouchHandler.swift
+//  DragHandler.swift
 //  wordgame
 //
 //  Created by Milo Beckman on 3/14/19.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TouchHandler {
+class DragHandler {
     
     var gameView: GameView
     
