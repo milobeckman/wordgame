@@ -16,8 +16,10 @@ class Rules {
     /* RULES */
     let maxMultiplier = 5
     let tilesPerLevel = 7
+    
     let timerStart = 20.0
     let timerDecrement = 0.933
+    let playSomethingDuration = 0.5
     
     
     

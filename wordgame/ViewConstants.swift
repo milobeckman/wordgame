@@ -71,6 +71,7 @@ class ViewConstants {
     
     var gridSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
     var gridSlotColorHighlight = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
+    var gridSlotColorDying = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.6)
     var gridSlotColorRebirth = UIColor(red: 0.8471, green: 0.7451, blue: 0.7686, alpha: 1.0)
     var gridSlotAlpha = CGFloat(1.0)
     
@@ -84,8 +85,10 @@ class ViewConstants {
     var timerBarEndRGB = [1.0,0.0,0.0]
     var timerBarMidpoint = 0.3
     var timerShadowSize = CGFloat(7)
-    let timerShadowStartColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-    let timerShadowEndColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
+    var timerShadowStartColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+    var timerShadowEndColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
+    var playSomethingBackgroundColor = [UIColor.red, UIColor.white]
+    var playSomethingTextColor = [UIColor.white, UIColor.red]
     
     // fonts
     var scoreTextSize = CGFloat(60)
@@ -96,6 +99,8 @@ class ViewConstants {
     var tileFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
     var tileScoreTextSize = CGFloat(18)
     var tileScoreFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
+    var playSomethingTextSize = CGFloat(22)
+    var playSomethingFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
     
     // animations
     var slideDuration = 0.2
@@ -146,6 +151,7 @@ class ViewConstants {
         levelFont = UIFont(name: "BanglaSangamMN-Bold", size: levelTextSize)
         tileFont = UIFont(name: "BanglaSangamMN-Bold", size: tileTextSize)
         tileScoreFont = UIFont(name: "BanglaSangamMN-Bold", size: tileScoreTextSize)
+        playSomethingFont = UIFont(name: "BanglaSangamMN-Bold", size: playSomethingTextSize)
     }
     
     

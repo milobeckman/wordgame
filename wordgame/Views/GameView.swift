@@ -83,6 +83,10 @@ class GameView {
     }
     
     func pause() {
+        if timerView.timeLeft < 0 {
+            return
+        }
+        
         pauseView.pause()
         game.paused = true
     }

@@ -71,8 +71,10 @@ class GridSlotView {
         let anchorX = slotFrame.midX/view.frame.width
         let anchorY = slotFrame.midY/view.frame.height
         setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: view)
+        slotView.backgroundColor = vc.gridSlotColorDying
 
         UIView.animate(withDuration: vc.dieDuration, animations: {
+            self.slotView.backgroundColor = vc.gridSlotColor
             self.view.transform = CGAffineTransform(scaleX: 0.01, y: 0.01).rotated(by: vc.dieAngle)
             self.view.alpha = 0.0
         }, completion: { (finished: Bool) in
