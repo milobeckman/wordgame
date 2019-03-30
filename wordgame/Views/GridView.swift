@@ -93,6 +93,7 @@ class GridView {
     func handleDrop(tileView: TileView, position: Int) {
         
         endActiveHover(tileView: tileView, position: position)
+        game.addToTilesDropped(tile: tileView.tile)
         
         // drop on blank
         if grid.tiles[position].type == "null" {
@@ -140,7 +141,6 @@ class GridView {
         tileViews.insert(tileView)
         view.addSubview(tileView.view)
         
-        game.tilesDropped += 1
         clearWordsIfPossible(position: position)
     }
     

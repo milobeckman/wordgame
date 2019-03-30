@@ -23,6 +23,7 @@ class Game {
     var over: Bool
     
     var tilesDropped: Int
+    var tileCounts: [String: Int]
     var wordsCleared: Int
     var longestStreak: Int
     
@@ -38,6 +39,7 @@ class Game {
         over = false
         
         tilesDropped = 0
+        tileCounts = [:]
         wordsCleared = 0
         currentStreak = 0
         longestStreak = 0
@@ -149,6 +151,28 @@ class Game {
             
             over = true
             gameView.gameOver()
+        }
+        
+    }
+    
+    func addToTilesDropped(tile: Tile) {
+        tilesDropped += 1
+        
+        var tileID = ""
+        
+        switch tile.type {
+        case "letter":
+            tileID = String(tile.text.count)
+        case "wild":
+            tileID = tile.text
+        default:
+            tileID = "." + tile.type
+        }
+        
+        if let count = tileCounts[tileID] {
+            tileCounts[tileID] = count + 1
+        } else {
+            tileCounts[tileID] = 1
         }
         
     }

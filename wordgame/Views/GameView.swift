@@ -53,9 +53,6 @@ class GameView {
         }
         
         game.over = false
-        
-        // testing game over
-        //gameOver()
     }
     
     func refillRack() {
@@ -89,6 +86,10 @@ class GameView {
     }
     
     func pause() {
+        
+        // for testing game over
+        //gameOver()
+        
         if timerView.timeLeft < 0 || game.over {
             return
         }

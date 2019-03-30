@@ -37,7 +37,8 @@ class Device {
     let paddingAroundStatsView = CGFloat(15)
     let paddingBetweenStats = CGFloat(5)
     let statsHeight = CGFloat(20)
-    let statsIndent = CGFloat(8)
+    let paddingBeforeTinyTile = CGFloat(15)
+    let paddingAfterTinyTile = CGFloat(10)
     
     
     // calculated
@@ -189,6 +190,19 @@ class Device {
         let y = statsY + CGFloat(i)*(statsHeight + paddingBetweenStats)
         let width = screenWidth - statsX - paddingAroundStatsView
         return CGRect(x: statsX, y: y, width: width, height: statsHeight)
+    }
+    
+    func indentedStatsLabelFrame(i: Int) -> CGRect {
+        let x = statsX + paddingBeforeTinyTile + statsHeight + paddingAfterTinyTile
+        let y = statsY + CGFloat(i)*(statsHeight + paddingBetweenStats)
+        let width = screenWidth - x - paddingAroundStatsView
+        return CGRect(x: x, y: y, width: width, height: statsHeight)
+    }
+    
+    func tinyFrame(position: Int) -> CGRect {
+        let x = statsX + paddingBeforeTinyTile
+        let y = statsY + CGFloat(position)*(statsHeight + paddingBetweenStats)
+        return CGRect(x: x, y: y, width: statsHeight, height: statsHeight)
     }
     
     

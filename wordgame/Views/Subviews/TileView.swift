@@ -129,10 +129,6 @@ class TileView: Hashable {
     func updateFramesFromDepthFrame() {
         tileFrame = depthFrame.offsetBy(dx: -device.tileDepth, dy: -device.tileDepth)
         scoreFrame = device.scoreLabelFrame(tileFrame: tileFrame)
-    }
-    
-    func updateView() {
-        updateFramesFromDepthFrame()
         
         depthView.frame = depthFrame
         tileView.frame = tileFrame
@@ -141,24 +137,46 @@ class TileView: Hashable {
         image.frame = tileFrame
         scoreGlintLabel.frame = scoreFrame.offsetBy(dx: device.tileGlintSize, dy: device.tileGlintSize)
         scoreLabel.frame = scoreFrame
+    }
+    
+    func updateView() {
+        updateFramesFromDepthFrame()
+        updateContents()
+    }
+    
+    func updateContents() {
         
         if shouldShowText {
-            glintLabel.alpha = 1.0
-            label.alpha = 1.0
-            image.alpha = 0.0
+            glintLabel.isHidden = false
+            label.isHidden = false
+            image.isHidden = true
         } else {
-            glintLabel.alpha = 0.0
-            label.alpha = 0.0
-            image.alpha = 1.0
+            glintLabel.isHidden = true
+            label.isHidden = true
+            image.isHidden = false
         }
         
         if shouldShowScore {
-            scoreGlintLabel.alpha = 1.0
-            scoreLabel.alpha = 1.0
+            scoreGlintLabel.isHidden = false
+            scoreLabel.isHidden = false
         } else {
-            scoreGlintLabel.alpha = 0.0
-            scoreLabel.alpha = 0.0
+            scoreGlintLabel.isHidden = true
+            scoreLabel.isHidden = true
         }
+    }
+    
+    func makeTinyStyle() {
+        depthView.isHidden = true
+        glintLabel.isHidden = true
+        
+        /*
+        let anchorX = tileFrame.midX / view.frame.width
+        let anchorY = tileFrame.midY / view.frame.height
+        setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: label)
+        label.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: image)
+        image.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+         */
     }
     
     func slideToGridPosition(position: Int, duration: Double) {
@@ -191,6 +209,22 @@ class TileView: Hashable {
         tileFrame = self.depthFrame.offsetBy(dx: -device.tileDepth, dy: -device.tileDepth)
         lifted = false
         self.updateView()
+    }
+    
+    func moveToTinyPosition(position: Int) {
+        let x = device.tinyFrame(position: position).minX
+        let y = device.tinyFrame(position: position).minY
+        let anchorX = x / view.frame.width
+        let anchorY = y / view.frame.height
+        
+        tileFrame = CGRect(x: x, y: y, width: device.tileSize, height: device.tileSize)
+        depthFrame = tileFrame.offsetBy(dx: device.tileDepth, dy: device.tileDepth)
+        self.updateView()
+        self.makeTinyStyle()
+        
+        setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: self.view)
+        let scaleFactor = device.statsHeight / device.tileSize
+        view.transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
     }
     
     func recenter(point: CGPoint) {

@@ -126,3 +126,20 @@ class Tile: CustomStringConvertible {
         }
     }
 }
+
+func sampleTile(tileID: String) -> Tile {
+    let tile = Tile(tileID: tileID)
+    if tile.type == "letter" {
+        switch tile.text.count {
+        case 1:
+            tile.text = "a"
+        case 2:
+            tile.text = "ab"
+        default:
+            tile.text = "abc"
+        }
+    }
+    
+    return tile
+    
+}

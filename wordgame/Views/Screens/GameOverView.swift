@@ -12,24 +12,30 @@ import UIKit
 
 class GameOverView {
     
+    var statsStrings: [NSMutableAttributedString]
+    var tileIDs: [String]
+    
     var gridView: GridView
     var rackView: RackView
     
     var statsView: UIView
     var statsLabels: [UILabel]
-    var statsStrings: [NSMutableAttributedString]
+    var tinyTileViews: [TileView]
     
     var view: UIView
     
     
     init(gridView: GridView, rackView: RackView) {
         
+        statsStrings = []
+        tileIDs = []
+        
         self.gridView = gridView
         self.rackView = rackView
         
         statsView = UIView(frame: device.statsFrame())
         statsLabels = []
-        statsStrings = []
+        tinyTileViews = []
         
         view = UIView(frame: device.screenBounds)
     }
@@ -60,11 +66,16 @@ class GameOverView {
         
         setupStatsStrings()
         setupStatsLabels()
+        setupTinyTileViews()
         
         view.addSubview(statsView)
         
         for label in statsLabels {
             view.addSubview(label)
+        }
+        
+        for tinyTileView in tinyTileViews {
+            view.addSubview(tinyTileView.view)
         }
         
     }
@@ -73,17 +84,22 @@ class GameOverView {
     func setupStatsStrings() {
         
         statsStrings = []
+        tileIDs = sortedTileIDs(unsorted: game.tileCounts)
         
-        let textStrings = ["Tiles dropped: ",
-                           "",
-                           "Words cleared: ",
-                           "Avg. word score: ",
-                           "Longest streak: "]
-        let numberStrings = [String(game.tilesDropped),
-                             "",
-                             String(game.wordsCleared),
-                             String(game.averageWordScore()),
-                             String(game.longestStreak)]
+        var textStrings = ["Tiles dropped: "]
+        var numberStrings = [String(game.tilesDropped)]
+        
+        for tileID in tileIDs {
+            textStrings.append("")
+            numberStrings.append(String(game.tileCounts[tileID]!))
+        }
+        
+        textStrings += ["Words cleared: ",
+                        "Avg. word score: ",
+                        "Longest streak: "]
+        numberStrings += [String(game.wordsCleared),
+                          String(game.averageWordScore()),
+                          String(game.longestStreak)]
         
         let textAttributes: [NSAttributedStringKey: Any] =
                                 [.foregroundColor: statsTextColor,
@@ -92,7 +108,7 @@ class GameOverView {
                                 [.foregroundColor: statsNumberColor,
                                  .font: statsNumberFont as Any]
         
-        for i in 0...4 {
+        for i in 0..<textStrings.count {
             let newText = NSMutableAttributedString(string: textStrings[i], attributes: textAttributes)
             let newNumber = NSAttributedString(string: numberStrings[i], attributes: numberAttributes)
             newText.append(newNumber)
@@ -104,10 +120,32 @@ class GameOverView {
         
         statsLabels = []
         
-        for i in 0...4 {
+        for i in 0..<statsStrings.count {
             let newLabel = UILabel(frame: device.statsLabelFrame(i: i))
+            if (1...tileIDs.count).contains(i) {
+                newLabel.frame = device.indentedStatsLabelFrame(i: i)
+            }
+            
             newLabel.attributedText = statsStrings[i]
             statsLabels.append(newLabel)
+        }
+    }
+    
+    func setupTinyTileViews() {
+        
+        for i in 1...tileIDs.count {
+            let tile = sampleTile(tileID: tileIDs[i-1])
+            let tinyTileView = TileView(tile: tile)
+            tinyTileView.moveToTinyPosition(position: i)
+            tinyTileViews.append(tinyTileView)
+        }
+    }
+    
+    func sortedTileIDs(unsorted: [String: Int]) -> [String] {
+        return Array(unsorted.keys).sorted() {
+            let obj1 = unsorted[$0]!
+            let obj2 = unsorted[$1]!
+            return obj1 > obj2
         }
     }
     
