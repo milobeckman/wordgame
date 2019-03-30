@@ -57,16 +57,17 @@ class DragHandler {
         if let tileView = tileViewForTouch[touch] {
             tileView.recenter(point: point)
             
-            // if in grid, highlight drop slot
             let gridPosition = gridPositionForTouch[touch]!
-            
-            // unhighlight
+            let rackPosition = rackPositionForTouch[touch]!
+            let newRackPosition = vc.rackPositionForPoint(point: point)
+                
+            // unhighlight (grid)
             if gridPosition != -1 && !gameView.gridView.gridSlotViews[gridPosition].slotFrame.contains(point) {
                 gameView.gridView.endActiveHover(tileView: tileView, position: gridPosition)
                 gridPositionForTouch[touch] = -1
             }
             
-            // highlight
+            // highlight (grid)
             if gridPosition == -1 {
                 let newGridPosition = vc.gridPositionForPoint(point: point)
                 if newGridPosition != -1 {
@@ -78,12 +79,28 @@ class DragHandler {
                 }
             }
             
-            // if in rack, rearrange rack
-            if vc.rackFrame().contains(point) {
+            // trash highlights rack
+            if tileView.tile.type == "trash" && !vc.gridFrame().contains(point) {
+                
+                if newRackPosition != rackPosition {
+                    gameView.rackView.unsuggestTrashing(position: rackPosition)
+                }
+                
+                if newRackPosition != -1 {
+                    gameView.rackView.suggestTrashing(position: newRackPosition)
+                }
+                
+                rackPositionForTouch[touch] = newRackPosition
+            }
+            
+            // if in rack, rearrange rack (except trash!)
+            else if vc.rackFrame().contains(point) {
+                
                 let rackPosition = rackPositionForTouch[touch]!
                 let newRackPosition = vc.rackPositionForPoint(point: point)
                 
                 if newRackPosition != -1 && newRackPosition != rackPosition {
+                    
                     if newRackPosition < rackPosition {
                         gameView.rackView.push(from: newRackPosition, direction: 1)
                     } else {
@@ -113,19 +130,29 @@ class DragHandler {
             let gridPosition = gridPositionForTouch[touch]!
             let rackPosition = rackPositionForTouch[touch]!
             
+
             tileView.view.removeFromSuperview()
             
             if gridPosition == -1 {
-                tileView.slideToRackPosition(position: rackPosition, duration: vc.dropDuration)
-                gameView.rackView.takeTile(tileView: tileView, position: rackPosition)
+                
+                if tileView.tile.type == "trash" {
+                    gameView.rackView.dropTrash(position: rackPosition, trashTileView: tileView)
+                }
+                
+                else {
+                    tileView.slideToRackPosition(position: rackPosition, duration: vc.dropDuration)
+                    gameView.rackView.takeTile(tileView: tileView, position: rackPosition)
+                }
+                
             } else {
                 gameView.gridView.handleDrop(tileView: tileView, position: gridPosition)
-                gameView.serveNewTile(rackPosition: rackPosition)
+                gameView.refillRack()
             }
             
             tileViewForTouch.removeValue(forKey: touch)
             rackPositionForTouch.removeValue(forKey: touch)
             gridPositionForTouch.removeValue(forKey: touch)
+
             
         }
     }

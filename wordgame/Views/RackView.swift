@@ -103,6 +103,47 @@ class RackView {
         }
     }
     
+    func suggestTrashing(position: Int) {
+        for tileView in tileViews {
+            if tileView.depthFrame == vc.rackSlotFrame(position: position) {
+                tileView.fade()
+            }
+        }
+    }
+    
+    func unsuggestTrashing(position: Int) {
+        for tileView in tileViews {
+            if tileView.depthFrame == vc.rackSlotFrame(position: position) {
+                tileView.unfade()
+            }
+        }
+    }
+    
+    func dropTrash(position: Int, trashTileView: TileView) {
+        
+        if position == -1 || rack.tiles[position].type == "null" {
+            var emptyPosition = 0
+            for i in 0...3 {
+                if rack.tiles[i].type == "null" {
+                    emptyPosition = i
+                }
+            }
+            
+            trashTileView.slideToRackPosition(position: emptyPosition, duration: vc.dropDuration)
+            takeTile(tileView: trashTileView, position: emptyPosition)
+        }
+        
+        else {
+            let tileToTrash = vc.tileViewWithRackPosition(tileViews: tileViews, position: position)
+            giveTile(tileView: tileToTrash, position: position)
+            gameView.refillRack()
+        }
+        
+        
+        // if rackPosition, delete tile
+        // otherwise, find the empty slot and return there
+    }
+    
     
 }
 

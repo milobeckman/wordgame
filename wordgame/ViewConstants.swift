@@ -322,6 +322,16 @@ class ViewConstants {
         return -1
     }
     
+    func rackPositionForFrame(frame: CGRect) -> Int {
+        for i in 0...15 {
+            if rackSlotFrame(position: i) == frame {
+                return i
+            }
+        }
+        
+        return -1
+    }
+    
     func tileViewWithGridPosition(tileViews: Set<TileView>, position: Int) -> TileView {
         for tileView in tileViews {
             if gridPositionForFrame(frame: tileView.depthFrame) == position {
@@ -329,7 +339,18 @@ class ViewConstants {
             }
         }
         
-        print("error finding tileView")
+        print("error finding tileView - grid")
+        return TileView(tile: Tile())
+    }
+    
+    func tileViewWithRackPosition(tileViews: Set<TileView>, position: Int) -> TileView {
+        for tileView in tileViews {
+            if rackPositionForFrame(frame: tileView.depthFrame) == position {
+                return tileView
+            }
+        }
+        
+        print("error finding tileView - rack")
         return TileView(tile: Tile())
     }
 }

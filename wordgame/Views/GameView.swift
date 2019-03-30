@@ -52,6 +52,14 @@ class GameView {
         game.over = false
     }
     
+    func refillRack() {
+        for i in 0...3 {
+            if rackView.rack.tiles[i].type == "null" {
+                serveNewTile(rackPosition: i)
+            }
+        }
+    }
+    
     func serveNewTile(rackPosition: Int) {
         timerView.resetTimer()
         rackView.serveNewTile(position: rackPosition)
