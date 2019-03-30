@@ -14,6 +14,7 @@ class Device {
     // device
     var screenBounds: CGRect
     var screenWidth: CGFloat
+    //var screenHeight: CGFloat
     
     // generators
     let paddingAboveScore = CGFloat(20)
@@ -31,20 +32,20 @@ class Device {
     let tileGlintSize = CGFloat(2)
     
     // calculated
-    var scoreX : CGFloat
-    var scoreY : CGFloat
-    var levelX : CGFloat
-    var levelY : CGFloat
-    var pauseBarX : CGFloat
-    var pauseBarY : CGFloat
-    var gridX : CGFloat
-    var gridY : CGFloat
-    var rackX : CGFloat
-    var rackY : CGFloat
-    var tileSize : CGFloat
-    var timerX : CGFloat
-    var timerY : CGFloat
-    let timerHeight : CGFloat
+    var scoreX: CGFloat
+    var scoreY: CGFloat
+    var levelX: CGFloat
+    var levelY: CGFloat
+    var pauseBarX: CGFloat
+    var pauseBarY: CGFloat
+    var gridX: CGFloat
+    var gridY: CGFloat
+    var rackX: CGFloat
+    var rackY: CGFloat
+    var tileSize: CGFloat
+    var timerX: CGFloat
+    var timerY: CGFloat
+    let timerHeight: CGFloat
     
     
 
@@ -53,6 +54,7 @@ class Device {
     init() {
         screenBounds = UIScreen.main.bounds
         screenWidth = screenBounds.width
+        //screenHeight = screenBounds.height
         
         // calculate
         scoreX = 0

@@ -36,7 +36,7 @@ class ViewController: UIViewController {
             }
             
             // dragging
-            if !game.paused && device.rackPositionForPoint(point: touch.location(in: gameView.view)) != -1 {
+            if device.rackPositionForPoint(point: touch.location(in: gameView.view)) != -1 {
                 dragHandler.liftTile(touch: touch)
             }
         }
@@ -49,9 +49,8 @@ class ViewController: UIViewController {
         for touch in touches {
             // no need to handle buttons (temp)
             
-            if !game.paused {
-                dragHandler.dragTile(touch: touch)
-            }
+            // dragging
+            dragHandler.dragTile(touch: touch)
         }
         
         super.touchesMoved(touches, with: event)
@@ -66,9 +65,7 @@ class ViewController: UIViewController {
             }
             
             // dragging
-            if !game.paused {
-                dragHandler.dropTile(touch: touch)
-            }
+            dragHandler.dropTile(touch: touch)
         }
         
         super.touchesEnded(touches, with: event)

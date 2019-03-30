@@ -32,6 +32,10 @@ let reviveDuration = 0.5
 // PauseView.pause()
 let pauseDuration = 0.8
 
+// GameView.shrinkGridView()
+let waitBeforeShrinking = 1.5
+let shrinkDuration = 0.65
+
 
 
 

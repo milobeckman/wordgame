@@ -30,6 +30,10 @@ class DragHandler {
     }
     
     func liftTile(touch: UITouch) {
+        if game.paused || game.over {
+            return
+        }
+        
         let point = touch.location(in: gameView.view)
         let rackPosition = device.rackPositionForPoint(point: point)
         
@@ -53,6 +57,10 @@ class DragHandler {
     }
     
     func dragTile(touch: UITouch) {
+        if game.paused || game.over {
+            return
+        }
+        
         let point = touch.location(in: gameView.view)
         if let tileView = tileViewForTouch[touch] {
             tileView.recenter(point: point)
@@ -114,6 +122,10 @@ class DragHandler {
     }
     
     func dropTile(touch: UITouch) {
+        if game.paused || game.over {
+            return
+        }
+        
         if let tileView = tileViewForTouch[touch] {
             
             if doubleCheckBeforeDropping {

@@ -19,6 +19,8 @@ class GameView {
     var timerView: TimerView
     var pauseView: PauseView
     
+    var gameOverView: GameOverView
+    
     var view: UIView
     
     init(game: Game) {
@@ -30,6 +32,7 @@ class GameView {
         rackView = RackView(rack: game.rack)
         timerView = TimerView()
         pauseView = PauseView()
+        gameOverView = GameOverView(gridView: gridView)
         
         view = UIView(frame: device.screenBounds)
         view.backgroundColor = backgroundColor
@@ -50,6 +53,9 @@ class GameView {
         }
         
         game.over = false
+        
+        // testing game over
+        //gameOver()
     }
     
     func refillRack() {
@@ -97,8 +103,10 @@ class GameView {
     }
     
     func gameOver() {
-        print("game over!")
         game.over = true
+        gridView.view.removeFromSuperview()
+        view.addSubview(gameOverView.view)
+        gameOverView.gameOver()
     }
     
 }
