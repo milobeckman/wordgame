@@ -54,21 +54,21 @@ class TileView: Hashable {
         scoreFrame = CGRect()
         
         // views
-        view = UIView(frame: vc.screenBounds)
+        view = UIView(frame: device.screenBounds)
         
         depthView = UIView(frame: depthFrame)
-        depthView.layer.cornerRadius = vc.tileRadius
-        depthView.backgroundColor = vc.tileDepthColor(type: tile.type)
+        depthView.layer.cornerRadius = device.tileRadius
+        depthView.backgroundColor = tileDepthColor(type: tile.type)
         view.addSubview(depthView)
         
         tileView = UIView(frame: tileFrame)
-        tileView.layer.cornerRadius = vc.tileRadius
-        tileView.backgroundColor = vc.tileColor(type: tile.type)
+        tileView.layer.cornerRadius = device.tileRadius
+        tileView.backgroundColor = tileColor(type: tile.type)
         view.addSubview(tileView)
         
         glintLabel = UILabel(frame: tileFrame)
-        glintLabel.font = vc.tileFont
-        glintLabel.textColor = vc.tileGlintColor(type: tile.type)
+        glintLabel.font = tileFont
+        glintLabel.textColor = tileGlintColor(type: tile.type)
         glintLabel.textAlignment = .center
         glintLabel.adjustsFontSizeToFitWidth = true
         glintLabel.baselineAdjustment = .alignCenters
@@ -76,8 +76,8 @@ class TileView: Hashable {
         view.addSubview(glintLabel)
         
         label = UILabel(frame: tileFrame)
-        label.font = vc.tileFont
-        label.textColor = vc.tileTextColor(type: tile.type)
+        label.font = tileFont
+        label.textColor = tileTextColor(type: tile.type)
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.baselineAdjustment = .alignCenters
@@ -91,8 +91,8 @@ class TileView: Hashable {
         }
         
         scoreGlintLabel = UILabel(frame: scoreFrame)
-        scoreGlintLabel.font = vc.tileScoreFont
-        scoreGlintLabel.textColor = vc.tileGlintColor(type: tile.type)
+        scoreGlintLabel.font = tileScoreFont
+        scoreGlintLabel.textColor = tileGlintColor(type: tile.type)
         scoreGlintLabel.textAlignment = .center
         scoreGlintLabel.adjustsFontSizeToFitWidth = true
         scoreGlintLabel.baselineAdjustment = .alignCenters
@@ -100,8 +100,8 @@ class TileView: Hashable {
         view.addSubview(scoreGlintLabel)
         
         scoreLabel = UILabel(frame: scoreFrame)
-        scoreLabel.font = vc.tileScoreFont
-        scoreLabel.textColor = vc.tileTextColor(type: tile.type)
+        scoreLabel.font = tileScoreFont
+        scoreLabel.textColor = tileTextColor(type: tile.type)
         scoreLabel.textAlignment = .center
         scoreLabel.adjustsFontSizeToFitWidth = true
         scoreLabel.baselineAdjustment = .alignCenters
@@ -127,8 +127,8 @@ class TileView: Hashable {
     }
     
     func updateFramesFromDepthFrame() {
-        tileFrame = depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
-        scoreFrame = vc.scoreLabelFrame(tileFrame: tileFrame)
+        tileFrame = depthFrame.offsetBy(dx: -device.tileDepth, dy: -device.tileDepth)
+        scoreFrame = device.scoreLabelFrame(tileFrame: tileFrame)
     }
     
     func updateView() {
@@ -136,10 +136,10 @@ class TileView: Hashable {
         
         depthView.frame = depthFrame
         tileView.frame = tileFrame
-        glintLabel.frame = tileFrame.offsetBy(dx: vc.tileGlintSize, dy: vc.tileGlintSize)
+        glintLabel.frame = tileFrame.offsetBy(dx: device.tileGlintSize, dy: device.tileGlintSize)
         label.frame = tileFrame
         image.frame = tileFrame
-        scoreGlintLabel.frame = scoreFrame.offsetBy(dx: vc.tileGlintSize, dy: vc.tileGlintSize)
+        scoreGlintLabel.frame = scoreFrame.offsetBy(dx: device.tileGlintSize, dy: device.tileGlintSize)
         scoreLabel.frame = scoreFrame
         
         if shouldShowText {
@@ -162,7 +162,7 @@ class TileView: Hashable {
     }
     
     func slideToGridPosition(position: Int, duration: Double) {
-        depthFrame = vc.gridSlotFrame(position: position)
+        depthFrame = device.gridSlotFrame(position: position)
         lifted = false
         
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
@@ -171,13 +171,13 @@ class TileView: Hashable {
     }
     
     func moveToGridPosition(position: Int) {
-        depthFrame = vc.gridSlotFrame(position: position)
+        depthFrame = device.gridSlotFrame(position: position)
         lifted = false
         self.updateView()
     }
     
     func slideToRackPosition(position: Int, duration: Double) {
-        depthFrame = vc.rackSlotFrame(position: position)
+        depthFrame = device.rackSlotFrame(position: position)
         lifted = false
         
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
@@ -187,18 +187,18 @@ class TileView: Hashable {
     }
     
     func moveToRackPosition(position: Int) {
-        depthFrame = vc.rackSlotFrame(position: position)
-        tileFrame = self.depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
+        depthFrame = device.rackSlotFrame(position: position)
+        tileFrame = self.depthFrame.offsetBy(dx: -device.tileDepth, dy: -device.tileDepth)
         lifted = false
         self.updateView()
     }
     
     func recenter(point: CGPoint) {
-        let newX = point.x - vc.tileSize/2
-        let newY = point.y - vc.tileSize/2
+        let newX = point.x - device.tileSize/2
+        let newY = point.y - device.tileSize/2
         
-        self.depthFrame = CGRect(x: newX, y: newY, width: vc.tileSize, height: vc.tileSize)
-        self.tileFrame = self.depthFrame.offsetBy(dx: -vc.tileDepth, dy: -vc.tileDepth)
+        self.depthFrame = CGRect(x: newX, y: newY, width: device.tileSize, height: device.tileSize)
+        self.tileFrame = self.depthFrame.offsetBy(dx: -device.tileDepth, dy: -device.tileDepth)
         self.updateView()
     }
     
@@ -208,7 +208,7 @@ class TileView: Hashable {
     }
     
     func fade() {
-        view.alpha = vc.fadedTileViewAlpha
+        view.alpha = fadedTileViewAlpha
     }
     
     func unfade() {
@@ -233,7 +233,7 @@ class TileView: Hashable {
     }
     
     func pop() {
-        UIView.animate(withDuration: vc.popDuration, delay: 0, usingSpringWithDamping: vc.popDamping, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: popDuration, delay: 0, usingSpringWithDamping: popDamping, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.view.transform = .identity
         }, completion: nil)
     }
@@ -254,9 +254,9 @@ class TileView: Hashable {
             scoreLabel.textColor = UIColor.black
         }
         
-        UIView.animate(withDuration: vc.evaporateDuration, animations: {
+        UIView.animate(withDuration: evaporateDuration, animations: {
             self.view.alpha = 0.0
-            self.view.frame = vc.screenBounds.offsetBy(dx: 0, dy: -vc.evaporateHeight)
+            self.view.frame = device.screenBounds.offsetBy(dx: 0, dy: -evaporateHeight)
         }, completion: { (finished: Bool) in
             self.view.removeFromSuperview()
         })

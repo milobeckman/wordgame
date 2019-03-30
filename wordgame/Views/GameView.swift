@@ -31,8 +31,8 @@ class GameView {
         timerView = TimerView()
         pauseView = PauseView()
         
-        view = UIView(frame: vc.screenBounds)
-        view.backgroundColor = vc.backgroundColor
+        view = UIView(frame: device.screenBounds)
+        view.backgroundColor = backgroundColor
         view.addSubview(scoreView.view)
         view.addSubview(gridView.view)
         view.addSubview(timerView.view)
@@ -44,7 +44,7 @@ class GameView {
     
     func newGame() {
         for i in 0...3 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)*vc.popDelay, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)*popDelay, execute: {
                 self.rackView.serveNewTile(position: i)
             })
         }
@@ -83,7 +83,7 @@ class GameView {
     }
     
     func pause() {
-        if timerView.timeLeft < 0 {
+        if timerView.timeLeft < 0 || game.over {
             return
         }
         

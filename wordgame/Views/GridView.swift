@@ -24,7 +24,7 @@ class GridView {
         
         gridSlotViews = []
         tileViews = []
-        view = UIView(frame: vc.screenBounds)
+        view = UIView(frame: device.screenBounds)
         
         // slots
         for i in 0...15 {
@@ -59,7 +59,7 @@ class GridView {
         
         // hover trash over tile
         else if tileView.tile.type == "trash" {
-            let tileViewToFade = vc.tileViewWithGridPosition(tileViews: tileViews, position: position)
+            let tileViewToFade = device.tileViewWithGridPosition(tileViews: tileViews, position: position)
             tileViewToFade.fade()
             //gridSlotViews[position].hide()
         }
@@ -79,7 +79,7 @@ class GridView {
         
         // hover over tile
         else if tileView.tile.type == "trash" {
-            let tileViewToUnfade = vc.tileViewWithGridPosition(tileViews: tileViews, position: position)
+            let tileViewToUnfade = device.tileViewWithGridPosition(tileViews: tileViews, position: position)
             tileViewToUnfade.unfade()
             gridSlotViews[position].unhide()
         }
@@ -96,14 +96,14 @@ class GridView {
         
         // drop on blank
         if grid.tiles[position].type == "null" {
-            tileView.slideToGridPosition(position: position, duration: vc.dropDuration)
+            tileView.slideToGridPosition(position: position, duration: dropDuration)
             takeTile(tileView: tileView, position: position)
             endActiveHover(tileView: tileView, position: position)
         }
         
         // drop on tile
         else if tileView.tile.type == "trash" {
-            let tileToTrash = vc.tileViewWithGridPosition(tileViews: tileViews, position: position)
+            let tileToTrash = device.tileViewWithGridPosition(tileViews: tileViews, position: position)
             giveTile(tileView: tileToTrash, position: position)
             endActiveHover(tileView: tileView, position: position)
         }
@@ -184,7 +184,7 @@ class GridView {
         grid.clearPositions(positions: gridPositions)
         
         for tileView in tileViews {
-            let position = vc.gridPositionForFrame(frame: tileView.depthFrame)
+            let position = device.gridPositionForFrame(frame: tileView.depthFrame)
             
             if gridPositions.contains(position) {
                 giveAndEvaporateTile(tileView: tileView, position: position)

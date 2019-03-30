@@ -26,20 +26,20 @@ class ScoreView {
         self.game = game
         displayScore = 0
         
-        view = UIView(frame: vc.screenBounds)
+        view = UIView(frame: device.screenBounds)
         
-        scoreView = UILabel(frame: vc.scoreFrame())
-        scoreView.font = vc.scoreFont
-        scoreView.textColor = vc.scoreTextColor
+        scoreView = UILabel(frame: device.scoreFrame())
+        scoreView.font = scoreFont
+        scoreView.textColor = scoreTextColor
         scoreView.textAlignment = .center
         scoreView.adjustsFontSizeToFitWidth = true
         scoreView.baselineAdjustment = .alignCenters
         scoreView.text = String(game.currentScore)
         view.addSubview(scoreView)
         
-        levelView = UILabel(frame: vc.levelFrame())
-        levelView.font = vc.levelFont
-        levelView.textColor = vc.levelTextColor
+        levelView = UILabel(frame: device.levelFrame())
+        levelView.font = levelFont
+        levelView.textColor = levelTextColor
         levelView.textAlignment = .center
         levelView.adjustsFontSizeToFitWidth = true
         levelView.baselineAdjustment = .alignCenters
@@ -58,7 +58,7 @@ class ScoreView {
         
         if displayScore < game.currentScore {
             displayScore += 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + vc.scoreTickInterval, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + scoreTickInterval, execute: {
                 self.showyUpdate()
             })
         }

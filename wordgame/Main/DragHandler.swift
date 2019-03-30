@@ -31,7 +31,7 @@ class DragHandler {
     
     func liftTile(touch: UITouch) {
         let point = touch.location(in: gameView.view)
-        let rackPosition = vc.rackPositionForPoint(point: point)
+        let rackPosition = device.rackPositionForPoint(point: point)
         
         if rackPosition == -1 {
             return
@@ -59,7 +59,7 @@ class DragHandler {
             
             let gridPosition = gridPositionForTouch[touch]!
             let rackPosition = rackPositionForTouch[touch]!
-            let newRackPosition = vc.rackPositionForPoint(point: point)
+            let newRackPosition = device.rackPositionForPoint(point: point)
                 
             // unhighlight (grid)
             if gridPosition != -1 && !gameView.gridView.gridSlotViews[gridPosition].slotFrame.contains(point) {
@@ -69,7 +69,7 @@ class DragHandler {
             
             // highlight (grid)
             if gridPosition == -1 {
-                let newGridPosition = vc.gridPositionForPoint(point: point)
+                let newGridPosition = device.gridPositionForPoint(point: point)
                 if newGridPosition != -1 {
                     let gridTile = gameView.gridView.grid.tiles[newGridPosition]
                     if rules.canDrop(tile: tileView.tile, gridTile: gridTile) {
@@ -80,7 +80,7 @@ class DragHandler {
             }
             
             // trash highlights rack
-            if tileView.tile.type == "trash" && !vc.gridFrame().contains(point) {
+            if tileView.tile.type == "trash" && !device.gridFrame().contains(point) {
                 
                 if newRackPosition != rackPosition {
                     gameView.rackView.unsuggestTrashing(position: rackPosition)
@@ -94,10 +94,10 @@ class DragHandler {
             }
             
             // if in rack, rearrange rack (except trash!)
-            else if vc.rackFrame().contains(point) {
+            else if device.rackFrame().contains(point) {
                 
                 let rackPosition = rackPositionForTouch[touch]!
-                let newRackPosition = vc.rackPositionForPoint(point: point)
+                let newRackPosition = device.rackPositionForPoint(point: point)
                 
                 if newRackPosition != -1 && newRackPosition != rackPosition {
                     
@@ -140,7 +140,7 @@ class DragHandler {
                 }
                 
                 else {
-                    tileView.slideToRackPosition(position: rackPosition, duration: vc.dropDuration)
+                    tileView.slideToRackPosition(position: rackPosition, duration: dropDuration)
                     gameView.rackView.takeTile(tileView: tileView, position: rackPosition)
                 }
                 

@@ -24,15 +24,15 @@ class GridSlotView {
     init(position: Int) {
         
         gridPosition = position
-        slotFrame = vc.gridSlotFrame(position: gridPosition)
+        slotFrame = device.gridSlotFrame(position: gridPosition)
         
         // views
-        view = UIView(frame: vc.screenBounds)
-        view.alpha = vc.gridSlotAlpha
+        view = UIView(frame: device.screenBounds)
+        view.alpha = gridSlotAlpha
         
         slotView = UIView(frame: slotFrame)
-        slotView.layer.cornerRadius = vc.tileRadius
-        slotView.backgroundColor = vc.gridSlotColor
+        slotView.layer.cornerRadius = device.tileRadius
+        slotView.backgroundColor = gridSlotColor
         view.addSubview(slotView)
         
     }
@@ -42,11 +42,11 @@ class GridSlotView {
     }
     
     func highlight() {
-        slotView.backgroundColor = vc.gridSlotColorHighlight
+        slotView.backgroundColor = gridSlotColorHighlight
     }
     
     func unhighlight() {
-        slotView.backgroundColor = vc.gridSlotColor
+        slotView.backgroundColor = gridSlotColor
     }
     
     func hide() {
@@ -54,28 +54,28 @@ class GridSlotView {
     }
     
     func unhide() {
-        view.alpha = vc.gridSlotAlpha
+        view.alpha = gridSlotAlpha
     }
     
     func suggestRevival() {
-        view.alpha = vc.gridSlotAlpha
-        slotView.backgroundColor = vc.gridSlotColorRebirth
+        view.alpha = gridSlotAlpha
+        slotView.backgroundColor = gridSlotColorRebirth
     }
     
     func unsuggestRevival() {
         view.alpha = 0.0
-        slotView.backgroundColor = vc.gridSlotColor
+        slotView.backgroundColor = gridSlotColor
     }
     
     func die() {
         let anchorX = slotFrame.midX/view.frame.width
         let anchorY = slotFrame.midY/view.frame.height
         setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: view)
-        slotView.backgroundColor = vc.gridSlotColorDying
+        slotView.backgroundColor = gridSlotColorDying
 
-        UIView.animate(withDuration: vc.dieDuration, animations: {
-            self.slotView.backgroundColor = vc.gridSlotColor
-            self.view.transform = CGAffineTransform(scaleX: 0.01, y: 0.01).rotated(by: vc.dieAngle)
+        UIView.animate(withDuration: dieDuration, animations: {
+            self.slotView.backgroundColor = gridSlotColor
+            self.view.transform = CGAffineTransform(scaleX: 0.01, y: 0.01).rotated(by: dieAngle)
             self.view.alpha = 0.0
         }, completion: { (finished: Bool) in
 
@@ -90,8 +90,8 @@ class GridSlotView {
     func revive() {
         suggestRevival()
         
-        UIView.animate(withDuration: vc.reviveDuration, animations: {
-            self.slotView.backgroundColor = vc.gridSlotColor
+        UIView.animate(withDuration: reviveDuration, animations: {
+            self.slotView.backgroundColor = gridSlotColor
         }, completion: nil)
         
         // check that completion nil is fine

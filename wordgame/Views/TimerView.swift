@@ -29,25 +29,25 @@ class TimerView {
         totalTime = 0
         timeLeft = 0
         
-        view = UIView(frame: vc.screenBounds)
+        view = UIView(frame: device.screenBounds)
         
-        backgroundView = UIView(frame: vc.timerFrame())
-        backgroundView.backgroundColor = vc.timerBackgroundColor
+        backgroundView = UIView(frame: device.timerFrame())
+        backgroundView.backgroundColor = timerBackgroundColor
         
-        barView = UIView(frame: vc.timerFrame())
+        barView = UIView(frame: device.timerFrame())
         
-        playSomethingView = UILabel(frame: vc.timerFrame())
-        playSomethingView.font = vc.playSomethingFont
+        playSomethingView = UILabel(frame: device.timerFrame())
+        playSomethingView.font = playSomethingFont
         playSomethingView.textAlignment = .center
         playSomethingView.adjustsFontSizeToFitWidth = true
         playSomethingView.baselineAdjustment = .alignCenters
         playSomethingView.text = "Play something!"
         playSomethingView.isHidden = true
         
-        shadowView = UIView(frame: vc.timerShadowFrame())
+        shadowView = UIView(frame: device.timerShadowFrame())
         let shadow = CAGradientLayer()
         shadow.frame = shadowView.bounds
-        shadow.colors = [vc.timerShadowStartColor.cgColor, vc.timerShadowEndColor.cgColor]
+        shadow.colors = [timerShadowStartColor.cgColor, timerShadowEndColor.cgColor]
         shadowView.layer.insertSublayer(shadow, at: 0)
         
         view.addSubview(backgroundView)
@@ -72,7 +72,7 @@ class TimerView {
     }
     
     func startTicker() {
-        ticker = Timer.scheduledTimer(timeInterval: vc.tickInterval,
+        ticker = Timer.scheduledTimer(timeInterval: tickInterval,
                                       target: self,
                                       selector: #selector(tick),
                                       userInfo: nil,
@@ -84,7 +84,7 @@ class TimerView {
             return
         }
         
-        timeLeft -= vc.tickInterval
+        timeLeft -= tickInterval
         if timeLeft <= 0 {
             timesAlmostUp()
         }
@@ -115,11 +115,11 @@ class TimerView {
         
         switch phase % 2 {
         case 0:
-            playSomethingView.backgroundColor = vc.playSomethingBackgroundColor[0]
-            playSomethingView.textColor = vc.playSomethingTextColor[0]
+            playSomethingView.backgroundColor = playSomethingBackgroundColor[0]
+            playSomethingView.textColor = playSomethingTextColor[0]
         case 1:
-            playSomethingView.backgroundColor = vc.playSomethingBackgroundColor[1]
-            playSomethingView.textColor = vc.playSomethingTextColor[1]
+            playSomethingView.backgroundColor = playSomethingBackgroundColor[1]
+            playSomethingView.textColor = playSomethingTextColor[1]
             
         default:
             endCritical()
@@ -127,7 +127,7 @@ class TimerView {
     }
     
     func endCritical() {
-        backgroundView.backgroundColor = vc.timerBackgroundColor
+        backgroundView.backgroundColor = timerBackgroundColor
         playSomethingView.isHidden = true
     }
     
@@ -141,8 +141,8 @@ class TimerView {
     
     func updateView() {
         let fraction = timeLeft / totalTime
-        barView.frame = vc.timerBarFrame(fraction: fraction)
-        barView.backgroundColor = vc.timerBarColor(fraction: fraction)
+        barView.frame = device.timerBarFrame(fraction: fraction)
+        barView.backgroundColor = timerBarColor(fraction: fraction)
     }
     
     

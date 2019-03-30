@@ -1,5 +1,5 @@
 //
-//  ViewConstants.swift
+//  Device.swift
 //  wordgame
 //
 //  Created by Milo Beckman on 3/10/19.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ViewConstants {
+class Device {
     
     // device
     var screenBounds: CGRect
@@ -46,82 +46,9 @@ class ViewConstants {
     var timerX = CGFloat(0)
     var timerY = CGFloat(0)
     
-    // colors
-    var backgroundColor = UIColor(red: 0.83, green: 0.83, blue: 0.83, alpha: 1)
-    
-    var scoreTextColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
-    var levelTextColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)
-    
-    var pauseBarColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1)
-    
-    var tileColor = UIColor(red: 0.9, green: 0.84, blue: 0.7, alpha: 1)
-    var tileDepthColor = UIColor(red: 0.7, green: 0.64, blue: 0.5, alpha: 1)
-    var tileTextColor = UIColor(red: 0.3, green: 0.24, blue: 0.1, alpha: 1)
-    var tileGlintColor = UIColor(red: 0.95, green: 0.89, blue: 0.78, alpha: 1)
-    var fadedTileViewAlpha = CGFloat(0.3)
-    
-    var wildColor = UIColor(red: 0.9843, green: 0.8078, blue: 0.2471, alpha: 1.0)
-    var wildDepthColor = UIColor(red: 0.749, green: 0.6078, blue: 0.1882, alpha: 1.0)
-    
-    var trashColor = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1.0)
-    var trashDepthColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1.0)
-    
-    var lifeColor = UIColor(red: 0.9451, green: 0.5686, blue: 0.6706, alpha: 1.0)
-    var lifeDepthColor = UIColor(red: 0.749, green: 0.3373, blue: 0.4039, alpha: 1.0)
-    
-    var gridSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
-    var gridSlotColorHighlight = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
-    var gridSlotColorDying = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.6)
-    var gridSlotColorRebirth = UIColor(red: 0.8471, green: 0.7451, blue: 0.7686, alpha: 1.0)
-    var gridSlotAlpha = CGFloat(1.0)
-    
-    var rackColor = UIColor(red: 0.83, green: 0.83, blue: 0.83, alpha: 1)
-    var rackSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
-    var rackSlotWidth = CGFloat(4)
-    
-    var timerBackgroundColor = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
-    var timerBarStartRGB = [0.0,1.0,0.0]
-    var timerBarMidRGB = [1.0,1.0,0.0]
-    var timerBarEndRGB = [1.0,0.0,0.0]
-    var timerBarMidpoint = 0.3
-    var timerShadowSize = CGFloat(7)
-    var timerShadowStartColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-    var timerShadowEndColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
-    var playSomethingBackgroundColor = [UIColor.red, UIColor.white]
-    var playSomethingTextColor = [UIColor.white, UIColor.red]
     
     // fonts
-    var scoreTextSize = CGFloat(60)
-    var scoreFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
-    var levelTextSize = CGFloat(13)
-    var levelFont = UIFont(name: "BanglaSangamMN", size: 40)
-    var tileTextSize = CGFloat(40)
-    var tileFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
-    var tileScoreTextSize = CGFloat(18)
-    var tileScoreFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
-    var playSomethingTextSize = CGFloat(22)
-    var playSomethingFont = UIFont(name: "BanglaSangamMN-Bold", size: 40)
-    
-    // animations
-    var slideDuration = 0.2
-    var dropDuration = 0.1
-    
-    var popDuration = 0.5
-    var popDelay = 0.15
-    var popDamping = CGFloat(0.6)
-    
-    var evaporateDuration = 2.0
-    var evaporateHeight = CGFloat(6.0)
-    
-    var dieDuration = 1.0
-    var dieAngle = CGFloat(1.0 * .pi)
-    var reviveDuration = 0.5
-    
-    var pauseDuration = 0.8
-    
-    // other times
-    var tickInterval = 0.02
-    var scoreTickInterval = 0.02
+
     
     
     init() {
@@ -147,11 +74,7 @@ class ViewConstants {
         timerY = rackY + tileSize + 2*paddingBetweenTiles + paddingAboveTimer
         timerHeight = screenBounds.height - timerY
         
-        scoreFont = UIFont(name: "BanglaSangamMN-Bold", size: scoreTextSize)
-        levelFont = UIFont(name: "BanglaSangamMN-Bold", size: levelTextSize)
-        tileFont = UIFont(name: "BanglaSangamMN-Bold", size: tileTextSize)
-        tileScoreFont = UIFont(name: "BanglaSangamMN-Bold", size: tileScoreTextSize)
-        playSomethingFont = UIFont(name: "BanglaSangamMN-Bold", size: playSomethingTextSize)
+
     }
     
     
@@ -232,63 +155,6 @@ class ViewConstants {
     
     
     /* COLORS */
-    
-    func timerBarColor(fraction: Double) -> UIColor {
-        if fraction > timerBarMidpoint {
-            let p = (1.0 - fraction) / (1.0 - timerBarMidpoint)
-            return interpolateColor(start: timerBarStartRGB, end: timerBarMidRGB, fraction: p)
-        } else {
-            let p = (timerBarMidpoint - fraction) / (timerBarMidpoint)
-            return interpolateColor(start: timerBarMidRGB, end: timerBarEndRGB, fraction: p)
-        }
-    }
-    
-    func interpolateColor(start: [Double], end: [Double], fraction: Double) -> UIColor {
-        let r = CGFloat(start[0]*(1-fraction) + end[0]*fraction)
-        let g = CGFloat(start[1]*(1-fraction) + end[1]*fraction)
-        let b = CGFloat(start[2]*(1-fraction) + end[2]*fraction)
-        return UIColor(red: r, green: g, blue: b, alpha: 1.0)
-    }
-    
-    func tileDepthColor(type: String) -> UIColor {
-        switch type {
-        case "wild":
-            return wildDepthColor
-        case "trash":
-            return trashDepthColor
-        case "life":
-            return lifeDepthColor
-        default:
-            return tileDepthColor
-        }
-    }
-    
-    func tileColor(type: String) -> UIColor {
-        switch type {
-        case "wild":
-            return wildColor
-        case "trash":
-            return trashColor
-        case "life":
-            return lifeColor
-        default:
-            return tileColor
-        }
-    }
-    
-    func tileGlintColor(type: String) -> UIColor {
-        switch type {
-        default:
-            return tileGlintColor
-        }
-    }
-    
-    func tileTextColor(type: String) -> UIColor {
-        switch type {
-        default:
-            return tileTextColor
-        }
-    }
     
     
     

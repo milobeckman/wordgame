@@ -8,7 +8,7 @@
 
 import UIKit
 
-var vc = ViewConstants()
+var device = Device()
 var rules = Rules()
 
 var game = Game()
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
             }
             
             // dragging
-            if !game.paused && vc.rackPositionForPoint(point: touch.location(in: gameView.view)) != -1 {
+            if !game.paused && device.rackPositionForPoint(point: touch.location(in: gameView.view)) != -1 {
                 dragHandler.liftTile(touch: touch)
             }
         }

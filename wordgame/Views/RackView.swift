@@ -27,12 +27,12 @@ class RackView {
         self.rack = rack
         
         tileViews = Set<TileView>()
-        view = UIView(frame: vc.screenBounds)
+        view = UIView(frame: device.screenBounds)
         
         // THIS ISN'T USED ATM
-        rackFrame = vc.rackFrame()
+        rackFrame = device.rackFrame()
         rackView = UIView(frame: rackFrame)
-        rackView.backgroundColor = vc.rackColor
+        rackView.backgroundColor = rackColor
         rackView.layer.shadowColor = UIColor.black.cgColor
         //rackView.layer.shadowOpacity = 0.5
         rackView.layer.shadowRadius = 3
@@ -97,15 +97,15 @@ class RackView {
     
     func slideTile(from: Int, direction: Int) {
         for tileView in tileViews {
-            if vc.rackPositionForPoint(point: tileView.depthFrame.origin) == from {
-                tileView.slideToRackPosition(position: from + direction, duration: vc.slideDuration)
+            if device.rackPositionForPoint(point: tileView.depthFrame.origin) == from {
+                tileView.slideToRackPosition(position: from + direction, duration: slideDuration)
             }
         }
     }
     
     func suggestTrashing(position: Int) {
         for tileView in tileViews {
-            if tileView.depthFrame == vc.rackSlotFrame(position: position) {
+            if tileView.depthFrame == device.rackSlotFrame(position: position) {
                 tileView.fade()
             }
         }
@@ -113,7 +113,7 @@ class RackView {
     
     func unsuggestTrashing(position: Int) {
         for tileView in tileViews {
-            if tileView.depthFrame == vc.rackSlotFrame(position: position) {
+            if tileView.depthFrame == device.rackSlotFrame(position: position) {
                 tileView.unfade()
             }
         }
@@ -129,12 +129,12 @@ class RackView {
                 }
             }
             
-            trashTileView.slideToRackPosition(position: emptyPosition, duration: vc.dropDuration)
+            trashTileView.slideToRackPosition(position: emptyPosition, duration: dropDuration)
             takeTile(tileView: trashTileView, position: emptyPosition)
         }
         
         else {
-            let tileToTrash = vc.tileViewWithRackPosition(tileViews: tileViews, position: position)
+            let tileToTrash = device.tileViewWithRackPosition(tileViews: tileViews, position: position)
             giveTile(tileView: tileToTrash, position: position)
             gameView.refillRack()
         }
