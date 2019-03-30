@@ -32,6 +32,7 @@ class TileView: Hashable {
     var lifted: Bool
     var shouldShowText: Bool
     var shouldShowScore: Bool
+    var shouldShowGlint: Bool
     
     // conform to hashable
     var uniqueID: Int
@@ -111,6 +112,7 @@ class TileView: Hashable {
         lifted = false
         shouldShowText = tile.type == "letter"
         shouldShowScore = false
+        shouldShowGlint = true
         
         // tile position is not initialized
         // always use a convenience init
@@ -145,24 +147,11 @@ class TileView: Hashable {
     }
     
     func updateContents() {
-        
-        if shouldShowText {
-            glintLabel.isHidden = false
-            label.isHidden = false
-            image.isHidden = true
-        } else {
-            glintLabel.isHidden = true
-            label.isHidden = true
-            image.isHidden = false
-        }
-        
-        if shouldShowScore {
-            scoreGlintLabel.isHidden = false
-            scoreLabel.isHidden = false
-        } else {
-            scoreGlintLabel.isHidden = true
-            scoreLabel.isHidden = true
-        }
+        label.isHidden = !shouldShowText
+        glintLabel.isHidden = !(shouldShowText && shouldShowGlint)
+        scoreLabel.isHidden = !shouldShowScore
+        scoreGlintLabel.isHidden = !(shouldShowScore && shouldShowGlint)
+        image.isHidden = shouldShowText
     }
     
     func makeTinyStyle() {
@@ -279,14 +268,12 @@ class TileView: Hashable {
         tileView.layer.borderWidth = CGFloat(3)
         tileView.layer.borderColor = UIColor.black.cgColor
         
-        glintLabel.alpha = 0
         label.textColor = UIColor.black
+        scoreLabel.textColor = UIColor.black
         
-        scoreGlintLabel.alpha = 0
-        if tile.score() > 0 {
-            scoreLabel.alpha = 1.0
-            scoreLabel.textColor = UIColor.black
-        }
+        shouldShowScore = tile.score() > 0
+        shouldShowGlint = false
+        updateContents()
         
         UIView.animate(withDuration: evaporateDuration, animations: {
             self.view.alpha = 0.0
