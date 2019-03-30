@@ -17,10 +17,14 @@ class Game {
     var currentScore: Int
     var currentLevel: Int
     
-    var currentMultiplier: Int
+    var currentStreak: Int
     
     var paused: Bool
     var over: Bool
+    
+    var tilesDropped: Int
+    var wordsCleared: Int
+    var longestStreak: Int
     
     init() {
         grid = Grid()
@@ -30,21 +34,34 @@ class Game {
         currentScore = 0
         currentLevel = 1
         
-        currentMultiplier = 1
-        
         paused = false
         over = false
+        
+        tilesDropped = 0
+        wordsCleared = 0
+        currentStreak = 0
+        longestStreak = 0
+    }
+    
+    func currentMultiplier() -> Int {
+        let multiplier = currentStreak + 1
+        if multiplier > rules.maxMultiplier {
+            return rules.maxMultiplier
+        } else {
+            return multiplier
+        }
     }
     
     func scoreWordPaths(wordPaths: [[Int]]) {
         
         if wordPaths.count > 1 {
-            if currentMultiplier < rules.maxMultiplier {
-                currentMultiplier += 1
+            currentStreak += 1
+            if currentStreak > longestStreak {
+                longestStreak = currentStreak
             }
             
             // temp
-            switch currentMultiplier {
+            switch currentMultiplier() {
             case 2:
                 print("CROSS BONUS!   x2")
             case 3:
@@ -58,7 +75,7 @@ class Game {
             }
             
         } else {
-            currentMultiplier = 1
+            currentStreak = 0
         }
         
         for wordPath in wordPaths {
@@ -67,12 +84,15 @@ class Game {
     }
     
     func scoreWordPath(wordPath: [Int]) {
+        
+        wordsCleared += 1
+        
         var tiles = [Tile]()
         for position in wordPath {
             tiles.append(grid.tiles[position])
         }
         
-        let score = rules.scoreForTiles(tiles: tiles, multiplier: currentMultiplier)
+        let score = rules.scoreForTiles(tiles: tiles, multiplier: currentMultiplier())
         currentScore += score
     }
     
@@ -131,6 +151,15 @@ class Game {
             gameView.gameOver()
         }
         
+    }
+    
+    func averageWordScore() -> Double {
+        if wordsCleared == 0 {
+            return 0.0
+        }
+        
+        let avg = Double(currentScore) / Double(wordsCleared)
+        return Double(round(10*avg)/10)
     }
     
 }

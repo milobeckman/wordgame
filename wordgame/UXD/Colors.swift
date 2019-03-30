@@ -60,6 +60,10 @@ let gridSlotColorDying = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.6)
 let gridSlotColorRebirth = UIColor(red: 0.8471, green: 0.7451, blue: 0.7686, alpha: 1.0)
 let gridSlotAlpha = CGFloat(1.0)
 
+// GameOverView
+let statsTextColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)
+let statsNumberColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+
 
 
 // tile colors

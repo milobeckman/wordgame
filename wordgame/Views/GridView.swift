@@ -140,6 +140,7 @@ class GridView {
         tileViews.insert(tileView)
         view.addSubview(tileView.view)
         
+        game.tilesDropped += 1
         clearWordsIfPossible(position: position)
     }
     

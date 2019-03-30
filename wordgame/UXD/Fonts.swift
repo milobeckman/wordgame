@@ -20,6 +20,7 @@ let levelTextSize = CGFloat(13)
 let tileTextSize = CGFloat(40)
 let tileScoreTextSize = CGFloat(18)
 let playSomethingTextSize = CGFloat(22)
+let statsTextSize = CGFloat(16)
 
 // combined
 let scoreFont = UIFont(name: fontBold, size: scoreTextSize)
@@ -28,4 +29,6 @@ let tileFont = UIFont(name: fontBold, size: tileTextSize)
 let tileScoreFont = UIFont(name: fontBold, size: tileScoreTextSize)
 let playSomethingFont = UIFont(name: fontBold, size: playSomethingTextSize)
 
+// temp
+let statsFont = UIFont(name: font, size: statsTextSize)
 

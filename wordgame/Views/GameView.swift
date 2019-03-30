@@ -32,7 +32,7 @@ class GameView {
         rackView = RackView(rack: game.rack)
         timerView = TimerView()
         pauseView = PauseView()
-        gameOverView = GameOverView(gridView: gridView)
+        gameOverView = GameOverView(gridView: gridView, rackView: rackView)
         
         view = UIView(frame: device.screenBounds)
         view.backgroundColor = backgroundColor

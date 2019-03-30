@@ -14,22 +14,31 @@ class Device {
     // device
     var screenBounds: CGRect
     var screenWidth: CGFloat
-    //var screenHeight: CGFloat
     
     // generators
     let paddingAboveScore = CGFloat(20)
     let scoreHeight = CGFloat(60)
     let paddingAboveLevel = CGFloat(0)
     let levelHeight = CGFloat(14)
+    
     let paddingAroundPauseBar = CGFloat(8)
+    
     let paddingAboveGrid = CGFloat(10)
     let paddingToSideOfGrid = CGFloat(15)
     let paddingBetweenTiles = CGFloat(10)
-    let paddingAboveRack = CGFloat(80)
-    let paddingAboveTimer = CGFloat(0)
     let tileRadius = CGFloat(10)
     let tileDepth = CGFloat(3)
     let tileGlintSize = CGFloat(2)
+    
+    let paddingAboveRack = CGFloat(80)
+    
+    let paddingAboveTimer = CGFloat(0)
+    
+    let paddingAroundStatsView = CGFloat(15)
+    let paddingBetweenStats = CGFloat(5)
+    let statsHeight = CGFloat(20)
+    let statsIndent = CGFloat(8)
+    
     
     // calculated
     var scoreX: CGFloat
@@ -45,7 +54,9 @@ class Device {
     var tileSize: CGFloat
     var timerX: CGFloat
     var timerY: CGFloat
-    let timerHeight: CGFloat
+    var timerHeight: CGFloat
+    var statsX: CGFloat
+    var statsY: CGFloat
     
     
 
@@ -75,6 +86,9 @@ class Device {
         timerX = 0
         timerY = rackY + tileSize + 2*paddingBetweenTiles + paddingAboveTimer
         timerHeight = screenBounds.height - timerY
+        
+        statsX = gridX + gameOverGridScale*(4*tileSize + 3*paddingBetweenTiles) + paddingAroundStatsView
+        statsY = pauseBarY + paddingAroundStatsView
     }
     
 
@@ -142,8 +156,6 @@ class Device {
     }
     
     
-    
-    
     // PauseButton
     func pauseButtonFrame() -> CGRect {
         let size = pauseBarY - paddingAroundPauseBar - scoreY
@@ -161,6 +173,22 @@ class Device {
     
     func pauseCurtainFramePaused() -> CGRect {
         return CGRect(x: pauseBarX, y: pauseBarY, width: screenWidth - 2.0*pauseBarX, height: timerY-1-pauseBarY)
+    }
+    
+    
+    // GameOverView
+    func statsFrame() -> CGRect {
+        let shrunkenGridSize = gameOverGridScale*(4*tileSize + 3*paddingBetweenTiles)
+        let width = screenWidth - statsX - paddingAroundStatsView
+        let height = paddingAboveGrid + shrunkenGridSize - paddingAroundStatsView
+    
+        return CGRect(x: statsX, y: statsY, width: width, height: height)
+    }
+    
+    func statsLabelFrame(i: Int) -> CGRect {
+        let y = statsY + CGFloat(i)*(statsHeight + paddingBetweenStats)
+        let width = screenWidth - statsX - paddingAroundStatsView
+        return CGRect(x: statsX, y: y, width: width, height: statsHeight)
     }
     
     
