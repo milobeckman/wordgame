@@ -53,7 +53,7 @@ class Rules {
     /* NEW TILE GENERATOR */
     
     func newTile() -> Tile {
-        let filename = letterFrequencyFilename(level: game.currentLevel) // temp: hard-coded
+        let filename = letterFrequencyFilename(level: game.currentLevel)
         let letterFreqs = readlines(filename: filename)
         let tileID = randomTileIDFromFreqs(freqs: letterFreqs)
         
@@ -121,6 +121,33 @@ class Rules {
         }
         
         return "err"
+    }
+    
+    func randomTileForLength(length: String) -> String {
+        
+        let filename = length + ".txt"
+        let freqs = readlines(filename: filename)
+        
+        var tileTexts = [String]()
+        var cumulativeFreqs = [Double]()
+        var cumulativeFreq = 0.0
+        
+        for line in freqs {
+            let lineComponents = line.components(separatedBy: ",")
+            tileTexts.append(lineComponents[0])
+            cumulativeFreq += Double(lineComponents[1])!
+            cumulativeFreqs.append(cumulativeFreq)
+        }
+        
+        let rand = randomDouble()*cumulativeFreq
+        
+        for i in 0..<tileTexts.count {
+            if rand < cumulativeFreqs[i] {
+                return tileTexts[i]
+            }
+        }
+        
+        return noneString
     }
     
     
