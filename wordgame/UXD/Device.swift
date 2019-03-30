@@ -16,38 +16,37 @@ class Device {
     var screenWidth: CGFloat
     
     // generators
-    var paddingAboveScore = CGFloat(20)
-    var scoreHeight = CGFloat(60)
-    var paddingAboveLevel = CGFloat(0)
-    var levelHeight = CGFloat(14)
-    var paddingAroundPauseBar = CGFloat(8)
-    var paddingAboveGrid = CGFloat(10)
-    var paddingToSideOfGrid = CGFloat(15)
-    var paddingBetweenTiles = CGFloat(10)
-    var paddingAboveRack = CGFloat(80)
-    var paddingAboveTimer = CGFloat(0)
-    var timerHeight = CGFloat(15) // temp: hard-coded
-    var tileRadius = CGFloat(10)
-    var tileDepth = CGFloat(3)
-    var tileGlintSize = CGFloat(2)
+    let paddingAboveScore = CGFloat(20)
+    let scoreHeight = CGFloat(60)
+    let paddingAboveLevel = CGFloat(0)
+    let levelHeight = CGFloat(14)
+    let paddingAroundPauseBar = CGFloat(8)
+    let paddingAboveGrid = CGFloat(10)
+    let paddingToSideOfGrid = CGFloat(15)
+    let paddingBetweenTiles = CGFloat(10)
+    let paddingAboveRack = CGFloat(80)
+    let paddingAboveTimer = CGFloat(0)
+    let tileRadius = CGFloat(10)
+    let tileDepth = CGFloat(3)
+    let tileGlintSize = CGFloat(2)
     
     // calculated
-    var scoreX = CGFloat(0)
-    var scoreY = CGFloat(0)
-    var levelX = CGFloat(0)
-    var levelY = CGFloat(0)
-    var pauseBarX = CGFloat(0)
-    var pauseBarY = CGFloat(0)
-    var gridX = CGFloat(0)
-    var gridY = CGFloat(0)
-    var rackX = CGFloat(0)
-    var rackY = CGFloat(0)
-    var tileSize = CGFloat(0)
-    var timerX = CGFloat(0)
-    var timerY = CGFloat(0)
+    var scoreX : CGFloat
+    var scoreY : CGFloat
+    var levelX : CGFloat
+    var levelY : CGFloat
+    var pauseBarX : CGFloat
+    var pauseBarY : CGFloat
+    var gridX : CGFloat
+    var gridY : CGFloat
+    var rackX : CGFloat
+    var rackY : CGFloat
+    var tileSize : CGFloat
+    var timerX : CGFloat
+    var timerY : CGFloat
+    let timerHeight : CGFloat
     
     
-    // fonts
 
     
     
@@ -55,13 +54,12 @@ class Device {
         screenBounds = UIScreen.main.bounds
         screenWidth = screenBounds.width
         
-        calculateValues()
-    }
-    
-    func calculateValues() {
-        
+        // calculate
+        scoreX = 0
         scoreY = paddingAboveScore
+        levelX = 0
         levelY = scoreY + scoreHeight + paddingAboveLevel
+        pauseBarX = 0
         pauseBarY = levelY + levelHeight + paddingAroundPauseBar
         gridY = pauseBarY + paddingAroundPauseBar + tileDepth
         
@@ -69,18 +67,18 @@ class Device {
         gridX = paddingToSideOfGrid
         tileSize = (screenWidth - paddingToSideOfGrid*2 - paddingBetweenTiles*3) / 4
         
+        rackX = 0
         rackY = gridY + 4*tileSize + 3*paddingBetweenTiles + paddingAboveRack
         
+        timerX = 0
         timerY = rackY + tileSize + 2*paddingBetweenTiles + paddingAboveTimer
         timerHeight = screenBounds.height - timerY
-        
-
     }
     
+
     
     
-    /* FRAMES */
-    
+    // ScoreView
     func scoreFrame() -> CGRect {
         return CGRect(x: 0, y: scoreY, width: screenWidth, height: scoreHeight)
     }
@@ -89,6 +87,62 @@ class Device {
         return CGRect(x: 0, y: levelY, width: screenWidth, height: levelHeight)
     }
     
+    
+    // GridView
+    func gridFrame() -> CGRect {
+        return CGRect(x: 0, y: gridY, width: screenBounds.width, height: 4*tileSize + 3*paddingBetweenTiles)
+    }
+    
+    func gridSlotFrame(x: Int, y: Int) -> CGRect {
+        let xMin = gridX + CGFloat(x) * (tileSize + paddingBetweenTiles)
+        let yMin = gridY + CGFloat(y) * (tileSize + paddingBetweenTiles)
+        return CGRect(x: xMin, y: yMin, width: tileSize, height: tileSize)
+    }
+    
+    func gridSlotFrame(position: Int) -> CGRect {
+        let x = position % 4
+        let y = (position - x) / 4
+        return gridSlotFrame(x: x, y: y)
+    }
+    
+    
+    // RackView
+    func rackFrame() -> CGRect {
+        return CGRect(x: 0, y: rackY, width: screenBounds.width, height: tileSize + 2*paddingBetweenTiles)
+    }
+    
+    func rackSlotFrame(position: Int) -> CGRect {
+        let x = paddingToSideOfGrid + CGFloat(position) * (tileSize + paddingBetweenTiles)
+        return CGRect(x: x, y: rackY + paddingBetweenTiles, width: tileSize, height: tileSize)
+    }
+    
+    
+    // TileView
+    func scoreLabelFrame(tileFrame: CGRect) -> CGRect {
+        let x = tileFrame.minX + 0.68*tileSize
+        let y = tileFrame.minY
+        let size = 0.32*tileSize
+        return CGRect(x: x, y: y, width: size, height: size)
+    }
+    
+    
+    // TimerView
+    func timerFrame() -> CGRect {
+        return CGRect(x: 0, y: timerY, width: screenBounds.width, height: timerHeight)
+    }
+    
+    func timerBarFrame(fraction: Double) -> CGRect {
+        return CGRect(x: 0, y: timerY, width: CGFloat(fraction)*screenBounds.width, height: timerHeight)
+    }
+    
+    func timerShadowFrame() -> CGRect {
+        return CGRect(x: 0, y: timerY, width: screenWidth, height: timerShadowSize)
+    }
+    
+    
+    
+    
+    // PauseButton
     func pauseButtonFrame() -> CGRect {
         let size = pauseBarY - paddingAroundPauseBar - scoreY
         let x = screenWidth - paddingAboveScore - size
@@ -107,59 +161,9 @@ class Device {
         return CGRect(x: pauseBarX, y: pauseBarY, width: screenWidth - 2.0*pauseBarX, height: timerY-1-pauseBarY)
     }
     
-    func gridSlotFrame(x: Int, y: Int) -> CGRect {
-        let xMin = gridX + CGFloat(x) * (tileSize + paddingBetweenTiles)
-        let yMin = gridY + CGFloat(y) * (tileSize + paddingBetweenTiles)
-        return CGRect(x: xMin, y: yMin, width: tileSize, height: tileSize)
-    }
-    
-    func gridSlotFrame(position: Int) -> CGRect {
-        let x = position % 4
-        let y = (position - x) / 4
-        return gridSlotFrame(x: x, y: y)
-    }
-    
-    func rackSlotFrame(position: Int) -> CGRect {
-        let x = paddingToSideOfGrid + CGFloat(position) * (tileSize + paddingBetweenTiles)
-        return CGRect(x: x, y: rackY + paddingBetweenTiles, width: tileSize, height: tileSize)
-    }
-    
-    func scoreLabelFrame(tileFrame: CGRect) -> CGRect {
-        let x = tileFrame.minX + 0.68*tileSize
-        let y = tileFrame.minY
-        let size = 0.32*tileSize
-        return CGRect(x: x, y: y, width: size, height: size)
-    }
-    
-    func gridFrame() -> CGRect {
-        return CGRect(x: 0, y: gridY, width: screenBounds.width, height: 4*tileSize + 3*paddingBetweenTiles)
-    }
-    
-    func rackFrame() -> CGRect {
-        return CGRect(x: 0, y: rackY, width: screenBounds.width, height: tileSize + 2*paddingBetweenTiles)
-    }
-    
-    func timerFrame() -> CGRect {
-        return CGRect(x: 0, y: timerY, width: screenBounds.width, height: timerHeight)
-    }
-    
-    func timerBarFrame(fraction: Double) -> CGRect {
-        return CGRect(x: 0, y: timerY, width: CGFloat(fraction)*screenBounds.width, height: timerHeight)
-    }
-    
-    func timerShadowFrame() -> CGRect {
-        return CGRect(x: 0, y: timerY, width: screenWidth, height: timerShadowSize)
-    }
     
     
-    
-    
-    /* COLORS */
-    
-    
-    
-    
-    /* FINDING STUFF */
+
     
     // efficiency could be improved
     func rackPositionForPoint(point: CGPoint) -> Int {
@@ -211,7 +215,7 @@ class Device {
             }
         }
         
-        print("error finding tileView - grid")
+        print("error finding tileViewWithGridPosition")
         return TileView(tile: Tile())
     }
     
@@ -222,7 +226,7 @@ class Device {
             }
         }
         
-        print("error finding tileView - rack")
+        print("error finding tileViewWithRackPosition")
         return TileView(tile: Tile())
     }
 }
