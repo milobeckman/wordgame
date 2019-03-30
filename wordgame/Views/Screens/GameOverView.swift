@@ -17,6 +17,7 @@ class GameOverView {
     
     var statsView: UIView
     var statsLabels: [UILabel]
+    var statsStrings: [NSMutableAttributedString]
     
     var view: UIView
     
@@ -28,6 +29,7 @@ class GameOverView {
         
         statsView = UIView(frame: device.statsFrame())
         statsLabels = []
+        statsStrings = []
         
         view = UIView(frame: device.screenBounds)
     }
@@ -55,33 +57,60 @@ class GameOverView {
     }
     
     func showStats() {
-        setupStatsLabels()
         
+        setupStatsStrings()
+        setupStatsLabels()
         
         view.addSubview(statsView)
         
         for label in statsLabels {
-            print(label.frame)
             view.addSubview(label)
         }
         
     }
     
+    
+    func setupStatsStrings() {
+        
+        statsStrings = []
+        
+        let textStrings = ["Tiles dropped: ",
+                           "",
+                           "Words cleared: ",
+                           "Avg. word score: ",
+                           "Longest streak: "]
+        let numberStrings = [String(game.tilesDropped),
+                             "",
+                             String(game.wordsCleared),
+                             String(game.averageWordScore()),
+                             String(game.longestStreak)]
+        
+        let textAttributes: [NSAttributedStringKey: Any] =
+                                [.foregroundColor: statsTextColor,
+                                 .font: statsTextFont as Any]
+        let numberAttributes: [NSAttributedStringKey: Any] =
+                                [.foregroundColor: statsNumberColor,
+                                 .font: statsNumberFont as Any]
+        
+        for i in 0...4 {
+            let newText = NSMutableAttributedString(string: textStrings[i], attributes: textAttributes)
+            let newNumber = NSAttributedString(string: numberStrings[i], attributes: numberAttributes)
+            newText.append(newNumber)
+            statsStrings.append(newText)
+        }
+    }
+    
     func setupStatsLabels() {
+        
+        statsLabels = []
         
         for i in 0...4 {
             let newLabel = UILabel(frame: device.statsLabelFrame(i: i))
-            newLabel.font = statsFont
-            newLabel.textColor = statsTextColor
+            newLabel.attributedText = statsStrings[i]
             statsLabels.append(newLabel)
         }
-        
-        statsLabels[0].text = "Tiles dropped: " + String(game.tilesDropped)
-        statsLabels[2].text = "Words cleared: " + String(game.wordsCleared)
-        statsLabels[3].text = "Avg word score: " + String(game.averageWordScore())
-        statsLabels[4].text = "Longest streak: " + String(game.longestStreak)
-        
     }
+    
     
     
 }

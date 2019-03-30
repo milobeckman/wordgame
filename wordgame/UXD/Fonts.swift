@@ -30,5 +30,6 @@ let tileScoreFont = UIFont(name: fontBold, size: tileScoreTextSize)
 let playSomethingFont = UIFont(name: fontBold, size: playSomethingTextSize)
 
 // temp
-let statsFont = UIFont(name: font, size: statsTextSize)
+let statsTextFont = UIFont(name: font, size: statsTextSize)
+let statsNumberFont = UIFont(name: fontBold, size: statsTextSize)
 
