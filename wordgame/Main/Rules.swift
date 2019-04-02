@@ -53,8 +53,7 @@ class Rules {
     /* NEW TILE GENERATOR */
     
     func newTile() -> Tile {
-        let filename = letterFrequencyFilename(level: game.currentLevel)
-        let letterFreqs = readlines(filename: filename)
+        let letterFreqs = letterFrequenciesForLevel(level: game.currentLevel)
         let tileID = randomTileIDFromFreqs(freqs: letterFreqs)
         
         let tile = Tile(tileID: tileID)
@@ -88,6 +87,46 @@ class Rules {
         }
         
         return tile
+    }
+    
+    func letterFrequenciesForLevel(level: Int) -> [String] {
+        var freqs = [String]()
+        
+        // letter
+        freqs.append("1," + String(100))
+        
+        // double letter
+        if level >= 10 {
+            let freqDoubleLetter = 4.0*Double(level-8).squareRoot()
+            freqs.append("2," + String(freqDoubleLetter))
+        }
+        
+        // triple letter
+        if level >= 20 {
+            let freqTripleLetter = 3.0*Double(level-18).squareRoot()
+            freqs.append("3," + String(freqTripleLetter))
+        }
+        
+        // wild
+        let freqWild = max(6.0, 13.0-(2.0*Double(level))/5.0)
+        freqs.append("*," + String(freqWild))
+        
+        // double wild
+        if level >= 15 {
+            let freqDoubleWild = 3
+            freqs.append("**," + String(freqDoubleWild))
+        }
+        
+        // trash
+        let freqTrash = min(10.0, 5.5+(Double(level)/5.0))
+        freqs.append(".trash," + String(freqTrash))
+        
+        let freqLife = 3
+        freqs.append(".life," + String(freqLife))
+        
+        
+        return freqs
+        
     }
     
     func letterFrequencyFilename(level: Int) -> String {
