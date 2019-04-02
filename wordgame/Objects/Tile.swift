@@ -20,9 +20,7 @@ import Foundation
  trash      .trash
  life       .life
  bomb       .bomb
- sweep      .sweep
  ice        .ice
- arrow      .u, .d, .l, .r, .ul, .ur, .dl, .dr
 */
 
 
@@ -59,6 +57,8 @@ class Tile: CustomStringConvertible {
             return "trash"
         } else if tileID == ".life" {
             return "life"
+        } else if tileID == ".bomb" {
+            return "bomb"
         } else {
             return "letter"
         }
@@ -121,6 +121,8 @@ class Tile: CustomStringConvertible {
             return "trash"
         case "life":
             return "life"
+        case "bomb":
+            return "bomb"
         default:
             return ""
         }

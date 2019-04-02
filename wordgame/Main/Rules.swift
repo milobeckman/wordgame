@@ -92,6 +92,12 @@ class Rules {
     func letterFrequenciesForLevel(level: Int) -> [String] {
         var freqs = [String]()
         
+        
+        // temp testing
+        freqs.append(".bomb,30")
+        
+        
+        
         // letter
         freqs.append("1," + String(100))
         

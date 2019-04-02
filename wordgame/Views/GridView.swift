@@ -100,6 +100,12 @@ class GridView {
             tileView.slideToGridPosition(position: position, duration: dropDuration)
             takeTile(tileView: tileView, position: position)
             endActiveHover(tileView: tileView, position: position)
+            
+            if tileView.tile.type == "bomb" {
+                DispatchQueue.main.asyncAfter(deadline: .now() + dropDuration, execute: {
+                    self.bomb(position: position)
+                })
+            }
         }
         
         // drop on tile
@@ -118,18 +124,6 @@ class GridView {
     
     /* BASIC CHANGES TO GRID COMPONENTS */
     
-    func kill(position: Int) {
-        grid.tiles[position].type = "dead"
-        gridSlotViews[position].die()
-        
-        game.checkIfGameOver()
-    }
-    
-    func revive(position: Int) {
-        grid.tiles[position].type = "null"
-        gridSlotViews[position].revive()
-    }
-    
     func giveTile(tileView: TileView, position: Int) {
         grid.tiles[position] = Tile()
         tileViews.remove(tileView)
@@ -142,6 +136,30 @@ class GridView {
         view.addSubview(tileView.view)
         
         clearWordsIfPossible(position: position)
+    }
+    
+    func kill(position: Int) {
+        grid.tiles[position].type = "dead"
+        gridSlotViews[position].die()
+        
+        game.checkIfGameOver()
+    }
+    
+    func revive(position: Int) {
+        grid.tiles[position].type = "null"
+        gridSlotViews[position].revive()
+    }
+    
+    func bomb(position: Int) {
+        let positionsToBomb = [position-4, position-1, position, position+1, position+4]
+        for i in positionsToBomb {
+            if (0...15).contains(i) && (position + i) % 8 != 7 {
+                if grid.tiles[i].type != "null" && grid.tiles[i].type != "dead" {
+                    let tileToTrash = device.tileViewWithGridPosition(tileViews: tileViews, position: i)
+                    giveTile(tileView: tileToTrash, position: i)
+                }
+            }
+        }
     }
     
     

@@ -53,6 +53,9 @@ let trashDepthColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1.0)
 let lifeColor = UIColor(red: 0.9451, green: 0.5686, blue: 0.6706, alpha: 1.0)
 let lifeDepthColor = UIColor(red: 0.749, green: 0.3373, blue: 0.4039, alpha: 1.0)
 
+let bombColor = UIColor(red: 0.7529, green: 0.3412, blue: 0.9255, alpha: 1.0)
+let bombDepthColor = UIColor(red: 0.5098, green: 0.1922, blue: 0.502, alpha: 1.0)
+
 // GridSlotView
 let gridSlotColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1)
 let gridSlotColorHighlight = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
@@ -76,6 +79,8 @@ func tileDepthColor(type: String) -> UIColor {
         return trashDepthColor
     case "life":
         return lifeDepthColor
+    case "bomb":
+        return bombDepthColor
     default:
         return tileDepthColor
     }
@@ -89,6 +94,8 @@ func tileColor(type: String) -> UIColor {
         return trashColor
     case "life":
         return lifeColor
+    case "bomb":
+        return bombColor
     default:
         return tileColor
     }
