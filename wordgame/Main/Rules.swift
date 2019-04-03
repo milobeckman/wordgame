@@ -14,7 +14,7 @@ let noneString = "!NONE"
 class Rules {
     
     /* RULES */
-    let maxMultiplier = 5
+    let maxMultiplier = 3
     let tilesPerLevel = 7
     
     let timerStart = 20.0
@@ -53,7 +53,8 @@ class Rules {
     /* NEW TILE GENERATOR */
     
     func newTile() -> Tile {
-        let letterFreqs = letterFrequenciesForLevel(level: game.currentLevel)
+        let howFull = Double(game.numFullTiles())/Double(16-game.numDeadTiles())
+        let letterFreqs = letterFrequencies(level: game.currentLevel, howFull: howFull)
         let tileID = randomTileIDFromFreqs(freqs: letterFreqs)
         
         let tile = Tile(tileID: tileID)
@@ -69,18 +70,14 @@ class Rules {
             return newTile()
         }
         
-        // in some cases we shouldn't serve special tiles, serve wild instead
+        // in some cases we shouldn't serve special tiles
         if tile.type == "life" && game.numDeadTiles() == 0 {
             return newTile()
         }
         
-        if tile.type == "trash" {
-            if game.numFullTiles() < 5 {
-                return newTile()
-            }
-            
+        if tile.type == "trash" || tile.type == "bomb" {
             for rackTile in game.rack.tiles {
-                if rackTile.type == "trash" {
+                if rackTile.type == "trash" || rackTile.type == "bomb" {
                     return newTile()
                 }
             }
@@ -89,12 +86,8 @@ class Rules {
         return tile
     }
     
-    func letterFrequenciesForLevel(level: Int) -> [String] {
+    func letterFrequencies(level: Int, howFull: Double) -> [String] {
         var freqs = [String]()
-        
-        
-        // temp testing
-        freqs.append(".bomb,30")
         
         
         
@@ -124,8 +117,15 @@ class Rules {
         }
         
         // trash
-        let freqTrash = min(10.0, 5.5+(Double(level)/5.0))
+        let freqTrash = 14.0*pow(howFull, 2.0)
         freqs.append(".trash," + String(freqTrash))
+        
+        // bomb
+        if level >= 5 && howFull < 1.0 {
+            let freqBomb = 22.0*pow(howFull, 4.0)
+            freqs.append(".bomb," + String(freqBomb))
+        }
+        
         
         let freqLife = 3
         freqs.append(".life," + String(freqLife))
