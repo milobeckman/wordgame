@@ -85,6 +85,20 @@ class GameView {
         }
     }
     
+    func bomb() {
+        
+        let dtheta = (randomDouble()+0.5)*3.14
+        
+        for i in 0..<bombRadiusMultipliers.count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + bombInterval*Double(i), execute: {
+                let dx = CGFloat(bombRadius*cos(dtheta*Double(i+1))*bombRadiusMultipliers[i])
+                let dy = CGFloat(bombRadius*sin(dtheta*Double(i+1))*bombRadiusMultipliers[i])
+                self.gridView.view.transform = CGAffineTransform(translationX: dx, y: dy)
+            })
+        }
+    }
+    
+    
     func pause() {
         
         // for testing game over

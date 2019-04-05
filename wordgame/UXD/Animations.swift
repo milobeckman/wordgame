@@ -37,6 +37,11 @@ let gameOverGridScale = CGFloat(0.5)
 let waitBeforeShrinking = 0.8
 let shrinkDuration = 0.65
 
+// GameView.bomb()
+let bombInterval = 0.05
+let bombRadius = 15.0
+let bombRadiusMultipliers = [1.0, 0.9, 0.7, 0.4, 0.15, 0.0]
+
 
 
 

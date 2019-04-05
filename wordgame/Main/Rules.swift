@@ -117,12 +117,12 @@ class Rules {
         }
         
         // trash
-        let freqTrash = 14.0*pow(howFull, 2.0)
+        let freqTrash = 16.0*pow(howFull, 2.0)
         freqs.append(".trash," + String(freqTrash))
         
         // bomb
         if level >= 5 && howFull < 1.0 {
-            let freqBomb = 22.0*pow(howFull, 4.0)
+            let freqBomb = 20.0*pow(howFull, 4.0)
             freqs.append(".bomb," + String(freqBomb))
         }
         

@@ -161,6 +161,8 @@ class GridView {
                 }
             }
         }
+        
+        gameView.bomb()
     }
     
     
