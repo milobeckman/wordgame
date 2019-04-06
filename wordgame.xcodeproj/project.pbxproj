@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		261FD3C62258FA99001B1AF0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FD3C52258FA99001B1AF0 /* Settings.swift */; };
 		2663D9102236028700A59810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663D90F2236028700A59810 /* AppDelegate.swift */; };
 		2663D9122236028700A59810 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663D9112236028700A59810 /* ViewController.swift */; };
 		2663D9152236028700A59810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2663D9132236028700A59810 /* Main.storyboard */; };
@@ -75,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		261FD3C52258FA99001B1AF0 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		2663D90C2236028700A59810 /* wordgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2663D90F2236028700A59810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2663D9112236028700A59810 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			children = (
 				2663D9112236028700A59810 /* ViewController.swift */,
 				26745C79223B0D49000BCD1B /* Rules.swift */,
+				261FD3C52258FA99001B1AF0 /* Settings.swift */,
 				26745C77223B0291000BCD1B /* DragHandler.swift */,
 				267ED5ED22495B69000E2F19 /* ButtonHandler.swift */,
 			);
@@ -490,6 +493,7 @@
 				2699DED2224F37E8000E2A10 /* Animations.swift in Sources */,
 				26F341F12240725E006CAA0A /* IO.swift in Sources */,
 				267ED5E92245E380000E2F19 /* PauseView.swift in Sources */,
+				261FD3C62258FA99001B1AF0 /* Settings.swift in Sources */,
 				2663D940223604C100A59810 /* Device.swift in Sources */,
 				26F341EC223FFD8D006CAA0A /* TimerView.swift in Sources */,
 				26745C6B22383800000BCD1B /* GameView.swift in Sources */,

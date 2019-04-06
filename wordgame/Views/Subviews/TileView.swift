@@ -112,7 +112,7 @@ class TileView: Hashable {
         
         lifted = false
         shouldShowText = tile.type == "letter"
-        shouldShowScore = false
+        shouldShowScore = settings.showTileScores && tile.score() != 0
         shouldShowGlint = true
         
         // tile position is not initialized

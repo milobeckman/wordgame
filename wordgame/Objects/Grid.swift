@@ -100,7 +100,22 @@ class Grid {
             } else if tiles[i].type == "letter" || tiles[i].type == "wild" {
                 word += tiles[i].text
             } else {
-                return ""
+                return noneString
+            }
+        }
+        
+        return word
+    }
+    
+    func wordForWordPathWithChoice(wordPath: [Int], position: Int, choice: String) -> String {
+        var word = ""
+        for i in wordPath {
+            if i == position {
+                word += choice
+            } else if tiles[i].type == "letter" || tiles[i].type == "wild" {
+                word += tiles[i].text
+            } else {
+                return noneString
             }
         }
         
@@ -114,7 +129,7 @@ class Grid {
         for wordPath in rules.legalWordPaths(level: game.currentLevel) {
             if wordPath.contains(position) {
                 let pattern = patternForWordPath(wordPath: wordPath, position: position)
-                if pattern != "" {
+                if pattern != noneString {
                     choices += choicesForWild(pattern: pattern)
                 }
             }
@@ -132,8 +147,35 @@ class Grid {
         }
         
         // highest score (tiebreak)
-        // TEMP -- no tiebreak, just first in list
-        return mostCleared[0]
+        var highestScoringChoice = choices[0]
+        var highestScore = 0
+        
+        for choice in choices {
+            let score = scoreForChoice(choice: choice, position: position)
+            if score > highestScore {
+                highestScoringChoice = choice
+                highestScore = score
+            }
+        }
+        
+        return highestScoringChoice
+    }
+    
+    func scoreForChoice(choice: String, position: Int) -> Int {
+        var score = 0
+        
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) {
+            if wordPath.contains(position) {
+                let word = wordForWordPathWithChoice(wordPath: wordPath, position: position, choice: choice)
+                if word != noneString && rules.isWord(word: word) {
+                    for tilePosition in wordPath {
+                        score += tiles[tilePosition].score()
+                    }
+                }
+            }
+        }
+        
+        return score
     }
     
     func clearPositions(positions: [Int]) {

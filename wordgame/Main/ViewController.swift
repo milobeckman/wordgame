@@ -10,6 +10,7 @@ import UIKit
 
 var device = Device()
 var rules = Rules()
+var settings = Settings()
 
 var game = Game()
 var gameView = GameView(game: game)

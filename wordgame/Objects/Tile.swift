@@ -88,7 +88,7 @@ class Tile: CustomStringConvertible {
     
     func score() -> Int {
         
-        if type == "wild" {
+        if type == "wild" || !isLetterLike() {
             return 0
         }
         
