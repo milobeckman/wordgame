@@ -31,7 +31,7 @@ class Game {
         grid = Grid()
         rack = Rack()
         
-        tilesServed = 0
+        tilesServed = 0 // temp
         currentScore = 0
         currentLevel = 1
         

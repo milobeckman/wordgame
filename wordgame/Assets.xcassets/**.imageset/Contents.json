@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "wild2-v3.png",
+      "filename" : "**.png",
       "scale" : "1x"
     },
     {

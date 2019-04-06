@@ -59,17 +59,17 @@ class TileView: Hashable {
         
         depthView = UIView(frame: depthFrame)
         depthView.layer.cornerRadius = device.tileRadius
-        depthView.backgroundColor = tileDepthColor(type: tile.type)
+        depthView.backgroundColor = tileDepthColor(tile: tile)
         view.addSubview(depthView)
         
         tileView = UIView(frame: tileFrame)
         tileView.layer.cornerRadius = device.tileRadius
-        tileView.backgroundColor = tileColor(type: tile.type)
+        tileView.backgroundColor = tileColor(tile: tile)
         view.addSubview(tileView)
         
         glintLabel = UILabel(frame: tileFrame)
         glintLabel.font = tileFont
-        glintLabel.textColor = tileGlintColor(type: tile.type)
+        glintLabel.textColor = tileGlintColor(tile: tile)
         glintLabel.textAlignment = .center
         glintLabel.adjustsFontSizeToFitWidth = true
         glintLabel.baselineAdjustment = .alignCenters
@@ -78,7 +78,7 @@ class TileView: Hashable {
         
         label = UILabel(frame: tileFrame)
         label.font = tileFont
-        label.textColor = tileTextColor(type: tile.type)
+        label.textColor = tileTextColor(tile: tile)
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.baselineAdjustment = .alignCenters
@@ -94,7 +94,7 @@ class TileView: Hashable {
         
         scoreGlintLabel = UILabel(frame: scoreFrame)
         scoreGlintLabel.font = tileScoreFont
-        scoreGlintLabel.textColor = tileGlintColor(type: tile.type)
+        scoreGlintLabel.textColor = tileGlintColor(tile: tile)
         scoreGlintLabel.textAlignment = .center
         scoreGlintLabel.adjustsFontSizeToFitWidth = true
         scoreGlintLabel.baselineAdjustment = .alignCenters
@@ -103,7 +103,7 @@ class TileView: Hashable {
         
         scoreLabel = UILabel(frame: scoreFrame)
         scoreLabel.font = tileScoreFont
-        scoreLabel.textColor = tileTextColor(type: tile.type)
+        scoreLabel.textColor = tileTextColor(tile: tile)
         scoreLabel.textAlignment = .center
         scoreLabel.adjustsFontSizeToFitWidth = true
         scoreLabel.baselineAdjustment = .alignCenters
@@ -158,15 +158,7 @@ class TileView: Hashable {
     func makeTinyStyle() {
         depthView.isHidden = true
         glintLabel.isHidden = true
-        
-        /*
-        let anchorX = tileFrame.midX / view.frame.width
-        let anchorY = tileFrame.midY / view.frame.height
-        setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: label)
-        label.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: image)
-        image.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-         */
+        scoreLabel.isHidden = true
     }
     
     func slideToGridPosition(position: Int, duration: Double) {
