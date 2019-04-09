@@ -89,6 +89,8 @@ class Rules {
     func letterFrequencies(level: Int, howFull: Double) -> [String] {
         var freqs = [String]()
         
+        /* ADD ADJUSTMENTS FOR VOWELS/CONSONANTS, SPECIAL TILES */
+        /* SO YOU CAN'T BE TOO LUCKY OR UNLUCKY */
         
         
         // letter
@@ -101,18 +103,20 @@ class Rules {
         }
         
         // triple letter
-        if level >= 20 {
-            let freqTripleLetter = 3.0*Double(level-18).squareRoot()
+        if level >= 25 {
+            let freqTripleLetter = 3.0*Double(level-23).squareRoot()
             freqs.append("3," + String(freqTripleLetter))
         }
         
+        let wildMultiplier = 0.6
+        
         // wild
-        let freqWild = max(6.0, 13.0-(2.0*Double(level))/5.0)
+        let freqWild = max(6.0, 13.0-(2.0*Double(level))/5.0)*wildMultiplier
         freqs.append("*," + String(freqWild))
         
         // double wild
         if level >= 15 {
-            let freqDoubleWild = 3
+            let freqDoubleWild = 3.0*wildMultiplier
             freqs.append("**," + String(freqDoubleWild))
         }
         

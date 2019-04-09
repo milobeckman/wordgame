@@ -104,7 +104,8 @@ class Game {
     }
     
     func updateLevelIfNeeded() {
-        let level = Int((tilesServed-4) / rules.tilesPerLevel) + 1
+        let level = Int(Double(tilesServed)/7.0)+1 //Int((Double(tilesServed) + 0.25*Double(currentScore))/10.0) + 1
+        
         if level > currentLevel {
             currentLevel = level
         }
