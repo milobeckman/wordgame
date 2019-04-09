@@ -13,6 +13,7 @@ class GameView {
     
     var game: Game
     
+    var backgroundView: BackgroundView
     var scoreView: ScoreView
     var gridView: GridView
     var rackView: RackView
@@ -27,6 +28,7 @@ class GameView {
         
         self.game = game
         
+        backgroundView = BackgroundView()
         scoreView = ScoreView(game: game)
         gridView = GridView(grid: game.grid)
         rackView = RackView(rack: game.rack)
@@ -35,7 +37,7 @@ class GameView {
         gameOverView = GameOverView(gridView: gridView, rackView: rackView)
         
         view = UIView(frame: device.screenBounds)
-        view.backgroundColor = backgroundColor
+        view.addSubview(backgroundView.view)
         view.addSubview(scoreView.view)
         view.addSubview(gridView.view)
         view.addSubview(timerView.view)
@@ -43,6 +45,7 @@ class GameView {
         view.addSubview(pauseView.view)
         
         newGame()
+        backgroundView.update()
     }
     
     func newGame() {
@@ -66,6 +69,7 @@ class GameView {
     func serveNewTile(rackPosition: Int) {
         timerView.resetTimer()
         rackView.serveNewTile(position: rackPosition)
+        backgroundView.update()
     }
     
     func timesUp() {

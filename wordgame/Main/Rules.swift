@@ -23,6 +23,10 @@ class Rules {
     
     
     
+    func trueLevel(tilesServed: Int) -> Double {
+        return Double(tilesServed) / Double(tilesPerLevel) + 1.0
+    }
+    
     
     func canDrop(tile: Tile, gridTile: Tile) -> Bool {
         switch tile.type {
@@ -98,13 +102,13 @@ class Rules {
         
         // double letter
         if level >= 10 {
-            let freqDoubleLetter = 4.0*Double(level-8).squareRoot()
+            let freqDoubleLetter = pow(4.0*Double(level-8), 0.5)
             freqs.append("2," + String(freqDoubleLetter))
         }
         
         // triple letter
-        if level >= 25 {
-            let freqTripleLetter = 3.0*Double(level-23).squareRoot()
+        if level >= 20 {
+            let freqTripleLetter = pow(3.0*Double(level-18), 0.5)
             freqs.append("3," + String(freqTripleLetter))
         }
         

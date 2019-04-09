@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		261FD3C62258FA99001B1AF0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FD3C52258FA99001B1AF0 /* Settings.swift */; };
+		261FD3C8225D27B7001B1AF0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FD3C7225D27B7001B1AF0 /* BackgroundView.swift */; };
 		2663D9102236028700A59810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663D90F2236028700A59810 /* AppDelegate.swift */; };
 		2663D9122236028700A59810 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663D9112236028700A59810 /* ViewController.swift */; };
 		2663D9152236028700A59810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2663D9132236028700A59810 /* Main.storyboard */; };
@@ -77,6 +78,7 @@
 
 /* Begin PBXFileReference section */
 		261FD3C52258FA99001B1AF0 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		261FD3C7225D27B7001B1AF0 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		2663D90C2236028700A59810 /* wordgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2663D90F2236028700A59810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2663D9112236028700A59810 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				26745C6A22383800000BCD1B /* GameView.swift */,
+				261FD3C7225D27B7001B1AF0 /* BackgroundView.swift */,
 				269AB8A722453FAB00F7F005 /* ScoreView.swift */,
 				26745C6C223838A3000BCD1B /* GridView.swift */,
 				26745C6E2238628F000BCD1B /* RackView.swift */,
@@ -486,6 +489,7 @@
 			files = (
 				2663D93E2236039800A59810 /* TileView.swift in Sources */,
 				269AB8A822453FAB00F7F005 /* ScoreView.swift in Sources */,
+				261FD3C8225D27B7001B1AF0 /* BackgroundView.swift in Sources */,
 				26745C6F2238628F000BCD1B /* RackView.swift in Sources */,
 				26745C6922383762000BCD1B /* Game.swift in Sources */,
 				2663D9122236028700A59810 /* ViewController.swift in Sources */,
