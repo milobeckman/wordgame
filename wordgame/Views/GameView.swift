@@ -13,7 +13,8 @@ class GameView {
     
     var game: Game
     
-    var backgroundView: BackgroundView
+    var night: Bool
+    
     var scoreView: ScoreView
     var gridView: GridView
     var rackView: RackView
@@ -28,7 +29,8 @@ class GameView {
         
         self.game = game
         
-        backgroundView = BackgroundView()
+        night = false
+        
         scoreView = ScoreView(game: game)
         gridView = GridView(grid: game.grid)
         rackView = RackView(rack: game.rack)
@@ -45,7 +47,6 @@ class GameView {
         view.addSubview(pauseView.view)
         
         newGame()
-        backgroundView.update()
     }
     
     func newGame() {
@@ -70,6 +71,16 @@ class GameView {
         timerView.resetTimer()
         rackView.serveNewTile(position: rackPosition)
         backgroundView.update()
+        if !night && nightMode(level: game.currentLevel) {
+            switchToNightMode()
+        }
+    }
+    
+    func switchToNightMode() {
+        scoreView.updateView()
+        for gridSlotView in gridView.gridSlotViews {
+            gridSlotView.update()
+        }
     }
     
     func timesUp() {

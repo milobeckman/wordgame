@@ -30,7 +30,7 @@ class ScoreView {
         
         scoreView = UILabel(frame: device.scoreFrame())
         scoreView.font = scoreFont
-        scoreView.textColor = scoreTextColor
+        scoreView.textColor = scoreTextColor(level: game.currentLevel)
         scoreView.textAlignment = .center
         scoreView.adjustsFontSizeToFitWidth = true
         scoreView.baselineAdjustment = .alignCenters
@@ -39,7 +39,7 @@ class ScoreView {
         
         levelView = UILabel(frame: device.levelFrame())
         levelView.font = levelFont
-        levelView.textColor = levelTextColor
+        levelView.textColor = levelTextColor(level: game.currentLevel)
         levelView.textAlignment = .center
         levelView.adjustsFontSizeToFitWidth = true
         levelView.baselineAdjustment = .alignCenters
@@ -50,7 +50,10 @@ class ScoreView {
     
     func updateView() {
         scoreView.text = String(displayScore)
+        scoreView.textColor = scoreTextColor(level: game.currentLevel)
+        
         levelView.text = levelPrefix + String(game.currentLevel)
+        levelView.textColor = levelTextColor(level: game.currentLevel)
     }
     
     func showyUpdate() {

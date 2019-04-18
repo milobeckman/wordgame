@@ -40,7 +40,6 @@ class Rules {
     }
     
     func timerLength(level: Int) -> Double {
-        // TEMP!!!
         return timerStart * pow(timerDecrement, Double(game.currentLevel-1))
     }
     
@@ -134,7 +133,7 @@ class Rules {
             freqs.append(".bomb," + String(freqBomb))
         }
         
-        
+        // life
         let freqLife = 3
         freqs.append(".life," + String(freqLife))
         
@@ -224,6 +223,7 @@ class Rules {
     }
     
     func isWord(word: String) -> Bool {
+        
         if (3...12).contains(word.count) {
             return wordLists[word.count]!.contains(word)
         }

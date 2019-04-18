@@ -28,11 +28,6 @@
 		26745C6F2238628F000BCD1B /* RackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C6E2238628F000BCD1B /* RackView.swift */; };
 		26745C78223B0291000BCD1B /* DragHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C77223B0291000BCD1B /* DragHandler.swift */; };
 		26745C7A223B0D49000BCD1B /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C79223B0D49000BCD1B /* Rules.swift */; };
-		267ED5DE224596A9000E2F19 /* TileFrequency-1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5DD224596A9000E2F19 /* TileFrequency-1.txt */; };
-		267ED5E0224596BA000E2F19 /* TileFrequency-2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5DF224596BA000E2F19 /* TileFrequency-2.txt */; };
-		267ED5E2224596CB000E2F19 /* TileFrequency-3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5E1224596CB000E2F19 /* TileFrequency-3.txt */; };
-		267ED5E4224596DF000E2F19 /* TileFrequency-4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5E3224596DF000E2F19 /* TileFrequency-4.txt */; };
-		267ED5E6224596EA000E2F19 /* TileFrequency-5.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267ED5E5224596EA000E2F19 /* TileFrequency-5.txt */; };
 		267ED5E92245E380000E2F19 /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ED5E82245E380000E2F19 /* PauseView.swift */; };
 		267ED5EE22495B69000E2F19 /* ButtonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ED5ED22495B69000E2F19 /* ButtonHandler.swift */; };
 		2682695C2241880D00915F4D /* WordList-8.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269522241880B00915F4D /* WordList-8.txt */; };
@@ -51,7 +46,6 @@
 		26DD29C3224F319800238A31 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD29C2224F319800238A31 /* GameOverView.swift */; };
 		26DD29C6224F324200238A31 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD29C5224F324200238A31 /* Colors.swift */; };
 		26F341EC223FFD8D006CAA0A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F341EB223FFD8D006CAA0A /* TimerView.swift */; };
-		26F341EF22407131006CAA0A /* TileFrequency-0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 26F341EE22407131006CAA0A /* TileFrequency-0.txt */; };
 		26F341F12240725E006CAA0A /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F341F02240725E006CAA0A /* IO.swift */; };
 		26F341F622408158006CAA0A /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F341F522408158006CAA0A /* Other.swift */; };
 		26F39565224FD911001081C1 /* 1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 26F39564224FD911001081C1 /* 1.txt */; };
@@ -104,11 +98,6 @@
 		26745C6E2238628F000BCD1B /* RackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RackView.swift; sourceTree = "<group>"; };
 		26745C77223B0291000BCD1B /* DragHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragHandler.swift; sourceTree = "<group>"; };
 		26745C79223B0D49000BCD1B /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
-		267ED5DD224596A9000E2F19 /* TileFrequency-1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-1.txt"; sourceTree = "<group>"; };
-		267ED5DF224596BA000E2F19 /* TileFrequency-2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-2.txt"; sourceTree = "<group>"; };
-		267ED5E1224596CB000E2F19 /* TileFrequency-3.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-3.txt"; sourceTree = "<group>"; };
-		267ED5E3224596DF000E2F19 /* TileFrequency-4.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-4.txt"; sourceTree = "<group>"; };
-		267ED5E5224596EA000E2F19 /* TileFrequency-5.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-5.txt"; sourceTree = "<group>"; };
 		267ED5E82245E380000E2F19 /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
 		267ED5ED22495B69000E2F19 /* ButtonHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonHandler.swift; sourceTree = "<group>"; };
 		268269522241880B00915F4D /* WordList-8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-8.txt"; sourceTree = "<group>"; };
@@ -127,7 +116,6 @@
 		26DD29C2224F319800238A31 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		26DD29C5224F324200238A31 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		26F341EB223FFD8D006CAA0A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		26F341EE22407131006CAA0A /* TileFrequency-0.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TileFrequency-0.txt"; sourceTree = "<group>"; };
 		26F341F02240725E006CAA0A /* IO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO.swift; sourceTree = "<group>"; };
 		26F341F522408158006CAA0A /* Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
 		26F39564224FD911001081C1 /* 1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 1.txt; sourceTree = "<group>"; };
@@ -219,8 +207,8 @@
 		26745C6122378C85000BCD1B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				26745C6A22383800000BCD1B /* GameView.swift */,
 				261FD3C7225D27B7001B1AF0 /* BackgroundView.swift */,
+				26745C6A22383800000BCD1B /* GameView.swift */,
 				269AB8A722453FAB00F7F005 /* ScoreView.swift */,
 				26745C6C223838A3000BCD1B /* GridView.swift */,
 				26745C6E2238628F000BCD1B /* RackView.swift */,
@@ -261,12 +249,6 @@
 				26F39564224FD911001081C1 /* 1.txt */,
 				26F39566224FD91E001081C1 /* 2.txt */,
 				26F39568224FD926001081C1 /* 3.txt */,
-				26F341EE22407131006CAA0A /* TileFrequency-0.txt */,
-				267ED5DD224596A9000E2F19 /* TileFrequency-1.txt */,
-				267ED5DF224596BA000E2F19 /* TileFrequency-2.txt */,
-				267ED5E1224596CB000E2F19 /* TileFrequency-3.txt */,
-				267ED5E3224596DF000E2F19 /* TileFrequency-4.txt */,
-				267ED5E5224596EA000E2F19 /* TileFrequency-5.txt */,
 			);
 			path = TileFrequencies;
 			sourceTree = "<group>";
@@ -442,7 +424,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				26F39565224FD911001081C1 /* 1.txt in Resources */,
-				267ED5E0224596BA000E2F19 /* TileFrequency-2.txt in Resources */,
 				268269612241880D00915F4D /* WordList-10.txt in Resources */,
 				268269652241880D00915F4D /* WordList-12.txt in Resources */,
 				268269622241880D00915F4D /* WordList-9.txt in Resources */,
@@ -450,16 +431,11 @@
 				26F39567224FD91E001081C1 /* 2.txt in Resources */,
 				2663D9172236028700A59810 /* Assets.xcassets in Resources */,
 				26F39569224FD926001081C1 /* 3.txt in Resources */,
-				267ED5DE224596A9000E2F19 /* TileFrequency-1.txt in Resources */,
 				2682695F2241880D00915F4D /* WordList-5.txt in Resources */,
-				267ED5E4224596DF000E2F19 /* TileFrequency-4.txt in Resources */,
 				2682695C2241880D00915F4D /* WordList-8.txt in Resources */,
-				26F341EF22407131006CAA0A /* TileFrequency-0.txt in Resources */,
-				267ED5E2224596CB000E2F19 /* TileFrequency-3.txt in Resources */,
 				268269642241880D00915F4D /* WordList-7.txt in Resources */,
 				268269632241880D00915F4D /* WordList-3.txt in Resources */,
 				2682695E2241880D00915F4D /* WordList-4.txt in Resources */,
-				267ED5E6224596EA000E2F19 /* TileFrequency-5.txt in Resources */,
 				2663D9152236028700A59810 /* Main.storyboard in Resources */,
 				2682695D2241880D00915F4D /* WordList-11.txt in Resources */,
 				268269602241880D00915F4D /* WordList-6.txt in Resources */,

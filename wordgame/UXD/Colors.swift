@@ -11,9 +11,8 @@ import UIKit
 
 
 // GameView
-//let backgroundColor = UIColor(hue: 0.5222, saturation: 0.14, brightness: 0.86, alpha: 1.0)
 let backgroundColor = UIColor(hue: 0.6167, saturation: 0.72, brightness: 0.66, alpha: 1.0)
-let gradientNodes = [0.0, 5.0, 18.0, 23.0, 32.0, 42.0, 100.0]
+let gradientNodes = [0.0, 6.0, 18.0, 23.0, 30.0, 46.0, 100.0]
 let gradientHSBs = [[0.5111,0.14,1.00],     // white-ish blue
                     [0.5222,0.14,0.86],     // sky blue
                     [0.6167,0.57,0.6],      // evening blue
@@ -21,13 +20,16 @@ let gradientHSBs = [[0.5111,0.14,1.00],     // white-ish blue
                     [0.8083,0.0,0.0],       // black
                     [0.8083,0.64,0.81],     // violet
                     [0.8083,0.0,1.0]]       // white (never comes)
+let middleColor = UIColor(hue: 0.5222, saturation: 0.14, brightness: 0.86, alpha: 0.1)
 
 
 let gradientTopPlus = 5.0
 
 // ScoreView
-let scoreTextColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
-let levelTextColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)
+let scoreTextColorDay = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+let scoreTextColorNight = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+let levelTextColorDay = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)
+let levelTextColorNight = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
 
 // RackView
 let rackColor = UIColor(red: 0.83, green: 0.83, blue: 0.83, alpha: 0.0)
@@ -73,16 +75,95 @@ let lifeDepthColor = UIColor(red: 0.749, green: 0.3373, blue: 0.4039, alpha: 1.0
 let bombColor = UIColor(red: 0.7255, green: 0.4824, blue: 0.7686, alpha: 1.0)
 let bombDepthColor = UIColor(red: 0.5569, green: 0.3451, blue: 0.6, alpha: 1.0)
 
-// GridSlotView
-let gridSlotColor = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.55, alpha: 0.3)
-let gridSlotColorHighlight = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 0.5)
-let gridSlotColorDying = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.6)
+// GridSlotView [day, night]
+let gridSlotHue = [0.0, 0.0]
+let gridSlotBrightness = [0.55, 0.75]
+let gridSlotAlpha = [0.3, 0.3]
+
+let gridSlotHighlightBrightness = [0.45, 0.85]
+let gridSlotHighlightAlpha = [0.5, 0.5]
+
+let gridSlotDyingSaturation = [0.5, 0.5]
+let gridSlotDyingAlpha = [0.6, 0.6]
+
+let gridSlotRevivingHue = [0.875, 0.875]
+let gridSlotRevivingSaturation = [0.5, 0.5]
+let gridSlotRevivingAlpha = [0.3, 0.3]
+
+/*
+let gridSlotColorDay = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.55, alpha: 0.3)
+let gridSlotColorNight = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.75, alpha: 0.3)
+let gridSlotColorHighlightDay = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.45, alpha: 0.5)
+let gridSlotColorHighlightNight = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.65, alpha: 0.5)
+let gridSlotColorDying = UIColor(hue: 0.0, saturation: 0.5, brightness: 0.55, alpha: 0.6)
 let gridSlotColorRebirth = UIColor(hue: 0.875, saturation: 0.5, brightness: 0.55, alpha: 0.3)
 let gridSlotAlpha = CGFloat(1.0)
+ */
 
 // GameOverView
 let statsTextColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)
 let statsNumberColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+
+
+
+
+// day/night
+
+func levelTextColor(level: Int) -> UIColor {
+    if nightMode(level: level) {
+        return scoreTextColorNight
+    } else {
+        return scoreTextColorDay
+    }
+}
+
+func scoreTextColor(level: Int) -> UIColor {
+    if nightMode(level: level) {
+        return scoreTextColorNight
+    } else {
+        return scoreTextColorDay
+    }
+}
+
+func gridSlotColor() -> UIColor {
+    let i = nightMode(level: game.currentLevel) ? 1 : 0
+    let h = CGFloat(gridSlotHue[i])
+    let s = CGFloat(0.0)
+    let b = CGFloat(gridSlotBrightness[i])
+    let a = CGFloat(gridSlotAlpha[i])
+    return UIColor(hue: h, saturation: s, brightness: b, alpha: a)
+}
+
+func gridSlotColorHighlight() -> UIColor {
+    let i = nightMode(level: game.currentLevel) ? 1 : 0
+    let h = CGFloat(gridSlotHue[i])
+    let s = CGFloat(0.0)
+    let b = CGFloat(gridSlotHighlightBrightness[i])
+    let a = CGFloat(gridSlotHighlightAlpha[i])
+    return UIColor(hue: h, saturation: s, brightness: b, alpha: a)
+}
+
+func gridSlotColorDying() -> UIColor {
+    let i = nightMode(level: game.currentLevel) ? 1 : 0
+    let h = CGFloat(gridSlotHue[i])
+    let s = CGFloat(gridSlotDyingSaturation[i])
+    let b = CGFloat(gridSlotBrightness[i])
+    let a = CGFloat(gridSlotDyingAlpha[i])
+    return UIColor(hue: h, saturation: s, brightness: b, alpha: a)
+}
+
+func gridSlotColorReviving() -> UIColor {
+    let i = nightMode(level: game.currentLevel) ? 1 : 0
+    let h = CGFloat(gridSlotRevivingHue[i])
+    let s = CGFloat(gridSlotRevivingSaturation[i])
+    let b = CGFloat(gridSlotBrightness[i])
+    let a = CGFloat(gridSlotRevivingAlpha[i])
+    return UIColor(hue: h, saturation: s, brightness: b, alpha: a)
+}
+
+func nightMode(level: Int) -> Bool {
+    return level >= 10
+}
 
 
 

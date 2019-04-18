@@ -11,8 +11,9 @@ import UIKit
 var device = Device()
 var rules = Rules()
 var settings = Settings()
-
 var game = Game()
+
+var backgroundView = BackgroundView()
 var gameView = GameView(game: game)
 
 var dragHandler = DragHandler(gameView: gameView)
@@ -24,8 +25,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.isMultipleTouchEnabled = true
         
+        view.addSubview(backgroundView.view)
         view.addSubview(gameView.view)
         gameView.view.isUserInteractionEnabled = false
+        backgroundView.update()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

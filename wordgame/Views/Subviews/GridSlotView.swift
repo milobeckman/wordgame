@@ -14,6 +14,10 @@ class GridSlotView {
     // location
     var gridPosition: Int
     
+    // visual properties
+    var hidden: Bool
+    var highlighted: Bool
+    
     // frames
     var slotFrame: CGRect
     
@@ -26,13 +30,15 @@ class GridSlotView {
         gridPosition = position
         slotFrame = device.gridSlotFrame(position: gridPosition)
         
+        hidden = false
+        highlighted = false
+        
         // views
         view = UIView(frame: device.screenBounds)
-        view.alpha = gridSlotAlpha
         
         slotView = UIView(frame: slotFrame)
         slotView.layer.cornerRadius = device.tileRadius
-        slotView.backgroundColor = gridSlotColor
+        slotView.backgroundColor = gridSlotColor()
         view.addSubview(slotView)
         
     }
@@ -41,46 +47,67 @@ class GridSlotView {
         self.init(position: 0)
     }
     
+    func update() {
+        if hidden {
+            view.isHidden = true
+        } else {
+            view.isHidden = false
+        }
+        
+        if highlighted {
+            slotView.backgroundColor = gridSlotColorHighlight()
+        } else {
+            slotView.backgroundColor = gridSlotColor()
+        }
+    }
+    
     func highlight() {
-        slotView.backgroundColor = gridSlotColorHighlight
+        highlighted = true
+        update()
     }
     
     func unhighlight() {
-        slotView.backgroundColor = gridSlotColor
+        highlighted = false
+        update()
     }
     
     func hide() {
-        view.alpha = 0.0
+        hidden = true
+        update()
     }
     
     func unhide() {
-        view.alpha = gridSlotAlpha
+        hidden = false
+        update()
     }
     
     func suggestRevival() {
-        view.alpha = gridSlotAlpha
-        slotView.backgroundColor = gridSlotColorRebirth
+        view.isHidden = false
+        slotView.backgroundColor = gridSlotColorReviving()
     }
     
     func unsuggestRevival() {
-        view.alpha = 0.0
-        slotView.backgroundColor = gridSlotColor
+        view.isHidden = true
+        slotView.backgroundColor = gridSlotColor()
     }
     
     func die() {
         let anchorX = slotFrame.midX/view.frame.width
         let anchorY = slotFrame.midY/view.frame.height
         setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: view)
-        slotView.backgroundColor = gridSlotColorDying
+        slotView.backgroundColor = gridSlotColorDying()
 
         UIView.animate(withDuration: dieDuration, animations: {
-            self.slotView.backgroundColor = gridSlotColor
+            self.slotView.backgroundColor = gridSlotColor()
             self.view.transform = CGAffineTransform(scaleX: 0.01, y: 0.01).rotated(by: dieAngle)
             self.view.alpha = 0.0
         }, completion: { (finished: Bool) in
 
             // grid slot is still hidden, but back to normal size/shape
+            self.hidden = true
+            self.update()
             self.view.transform = .identity
+            self.view.alpha = 1.0
         })
         
         // make sure we don't drop on dead square
@@ -89,12 +116,13 @@ class GridSlotView {
     
     func revive() {
         suggestRevival()
+        self.hidden = false
         
         UIView.animate(withDuration: reviveDuration, animations: {
-            self.slotView.backgroundColor = gridSlotColor
-        }, completion: nil)
-        
-        // check that completion nil is fine
+            self.slotView.backgroundColor = gridSlotColor()
+        }, completion: { (finished: Bool) in
+            self.update()
+        })
     }
     
     

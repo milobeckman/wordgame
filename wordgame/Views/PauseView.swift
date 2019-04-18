@@ -21,7 +21,6 @@ class PauseView {
     var curtainView: UIView
     
     
-    
     init() {
         
         view = UIView(frame: device.screenBounds)
@@ -32,7 +31,6 @@ class PauseView {
         view.addSubview(pauseButton)
         
         curtainView = UIView(frame: device.pauseBarFrame())
-        curtainView.backgroundColor = backgroundColor
         view.addSubview(curtainView)
         
         barView = UIView(frame: device.pauseBarFrame())

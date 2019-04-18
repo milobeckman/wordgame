@@ -14,6 +14,7 @@ class BackgroundView {
     
     var view: UIView
     var gradient: CAGradientLayer
+    var middleView: UIView
     
     init() {
         view = UIView(frame: device.screenBounds)
@@ -21,6 +22,10 @@ class BackgroundView {
         gradient = CAGradientLayer()
         gradient.frame = view.bounds
         view.layer.insertSublayer(gradient, at: 0)
+        
+        middleView = UIView(frame: device.screenBounds)
+        middleView.backgroundColor = middleColor
+        view.addSubview(middleView)
     }
     
     func update() {
