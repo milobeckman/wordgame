@@ -103,7 +103,7 @@ class Tile: CustomStringConvertible {
         // single letter tile
         default:
             if "qxjz".contains(text) {
-                return 3
+                return 5
             } else if "vwfbcgyhkmp".contains(text) {
                 return 2
             } else {

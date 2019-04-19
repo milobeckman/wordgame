@@ -17,7 +17,6 @@ class GridView {
     var tileViews: Set<TileView>
     
     var view: UIView
-    //var mask: CAShapeLayer
     
     init(grid: Grid) {
         
@@ -26,17 +25,7 @@ class GridView {
         gridSlotViews = []
         tileViews = []
         view = UIView(frame: device.screenBounds)
-        /*
-        mask = CAShapeLayer()
-        mask.path = CGPath(rect: device.gridFrame().offsetBy(dx: 50, dy: 50), transform: nil)
-        view.layer.mask = mask
-        
-        UIView.animate(withDuration: 1.0, animations: {
-            self.mask = CGPath(rect: device.gridFrame().offsetBy(dx: 0, dy: 0), transform: nil)
-        }, completion: { (finished: Bool) in
-            self.barView.alpha = CGFloat(0.0)
-        })
-        */
+
         // slots
         for i in 0...15 {
             let newGridSlot = GridSlotView(position: i)

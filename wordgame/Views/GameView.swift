@@ -25,6 +25,9 @@ class GameView {
     
     var view: UIView
     
+    var gridMask: CAShapeLayer
+    var rackMask: CAShapeLayer
+    
     init(game: Game) {
         
         self.game = game
@@ -45,6 +48,10 @@ class GameView {
         view.addSubview(timerView.view)
         view.addSubview(rackView.view)
         view.addSubview(pauseView.view)
+        
+        gridMask = CAShapeLayer()
+        rackMask = CAShapeLayer()
+        setupMasks()
         
         newGame()
     }
@@ -114,23 +121,50 @@ class GameView {
         }
     }
     
+    func setupMasks() {
+        gridMask.path = CGPath(rect: device.pauseCurtainFramePaused(), transform: nil)
+        rackMask.path = CGPath(rect: device.pauseCurtainFramePaused(), transform: nil)
+        gridView.view.layer.mask = gridMask
+        rackView.view.layer.mask = rackMask
+    }
     
     func pause() {
-        
-        // for testing game over
-        //gameOver()
         
         if timerView.timeLeft < 0 || game.over {
             return
         }
+        
+        animateMaskToRect(rect: device.pauseBarFramePaused(), duration: pauseDuration)
         
         pauseView.pause()
         game.paused = true
     }
     
     func unpause() {
+        
+        animateMaskToRect(rect: device.pauseCurtainFramePaused(), duration: pauseDuration)
+        
         game.paused = false
         pauseView.unpause()
+    }
+    
+    func animateMaskToRect(rect: CGRect, duration: Double) {
+        
+        let newPath = CGPath(rect: rect, transform: nil)
+        let animation = CABasicAnimation(keyPath: "path")
+        
+        animation.fromValue = gridMask.path
+        animation.toValue = newPath
+        animation.duration = duration
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        gridMask.add(animation, forKey: nil)
+        rackMask.add(animation, forKey: nil)
+        
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        gridMask.path = newPath
+        rackMask.path = newPath
+        CATransaction.commit()
     }
     
     func gameOver() {
