@@ -90,15 +90,7 @@ let gridSlotRevivingHue = [0.875, 0.875]
 let gridSlotRevivingSaturation = [0.5, 0.5]
 let gridSlotRevivingAlpha = [0.3, 0.3]
 
-/*
-let gridSlotColorDay = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.55, alpha: 0.3)
-let gridSlotColorNight = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.75, alpha: 0.3)
-let gridSlotColorHighlightDay = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.45, alpha: 0.5)
-let gridSlotColorHighlightNight = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.65, alpha: 0.5)
-let gridSlotColorDying = UIColor(hue: 0.0, saturation: 0.5, brightness: 0.55, alpha: 0.6)
-let gridSlotColorRebirth = UIColor(hue: 0.875, saturation: 0.5, brightness: 0.55, alpha: 0.3)
-let gridSlotAlpha = CGFloat(1.0)
- */
+
 
 // GameOverView
 let statsTextColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)
@@ -159,6 +151,18 @@ func gridSlotColorReviving() -> UIColor {
     let b = CGFloat(gridSlotBrightness[i])
     let a = CGFloat(gridSlotRevivingAlpha[i])
     return UIColor(hue: h, saturation: s, brightness: b, alpha: a)
+}
+
+func menuButtonColor() -> UIColor {
+    return scoreTextColor(level: game.currentLevel)
+}
+
+func menuTextColor() -> UIColor {
+    if nightMode(level: game.currentLevel) {
+        return scoreTextColorDay
+    } else {
+        return scoreTextColorNight
+    }
 }
 
 func nightMode(level: Int) -> Bool {

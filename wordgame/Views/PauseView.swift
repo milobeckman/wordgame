@@ -23,7 +23,7 @@ class PauseView {
     var curtainMask: CAShapeLayer
     
     var restartButton: UIView
-    //var restartLabel: UILabel
+    var restartLabel: UILabel
     
     
     init() {
@@ -48,9 +48,18 @@ class PauseView {
         curtainView.layer.mask = curtainMask
         
         restartButton = UIView(frame: device.menuButtonFrame(i: 0))
-        restartButton.backgroundColor = gridSlotColorHighlight()
+        restartButton.backgroundColor = menuButtonColor()
         restartButton.layer.cornerRadius = device.menuButtonRadius
         curtainView.addSubview(restartButton)
+        
+        restartLabel = UILabel(frame: device.menuButtonFrame(i: 0))
+        restartLabel.font = menuFont
+        restartLabel.textColor = menuTextColor()
+        restartLabel.textAlignment = .center
+        restartLabel.adjustsFontSizeToFitWidth = true
+        restartLabel.baselineAdjustment = .alignCenters
+        restartLabel.text = "Restart"
+        curtainView.addSubview(restartLabel)
         
     }
     
