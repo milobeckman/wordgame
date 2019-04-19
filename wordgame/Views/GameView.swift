@@ -134,7 +134,8 @@ class GameView {
             return
         }
         
-        animateMaskToRect(rect: device.pauseBarFramePaused(), duration: pauseDuration)
+        animateMaskToRect(mask: gridMask, rect: device.pauseBarFramePaused(), duration: pauseDuration)
+        animateMaskToRect(mask: rackMask, rect: device.pauseBarFramePaused(), duration: pauseDuration)
         
         pauseView.pause()
         game.paused = true
@@ -142,12 +143,14 @@ class GameView {
     
     func unpause() {
         
-        animateMaskToRect(rect: device.pauseCurtainFramePaused(), duration: pauseDuration)
+        animateMaskToRect(mask: gridMask, rect: device.pauseCurtainFramePaused(), duration: pauseDuration)
+        animateMaskToRect(mask: rackMask, rect: device.pauseCurtainFramePaused(), duration: pauseDuration)
         
         game.paused = false
         pauseView.unpause()
     }
     
+    /*
     func animateMaskToRect(rect: CGRect, duration: Double) {
         
         let newPath = CGPath(rect: rect, transform: nil)
@@ -165,7 +168,7 @@ class GameView {
         gridMask.path = newPath
         rackMask.path = newPath
         CATransaction.commit()
-    }
+    }*/
     
     func gameOver() {
         game.over = true

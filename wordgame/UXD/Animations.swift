@@ -74,3 +74,20 @@ func setAnchorPoint(anchorPoint: CGPoint, view: UIView) {
     view.layer.position = position
     view.layer.anchorPoint = anchorPoint
 }
+
+func animateMaskToRect(mask: CAShapeLayer, rect: CGRect, duration: Double) {
+    
+    let newPath = CGPath(rect: rect, transform: nil)
+    let animation = CABasicAnimation(keyPath: "path")
+    
+    animation.fromValue = mask.path
+    animation.toValue = newPath
+    animation.duration = duration
+    animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+    mask.add(animation, forKey: nil)
+    
+    CATransaction.begin()
+    CATransaction.setDisableActions(true)
+    mask.path = newPath
+    CATransaction.commit()
+}

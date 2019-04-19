@@ -22,6 +22,7 @@ class Device {
     let levelHeight = CGFloat(14)
     
     let paddingAroundPauseBar = CGFloat(8)
+    let menuButtonRadius = CGFloat(10)
     
     let paddingAboveGrid = CGFloat(10)
     let paddingToSideOfGrid = CGFloat(15)
@@ -174,6 +175,10 @@ class Device {
     
     func pauseCurtainFramePaused() -> CGRect {
         return CGRect(x: pauseBarX, y: pauseBarY, width: screenWidth - 2.0*pauseBarX, height: timerY-1-pauseBarY)
+    }
+    
+    func menuButtonFrame(i: Int) -> CGRect {
+        return CGRect(x: 30, y: 400, width: 150, height: 100)
     }
     
     
