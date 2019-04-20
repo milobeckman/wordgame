@@ -58,10 +58,15 @@ let tileTextColor = UIColor(red: 0.3, green: 0.24, blue: 0.1, alpha: 1)
 let tileGlintColor = UIColor(red: 0.95, green: 0.89, blue: 0.78, alpha: 1)
 let fadedTileViewAlpha = CGFloat(0.3)
 
-let multiColor = UIColor(red: 0.3, green: 0.24, blue: 0.1, alpha: 1)
-let multiDepthColor = UIColor(red: 0.1, green: 0.04, blue: 0.0, alpha: 1)
-let multiTextColor = UIColor(red: 0.9, green: 0.84, blue: 0.7, alpha: 1)
-let multiGlintColor = UIColor(red: 0.1, green: 0.04, blue: 0.0, alpha: 1)
+let doubleColor = UIColor(red: 0.3, green: 0.24, blue: 0.1, alpha: 1)
+let doubleDepthColor = UIColor(red: 0.1, green: 0.04, blue: 0.0, alpha: 1)
+let doubleTextColor = UIColor(red: 0.9, green: 0.84, blue: 0.7, alpha: 1)
+let doubleGlintColor = UIColor(red: 0.1, green: 0.04, blue: 0.0, alpha: 1)
+
+let tripleColor = UIColor(red: 0.3, green: 0.24, blue: 0.1, alpha: 1)
+let tripleDepthColor = UIColor(red: 0.1, green: 0.04, blue: 0.0, alpha: 1)
+let tripleTextColor = UIColor(red: 0.9, green: 0.84, blue: 0.7, alpha: 1)
+let tripleGlintColor = UIColor(red: 0.1, green: 0.04, blue: 0.0, alpha: 1)
 
 let wildColor = UIColor(red: 0.9843, green: 0.8078, blue: 0.2471, alpha: 1.0)
 let wildDepthColor = UIColor(red: 0.749, green: 0.6078, blue: 0.1882, alpha: 1.0)
@@ -187,8 +192,10 @@ func tileDepthColor(tile: Tile) -> UIColor {
         switch tile.text.count {
         case 1:
             return tileDepthColor
+        case 2:
+            return doubleDepthColor
         default:
-            return multiDepthColor
+            return tripleDepthColor
         }
     }
 }
@@ -207,8 +214,10 @@ func tileColor(tile: Tile) -> UIColor {
         switch tile.text.count {
         case 1:
             return tileColor
+        case 2:
+            return doubleColor
         default:
-            return multiColor
+            return tripleColor
         }
     }
 }
@@ -217,8 +226,10 @@ func tileGlintColor(tile: Tile) -> UIColor {
     switch tile.text.count {
     case 1:
         return tileGlintColor
+    case 2:
+        return doubleGlintColor
     default:
-        return multiGlintColor
+        return tripleGlintColor
     }
 }
 
@@ -226,8 +237,10 @@ func tileTextColor(tile: Tile) -> UIColor {
     switch tile.text.count {
     case 1:
         return tileTextColor
+    case 2:
+        return doubleTextColor
     default:
-        return multiTextColor
+        return tripleTextColor
     }
 }
 

@@ -32,7 +32,8 @@ class Device {
     let paddingBetweenTiles = CGFloat(10)
     let tileRadius = CGFloat(10)
     let tileDepth = CGFloat(3)
-    let tileGlintSize = CGFloat(2)
+    let tileGlintSize = CGFloat(1)
+    let tileScoreGlintSize = CGFloat(1)
     
     let paddingAboveRack = CGFloat(80)
     

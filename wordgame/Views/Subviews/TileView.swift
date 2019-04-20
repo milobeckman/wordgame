@@ -33,6 +33,7 @@ class TileView: Hashable {
     var shouldShowText: Bool
     var shouldShowScore: Bool
     var shouldShowGlint: Bool
+    var shouldShowImage: Bool
     
     // conform to hashable
     var uniqueID: Int
@@ -67,6 +68,21 @@ class TileView: Hashable {
         tileView.backgroundColor = tileColor(tile: tile)
         view.addSubview(tileView)
         
+        image = UIImageView(frame: tileFrame)
+        image.layer.cornerRadius = device.tileRadius
+        image.clipsToBounds = true
+        if tile.type != "letter" {
+            image.image = UIImage(named: tile.imageName())
+            image.alpha = 0.5
+            view.addSubview(image)
+        } else if tile.text.count == 3 {
+            print("hey")
+            let rainbowName = "rainbow" + String(randomElement(array: [1,2,3]))
+            image.image = UIImage(named: rainbowName)
+            image.alpha = 1.0
+            view.addSubview(image)
+        }
+        
         glintLabel = UILabel(frame: tileFrame)
         glintLabel.font = tileFont
         glintLabel.textColor = tileGlintColor(tile: tile)
@@ -84,13 +100,6 @@ class TileView: Hashable {
         label.baselineAdjustment = .alignCenters
         label.text = tile.text
         view.addSubview(label)
-        
-        image = UIImageView(frame: tileFrame)
-        if tile.type != "letter" {
-            image.image = UIImage(named: tile.imageName())
-            image.alpha = 0.5
-            view.addSubview(image)
-        }
         
         scoreGlintLabel = UILabel(frame: scoreFrame)
         scoreGlintLabel.font = tileScoreFont
@@ -114,6 +123,7 @@ class TileView: Hashable {
         shouldShowText = tile.type == "letter"
         shouldShowScore = settings.showTileScores && tile.score() != 0
         shouldShowGlint = true
+        shouldShowImage = tile.type != "letter" || tile.text.count == 3
         
         // tile position is not initialized
         // always use a convenience init
@@ -138,7 +148,7 @@ class TileView: Hashable {
         glintLabel.frame = tileFrame.offsetBy(dx: device.tileGlintSize, dy: device.tileGlintSize)
         label.frame = tileFrame
         image.frame = tileFrame
-        scoreGlintLabel.frame = scoreFrame.offsetBy(dx: device.tileGlintSize, dy: device.tileGlintSize)
+        scoreGlintLabel.frame = scoreFrame.offsetBy(dx: device.tileScoreGlintSize, dy: device.tileScoreGlintSize)
         scoreLabel.frame = scoreFrame
     }
     
@@ -152,7 +162,7 @@ class TileView: Hashable {
         glintLabel.isHidden = !(shouldShowText && shouldShowGlint)
         scoreLabel.isHidden = !shouldShowScore
         scoreGlintLabel.isHidden = !(shouldShowScore && shouldShowGlint)
-        image.isHidden = shouldShowText
+        image.isHidden = !shouldShowImage
     }
     
     func makeTinyStyle() {
@@ -266,6 +276,7 @@ class TileView: Hashable {
         
         shouldShowScore = tile.score() > 0
         shouldShowGlint = false
+        shouldShowImage = false
         updateContents()
         
         UIView.animate(withDuration: evaporateDuration, animations: {
