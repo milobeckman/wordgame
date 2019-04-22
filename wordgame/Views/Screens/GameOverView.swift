@@ -22,6 +22,8 @@ class GameOverView {
     var statsLabels: [UILabel]
     var tinyTileViews: [TileView]
     
+    let tinyTileMode = false
+    
     var view: UIView
     
     
@@ -66,7 +68,9 @@ class GameOverView {
         
         setupStatsStrings()
         setupStatsLabels()
-        setupTinyTileViews()
+        if tinyTileMode {
+            setupTinyTileViews()
+        }
         
         view.addSubview(statsView)
         
@@ -74,8 +78,10 @@ class GameOverView {
             view.addSubview(label)
         }
         
-        for tinyTileView in tinyTileViews {
-            view.addSubview(tinyTileView.view)
+        if tinyTileMode {
+            for tinyTileView in tinyTileViews {
+                view.addSubview(tinyTileView.view)
+            }
         }
         
     }
@@ -89,9 +95,11 @@ class GameOverView {
         var textStrings = ["Tiles dropped: "]
         var numberStrings = [String(game.tilesDropped)]
         
-        for tileID in tileIDs {
-            textStrings.append("")
-            numberStrings.append(String(game.tileCounts[tileID]!))
+        if tinyTileMode {
+            for tileID in tileIDs {
+                textStrings.append("")
+                numberStrings.append(String(game.tileCounts[tileID]!))
+            }
         }
         
         textStrings += ["Words cleared: ",
@@ -102,10 +110,10 @@ class GameOverView {
                           String(game.longestStreak)]
         
         let textAttributes: [NSAttributedStringKey: Any] =
-                                [.foregroundColor: statsTextColor,
+                                [.foregroundColor: statsTextColor(),
                                  .font: statsTextFont as Any]
         let numberAttributes: [NSAttributedStringKey: Any] =
-                                [.foregroundColor: statsNumberColor,
+                                [.foregroundColor: statsNumberColor(),
                                  .font: statsNumberFont as Any]
         
         for i in 0..<textStrings.count {
@@ -122,8 +130,10 @@ class GameOverView {
         
         for i in 0..<statsStrings.count {
             let newLabel = UILabel(frame: device.statsLabelFrame(i: i))
-            if (1...tileIDs.count).contains(i) {
-                newLabel.frame = device.indentedStatsLabelFrame(i: i)
+            if tinyTileMode {
+                if (1...tileIDs.count).contains(i) {
+                    newLabel.frame = device.indentedStatsLabelFrame(i: i)
+                }
             }
             
             newLabel.attributedText = statsStrings[i]

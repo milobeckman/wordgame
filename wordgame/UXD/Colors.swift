@@ -95,12 +95,19 @@ let gridSlotRevivingHue = [0.875, 0.875]
 let gridSlotRevivingSaturation = [0.5, 0.5]
 let gridSlotRevivingAlpha = [0.3, 0.3]
 
+// BadgeView
+let badgeColorSingle = UIColor(hue: 0.3472, saturation: 1.0, brightness: 0.81, alpha: 1.0)
+let badgeColorDouble = UIColor(hue: 0.1111, saturation: 1.0, brightness: 0.94, alpha: 1.0)
+let badgeColorTriple = UIColor(hue: 0.8111, saturation: 1.0, brightness: 0.78, alpha: 1.0)
+let badgeTextColor = UIColor(hue: 0.0, saturation: 0.0, brightness: 1.0, alpha: 0.8)
+let badgeShadowColor = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.0, alpha: 0.4)
 
 
 // GameOverView
-let statsTextColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)
-let statsNumberColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
-
+let statsTextColorDay = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
+let statsTextColorNight = UIColor(red: 0.35, green: 0.35, blue: 0.35, alpha: 1)
+let statsNumberColorDay = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+let statsNumberColorNight = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
 
 
 
@@ -167,6 +174,22 @@ func menuTextColor() -> UIColor {
         return scoreTextColorDay
     } else {
         return scoreTextColorNight
+    }
+}
+
+func statsTextColor() -> UIColor {
+    if nightMode(level: game.currentLevel) {
+        return statsTextColorDay
+    } else {
+        return statsTextColorNight
+    }
+}
+
+func statsNumberColor() -> UIColor {
+    if nightMode(level: game.currentLevel) {
+        return statsNumberColorDay
+    } else {
+        return statsNumberColorNight
     }
 }
 
@@ -244,6 +267,17 @@ func tileTextColor(tile: Tile) -> UIColor {
     }
 }
 
+
+func badgeColor(multiplier: Int) -> UIColor {
+    switch multiplier {
+    case 3:
+        return badgeColorTriple
+    case 2:
+        return badgeColorDouble
+    default:
+        return badgeColorSingle
+    }
+}
 
 
 // interpolation

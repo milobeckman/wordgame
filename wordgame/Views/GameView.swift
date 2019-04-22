@@ -83,6 +83,21 @@ class GameView {
         }
     }
     
+    func showScoreBadge(score: Int, wordPath: [Int]) {
+        
+        var badgePosition = 0
+        if wordPath[1] - wordPath[0] == 4 {
+            badgePosition = wordPath[0]
+        } else {
+            badgePosition = wordPath[3]
+        }
+        
+        let badgeView = BadgeView(score: score, gridPosition: badgePosition)
+        view.addSubview(badgeView.view)
+        badgeView.display()
+        
+    }
+    
     func switchToNightMode() {
         scoreView.updateView()
         pauseView.switchToNightMode()

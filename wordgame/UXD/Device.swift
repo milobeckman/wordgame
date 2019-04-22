@@ -22,10 +22,6 @@ class Device {
     let levelHeight = CGFloat(14)
     
     let paddingAroundPauseBar = CGFloat(8)
-    let menuButtonHeight = CGFloat(50)
-    let menuButtonRadius = CGFloat(10)
-    let paddingBetweenMenuButtons = CGFloat(10)
-    let paddingToSideOfMenuButtons = CGFloat(60)
     
     let paddingAboveGrid = CGFloat(10)
     let paddingToSideOfGrid = CGFloat(15)
@@ -38,6 +34,16 @@ class Device {
     let paddingAboveRack = CGFloat(80)
     
     let paddingAboveTimer = CGFloat(0)
+    
+    let menuButtonHeight = CGFloat(50)
+    let menuButtonRadius = CGFloat(10)
+    let paddingBetweenMenuButtons = CGFloat(10)
+    let paddingToSideOfMenuButtons = CGFloat(60)
+    
+    let badgeRadius = CGFloat(20)
+    let badgeShadowRadius = CGFloat(8)
+    let badgeDX = CGFloat(-10)
+    let badgeDY = CGFloat(2)
     
     let paddingAroundStatsView = CGFloat(15)
     let paddingBetweenStats = CGFloat(5)
@@ -193,6 +199,14 @@ class Device {
         let width = screenWidth - 2*paddingToSideOfMenuButtons
         
         return CGRect(x: x, y: y, width: width, height: menuButtonHeight)
+    }
+    
+    
+    // BadgeView
+    func badgeFrame(gridPosition: Int) -> CGRect {
+        let centerX = gridSlotFrame(position: gridPosition).maxX + badgeDX
+        let centerY = gridSlotFrame(position: gridPosition).minY - badgeDY
+        return CGRect(x: centerX - badgeRadius, y: centerY - badgeRadius, width: 2*badgeRadius, height: 2*badgeRadius)
     }
     
     

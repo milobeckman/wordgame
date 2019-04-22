@@ -21,8 +21,8 @@ let slideDuration = 0.2
 let dropDuration = 0.1
 
 // TileView.evaporate()
-let evaporateDuration = 2.0
-let evaporateHeight = CGFloat(6.0)
+let evaporateDuration = 1.0         // 1.5
+let evaporateHeight = CGFloat(0.0)  // 6.0
 
 // GridSlotView.die(), revive()
 let dieDuration = 1.0
@@ -42,7 +42,10 @@ let bombInterval = 0.05
 let bombRadius = 15.0
 let bombRadiusMultipliers = [1.0, 0.9, 0.7, 0.4, 0.15, 0.0]
 
-
+// BadgeView.display()
+let badgeDisplayDuration = 1.4
+let badgeFadeDuration = 0.4
+let badgeFadeHeight = CGFloat(6.0)
 
 
 // screen refresh times

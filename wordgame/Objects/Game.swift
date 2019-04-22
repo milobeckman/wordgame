@@ -96,6 +96,7 @@ class Game {
         
         let score = rules.scoreForTiles(tiles: tiles, multiplier: currentMultiplier())
         currentScore += score
+        gameView.showScoreBadge(score: score, wordPath: wordPath)
     }
     
     func tileServer() -> Int {
