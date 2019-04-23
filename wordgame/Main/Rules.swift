@@ -73,6 +73,20 @@ class Rules {
             return newTile()
         }
         
+        // never serve four vowels or four consonants
+        var vowelCount = 0
+        for rackTile in game.rack.tiles {
+            if rackTile.type == "letter" && "aeiouy".contains(rackTile.text) {
+                vowelCount += 1
+            }
+        }
+        if vowelCount == 3 && tile.type == "letter" && "aeiouy".contains(tile.text) {
+            return newTile()
+        }
+        if vowelCount == 0 && tile.type == "letter" && !"aeiouy".contains(tile.text) {
+            return newTile()
+        }
+        
         // in some cases we shouldn't serve special tiles
         if tile.type == "life" && game.numDeadTiles() == 0 {
             return newTile()
