@@ -53,8 +53,13 @@ class BadgeView {
     }
     
     func display() {
-        UIView.animate(withDuration: badgeFadeDuration, delay: badgeDisplayDuration, options: [], animations: {
-            self.view.alpha = 0.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + badgeDisplayDuration, execute: {
+            UIView.animate(withDuration: badgeFadeDuration, animations: {
+                self.view.alpha = 0.0
+            }, completion: nil)
+        })
+        
+        UIView.animate(withDuration: badgeDisplayDuration + badgeFadeDuration, animations: {
             self.view.frame = device.screenBounds.offsetBy(dx: 0, dy: -badgeFadeHeight)
         }, completion: { (finished: Bool) in
             self.view.removeFromSuperview()

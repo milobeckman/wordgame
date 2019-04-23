@@ -24,6 +24,7 @@ class Game {
     
     var tilesDropped: Int
     var tileCounts: [String: Int]
+    var expectedTileCounts: [String: Double]
     var wordsCleared: Int
     var longestStreak: Int
     
@@ -40,6 +41,7 @@ class Game {
         
         tilesDropped = 0
         tileCounts = [:]
+        expectedTileCounts = [:]
         wordsCleared = 0
         currentStreak = 0
         longestStreak = 0

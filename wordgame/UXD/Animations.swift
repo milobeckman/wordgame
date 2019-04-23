@@ -45,7 +45,7 @@ let bombRadiusMultipliers = [1.0, 0.9, 0.7, 0.4, 0.15, 0.0]
 // BadgeView.display()
 let badgeDisplayDuration = 1.4
 let badgeFadeDuration = 0.4
-let badgeFadeHeight = CGFloat(6.0)
+let badgeFadeHeight = CGFloat(12.0)
 
 
 // screen refresh times

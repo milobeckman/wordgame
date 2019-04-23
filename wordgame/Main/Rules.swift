@@ -21,6 +21,8 @@ class Rules {
     let timerDecrement = 0.933
     let playSomethingDuration = 0.5
     
+    let fairnessAdjustment = 1.0
+    
     
     
     func trueLevel(tilesServed: Int) -> Double {
@@ -154,15 +156,6 @@ class Rules {
         
         return freqs
         
-    }
-    
-    func letterFrequencyFilename(level: Int) -> String {
-        let freqFile = level/5
-        if freqFile < 5 {
-            return "TileFrequency-" + String(freqFile) + ".txt"
-        } else {
-            return "TileFrequency-5.txt"
-        }
     }
     
     func randomTileIDFromFreqs(freqs: [String]) -> String {
