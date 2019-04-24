@@ -15,7 +15,7 @@ let errorString = "!ERROR"
 class Rules {
     
     let maxMultiplier = 3
-    let tilesPerLevel = settings.testMode ? 2 : 7
+    let tilesPerLevel = settings.quickAdvanceMode ? 2 : 7
     
     let timerStart = 20.0
     let timerDecrement = 0.933
@@ -79,7 +79,7 @@ class Rules {
     
     func isWord(word: String) -> Bool {
         
-        if settings.testMode {
+        if settings.allWordCountMode {
             return true
         }
         

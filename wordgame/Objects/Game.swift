@@ -88,11 +88,13 @@ class Game {
         }
         
         for wordPath in wordPaths {
-            scoreWordPath(wordPath: wordPath)
+            let score = scoreForWordPath(wordPath: wordPath)
+            currentScore += score
+            gameView.showScoreBadge(score: score, wordPath: wordPath, wordPaths: wordPaths)
         }
     }
     
-    func scoreWordPath(wordPath: [Int]) {
+    func scoreForWordPath(wordPath: [Int]) -> Int {
         
         wordsCleared += 1
         
@@ -101,9 +103,7 @@ class Game {
             tiles.append(grid.tiles[position])
         }
         
-        let score = rules.scoreForTiles(tiles: tiles, multiplier: currentMultiplier())
-        currentScore += score
-        gameView.showScoreBadge(score: score, wordPath: wordPath)
+        return rules.scoreForTiles(tiles: tiles, multiplier: currentMultiplier())
     }
     
     func tileServer() -> Int {

@@ -83,15 +83,9 @@ class GameView {
         }
     }
     
-    func showScoreBadge(score: Int, wordPath: [Int]) {
+    func showScoreBadge(score: Int, wordPath: [Int], wordPaths: [[Int]]) {
         
-        var badgePosition = 0
-        if wordPath[1] - wordPath[0] == 4 {
-            badgePosition = wordPath[0]
-        } else {
-            badgePosition = wordPath[3]
-        }
-        
+        let badgePosition = positionForBadge(wordPath: wordPath, wordPaths: wordPaths)
         let badgeView = BadgeView(score: score, gridPosition: badgePosition)
         view.addSubview(badgeView.view)
         badgeView.display()

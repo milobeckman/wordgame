@@ -68,3 +68,30 @@ class BadgeView {
     
     
 }
+
+
+func positionForBadge(wordPath: [Int], wordPaths: [[Int]]) -> Int {
+    var position = 0
+    
+    // top if vertical, right if horizontal
+    if wordPath[1] - wordPath[0] == 4 {
+        position = wordPath[0]
+    } else {
+        position = wordPath[3]
+    }
+    
+    // make sure no overlap
+    for otherPath in wordPaths {
+        if otherPath != wordPath {
+            if otherPath.contains(position) {
+                position = wordPath[0]
+            }
+            if otherPath.contains(position) {
+                position = wordPath[3]
+            }
+        }
+    }
+    
+    return position
+}
+
