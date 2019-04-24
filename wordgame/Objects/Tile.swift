@@ -71,7 +71,7 @@ class Tile: CustomStringConvertible {
         } else if tileID.contains("*") {
             return tileID
         } else {
-            return rules.randomTileForLength(length: tileID)
+            return randomTileForLength(length: tileID)
         }
     }
     

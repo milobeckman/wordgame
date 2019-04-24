@@ -76,7 +76,6 @@ class TileView: Hashable {
             image.alpha = 0.5
             view.addSubview(image)
         } else if tile.text.count == 3 {
-            print("hey")
             let rainbowName = "rainbow" + String(randomElement(array: [1,2,3]))
             image.image = UIImage(named: rainbowName)
             image.alpha = 1.0

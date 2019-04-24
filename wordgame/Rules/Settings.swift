@@ -14,4 +14,6 @@ class Settings {
     let showTileScores = true
     
     
+    let testMode = false
+    
 }

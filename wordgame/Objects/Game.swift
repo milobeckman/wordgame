@@ -23,7 +23,7 @@ class Game {
     var over: Bool
     
     var tilesDropped: Int
-    var tileCounts: [String: Int]
+    var tileCounts: [String: Double]
     var expectedTileCounts: [String: Double]
     var wordsCleared: Int
     var longestStreak: Int
@@ -42,6 +42,11 @@ class Game {
         tilesDropped = 0
         tileCounts = [:]
         expectedTileCounts = [:]
+        for tileID in tileIDs {
+            tileCounts[tileID] = 0.0
+            expectedTileCounts[tileID] = 0.0
+        }
+        
         wordsCleared = 0
         currentStreak = 0
         longestStreak = 0
@@ -159,26 +164,26 @@ class Game {
         
     }
     
-    func addToTilesDropped(tile: Tile) {
-        tilesDropped += 1
+    func updateTileCounts(expected: [String: Double], actual: String) {
         
-        var tileID = ""
-        
-        switch tile.type {
-        case "letter":
-            tileID = String(tile.text.count)
-        case "wild":
-            tileID = tile.text
-        default:
-            tileID = "." + tile.type
+        var expectedTotal = 0.0
+        for tileID in tileIDs {
+            expectedTotal += expected[tileID]!
         }
         
-        if let count = tileCounts[tileID] {
-            tileCounts[tileID] = count + 1
-        } else {
-            tileCounts[tileID] = 1
+        for tileID in tileIDs {
+            expectedTileCounts[tileID]! += expected[tileID]! / expectedTotal
         }
         
+        tileCounts[actual]! += 1.0
+        
+        
+        /*
+        print("")
+        for tileID in tileIDs {
+            print(tileID + "     " + String(tileCounts[tileID]!) + "     " + String(expectedTileCounts[tileID]!))
+        }
+        */
     }
     
     func averageWordScore() -> Double {

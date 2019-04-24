@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260EAB7D2270A73400B005DA /* TileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EAB7C2270A73400B005DA /* TileGenerator.swift */; };
 		2610741C226E701F003C79AF /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2610741B226E701F003C79AF /* BadgeView.swift */; };
 		261FD3C62258FA99001B1AF0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FD3C52258FA99001B1AF0 /* Settings.swift */; };
 		261FD3C8225D27B7001B1AF0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FD3C7225D27B7001B1AF0 /* BackgroundView.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		260EAB7C2270A73400B005DA /* TileGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileGenerator.swift; sourceTree = "<group>"; };
 		2610741B226E701F003C79AF /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		261FD3C52258FA99001B1AF0 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		261FD3C7225D27B7001B1AF0 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
@@ -150,6 +152,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		260EAB7E2270A74100B005DA /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				260EAB7C2270A73400B005DA /* TileGenerator.swift */,
+				261FD3C52258FA99001B1AF0 /* Settings.swift */,
+				26745C79223B0D49000BCD1B /* Rules.swift */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
 		2663D9032236028700A59810 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +187,7 @@
 			children = (
 				2663D90F2236028700A59810 /* AppDelegate.swift */,
 				26DD29C4224F31D600238A31 /* UXD */,
+				260EAB7E2270A74100B005DA /* Rules */,
 				26745C762239931A000BCD1B /* Main */,
 				26745C6122378C85000BCD1B /* Views */,
 				26745C75223992F0000BCD1B /* Objects */,
@@ -237,8 +250,6 @@
 			isa = PBXGroup;
 			children = (
 				2663D9112236028700A59810 /* ViewController.swift */,
-				26745C79223B0D49000BCD1B /* Rules.swift */,
-				261FD3C52258FA99001B1AF0 /* Settings.swift */,
 				26745C77223B0291000BCD1B /* DragHandler.swift */,
 				267ED5ED22495B69000E2F19 /* ButtonHandler.swift */,
 			);
@@ -477,6 +488,7 @@
 				26F341F12240725E006CAA0A /* IO.swift in Sources */,
 				267ED5E92245E380000E2F19 /* PauseView.swift in Sources */,
 				261FD3C62258FA99001B1AF0 /* Settings.swift in Sources */,
+				260EAB7D2270A73400B005DA /* TileGenerator.swift in Sources */,
 				2663D940223604C100A59810 /* Device.swift in Sources */,
 				26F341EC223FFD8D006CAA0A /* TimerView.swift in Sources */,
 				26745C6B22383800000BCD1B /* GameView.swift in Sources */,

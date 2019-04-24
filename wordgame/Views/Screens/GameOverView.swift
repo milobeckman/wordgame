@@ -151,7 +151,7 @@ class GameOverView {
         }
     }
     
-    func sortedTileIDs(unsorted: [String: Int]) -> [String] {
+    func sortedTileIDs(unsorted: [String: Double]) -> [String] {
         return Array(unsorted.keys).sorted() {
             let obj1 = unsorted[$0]!
             let obj2 = unsorted[$1]!
