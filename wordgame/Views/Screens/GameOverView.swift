@@ -19,6 +19,7 @@ class GameOverView {
     var rackView: RackView
     
     var statsView: UIView
+    var gameOverLabel: UILabel
     var statsLabels: [UILabel]
     var tinyTileViews: [TileView]
     
@@ -36,6 +37,7 @@ class GameOverView {
         self.rackView = rackView
         
         statsView = UIView(frame: device.statsFrame())
+        gameOverLabel = UILabel(frame: device.gameOverFrame())
         statsLabels = []
         tinyTileViews = []
         
@@ -65,6 +67,14 @@ class GameOverView {
     }
     
     func showStats() {
+        
+        gameOverLabel.font = gameOverFont
+        gameOverLabel.textColor = statsNumberColor()
+        gameOverLabel.textAlignment = .left
+        gameOverLabel.adjustsFontSizeToFitWidth = true
+        gameOverLabel.baselineAdjustment = .alignCenters
+        gameOverLabel.text = "Game over"
+        view.addSubview(gameOverLabel)
         
         setupStatsStrings()
         setupStatsLabels()

@@ -47,6 +47,7 @@ class Device {
     
     let paddingAroundStatsView = CGFloat(15)
     let paddingBetweenStats = CGFloat(5)
+    let gameOverHeight = CGFloat(30)
     let statsHeight = CGFloat(20)
     let paddingBeforeTinyTile = CGFloat(15)
     let paddingAfterTinyTile = CGFloat(10)
@@ -219,8 +220,12 @@ class Device {
         return CGRect(x: statsX, y: statsY, width: width, height: height)
     }
     
+    func gameOverFrame() -> CGRect {
+        return CGRect(x: statsX, y: statsY, width: statsFrame().width, height: gameOverHeight)
+    }
+    
     func statsLabelFrame(i: Int) -> CGRect {
-        let y = statsY + CGFloat(i)*(statsHeight + paddingBetweenStats)
+        let y = statsY + gameOverHeight + paddingBetweenStats + CGFloat(i)*(statsHeight + paddingBetweenStats)
         let width = screenWidth - statsX - paddingAroundStatsView
         return CGRect(x: statsX, y: y, width: width, height: statsHeight)
     }
