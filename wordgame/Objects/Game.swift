@@ -22,11 +22,15 @@ class Game {
     var paused: Bool
     var over: Bool
     
-    var tilesDropped: Int
+    // for luck adjustment
     var tileCounts: [String: Double]
     var expectedTileCounts: [String: Double]
+    
+    // stats
+    var tilesDropped: Int
     var wordsCleared: Int
     var longestStreak: Int
+    var wordData: [[String]]
     
     init() {
         grid = Grid()
@@ -39,7 +43,6 @@ class Game {
         paused = false
         over = false
         
-        tilesDropped = 0
         tileCounts = [:]
         expectedTileCounts = [:]
         for tileID in tileIDs {
@@ -47,9 +50,11 @@ class Game {
             expectedTileCounts[tileID] = 0.0
         }
         
+        tilesDropped = 0
         wordsCleared = 0
         currentStreak = 0
         longestStreak = 0
+        wordData = [[String]]()
     }
     
     func currentMultiplier() -> Int {
@@ -90,6 +95,7 @@ class Game {
         for wordPath in wordPaths {
             let score = scoreForWordPath(wordPath: wordPath)
             currentScore += score
+            saveWord(wordPath: wordPath, multiplier: currentMultiplier(), score: score)
             gameView.showScoreBadge(score: score, wordPath: wordPath, wordPaths: wordPaths)
         }
     }
@@ -164,6 +170,8 @@ class Game {
         
     }
     
+    /* STATS */
+    
     func updateTileCounts(expected: [String: Double], actual: String) {
         
         var expectedTotal = 0.0
@@ -184,6 +192,20 @@ class Game {
             print(tileID + "     " + String(tileCounts[tileID]!) + "     " + String(expectedTileCounts[tileID]!))
         }
         */
+    }
+    
+    func saveWord(wordPath: [Int], multiplier: Int, score: Int) {
+        var word = ""
+        for position in wordPath {
+            word += grid.tiles[position].text
+        }
+        
+        let multiplierString = multiplier > 1 ? "x" + String(multiplier) : ""
+        let score = String(score)
+        
+        wordData.append([word, multiplierString, score])
+        
+        print(wordData)
     }
     
     func averageWordScore() -> Double {
