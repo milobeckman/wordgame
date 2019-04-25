@@ -49,7 +49,7 @@ let playSomethingBackgroundColor = [UIColor.red, UIColor.white]
 let playSomethingTextColor = [UIColor.white, UIColor.red]
 
 // PauseView
-let pauseBarColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1)
+let barColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1)
 
 // TileView
 let tileColor = UIColor(red: 0.9, green: 0.84, blue: 0.7, alpha: 1)

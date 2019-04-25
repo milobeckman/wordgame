@@ -79,7 +79,7 @@ class Rules {
     
     func isWord(word: String) -> Bool {
         
-        if settings.allWordCountMode {
+        if settings.allWordsCountMode {
             return true
         }
         

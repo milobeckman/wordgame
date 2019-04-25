@@ -204,8 +204,6 @@ class Game {
         let score = String(score)
         
         wordData.append([word, multiplierString, score])
-        
-        print(wordData)
     }
     
     func averageWordScore() -> Double {

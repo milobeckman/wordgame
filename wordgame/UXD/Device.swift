@@ -51,6 +51,10 @@ class Device {
     let statsHeight = CGFloat(20)
     let paddingBeforeTinyTile = CGFloat(15)
     let paddingAfterTinyTile = CGFloat(10)
+    let paddingAroundWordData = CGFloat(8)
+    let wordDataWidthRatio = CGFloat(0.5)
+    let wordDataMultiplierLocationRatio = CGFloat(0.7)
+    let playAgainHeight = CGFloat(35)
     
     
     // calculated
@@ -68,8 +72,11 @@ class Device {
     var timerX: CGFloat
     var timerY: CGFloat
     var timerHeight: CGFloat
+    var shrunkenGridSize: CGFloat
     var statsX: CGFloat
     var statsY: CGFloat
+    var wordDataX: CGFloat
+    var wordDataY: CGFloat
     
     
 
@@ -100,8 +107,12 @@ class Device {
         timerY = rackY + tileSize + 2*paddingBetweenTiles + paddingAboveTimer
         timerHeight = screenBounds.height - timerY
         
-        statsX = gridX + gameOverGridScale*(4*tileSize + 3*paddingBetweenTiles) + paddingAroundStatsView
+        shrunkenGridSize = gameOverGridScale*(4*tileSize + 3*paddingBetweenTiles)
+        statsX = gridX + shrunkenGridSize + paddingAroundStatsView
         statsY = pauseBarY + paddingAroundStatsView
+        
+        wordDataX = (screenWidth*(1-wordDataWidthRatio))/2
+        wordDataY = statsY + shrunkenGridSize + paddingAroundWordData
     }
     
 
@@ -213,7 +224,6 @@ class Device {
     
     // GameOverView
     func statsFrame() -> CGRect {
-        let shrunkenGridSize = gameOverGridScale*(4*tileSize + 3*paddingBetweenTiles)
         let width = screenWidth - statsX - paddingAroundStatsView
         let height = paddingAboveGrid + shrunkenGridSize - paddingAroundStatsView
     
@@ -241,6 +251,21 @@ class Device {
         let x = statsX + paddingBeforeTinyTile
         let y = statsY + CGFloat(position)*(statsHeight + paddingBetweenStats)
         return CGRect(x: x, y: y, width: statsHeight, height: statsHeight)
+    }
+    
+    func wordDataFrame() -> CGRect {
+        let width = screenWidth * wordDataWidthRatio
+        let height = timerY - wordDataY - playAgainHeight - 2*paddingAroundWordData
+        return CGRect(x: wordDataX, y: wordDataY, width: width, height: height)
+    }
+    
+    func wordDataTopBarFrame() -> CGRect {
+        return CGRect(x: wordDataX, y: wordDataY, width: screenWidth*wordDataWidthRatio, height: 1)
+    }
+    
+    func wordDataBottomBarFrame() -> CGRect {
+        let y = timerY - playAgainHeight - 2*paddingAroundWordData
+        return CGRect(x: wordDataX, y: y, width: screenWidth*wordDataWidthRatio, height: 1)
     }
     
     

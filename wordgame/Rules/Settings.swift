@@ -14,7 +14,7 @@ class Settings {
     let showTileScores = true
     
     
-    let allWordCountMode = false
+    let allWordsCountMode = false
     let quickAdvanceMode = false
     
 }

@@ -22,6 +22,9 @@ class GameOverView {
     var gameOverLabel: UILabel
     var statsLabels: [UILabel]
     var tinyTileViews: [TileView]
+    var wordDataView: UIScrollView
+    var wordDataTopBar: UIView
+    var wordDataBottomBar: UIView
     
     let tinyTileMode = false
     
@@ -40,6 +43,10 @@ class GameOverView {
         gameOverLabel = UILabel(frame: device.gameOverFrame())
         statsLabels = []
         tinyTileViews = []
+        
+        wordDataView = UIScrollView(frame: device.wordDataFrame())
+        wordDataTopBar = UIView(frame: device.wordDataTopBarFrame())
+        wordDataBottomBar = UIView(frame: device.wordDataBottomBarFrame())
         
         view = UIView(frame: device.screenBounds)
     }
@@ -63,6 +70,7 @@ class GameOverView {
             self.rackView.view.alpha = 0.0
         }, completion: { (finished: Bool) in
             self.showStats()
+            self.showWordData()
         })
     }
     
@@ -94,6 +102,30 @@ class GameOverView {
             }
         }
         
+    }
+    
+    func showWordData() {
+        
+        let wordData = sortedWordData(unsorted: game.wordData)
+        let numWords = max(wordData.count, 1) // take care of the empty case!!
+        let height = CGFloat(numWords)*(device.statsHeight + device.paddingBetweenStats) + device.paddingBetweenStats
+        wordDataView.contentSize = CGSize(width: wordDataView.frame.width, height: height)
+        
+        var i = 0
+        for wordDataLine in wordData {
+            let wordDataLineView = WordDataLineView(data: wordDataLine, i: i)
+            wordDataView.addSubview(wordDataLineView.view)
+            i += 1
+        }
+        
+        wordDataTopBar.layer.borderWidth = CGFloat(1.0)
+        wordDataTopBar.layer.borderColor = barColor.cgColor
+        wordDataBottomBar.layer.borderWidth = CGFloat(1.0)
+        wordDataBottomBar.layer.borderColor = barColor.cgColor
+        
+        view.addSubview(wordDataView)
+        view.addSubview(wordDataTopBar)
+        view.addSubview(wordDataBottomBar)
     }
     
     
@@ -166,6 +198,14 @@ class GameOverView {
             let obj1 = unsorted[$0]!
             let obj2 = unsorted[$1]!
             return obj1 > obj2
+        }
+    }
+    
+    func sortedWordData(unsorted: [[String]]) -> [[String]] {
+        return unsorted.sorted() {
+            let score1 = Int($0[2])!
+            let score2 = Int($1[2])!
+            return score1 > score2
         }
     }
     

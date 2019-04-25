@@ -38,7 +38,7 @@ class PauseView {
         
         barView = UIView(frame: device.pauseBarFrame())
         barView.layer.borderWidth = CGFloat(1.0)
-        barView.layer.borderColor = pauseBarColor.cgColor
+        barView.layer.borderColor = barColor.cgColor
         view.addSubview(barView)
         
         curtainView = UIView(frame: device.screenBounds)

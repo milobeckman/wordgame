@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		260EAB7D2270A73400B005DA /* TileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EAB7C2270A73400B005DA /* TileGenerator.swift */; };
+		260EAB8022721EBB00B005DA /* WordDataLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EAB7F22721EBB00B005DA /* WordDataLineView.swift */; };
 		2610741C226E701F003C79AF /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2610741B226E701F003C79AF /* BadgeView.swift */; };
 		261FD3C62258FA99001B1AF0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FD3C52258FA99001B1AF0 /* Settings.swift */; };
 		261FD3C8225D27B7001B1AF0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FD3C7225D27B7001B1AF0 /* BackgroundView.swift */; };
@@ -74,6 +75,7 @@
 
 /* Begin PBXFileReference section */
 		260EAB7C2270A73400B005DA /* TileGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileGenerator.swift; sourceTree = "<group>"; };
+		260EAB7F22721EBB00B005DA /* WordDataLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataLineView.swift; sourceTree = "<group>"; };
 		2610741B226E701F003C79AF /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		261FD3C52258FA99001B1AF0 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		261FD3C7225D27B7001B1AF0 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				2663D93D2236039800A59810 /* TileView.swift */,
 				26745C6622379932000BCD1B /* GridSlotView.swift */,
 				2610741B226E701F003C79AF /* BadgeView.swift */,
+				260EAB7F22721EBB00B005DA /* WordDataLineView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				261FD3C8225D27B7001B1AF0 /* BackgroundView.swift in Sources */,
 				26745C6F2238628F000BCD1B /* RackView.swift in Sources */,
 				26745C6922383762000BCD1B /* Game.swift in Sources */,
+				260EAB8022721EBB00B005DA /* WordDataLineView.swift in Sources */,
 				2663D9122236028700A59810 /* ViewController.swift in Sources */,
 				26745C6D223838A3000BCD1B /* GridView.swift in Sources */,
 				2699DED2224F37E8000E2A10 /* Animations.swift in Sources */,

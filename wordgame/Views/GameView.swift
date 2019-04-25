@@ -64,6 +64,7 @@ class GameView {
         }
         
         game.over = false
+        view.isUserInteractionEnabled = false
     }
     
     func refillRack() {
@@ -139,6 +140,10 @@ class GameView {
     
     func pause() {
         
+        // test
+        gameOver()
+        return
+        
         if timerView.timeLeft < 0 || game.over {
             return
         }
@@ -184,6 +189,7 @@ class GameView {
         gridView.view.removeFromSuperview()
         view.addSubview(gameOverView.view)
         gameOverView.gameOver()
+        view.isUserInteractionEnabled = true
     }
     
 }
