@@ -64,9 +64,10 @@ class ScoreView {
         levelView.text = levelPrefix + String(game.currentLevel)
         levelView.textColor = levelTextColor(level: game.currentLevel)
         
-        let x = CGFloat(String(displayScore).count)*characterWidthPerFontSize*0.5*scoreTextSize + device.screenWidth*0.5
-        bestScoreView.moveTo(x: x, y: device.scoreY)
         bestScoreView.view.isHidden = !showBestScoreView
+        if [10,100,1000].contains(displayScore) {
+            repositionBestScoreView()
+        }
     }
     
     func showyUpdate() {
@@ -74,7 +75,9 @@ class ScoreView {
         
         if displayScore < game.currentScore {
             displayScore += 1
-            showBestIfBest()
+            if !showBestScoreView {
+                showBestIfBest()
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + scoreTickInterval, execute: {
                 self.showyUpdate()
             })
@@ -85,7 +88,13 @@ class ScoreView {
         let bestScore = storage.getInt(key: "bestScore")
         if displayScore > bestScore && bestScore > 0 {
             showBestScoreView = true
+            repositionBestScoreView()
         }
+    }
+    
+    func repositionBestScoreView() {
+        let x = CGFloat(String(displayScore).count)*characterWidthPerFontSize*0.5*scoreTextSize + device.screenWidth*0.5
+        bestScoreView.moveTo(x: x, y: device.scoreY)
     }
     
 }
