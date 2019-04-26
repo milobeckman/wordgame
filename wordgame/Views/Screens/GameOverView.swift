@@ -13,7 +13,6 @@ import UIKit
 class GameOverView {
     
     var statsStrings: [NSMutableAttributedString]
-    var tileIDs: [String]
     
     var gridView: GridView
     var rackView: RackView
@@ -21,12 +20,11 @@ class GameOverView {
     var statsView: UIView
     var gameOverLabel: UILabel
     var statsLabels: [UILabel]
-    var tinyTileViews: [TileView]
+    var bestViews: [BestView]
+    
     var wordDataView: UIScrollView
     var wordDataTopBar: UIView
     var wordDataBottomBar: UIView
-    
-    let tinyTileMode = false
     
     var view: UIView
     
@@ -34,7 +32,6 @@ class GameOverView {
     init(gridView: GridView, rackView: RackView) {
         
         statsStrings = []
-        tileIDs = []
         
         self.gridView = gridView
         self.rackView = rackView
@@ -42,7 +39,7 @@ class GameOverView {
         statsView = UIView(frame: device.statsFrame())
         gameOverLabel = UILabel(frame: device.gameOverFrame())
         statsLabels = []
-        tinyTileViews = []
+        bestViews = []
         
         wordDataView = UIScrollView(frame: device.wordDataFrame())
         wordDataTopBar = UIView(frame: device.wordDataTopBarFrame())
@@ -109,20 +106,10 @@ class GameOverView {
         
         setupStatsStrings()
         setupStatsLabels()
-        if tinyTileMode {
-            setupTinyTileViews()
-        }
-        
         view.addSubview(statsView)
         
         for label in statsLabels {
             view.addSubview(label)
-        }
-        
-        if tinyTileMode {
-            for tinyTileView in tinyTileViews {
-                view.addSubview(tinyTileView.view)
-            }
         }
         
     }
@@ -155,24 +142,15 @@ class GameOverView {
     func setupStatsStrings() {
         
         statsStrings = []
-        tileIDs = sortedTileIDs(unsorted: game.tileCounts)
         
-        var textStrings = ["Tiles dropped: "]
-        var numberStrings = [String(game.tilesDropped)]
-        
-        if tinyTileMode {
-            for tileID in tileIDs {
-                textStrings.append("")
-                numberStrings.append(String(game.tileCounts[tileID]!))
-            }
-        }
-        
-        textStrings += ["Words cleared: ",
-                        "Avg. word score: ",
-                        "Longest streak: "]
-        numberStrings += [String(game.wordsCleared),
-                          String(game.averageWordScore()),
-                          String(game.longestStreak)]
+        var textStrings = ["Tiles dropped: ",
+                           "Words cleared: ",
+                           "Avg. word score: ",
+                           "Longest streak: "]
+        var numberStrings = [String(game.tilesDropped),
+                             String(game.wordsCleared),
+                             String(game.averageWordScore()),
+                             String(game.longestStreak)]
         
         let textAttributes: [NSAttributedStringKey: Any] =
                                 [.foregroundColor: statsTextColor(),
@@ -195,24 +173,8 @@ class GameOverView {
         
         for i in 0..<statsStrings.count {
             let newLabel = UILabel(frame: device.statsLabelFrame(i: i))
-            if tinyTileMode {
-                if (1...tileIDs.count).contains(i) {
-                    newLabel.frame = device.indentedStatsLabelFrame(i: i)
-                }
-            }
-            
             newLabel.attributedText = statsStrings[i]
             statsLabels.append(newLabel)
-        }
-    }
-    
-    func setupTinyTileViews() {
-        
-        for i in 1...tileIDs.count {
-            let tile = sampleTile(tileID: tileIDs[i-1])
-            let tinyTileView = TileView(tile: tile)
-            tinyTileView.moveToTinyPosition(position: i)
-            tinyTileViews.append(tinyTileView)
         }
     }
     

@@ -54,8 +54,6 @@ class Device {
     let paddingBetweenStats = CGFloat(5)
     let gameOverHeight = CGFloat(30)
     let statsHeight = CGFloat(20)
-    let paddingBeforeTinyTile = CGFloat(15)
-    let paddingAfterTinyTile = CGFloat(10)
     let paddingAroundWordData = CGFloat(8)
     let wordDataWidthRatio = CGFloat(0.5)
     let wordDataMultiplierLocationRatio = CGFloat(0.7)
@@ -243,19 +241,6 @@ class Device {
         let y = statsY + gameOverHeight + paddingBetweenStats + CGFloat(i)*(statsHeight + paddingBetweenStats)
         let width = screenWidth - statsX - paddingAroundStatsView
         return CGRect(x: statsX, y: y, width: width, height: statsHeight)
-    }
-    
-    func indentedStatsLabelFrame(i: Int) -> CGRect {
-        let x = statsX + paddingBeforeTinyTile + statsHeight + paddingAfterTinyTile
-        let y = statsY + CGFloat(i)*(statsHeight + paddingBetweenStats)
-        let width = screenWidth - x - paddingAroundStatsView
-        return CGRect(x: x, y: y, width: width, height: statsHeight)
-    }
-    
-    func tinyFrame(position: Int) -> CGRect {
-        let x = statsX + paddingBeforeTinyTile
-        let y = statsY + CGFloat(position)*(statsHeight + paddingBetweenStats)
-        return CGRect(x: x, y: y, width: statsHeight, height: statsHeight)
     }
     
     func wordDataFrame() -> CGRect {

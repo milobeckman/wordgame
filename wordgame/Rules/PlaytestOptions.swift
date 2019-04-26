@@ -13,6 +13,6 @@ class PlaytestOptions {
     
     let allWordsCountMode = false
     let quickAdvanceMode = false
-    let pauseButtonEndsGame = false
+    let pauseButtonEndsGame = true
     
 }

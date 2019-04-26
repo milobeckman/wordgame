@@ -164,12 +164,6 @@ class TileView: Hashable {
         image.isHidden = !shouldShowImage
     }
     
-    func makeTinyStyle() {
-        depthView.isHidden = true
-        glintLabel.isHidden = true
-        scoreLabel.isHidden = true
-    }
-    
     func slideToGridPosition(position: Int, duration: Double) {
         depthFrame = device.gridSlotFrame(position: position)
         lifted = false
@@ -200,22 +194,6 @@ class TileView: Hashable {
         tileFrame = self.depthFrame.offsetBy(dx: -device.tileDepth, dy: -device.tileDepth)
         lifted = false
         self.updateView()
-    }
-    
-    func moveToTinyPosition(position: Int) {
-        let x = device.tinyFrame(position: position).minX
-        let y = device.tinyFrame(position: position).minY
-        let anchorX = x / view.frame.width
-        let anchorY = y / view.frame.height
-        
-        tileFrame = CGRect(x: x, y: y, width: device.tileSize, height: device.tileSize)
-        depthFrame = tileFrame.offsetBy(dx: device.tileDepth, dy: device.tileDepth)
-        self.updateView()
-        self.makeTinyStyle()
-        
-        setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: self.view)
-        let scaleFactor = device.statsHeight / device.tileSize
-        view.transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
     }
     
     func recenter(point: CGPoint) {
