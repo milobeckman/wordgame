@@ -53,10 +53,33 @@ class GameOverView {
     
     func gameOver() {
         view.addSubview(gridView.view)
+        handleHighscores()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + waitBeforeShrinking, execute: {
             self.shrinkGridView()
+            // after shrinking this also displays everything
         })
+    }
+    
+    func handleHighscores() {
+        if game.currentScore > storage.getInt(key: "bestScore") {
+            storage.putInt(key: "bestScore", value: game.currentScore)
+        }
+        if game.currentLevel > storage.getInt(key: "bestLevel") {
+            storage.putInt(key: "bestLevel", value: game.currentLevel)
+        }
+        if game.tilesDropped > storage.getInt(key: "bestTilesDropped") {
+            storage.putInt(key: "bestTilesDropped", value: game.tilesDropped)
+        }
+        if game.wordsCleared > storage.getInt(key: "bestWordsCleared") {
+            storage.putInt(key: "wordsCleared", value: game.wordsCleared)
+        }
+        if game.averageWordScore() > storage.getDouble(key: "bestAverageWordScore") {
+            storage.putDouble(key: "bestAverageWordScore", value: game.averageWordScore())
+        }
+        if game.longestStreak > storage.getInt(key: "bestStreak") {
+            storage.putInt(key: "bestStreak", value: game.longestStreak)
+        }
     }
     
     func shrinkGridView() {

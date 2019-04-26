@@ -57,6 +57,22 @@ class Storage {
         }
     }
     
+    func getDouble(key: String) -> Double {
+        if let value = Double(get(key: key)) {
+            return value
+        } else {
+            return -1.0
+        }
+    }
+    
+    func getBool(key: String) -> Bool {
+        if get(key: key) == "true" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func put(key: String, value: String) {
         storedData[key] = value
         saveData()
@@ -64,6 +80,18 @@ class Storage {
     
     func putInt(key: String, value: Int) {
         put(key: key, value: String(value))
+    }
+    
+    func putDouble(key: String, value: Double) {
+        put(key: key, value: String(value))
+    }
+    
+    func putBool(key: String, value: Bool) {
+        if value {
+            put(key: key, value: "true")
+        } else {
+            put(key: key, value: "false")
+        }
     }
     
     func forget(key: String) {

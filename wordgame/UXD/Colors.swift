@@ -103,6 +103,11 @@ let badgeTextColor = UIColor(hue: 0.0, saturation: 0.0, brightness: 1.0, alpha: 
 let badgeShadowColor = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.0, alpha: 0.4)
 
 
+// BestView
+let bestColor = badgeColorSingle
+let bestDepthColor = UIColor(hue: 0.3472, saturation: 0.8, brightness: 0.61, alpha: 1.0)
+let bestTextColor = badgeTextColor
+
 // GameOverView
 let statsTextColorDay = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
 let statsTextColorNight = UIColor(red: 0.35, green: 0.35, blue: 0.35, alpha: 1)

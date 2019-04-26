@@ -45,7 +45,6 @@ class IO {
             lines = Array(contents.components(separatedBy: "\n").dropLast())
         } catch {
             lines = [noneString]
-            print("error reading from file " + from)
         }
         
         return lines

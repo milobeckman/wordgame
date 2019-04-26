@@ -46,6 +46,7 @@
 		2699DED0224F371E000E2A10 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2699DECF224F371E000E2A10 /* Fonts.swift */; };
 		2699DED2224F37E8000E2A10 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2699DED1224F37E8000E2A10 /* Animations.swift */; };
 		269AB8A822453FAB00F7F005 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269AB8A722453FAB00F7F005 /* ScoreView.swift */; };
+		26D853DF227385A800885590 /* BestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D853DE227385A800885590 /* BestView.swift */; };
 		26DD29C3224F319800238A31 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD29C2224F319800238A31 /* GameOverView.swift */; };
 		26DD29C6224F324200238A31 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD29C5224F324200238A31 /* Colors.swift */; };
 		26F341EC223FFD8D006CAA0A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F341EB223FFD8D006CAA0A /* TimerView.swift */; };
@@ -121,6 +122,7 @@
 		2699DECF224F371E000E2A10 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		2699DED1224F37E8000E2A10 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		269AB8A722453FAB00F7F005 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		26D853DE227385A800885590 /* BestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestView.swift; sourceTree = "<group>"; };
 		26DD29C2224F319800238A31 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		26DD29C5224F324200238A31 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		26F341EB223FFD8D006CAA0A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				26745C6622379932000BCD1B /* GridSlotView.swift */,
 				2610741B226E701F003C79AF /* BadgeView.swift */,
 				260EAB7F22721EBB00B005DA /* WordDataLineView.swift */,
+				26D853DE227385A800885590 /* BestView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				26745C6B22383800000BCD1B /* GameView.swift in Sources */,
 				26745C6522378CDF000BCD1B /* Grid.swift in Sources */,
 				2610741C226E701F003C79AF /* BadgeView.swift in Sources */,
+				26D853DF227385A800885590 /* BestView.swift in Sources */,
 				26DD29C3224F319800238A31 /* GameOverView.swift in Sources */,
 				26F790D62273784B00245B2C /* Storage.swift in Sources */,
 				26DD29C6224F324200238A31 /* Colors.swift in Sources */,
