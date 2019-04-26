@@ -50,7 +50,6 @@ class GameOverView {
     
     func gameOver() {
         view.addSubview(gridView.view)
-        handleHighscores()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + waitBeforeShrinking, execute: {
             self.shrinkGridView()
@@ -69,7 +68,7 @@ class GameOverView {
             storage.putInt(key: "bestTilesDropped", value: game.tilesDropped)
         }
         if game.wordsCleared > storage.getInt(key: "bestWordsCleared") {
-            storage.putInt(key: "wordsCleared", value: game.wordsCleared)
+            storage.putInt(key: "bestWordsCleared", value: game.wordsCleared)
         }
         if game.averageWordScore() > storage.getDouble(key: "bestAverageWordScore") {
             storage.putDouble(key: "bestAverageWordScore", value: game.averageWordScore())
@@ -101,16 +100,23 @@ class GameOverView {
         gameOverLabel.textAlignment = .left
         gameOverLabel.adjustsFontSizeToFitWidth = true
         gameOverLabel.baselineAdjustment = .alignCenters
-        gameOverLabel.text = "Game over"
+        if game.currentScore > storage.getInt(key: "bestScore") {
+            gameOverLabel.text = "New highscore!"
+        } else {
+            gameOverLabel.text = "Game over"
+        }
         view.addSubview(gameOverLabel)
         
         setupStatsStrings()
         setupStatsLabels()
+        showBestViews()
         view.addSubview(statsView)
         
         for label in statsLabels {
             view.addSubview(label)
         }
+        
+        handleHighscores()
         
     }
     
@@ -143,11 +149,11 @@ class GameOverView {
         
         statsStrings = []
         
-        var textStrings = ["Tiles dropped: ",
+        let textStrings = ["Tiles dropped: ",
                            "Words cleared: ",
-                           "Avg. word score: ",
+                           "Average word: ",
                            "Longest streak: "]
-        var numberStrings = [String(game.tilesDropped),
+        let numberStrings = [String(game.tilesDropped),
                              String(game.wordsCleared),
                              String(game.averageWordScore()),
                              String(game.longestStreak)]
@@ -175,6 +181,25 @@ class GameOverView {
             let newLabel = UILabel(frame: device.statsLabelFrame(i: i))
             newLabel.attributedText = statsStrings[i]
             statsLabels.append(newLabel)
+        }
+    }
+    
+    func showBestViews() {
+        
+        let bestBools = [game.tilesDropped > storage.getInt(key: "bestTilesDropped"),
+                         game.wordsCleared > storage.getInt(key: "bestWordsCleared"),
+                         game.averageWordScore() > storage.getDouble(key: "bestAverageWordScore"),
+                         game.longestStreak > storage.getInt(key: "bestStreak")]
+        
+        for i in 0..<bestBools.count {
+            if bestBools[i] {
+                let newBestView = BestView()
+                let x = device.statsLabelFrame(i: i).maxX - device.bestWidth + device.bestDepth
+                let y = device.statsLabelFrame(i: i).minY
+                newBestView.moveTo(x: x, y: y)
+                bestViews.append(newBestView)
+                view.addSubview(newBestView.view)
+            }
         }
     }
     
