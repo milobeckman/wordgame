@@ -10,7 +10,9 @@ import UIKit
 
 var device = Device()
 var rules = Rules()
+var playtestOptions = PlaytestOptions()
 var settings = Settings()
+var storage = Storage()
 var game = Game()
 
 var backgroundView = BackgroundView()

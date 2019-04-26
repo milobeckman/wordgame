@@ -140,9 +140,11 @@ class GameView {
     
     func pause() {
         
-        // test
-        gameOver()
-        return
+        // testing
+        if playtestOptions.pauseButtonEndsGame {
+            gameOver()
+            return
+        }
         
         if timerView.timeLeft < 0 || game.over {
             return

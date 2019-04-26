@@ -153,7 +153,7 @@ func canServe(tile: Tile, rackTiles: [Tile]) -> Bool {
 func randomTileForLength(length: String) -> String {
     
     let filename = length + ".txt"
-    let freqs = readlines(filename: filename)
+    let freqs = IO.loadResource(resource: filename)
     
     var tileTexts = [String]()
     var cumulativeFreqs = [Double]()
