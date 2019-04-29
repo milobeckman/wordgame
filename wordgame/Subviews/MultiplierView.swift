@@ -48,7 +48,7 @@ class MultiplierView {
         view.addSubview(shineView)
     }
     
-    func pop() {
+    func display() {
         
         view.alpha = 0.0
         view.transform = CGAffineTransform(translationX: 0, y: multiplierFadeInHeight)

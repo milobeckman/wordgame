@@ -92,8 +92,6 @@ class Tile: CustomStringConvertible {
             return 0
         }
         
-
-        
         switch text.count {
         case 3:
             return 30

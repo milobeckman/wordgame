@@ -85,12 +85,16 @@ class GameView {
     }
     
     func showScoreBadge(score: Int, wordPath: [Int], wordPaths: [[Int]]) {
-        
         let badgePosition = positionForBadge(wordPath: wordPath, wordPaths: wordPaths)
         let badgeView = BadgeView(score: score, gridPosition: badgePosition)
         view.addSubview(badgeView.view)
         badgeView.display()
-        
+    }
+    
+    func showMultiplierView(multiplier: Int) {
+        let multiplierView = MultiplierView(multiplier: multiplier)
+        gridView.view.addSubview(multiplierView.view)
+        multiplierView.display()
     }
     
     func switchToNightMode() {
@@ -139,8 +143,6 @@ class GameView {
     }
     
     func pause() {
-        
-        // testing
         if playtestOptions.pauseButtonEndsGame {
             gameOver()
             return
@@ -158,40 +160,12 @@ class GameView {
     }
     
     func unpause() {
-        
         animateMaskToRect(mask: gridMask, rect: device.pauseCurtainFramePaused(), duration: pauseDuration)
         animateMaskToRect(mask: rackMask, rect: device.pauseCurtainFramePaused(), duration: pauseDuration)
         
         game.paused = false
         pauseView.unpause()
     }
-    
-    func showMultiplierView(multiplier: Int) {
-        let multiplierView = MultiplierView(multiplier: multiplier)
-        gridView.view.addSubview(multiplierView.view)
-        multiplierView.pop()
-        
-    }
-    
-    /*
-    func animateMaskToRect(rect: CGRect, duration: Double) {
-        
-        let newPath = CGPath(rect: rect, transform: nil)
-        let animation = CABasicAnimation(keyPath: "path")
-        
-        animation.fromValue = gridMask.path
-        animation.toValue = newPath
-        animation.duration = duration
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        gridMask.add(animation, forKey: nil)
-        rackMask.add(animation, forKey: nil)
-        
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        gridMask.path = newPath
-        rackMask.path = newPath
-        CATransaction.commit()
-    }*/
     
     func gameOver() {
         game.over = true

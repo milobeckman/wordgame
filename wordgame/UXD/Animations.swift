@@ -47,7 +47,7 @@ let badgeDisplayDuration = 1.6
 let badgeFadeDuration = 0.6
 let badgeFadeHeight = CGFloat(18.0)
 
-// MultiplierView.pop()
+// MultiplierView.display()
 let multiplierFadeInDuration = 0.0
 let multiplierFadeInHeight = CGFloat(2.0)
 let multiplierDisplayDuration = 1.0

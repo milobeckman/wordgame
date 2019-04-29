@@ -11,7 +11,7 @@ import Foundation
 
 class PlaytestOptions {
     
-    let allWordsCount = true
+    let allWordsCount = false
     let quickAdvance = false
     let pauseButtonEndsGame = false
     

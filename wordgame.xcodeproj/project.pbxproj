@@ -197,11 +197,12 @@
 			isa = PBXGroup;
 			children = (
 				2663D90F2236028700A59810 /* AppDelegate.swift */,
-				26DD29C4224F31D600238A31 /* UXD */,
-				260EAB7E2270A74100B005DA /* Rules */,
 				26745C762239931A000BCD1B /* Main */,
+				26DD29C4224F31D600238A31 /* UXD */,
 				26745C6122378C85000BCD1B /* Views */,
+				26DD29C7224F334700238A31 /* Subviews */,
 				26745C75223992F0000BCD1B /* Objects */,
+				260EAB7E2270A74100B005DA /* Rules */,
 				26F341F42240813B006CAA0A /* Helpers */,
 				26F341ED224070EB006CAA0A /* Files */,
 				2663D9132236028700A59810 /* Main.storyboard */,
@@ -240,8 +241,7 @@
 				26745C6E2238628F000BCD1B /* RackView.swift */,
 				26F341EB223FFD8D006CAA0A /* TimerView.swift */,
 				267ED5E82245E380000E2F19 /* PauseView.swift */,
-				26DD29C7224F334700238A31 /* Subviews */,
-				26DD29C8224F335E00238A31 /* Screens */,
+				26DD29C2224F319800238A31 /* GameOverView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -316,14 +316,6 @@
 				260EAB7F22721EBB00B005DA /* WordDataLineView.swift */,
 			);
 			path = Subviews;
-			sourceTree = "<group>";
-		};
-		26DD29C8224F335E00238A31 /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				26DD29C2224F319800238A31 /* GameOverView.swift */,
-			);
-			path = Screens;
 			sourceTree = "<group>";
 		};
 		26F341ED224070EB006CAA0A /* Files */ = {
