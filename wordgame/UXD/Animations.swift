@@ -43,14 +43,14 @@ let bombRadius = 15.0
 let bombRadiusMultipliers = [1.0, 0.9, 0.7, 0.4, 0.15, 0.0]
 
 // BadgeView.display()
-let badgeDisplayDuration = 1.4
-let badgeFadeDuration = 0.4
-let badgeFadeHeight = CGFloat(12.0)
+let badgeDisplayDuration = 1.6
+let badgeFadeDuration = 0.6
+let badgeFadeHeight = CGFloat(18.0)
 
 // MultiplierView.pop()
-let multiplierFadeInDuration = 0.1
+let multiplierFadeInDuration = 0.0
 let multiplierFadeInHeight = CGFloat(2.0)
-let multiplierDisplayDuration = 1.5
+let multiplierDisplayDuration = 1.0
 let multiplierFadeOutDuration = 0.2
 
 
