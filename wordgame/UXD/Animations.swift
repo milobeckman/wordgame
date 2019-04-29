@@ -15,8 +15,8 @@ import UIKit
 let zigzagHeight = CGFloat(2000)
 let zigzagWidth = CGFloat(940)
 let repeatHeightInZigzagImage = CGFloat(46)
-let repeatTimeCombo = 1.0
-let repeatTimeStreak = 0.6
+let repeatTimeCombo = 2.0
+let repeatTimeStreak = 2.0
 let streakViewFadeDuration = 0.5
 
 // TileView.pop()
