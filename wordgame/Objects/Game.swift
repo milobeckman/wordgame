@@ -75,9 +75,11 @@ class Game {
             }
             
             gameView.showMultiplierView(multiplier: currentMultiplier())
+            backgroundView.showOrIncreaseStreakView(multiplier: currentMultiplier())
             
         } else {
             currentStreak = 0
+            backgroundView.hideStreakView()
         }
         
         for wordPath in wordPaths {

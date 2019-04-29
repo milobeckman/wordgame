@@ -22,8 +22,9 @@ let gradientHSBs = [[0.5111,0.14,1.00],     // white-ish blue
                     [0.8083,0.0,1.0]]       // white (never comes)
 let middleColor = UIColor(hue: 0.5222, saturation: 0.14, brightness: 0.86, alpha: 0.1)
 
-
+// BackgroundView
 let gradientTopPlus = 5.0
+let streakViewAlpha = CGFloat(0.1)
 
 // ScoreView
 let scoreTextColorDay = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)

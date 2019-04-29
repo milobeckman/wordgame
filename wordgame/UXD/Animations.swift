@@ -11,6 +11,14 @@ import UIKit
 
 
 
+// BackgroundView.moveStreakView()
+let zigzagHeight = CGFloat(2000)
+let zigzagWidth = CGFloat(940)
+let repeatHeightInZigzagImage = CGFloat(46)
+let repeatTimeCombo = 1.0
+let repeatTimeStreak = 0.6
+let streakViewFadeDuration = 0.5
+
 // TileView.pop()
 let popDuration = 0.5
 let popDelay = 0.15
