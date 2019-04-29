@@ -74,19 +74,7 @@ class Game {
                 longestStreak = currentStreak
             }
             
-            // temp
-            switch currentMultiplier() {
-            case 2:
-                print("CROSS BONUS!   x2")
-            case 3:
-                print("CROSS COMBO!   x3")
-            case 4:
-                print("TRIPLE COMBO!  x4")
-            case 5:
-                print("COMBO MAX!     x5")
-            default:
-                print("error")
-            }
+            gameView.showMultiplierView(multiplier: currentMultiplier())
             
         } else {
             currentStreak = 0

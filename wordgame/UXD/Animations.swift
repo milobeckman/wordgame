@@ -47,6 +47,12 @@ let badgeDisplayDuration = 1.4
 let badgeFadeDuration = 0.4
 let badgeFadeHeight = CGFloat(12.0)
 
+// MultiplierView.pop()
+let multiplierFadeInDuration = 0.1
+let multiplierFadeInHeight = CGFloat(2.0)
+let multiplierDisplayDuration = 1.5
+let multiplierFadeOutDuration = 0.2
+
 
 // screen refresh times
 let tickInterval = 0.02

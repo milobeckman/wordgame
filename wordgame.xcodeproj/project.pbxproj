@@ -12,6 +12,7 @@
 		2610741C226E701F003C79AF /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2610741B226E701F003C79AF /* BadgeView.swift */; };
 		261FD3C62258FA99001B1AF0 /* PlaytestOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FD3C52258FA99001B1AF0 /* PlaytestOptions.swift */; };
 		261FD3C8225D27B7001B1AF0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FD3C7225D27B7001B1AF0 /* BackgroundView.swift */; };
+		2659F5872273C52900D90999 /* MultiplierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2659F5862273C52900D90999 /* MultiplierView.swift */; };
 		2663D9102236028700A59810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663D90F2236028700A59810 /* AppDelegate.swift */; };
 		2663D9122236028700A59810 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663D9112236028700A59810 /* ViewController.swift */; };
 		2663D9152236028700A59810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2663D9132236028700A59810 /* Main.storyboard */; };
@@ -82,6 +83,7 @@
 		2610741B226E701F003C79AF /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		261FD3C52258FA99001B1AF0 /* PlaytestOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaytestOptions.swift; sourceTree = "<group>"; };
 		261FD3C7225D27B7001B1AF0 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		2659F5862273C52900D90999 /* MultiplierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplierView.swift; sourceTree = "<group>"; };
 		2663D90C2236028700A59810 /* wordgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2663D90F2236028700A59810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2663D9112236028700A59810 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -309,8 +311,9 @@
 				2663D93D2236039800A59810 /* TileView.swift */,
 				26745C6622379932000BCD1B /* GridSlotView.swift */,
 				2610741B226E701F003C79AF /* BadgeView.swift */,
-				260EAB7F22721EBB00B005DA /* WordDataLineView.swift */,
 				26D853DE227385A800885590 /* BestView.swift */,
+				2659F5862273C52900D90999 /* MultiplierView.swift */,
+				260EAB7F22721EBB00B005DA /* WordDataLineView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				26745C6D223838A3000BCD1B /* GridView.swift in Sources */,
 				2699DED2224F37E8000E2A10 /* Animations.swift in Sources */,
 				26F341F12240725E006CAA0A /* IO.swift in Sources */,
+				2659F5872273C52900D90999 /* MultiplierView.swift in Sources */,
 				267ED5E92245E380000E2F19 /* PauseView.swift in Sources */,
 				261FD3C62258FA99001B1AF0 /* PlaytestOptions.swift in Sources */,
 				260EAB7D2270A73400B005DA /* TileGenerator.swift in Sources */,

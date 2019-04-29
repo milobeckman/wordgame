@@ -166,6 +166,13 @@ class GameView {
         pauseView.unpause()
     }
     
+    func showMultiplierView(multiplier: Int) {
+        let multiplierView = MultiplierView(multiplier: multiplier)
+        gridView.view.addSubview(multiplierView.view)
+        multiplierView.pop()
+        
+    }
+    
     /*
     func animateMaskToRect(rect: CGRect, duration: Double) {
         

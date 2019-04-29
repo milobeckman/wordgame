@@ -96,17 +96,21 @@ let gridSlotRevivingSaturation = [0.5, 0.5]
 let gridSlotRevivingAlpha = [0.3, 0.3]
 
 // BadgeView
-let badgeColorSingle = UIColor(hue: 0.3472, saturation: 1.0, brightness: 0.81, alpha: 1.0)
-let badgeColorDouble = UIColor(hue: 0.1111, saturation: 1.0, brightness: 0.94, alpha: 1.0)
-let badgeColorTriple = UIColor(hue: 0.8111, saturation: 1.0, brightness: 0.78, alpha: 1.0)
+let badgeColor = UIColor(hue: 0.3472, saturation: 1.0, brightness: 0.81, alpha: 1.0)
+let badgeColorCombo = UIColor(hue: 0.1111, saturation: 1.0, brightness: 0.94, alpha: 1.0)
+let badgeColorStreak = UIColor(hue: 0.8111, saturation: 1.0, brightness: 0.78, alpha: 1.0)
 let badgeTextColor = UIColor(hue: 0.0, saturation: 0.0, brightness: 1.0, alpha: 0.8)
 let badgeShadowColor = UIColor(hue: 0.0, saturation: 0.0, brightness: 0.0, alpha: 0.4)
 
 
 // BestView
-let bestColor = badgeColorSingle
+let bestColor = badgeColor
 let bestDepthColor = UIColor(hue: 0.3472, saturation: 0.8, brightness: 0.61, alpha: 1.0)
 let bestTextColor = badgeTextColor
+
+// MultiplierView
+let comboDepthColor = UIColor(hue: 0.1111, saturation: 0.8, brightness: 0.74, alpha: 1.0)
+let streakDepthColor = UIColor(hue: 0.8111, saturation: 0.8, brightness: 0.58, alpha: 1.0)
 
 // GameOverView
 let statsTextColorDay = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
@@ -276,11 +280,11 @@ func tileTextColor(tile: Tile) -> UIColor {
 func badgeColor(multiplier: Int) -> UIColor {
     switch multiplier {
     case 3:
-        return badgeColorTriple
+        return badgeColorStreak
     case 2:
-        return badgeColorDouble
+        return badgeColorCombo
     default:
-        return badgeColorSingle
+        return badgeColor
     }
 }
 

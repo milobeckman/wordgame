@@ -46,9 +46,12 @@ class Device {
     let badgeDY = CGFloat(2)
     
     let bestHeight = CGFloat(18)
-    let bestWidth = CGFloat(45)
+    let bestWidth = CGFloat(38)
     let bestDepth = CGFloat(2)
     let bestRadius = CGFloat(4)
+    
+    let multiplierDepth = CGFloat(2)
+    let multiplierShadowRadius = CGFloat(4)
     
     let paddingAroundStatsView = CGFloat(15)
     let paddingBetweenStats = CGFloat(5)

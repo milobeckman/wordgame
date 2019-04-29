@@ -46,7 +46,7 @@ class WordDataLineView {
         
         multiplierLabel = UILabel(frame: multiplierFrame)
         multiplierLabel.font = statsNumberFont
-        multiplierLabel.textColor = data[1] == "x2" ? badgeColorDouble : badgeColorTriple
+        multiplierLabel.textColor = data[1] == "x2" ? badgeColorCombo : badgeColorStreak
         multiplierLabel.textAlignment = .left
         multiplierLabel.adjustsFontSizeToFitWidth = true
         multiplierLabel.baselineAdjustment = .alignCenters
