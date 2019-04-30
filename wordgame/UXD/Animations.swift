@@ -41,7 +41,6 @@ let reviveDuration = 0.5
 let pauseDuration = 0.8
 
 // GameView.shrinkGridView()
-let gameOverGridScale = CGFloat(0.5)
 let waitBeforeShrinking = 0.8
 let shrinkDuration = 0.65
 

@@ -14,75 +14,77 @@ class Device {
     // device
     var screenBounds: CGRect
     var screenWidth: CGFloat
+    var screenHeight: CGFloat
     
     // generators
-    let paddingAboveScore = CGFloat(20)
-    let scoreHeight = CGFloat(60)
-    let paddingAboveLevel = CGFloat(0)
-    let levelHeight = CGFloat(14)
+    var paddingAboveScore = CGFloat(20)
+    var scoreHeight = CGFloat(60)
+    var paddingAboveLevel = CGFloat(0)
+    var levelHeight = CGFloat(14)
     
-    let paddingAroundPauseBar = CGFloat(8)
+    var paddingAroundPauseBar = CGFloat(8)
     
-    let paddingAboveGrid = CGFloat(10)
-    let paddingToSideOfGrid = CGFloat(15)
-    let paddingBetweenTiles = CGFloat(10)
-    let tileRadius = CGFloat(10)
-    let tileDepth = CGFloat(3)
-    let tileGlintSize = CGFloat(1)
-    let tileScoreGlintSize = CGFloat(1)
+    var paddingAboveGrid = CGFloat(10)
+    var paddingToSideOfGrid = CGFloat(15)
+    var paddingBetweenTiles = CGFloat(10)
+    var tileRadius = CGFloat(10)
+    var tileDepth = CGFloat(3)
+    var tileGlintSize = CGFloat(1)
+    var tileScoreGlintSize = CGFloat(1)
     
-    let paddingAboveRack = CGFloat(80)
+    var paddingAboveTimer = CGFloat(0)
+    var timerHeight = CGFloat(50)
     
-    let paddingAboveTimer = CGFloat(0)
+    var menuButtonHeight = CGFloat(50)
+    var menuButtonRadius = CGFloat(10)
+    var paddingBetweenMenuButtons = CGFloat(10)
+    var paddingToSideOfMenuButtons = CGFloat(60)
     
-    let menuButtonHeight = CGFloat(50)
-    let menuButtonRadius = CGFloat(10)
-    let paddingBetweenMenuButtons = CGFloat(10)
-    let paddingToSideOfMenuButtons = CGFloat(60)
+    var badgeRadius = CGFloat(20)
+    var badgeShadowRadius = CGFloat(8)
+    var badgeDX = CGFloat(-10)
+    var badgeDY = CGFloat(2)
     
-    let badgeRadius = CGFloat(20)
-    let badgeShadowRadius = CGFloat(8)
-    let badgeDX = CGFloat(-10)
-    let badgeDY = CGFloat(2)
+    var bestHeight = CGFloat(18)
+    var bestWidth = CGFloat(38)
+    var bestDepth = CGFloat(2)
+    var bestRadius = CGFloat(4)
     
-    let bestHeight = CGFloat(18)
-    let bestWidth = CGFloat(38)
-    let bestDepth = CGFloat(2)
-    let bestRadius = CGFloat(4)
+    var multiplierDepth = CGFloat(2)
+    var multiplierShadowRadius = CGFloat(4)
     
-    let multiplierDepth = CGFloat(2)
-    let multiplierShadowRadius = CGFloat(4)
+    var gameOverGridScale = CGFloat(0.5)
+    var paddingAroundStatsView = CGFloat(15)
+    var paddingBetweenStats = CGFloat(5)
+    var gameOverHeight = CGFloat(30)
+    var statsHeight = CGFloat(20)
+    var paddingAroundWordData = CGFloat(8)
+    var wordDataWidthRatio = CGFloat(0.5)
+    var wordDataMultiplierLocationRatio = CGFloat(0.7)
+    var playAgainHeight = CGFloat(35)
     
-    let paddingAroundStatsView = CGFloat(15)
-    let paddingBetweenStats = CGFloat(5)
-    let gameOverHeight = CGFloat(30)
-    let statsHeight = CGFloat(20)
-    let paddingAroundWordData = CGFloat(8)
-    let wordDataWidthRatio = CGFloat(0.5)
-    let wordDataMultiplierLocationRatio = CGFloat(0.7)
-    let playAgainHeight = CGFloat(35)
+    var fontScale = CGFloat(1.0)
     
     
     // calculated
-    var scoreX: CGFloat
-    var scoreY: CGFloat
-    var levelX: CGFloat
-    var levelY: CGFloat
-    var pauseBarX: CGFloat
-    var pauseBarY: CGFloat
-    var gridX: CGFloat
-    var gridY: CGFloat
-    var rackX: CGFloat
-    var rackY: CGFloat
-    var tileSize: CGFloat
-    var timerX: CGFloat
-    var timerY: CGFloat
-    var timerHeight: CGFloat
-    var shrunkenGridSize: CGFloat
-    var statsX: CGFloat
-    var statsY: CGFloat
-    var wordDataX: CGFloat
-    var wordDataY: CGFloat
+    var scoreX = CGFloat(0)
+    var scoreY = CGFloat(0)
+    var levelX = CGFloat(0)
+    var levelY = CGFloat(0)
+    var pauseBarX = CGFloat(0)
+    var pauseBarY = CGFloat(0)
+    var gridX = CGFloat(0)
+    var gridY = CGFloat(0)
+    var rackX = CGFloat(0)
+    var rackY = CGFloat(0)
+    var tileSize = CGFloat(0)
+    var timerX = CGFloat(0)
+    var timerY = CGFloat(0)
+    var shrunkenGridSize = CGFloat(0)
+    var statsX = CGFloat(0)
+    var statsY = CGFloat(0)
+    var wordDataX = CGFloat(0)
+    var wordDataY = CGFloat(0)
     
     
 
@@ -91,9 +93,73 @@ class Device {
     init() {
         screenBounds = UIScreen.main.bounds
         screenWidth = screenBounds.width
-        //screenHeight = screenBounds.height
+        screenHeight = screenBounds.height
         
         // calculate
+        setGeneratorsFromDeviceSize()
+        calculateAllValues()
+    }
+    
+    func setGeneratorsFromDeviceSize() {
+        
+        switch UIScreen.main.nativeBounds.height {
+            
+        // iPhone SE
+        case 1136:
+            adjustGenerators(contentAdj: 0.85, paddingAdj: 0.75)
+            gameOverGridScale = CGFloat(0.45)
+            
+        // iPhone 6,6s,7,8 Plus
+        case 2208:
+            return
+
+        default:
+            return
+            
+        }
+        
+        
+    }
+    
+    func adjustGenerators(contentAdj: CGFloat, paddingAdj: CGFloat) {
+        
+        paddingAboveScore *= paddingAdj
+        paddingAboveLevel *= paddingAdj
+        paddingAroundPauseBar *= paddingAdj
+        paddingAboveGrid *= paddingAdj
+        paddingToSideOfGrid *= paddingAdj
+        paddingBetweenTiles *= paddingAdj
+        tileRadius *= paddingAdj
+        tileDepth *= paddingAdj
+        paddingAboveTimer *= paddingAdj
+        menuButtonRadius *= paddingAdj
+        paddingBetweenMenuButtons *= paddingAdj
+        paddingToSideOfMenuButtons *= paddingAdj
+        bestDepth *= paddingAdj
+        bestRadius *= paddingAdj
+        multiplierDepth *= paddingAdj
+        paddingAroundStatsView *= paddingAdj
+        paddingBetweenStats *= paddingAdj
+        paddingAroundWordData *= paddingAdj
+
+        scoreHeight *= contentAdj
+        levelHeight *= contentAdj
+        menuButtonHeight *= contentAdj
+        badgeRadius *= contentAdj
+        badgeShadowRadius *= contentAdj
+        badgeDX *= contentAdj
+        badgeDY *= contentAdj
+        bestHeight *= contentAdj
+        bestWidth *= contentAdj
+        multiplierShadowRadius *= contentAdj
+        gameOverHeight *= contentAdj
+        statsHeight *= contentAdj
+        playAgainHeight *= contentAdj
+        fontScale *= contentAdj
+ 
+    }
+    
+    func calculateAllValues() {
         scoreX = 0
         scoreY = paddingAboveScore
         levelX = 0
@@ -107,11 +173,10 @@ class Device {
         tileSize = (screenWidth - paddingToSideOfGrid*2 - paddingBetweenTiles*3) / 4
         
         rackX = 0
-        rackY = gridY + 4*tileSize + 3*paddingBetweenTiles + paddingAboveRack
+        rackY = screenBounds.height - timerHeight - tileSize - 2*paddingBetweenTiles - paddingAboveTimer
         
         timerX = 0
-        timerY = rackY + tileSize + 2*paddingBetweenTiles + paddingAboveTimer
-        timerHeight = screenBounds.height - timerY
+        timerY = screenBounds.height - timerHeight
         
         shrunkenGridSize = gameOverGridScale*(4*tileSize + 3*paddingBetweenTiles)
         statsX = gridX + shrunkenGridSize + paddingAroundStatsView
@@ -120,8 +185,6 @@ class Device {
         wordDataX = (screenWidth*(1-wordDataWidthRatio))/2
         wordDataY = statsY + shrunkenGridSize + paddingAroundWordData
     }
-    
-
     
     
     // ScoreView

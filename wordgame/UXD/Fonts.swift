@@ -15,16 +15,16 @@ let font = "BanglaSangamMN"
 let fontBold = "BanglaSangamMN-Bold"
 
 // sizes
-let scoreTextSize = CGFloat(60)
-let levelTextSize = CGFloat(13)
-let tileTextSize = CGFloat(40)
-let tileScoreTextSize = CGFloat(18)
-let badgeTextSize = CGFloat(20)
-let bestTextSize = CGFloat(12)
-let menuTextSize = CGFloat(24)
-let playSomethingTextSize = CGFloat(22)
-let statsTextSize = CGFloat(16)
-let gameOverTextSize = CGFloat(26)
+let scoreTextSize = CGFloat(60)*device.fontScale
+let levelTextSize = CGFloat(13)*device.fontScale
+let tileTextSize = CGFloat(40)*device.fontScale
+let tileScoreTextSize = CGFloat(18)*device.fontScale
+let badgeTextSize = CGFloat(20)*device.fontScale
+let bestTextSize = CGFloat(12)*device.fontScale
+let menuTextSize = CGFloat(24)*device.fontScale
+let playSomethingTextSize = CGFloat(22)*device.fontScale
+let statsTextSize = CGFloat(16)*device.fontScale
+let gameOverTextSize = CGFloat(26)*device.fontScale
 
 // combined
 let scoreFont = UIFont(name: fontBold, size: scoreTextSize)

@@ -83,7 +83,7 @@ class GameOverView {
         let anchorY = device.gridY / view.frame.height
         setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: gridView.view)
         
-        let scale = CGAffineTransform(scaleX: gameOverGridScale, y: gameOverGridScale)
+        let scale = CGAffineTransform(scaleX: device.gameOverGridScale, y: device.gameOverGridScale)
         UIView.animate(withDuration: shrinkDuration, animations: {
             self.gridView.view.transform = scale
             self.rackView.view.alpha = 0.0
