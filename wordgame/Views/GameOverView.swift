@@ -26,6 +26,8 @@ class GameOverView {
     var wordDataTopBar: UIView
     var wordDataBottomBar: UIView
     
+    //var playAgainButton: UIView
+    
     var view: UIView
     
     
@@ -44,6 +46,8 @@ class GameOverView {
         wordDataView = UIScrollView(frame: device.wordDataFrame())
         wordDataTopBar = UIView(frame: device.wordDataTopBarFrame())
         wordDataBottomBar = UIView(frame: device.wordDataBottomBarFrame())
+        
+        // playAgain
         
         view = UIView(frame: device.screenBounds)
     }

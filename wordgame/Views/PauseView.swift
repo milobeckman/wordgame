@@ -129,6 +129,15 @@ class PauseView {
     
     func switchToNightMode() {
         pauseButton.tintColor = gridSlotColorHighlight()
+        
+        for button in menuButtons {
+            button.backgroundColor = menuButtonColor()
+            button.layer.borderColor = menuButtonBorderColor().cgColor
+        }
+        
+        for label in menuLabels {
+            label.textColor = menuButtonBorderColor()
+        }
     }
     
 }

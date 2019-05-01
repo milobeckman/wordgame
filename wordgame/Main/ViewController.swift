@@ -26,11 +26,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.isMultipleTouchEnabled = true
         
         view.addSubview(backgroundView.view)
         view.addSubview(gameView.view)
         gameView.view.isUserInteractionEnabled = false
+        view.isMultipleTouchEnabled = true
         buttonHandler.viewController = self
         backgroundView.update()
     }

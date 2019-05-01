@@ -17,7 +17,8 @@ class Device {
     var screenHeight: CGFloat
     
     // generators
-    var paddingAboveScore = CGFloat(20)
+    var statusBarHeight = CGFloat(20)
+    var paddingAboveScore = CGFloat(0)
     var scoreHeight = CGFloat(60)
     var paddingAboveLevel = CGFloat(0)
     var levelHeight = CGFloat(14)
@@ -62,7 +63,7 @@ class Device {
     var paddingAroundWordData = CGFloat(8)
     var wordDataWidthRatio = CGFloat(0.5)
     var wordDataMultiplierLocationRatio = CGFloat(0.7)
-    var playAgainHeight = CGFloat(35)
+    var playAgainHeight = CGFloat(40)
     
     var fontScale = CGFloat(1.0)
     
@@ -163,7 +164,7 @@ class Device {
     
     func calculateAllValues() {
         scoreX = 0
-        scoreY = paddingAboveScore
+        scoreY = statusBarHeight + paddingAboveScore
         levelX = 0
         levelY = scoreY + scoreHeight + paddingAboveLevel
         pauseBarX = 0
