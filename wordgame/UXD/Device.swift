@@ -37,6 +37,7 @@ class Device {
     
     var menuButtonHeight = CGFloat(50)
     var menuButtonRadius = CGFloat(10)
+    var menuButtonBorderWidth = CGFloat(4)
     var paddingBetweenMenuButtons = CGFloat(10)
     var paddingToSideOfMenuButtons = CGFloat(60)
     
@@ -132,6 +133,7 @@ class Device {
         tileRadius *= paddingAdj
         tileDepth *= paddingAdj
         paddingAboveTimer *= paddingAdj
+        menuButtonBorderWidth *= paddingAdj
         menuButtonRadius *= paddingAdj
         paddingBetweenMenuButtons *= paddingAdj
         paddingToSideOfMenuButtons *= paddingAdj

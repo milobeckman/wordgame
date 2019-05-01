@@ -17,6 +17,8 @@ class ButtonHandler {
     
     var indexForTouch: [UITouch: Int]
     
+    var viewController: ViewController?
+    
     init() {
         buttonFrames = []
         buttonTargets = []
@@ -50,6 +52,10 @@ class ButtonHandler {
     func pressButton(index: Int) {
         if index < buttonTargets.count {
             
+            if !buttonActive[index] {
+                return
+            }
+            
             let action = buttonTargets[index]
             
             switch action {
@@ -59,6 +65,10 @@ class ButtonHandler {
                 } else {
                     gameView.pause()
                 }
+                
+            case "restart":
+                viewController!.restart()
+                
             default:
                 print("unrecognized action")
             }

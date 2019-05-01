@@ -143,6 +143,7 @@ class GameView {
     }
     
     func pause() {
+        
         if playtestOptions.pauseButtonEndsGame {
             gameOver()
             return

@@ -8,16 +8,17 @@
 
 import UIKit
 
+// universal
 var device = Device()
 var rules = Rules()
 var playtestOptions = PlaytestOptions()
 var settings = Settings()
 var storage = Storage()
-var game = Game()
 
+// game-specific
+var game = Game()
 var backgroundView = BackgroundView()
 var gameView = GameView(game: game)
-
 var dragHandler = DragHandler(gameView: gameView)
 var buttonHandler = ButtonHandler()
 
@@ -30,7 +31,22 @@ class ViewController: UIViewController {
         view.addSubview(backgroundView.view)
         view.addSubview(gameView.view)
         gameView.view.isUserInteractionEnabled = false
+        buttonHandler.viewController = self
         backgroundView.update()
+    }
+    
+    func restart() {
+        
+        // end existing game
+        gameView.timerView.ticker.invalidate()
+        gameView.pauseView.makeButtonsInactive()
+        
+        // start new game
+        game = Game()
+        backgroundView = BackgroundView()
+        gameView = GameView(game: game)
+        dragHandler = DragHandler(gameView: gameView)
+        viewDidLoad()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

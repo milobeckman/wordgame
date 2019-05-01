@@ -51,6 +51,7 @@ let playSomethingTextColor = [UIColor.white, UIColor.red]
 
 // PauseView
 let barColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1)
+let menuButtonAlpha = CGFloat(0.08)
 
 // TileView
 let tileColor = UIColor(red: 0.9, green: 0.84, blue: 0.7, alpha: 1)
@@ -176,7 +177,11 @@ func gridSlotColorReviving() -> UIColor {
 }
 
 func menuButtonColor() -> UIColor {
-    return scoreTextColor(level: game.currentLevel)
+    return gridSlotColor().withAlphaComponent(menuButtonAlpha)
+}
+
+func menuButtonBorderColor() -> UIColor {
+    return gridSlotColorHighlight()
 }
 
 func menuTextColor() -> UIColor {
