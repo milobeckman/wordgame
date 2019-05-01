@@ -26,7 +26,7 @@ class GameOverView {
     var wordDataTopBar: UIView
     var wordDataBottomBar: UIView
     
-    //var playAgainButton: UIView
+    var playAgainButton: UIImageView
     
     var view: UIView
     
@@ -47,7 +47,9 @@ class GameOverView {
         wordDataTopBar = UIView(frame: device.wordDataTopBarFrame())
         wordDataBottomBar = UIView(frame: device.wordDataBottomBarFrame())
         
-        // playAgain
+        playAgainButton = UIImageView(frame: device.playAgainButtonFrame())
+        playAgainButton.backgroundColor = UIColor.red // placeholder
+        playAgainButton.image = UIImage(named: "play-again")
         
         view = UIView(frame: device.screenBounds)
     }
@@ -119,6 +121,9 @@ class GameOverView {
         for label in statsLabels {
             view.addSubview(label)
         }
+        
+        view.addSubview(playAgainButton)
+        buttonHandler.addButton(frame: playAgainButton.frame, action: "restart")
         
         handleHighscores()
         

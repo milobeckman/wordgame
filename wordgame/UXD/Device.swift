@@ -63,7 +63,8 @@ class Device {
     var paddingAroundWordData = CGFloat(8)
     var wordDataWidthRatio = CGFloat(0.5)
     var wordDataMultiplierLocationRatio = CGFloat(0.7)
-    var playAgainHeight = CGFloat(40)
+    var playAgainHeight = CGFloat(70)
+    var playAgainWidthRatio = CGFloat(90.0/50)
     
     var fontScale = CGFloat(1.0)
     
@@ -327,6 +328,12 @@ class Device {
         return CGRect(x: wordDataX, y: y, width: screenWidth*wordDataWidthRatio, height: 1)
     }
     
+    func playAgainButtonFrame() -> CGRect {
+        let width = playAgainHeight*playAgainWidthRatio
+        let x = (screenWidth - width)/2
+        let y = timerY - playAgainHeight - paddingAroundWordData
+        return CGRect(x: x, y: y, width: width, height: playAgainHeight)
+    }
     
     
 

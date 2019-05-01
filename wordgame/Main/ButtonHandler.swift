@@ -27,6 +27,12 @@ class ButtonHandler {
         indexForTouch = [:]
     }
     
+    func reset() {
+        buttonFrames = []
+        buttonTargets = []
+        buttonActive = []
+    }
+    
     func addButton(frame: CGRect, action: String) {
         buttonFrames.append(frame)
         buttonTargets.append(action)

@@ -26,26 +26,29 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.isMultipleTouchEnabled = true
         
         view.addSubview(backgroundView.view)
         view.addSubview(gameView.view)
         gameView.view.isUserInteractionEnabled = false
-        view.isMultipleTouchEnabled = true
+        
+        dragHandler.gameView = gameView
         buttonHandler.viewController = self
+        
         backgroundView.update()
     }
     
     func restart() {
+        /* TODO : WHY DOES RESTART BREAK MULTITOUCH?? */
         
         // end existing game
         gameView.timerView.ticker.invalidate()
-        gameView.pauseView.makeButtonsInactive()
+        buttonHandler.reset()
         
         // start new game
         game = Game()
         backgroundView = BackgroundView()
         gameView = GameView(game: game)
-        dragHandler = DragHandler(gameView: gameView)
         viewDidLoad()
     }
     
