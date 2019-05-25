@@ -169,6 +169,8 @@ class GameView {
     }
     
     func gameOver() {
+        
+        
         game.over = true
         gridView.view.removeFromSuperview()
         view.addSubview(gameOverView.view)

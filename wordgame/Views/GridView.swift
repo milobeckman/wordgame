@@ -102,7 +102,6 @@ class GridView {
             endActiveHover(tileView: tileView, position: position)
             
             if tileView.tile.type == "bomb" {
-                game.currentStreak = 0
                 DispatchQueue.main.asyncAfter(deadline: .now() + dropDuration, execute: {
                     self.bomb(position: position)
                 })

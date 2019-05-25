@@ -136,15 +136,19 @@ func canServe(tile: Tile, rackTiles: [Tile]) -> Bool {
     
     // never serve four vowels or four consonants
     var vowelCount = 0
+    var yCount = 0
     for rackTile in rackTiles {
-        if rackTile.type == "letter" && "aeiouy".contains(rackTile.text) {
+        if rackTile.type == "letter" && "aeiou".contains(rackTile.text) {
             vowelCount += 1
         }
+        if rackTile.type == "letter" && rackTile.text == "y" {
+            yCount += 1
+        }
     }
-    if vowelCount == 3 && tile.type == "letter" && "aeiouy".contains(tile.text) {
+    if vowelCount + yCount == 3 && tile.type == "letter" && "aeiouy".contains(tile.text) {
         return false
     }
-    if vowelCount == 0 && tile.type == "letter" && !"aeiouy".contains(tile.text) {
+    if vowelCount == 0 && tile.type == "letter" && !"aeiou".contains(tile.text) {
         return false
     }
     

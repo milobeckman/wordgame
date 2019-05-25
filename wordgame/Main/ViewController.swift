@@ -28,6 +28,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.isMultipleTouchEnabled = true
         
+        if playtestOptions.wipeAllStorage {
+            storage.forgetAll()
+        }
+        
         view.addSubview(backgroundView.view)
         view.addSubview(gameView.view)
         gameView.view.isUserInteractionEnabled = false

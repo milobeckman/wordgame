@@ -117,7 +117,7 @@ class Device {
             return
 
         default:
-            return
+            adjustGenerators(contentAdj: 0.95, paddingAdj: 0.8)
             
         }
         

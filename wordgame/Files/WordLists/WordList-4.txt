@@ -4448,6 +4448,7 @@ pyin
 pyot
 pyre
 pyro
+quip
 qadi
 qaid
 qats
@@ -4459,7 +4460,6 @@ quep
 quey
 quim
 quin
-quip
 quop
 rabi
 raca

@@ -19,6 +19,7 @@ class Rules {
     
     let timerStart = 20.0
     let timerDecrement = 0.933
+    let timerMinimum = 1.5
     let playSomethingDuration = 0.5
     
     let fairnessAdjustment = 1.0
@@ -42,7 +43,7 @@ class Rules {
     }
     
     func timerLength(level: Int) -> Double {
-        return timerStart * pow(timerDecrement, Double(game.currentLevel-1))
+        return max(timerStart * pow(timerDecrement, Double(game.currentLevel-1)), timerMinimum)
     }
     
     func legalWordPaths(level: Int) -> [[Int]] {
