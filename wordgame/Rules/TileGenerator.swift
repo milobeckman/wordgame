@@ -10,6 +10,7 @@ import Foundation
 
 
 let tileIDs = ["1","2","3","*","**",".trash",".bomb",".life"]
+let freqs = [IO.loadResource(resource: "1.txt"), IO.loadResource(resource: "1.txt"), IO.loadResource(resource: "3.txt")]
 let luckAdjustment = 8.0
 
 
@@ -121,7 +122,7 @@ func randomTileIDFromBag(bag: [String: Double]) -> String {
 
 
 func canServe(tile: Tile, rackTiles: [Tile]) -> Bool {
-    
+    /*
     // never serve a triple tile
     var sameCount = 0
     for rackTile in rackTiles {
@@ -150,7 +151,7 @@ func canServe(tile: Tile, rackTiles: [Tile]) -> Bool {
     }
     if vowelCount == 0 && tile.type == "letter" && !"aeiou".contains(tile.text) {
         return false
-    }
+    }*/
     
     return true
 }
@@ -158,17 +159,89 @@ func canServe(tile: Tile, rackTiles: [Tile]) -> Bool {
 
 func randomTileForLength(length: String) -> String {
     
-    let filename = length + ".txt"
-    let freqs = IO.loadResource(resource: filename)
+    if length == "1" {
+        return randomSingleLetterTile()
+    }
     
     var tileTexts = [String]()
     var cumulativeFreqs = [Double]()
     var cumulativeFreq = 0.0
     
-    for line in freqs {
+    for line in freqs[Int(length)!-1] {
         let lineComponents = line.components(separatedBy: ",")
         tileTexts.append(lineComponents[0])
         cumulativeFreq += Double(lineComponents[1])!
+        cumulativeFreqs.append(cumulativeFreq)
+    }
+    
+    let rand = randomDouble()*cumulativeFreq
+    
+    for i in 0..<tileTexts.count {
+        if rand < cumulativeFreqs[i] {
+            return tileTexts[i]
+        }
+    }
+    
+    return noneString
+}
+
+func randomSingleLetterTile() -> String {
+    
+    var numInPlay = [String: Int]()
+    for letter in "abcdefghijklmnopqrstuvwxyz" {
+        numInPlay[String(letter)] = 0
+    }
+    
+    for tile in game.rack.tiles {
+        if tile.type == "letter" && tile.text.count == 1 {
+            numInPlay[tile.text]! += 1
+        }
+    }
+    for tile in game.grid.tiles {
+        if tile.type == "letter" && tile.text.count == 1 {
+            numInPlay[tile.text]! += 1
+        }
+    }
+    
+    var vowelsInPlay = 0
+    var consonantsInPlay = 0
+    for letter in "aeiou" {
+        vowelsInPlay += numInPlay[String(letter)]!
+    }
+    for letter in "bcdfghjklmnpqrstvwxyz" {
+        consonantsInPlay += numInPlay[String(letter)]!
+    }
+    
+    if vowelsInPlay + consonantsInPlay < 4 {
+        return randomSingleLetterTile(vowelAdjust: 1.0, numInPlay: numInPlay)
+    }
+    let vowelFraction = Double(vowelsInPlay) / Double(vowelsInPlay + consonantsInPlay)
+    return randomSingleLetterTile(vowelAdjust: 2.0*(1.0-vowelFraction), numInPlay: numInPlay)
+}
+
+func randomSingleLetterTile(vowelAdjust: Double, numInPlay: [String: Int]) -> String {
+    
+    var tileTexts = [String]()
+    var cumulativeFreqs = [Double]()
+    var cumulativeFreq = 0.0
+    
+    for line in freqs[0] {
+        let lineComponents = line.components(separatedBy: ",")
+        
+        let letter = lineComponents[0]
+        var freq = Double(lineComponents[1])!
+        
+        if "aeiou".contains(letter) {
+            freq *= vowelAdjust
+        } else {
+            freq *= (2.0 - vowelAdjust)
+        }
+        
+        let logisticAdjust = 1.0 / (1.0 + pow(2.718, 2.0*(Double(numInPlay[letter]!) - 2.5)))
+        freq *= logisticAdjust
+        
+        tileTexts.append(letter)
+        cumulativeFreq += freq
         cumulativeFreqs.append(cumulativeFreq)
     }
     
