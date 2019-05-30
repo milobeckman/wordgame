@@ -10,7 +10,7 @@ import Foundation
 
 
 let tileIDs = ["1","2","3","*","**",".trash",".bomb",".life"]
-let freqs = [IO.loadResource(resource: "1.txt"), IO.loadResource(resource: "1.txt"), IO.loadResource(resource: "3.txt")]
+let freqs = [IO.loadResource(resource: "1.txt"), IO.loadResource(resource: "2.txt"), IO.loadResource(resource: "3.txt")]
 let luckAdjustment = 8.0
 
 

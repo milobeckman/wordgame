@@ -48,8 +48,7 @@ class GameOverView {
         wordDataBottomBar = UIView(frame: device.wordDataBottomBarFrame())
         
         playAgainButton = UIImageView(frame: device.playAgainButtonFrame())
-        playAgainButton.backgroundColor = UIColor.red // placeholder
-        playAgainButton.image = UIImage(named: "play-again")
+        playAgainButton.image = UIImage(named: "play-again")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         
         view = UIView(frame: device.screenBounds)
     }
@@ -124,6 +123,7 @@ class GameOverView {
         
         view.addSubview(playAgainButton)
         buttonHandler.addButton(frame: playAgainButton.frame, action: "restart")
+        playAgainButton.tintColor = statsNumberColor()
         
         handleHighscores()
         

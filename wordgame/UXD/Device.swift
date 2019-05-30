@@ -64,7 +64,7 @@ class Device {
     var wordDataWidthRatio = CGFloat(0.5)
     var wordDataMultiplierLocationRatio = CGFloat(0.7)
     var playAgainHeight = CGFloat(70)
-    var playAgainWidthRatio = CGFloat(90.0/50)
+    var playAgainWidthRatio = CGFloat(3.0)
     
     var fontScale = CGFloat(1.0)
     
