@@ -122,7 +122,7 @@ func randomTileIDFromBag(bag: [String: Double]) -> String {
 
 
 func canServe(tile: Tile, rackTiles: [Tile]) -> Bool {
-    /*
+    
     // never serve a triple tile
     var sameCount = 0
     for rackTile in rackTiles {
@@ -151,7 +151,7 @@ func canServe(tile: Tile, rackTiles: [Tile]) -> Bool {
     }
     if vowelCount == 0 && tile.type == "letter" && !"aeiou".contains(tile.text) {
         return false
-    }*/
+    }
     
     return true
 }

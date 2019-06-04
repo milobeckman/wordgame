@@ -16,6 +16,7 @@ class BackgroundView {
     var gradient: CAGradientLayer
     var streakView: UIImageView
     var middleView: UIView
+    var spaceView: UIImageView
     
     init() {
         view = UIView(frame: device.screenBounds)
@@ -25,6 +26,10 @@ class BackgroundView {
         view.layer.insertSublayer(gradient, at: 0)
         
         streakView = UIImageView()
+        
+        spaceView = UIImageView(frame: device.spaceViewFrame(level: 0.0))
+        spaceView.image = UIImage(named: "space-v3.png")
+        view.addSubview(spaceView)
         
         middleView = UIView(frame: device.screenBounds)
         middleView.backgroundColor = middleColor
@@ -37,6 +42,10 @@ class BackgroundView {
         let bottom = gradientBottomColor(level: trueLevel).cgColor
         let top = gradientTopColor(level: trueLevel).cgColor
         gradient.colors = [top, bottom]
+        
+        UIView.animate(withDuration: 5.0, animations: {
+            self.spaceView.frame = device.spaceViewFrame(level: trueLevel)
+        })
     }
     
     func showOrIncreaseStreakView(multiplier: Int) {

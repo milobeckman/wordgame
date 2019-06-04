@@ -55,6 +55,9 @@ class Device {
     var multiplierDepth = CGFloat(2)
     var multiplierShadowRadius = CGFloat(4)
     
+    var spaceViewHeightRatio = CGFloat(8.0)
+    var offsetPerLevelRaw = CGFloat(150.0)
+    
     var gameOverGridScale = CGFloat(0.5)
     var paddingAroundStatsView = CGFloat(15)
     var paddingBetweenStats = CGFloat(5)
@@ -294,6 +297,12 @@ class Device {
         return CGRect(x: centerX - badgeRadius, y: centerY - badgeRadius, width: 2*badgeRadius, height: 2*badgeRadius)
     }
     
+    
+    func spaceViewFrame(level: Double) -> CGRect {
+        let height = screenWidth*spaceViewHeightRatio
+        let y = CGFloat(level)*(offsetPerLevelRaw*screenWidth/1000.0)-height
+        return CGRect(x: 0, y: y, width: screenWidth, height: height)
+    }
     
     // GameOverView
     func statsFrame() -> CGRect {
