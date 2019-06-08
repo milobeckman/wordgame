@@ -24,10 +24,13 @@ class TimerView {
     
     let numCriticalPhases = 3
     
+    var iced: Bool
+    
     init() {
         ticker = Timer()
         totalTime = 0
         timeLeft = 0
+        iced = false
         
         view = UIView(frame: device.screenBounds)
         
@@ -80,7 +83,7 @@ class TimerView {
     }
     
     @objc func tick() {
-        if game.paused || game.over || timeLeft <= 0 {
+        if game.paused || game.over || timeLeft <= 0 || iced {
             return
         }
         
@@ -143,6 +146,20 @@ class TimerView {
         let fraction = timeLeft / totalTime
         barView.frame = device.timerBarFrame(fraction: fraction)
         barView.backgroundColor = timerBarColor(fraction: fraction)
+    }
+    
+    
+    
+    func ice() {
+        iced = true
+        barView.frame = device.timerBarFrame(fraction: 1.0)
+        barView.backgroundColor = iceColor
+    }
+    
+    func unice() {
+        iced = false
+        timeLeft = totalTime
+        updateView()
     }
     
     

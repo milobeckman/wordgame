@@ -24,6 +24,9 @@ class Rules {
     
     let fairnessAdjustment = 1.0
     
+    let howLongIceLasts = 5
+    let howLongCharmLasts = 5
+    
     
     
     func trueLevel(tilesServed: Int) -> Double {

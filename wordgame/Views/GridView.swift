@@ -93,7 +93,11 @@ class GridView {
     func handleDrop(tileView: TileView, position: Int) {
         
         endActiveHover(tileView: tileView, position: position)
-        game.tilesDropped += 1
+        game.tileDropped()
+        if game.iceLeft == 0 {
+            gameView.timerView.unice()
+            backgroundView.unice()
+        }
         
         // drop on blank
         if grid.tiles[position].type == "null" {
@@ -105,6 +109,12 @@ class GridView {
                 DispatchQueue.main.asyncAfter(deadline: .now() + dropDuration, execute: {
                     self.bomb(position: position)
                 })
+            }
+            
+            if tileView.tile.type == "ice" {
+                gameView.timerView.ice()
+                backgroundView.ice()
+                game.iceLeft = rules.howLongIceLasts
             }
         }
         

@@ -13,6 +13,7 @@ class PlaytestOptions {
     
     let allWordsCount = false
     let quickAdvance = false
+    let advancedStart = 15
     let pauseButtonEndsGame = false
     let wipeAllStorage = false
     

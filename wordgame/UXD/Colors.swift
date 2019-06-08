@@ -82,6 +82,9 @@ let lifeDepthColor = UIColor(red: 0.749, green: 0.3373, blue: 0.4039, alpha: 1.0
 let bombColor = UIColor(red: 0.7255, green: 0.4824, blue: 0.7686, alpha: 1.0)
 let bombDepthColor = UIColor(red: 0.5569, green: 0.3451, blue: 0.6, alpha: 1.0)
 
+let iceColor = UIColor(hue: 0.5333, saturation: 0.27, brightness: 0.87, alpha: 1.0)
+let iceDepthColor = UIColor(hue: 0.5333, saturation: 0.38, brightness: 0.67, alpha: 1.0)
+
 // GridSlotView [day, night]
 let gridSlotHue = [0.0, 0.0]
 let gridSlotBrightness = [0.55, 0.75]
@@ -226,6 +229,8 @@ func tileDepthColor(tile: Tile) -> UIColor {
         return lifeDepthColor
     case "bomb":
         return bombDepthColor
+    case "ice":
+        return iceDepthColor
     default:
         switch tile.text.count {
         case 1:
@@ -248,6 +253,8 @@ func tileColor(tile: Tile) -> UIColor {
         return lifeColor
     case "bomb":
         return bombColor
+    case "ice":
+        return iceColor
     default:
         switch tile.text.count {
         case 1:

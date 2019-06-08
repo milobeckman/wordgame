@@ -59,6 +59,8 @@ class Tile: CustomStringConvertible {
             return "life"
         } else if tileID == ".bomb" {
             return "bomb"
+        } else if tileID == ".ice" {
+            return "ice"
         } else {
             return "letter"
         }
@@ -121,6 +123,8 @@ class Tile: CustomStringConvertible {
             return "life"
         case "bomb":
             return "bomb"
+        case "ice":
+            return "ice"
         default:
             return ""
         }

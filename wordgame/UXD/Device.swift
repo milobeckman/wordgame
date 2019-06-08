@@ -117,7 +117,8 @@ class Device {
             
         // iPhone 6,6s,7,8 Plus
         case 2208:
-            return
+            print("hey")
+            adjustGenerators(contentAdj: 1.00, paddingAdj: 1.8)
 
         default:
             adjustGenerators(contentAdj: 0.95, paddingAdj: 0.8)

@@ -16,8 +16,10 @@ class Game {
     var tilesServed: Int
     var currentScore: Int
     var currentLevel: Int
-    
     var currentStreak: Int
+    
+    var iceLeft: Int
+    var charmLeft: Int
     
     var paused: Bool
     var over: Bool
@@ -36,7 +38,7 @@ class Game {
         grid = Grid()
         rack = Rack()
         
-        tilesServed = 0 // temp
+        tilesServed = 0 + playtestOptions.advancedStart * rules.tilesPerLevel
         currentScore = 0
         currentLevel = 1
         
@@ -54,6 +56,8 @@ class Game {
         wordsCleared = 0
         currentStreak = 0
         longestStreak = 0
+        iceLeft = 0
+        charmLeft = 0
         wordData = [[String]]()
     }
     
@@ -109,6 +113,12 @@ class Game {
     func tileServer() -> Int {
         tilesServed += 1
         return tilesServed
+    }
+    
+    func tileDropped() {
+        tilesDropped += 1
+        iceLeft -= 1
+        charmLeft -= 1
     }
     
     func updateLevelIfNeeded() {

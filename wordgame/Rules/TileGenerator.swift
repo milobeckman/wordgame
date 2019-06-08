@@ -9,7 +9,7 @@
 import Foundation
 
 
-let tileIDs = ["1","2","3","*","**",".trash",".bomb",".life"]
+let tileIDs = ["1","2","3","*","**",".trash",".bomb",".life",".ice"]
 let freqs = [IO.loadResource(resource: "1.txt"), IO.loadResource(resource: "2.txt"), IO.loadResource(resource: "3.txt")]
 let luckAdjustment = 8.0
 
@@ -42,6 +42,7 @@ func tileBag(level: Int, howFull: Double) -> [String: Double] {
     bag[".trash"] = 16.0*pow(howFull, 2.0)
     bag[".life"] = 3.0
     bag[".bomb"] = level >= 5 && howFull < 1.0 ? 20.0*pow(howFull, 4.0) : 0
+    bag[".ice"] = 100.0
     bag["2"] = level >= 10 ? pow(4.0*Double(level-8), 0.5) : 0
     bag["3"] = level >= 20 ? pow(3.0*Double(level-18), 0.5) : 0
     
@@ -92,6 +93,7 @@ func adjustForLuck(bag: [String: Double], expected: [String: Double], actual: [S
             adjusted[tileID] = bag[tileID]!
         } else {
             adjusted[tileID] = bag[tileID]! * pow(luckAdjustment, expected[tileID]! - actual[tileID]!)
+            adjusted[tileID] = min(adjusted[tileID]!, 1000.0)
         }
     }
     

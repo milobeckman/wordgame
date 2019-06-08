@@ -90,6 +90,22 @@ class BackgroundView {
         })
     }
     
+    
+    func ice() {
+        middleView.backgroundColor = iceColor
+        middleView.alpha = 0.6
+    }
+    
+    func unice() {
+        middleView.backgroundColor = middleColor
+        middleView.alpha = 1.0
+    }
+    
+    
+    
+    
+    
+    // trash
     func increaseStreakView() {
         UIView.animate(withDuration: streakViewFadeDuration, animations: {
             self.streakView.tintColor = badgeColorStreak
