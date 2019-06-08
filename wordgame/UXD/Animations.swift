@@ -32,6 +32,10 @@ let dropDuration = 0.1
 let evaporateDuration = 1.0         // 1.5
 let evaporateHeight = CGFloat(0.0)  // 6.0
 
+// TileView.expire()
+let expireDuration = 0.5
+let expireScale = CGFloat(1.3)
+
 // GridSlotView.die(), revive()
 let dieDuration = 1.0
 let dieAngle = CGFloat(1.0 * .pi)

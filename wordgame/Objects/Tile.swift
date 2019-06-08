@@ -29,9 +29,12 @@ class Tile: CustomStringConvertible {
     var type: String
     var text: String
     
+    var dropsLeft: Int
+    
     init(type: String, text: String) {
         self.type = type
         self.text = text
+        dropsLeft = -1
     }
     
     var description: String {
@@ -69,7 +72,13 @@ class Tile: CustomStringConvertible {
     func textForTileID(tileID: String) -> String {
         
         if tileID.contains(".") {
-            return ""
+            if tileID == ".ice" {
+                return "ice"
+            } else if tileID == ".charm" {
+                return "charm"
+            } else {
+                return ""
+            }
         } else if tileID.contains("*") {
             return tileID
         } else {
@@ -83,6 +92,10 @@ class Tile: CustomStringConvertible {
             return true
         case "wild":
             return true
+        case "ice":
+            return true
+        case "charm":
+            return true
         default:
             return false
         }
@@ -90,7 +103,7 @@ class Tile: CustomStringConvertible {
     
     func score() -> Int {
         
-        if type == "wild" || !isLetterLike() {
+        if type != "letter" {
             return 0
         }
         

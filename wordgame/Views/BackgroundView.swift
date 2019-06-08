@@ -97,8 +97,10 @@ class BackgroundView {
     }
     
     func unice() {
-        middleView.backgroundColor = middleColor
-        middleView.alpha = 1.0
+        UIView.animate(withDuration: expireDuration, animations: {
+            self.middleView.backgroundColor = middleColor
+            self.middleView.alpha = 1.0
+        })
     }
     
     

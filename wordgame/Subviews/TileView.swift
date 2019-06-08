@@ -265,6 +265,23 @@ class TileView: Hashable {
         
     }
     
+    func wiggle() {
+        
+    }
+    
+    func expire() {
+        let anchorX = depthFrame.midX/view.frame.width
+        let anchorY = depthFrame.midY/view.frame.height
+        setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: view)
+        
+        UIView.animate(withDuration: expireDuration, animations: {
+            self.view.alpha = 0.0
+            self.view.transform = CGAffineTransform(scaleX: expireScale, y: expireScale)
+        }, completion: { (finished: Bool) in
+            self.view.removeFromSuperview()
+        })
+    }
+    
     
     
     

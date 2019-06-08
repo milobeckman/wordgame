@@ -16,5 +16,6 @@ class PlaytestOptions {
     let advancedStart = 15
     let pauseButtonEndsGame = false
     let wipeAllStorage = false
+    let noLuckAdjustment = true
     
 }

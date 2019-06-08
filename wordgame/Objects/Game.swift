@@ -18,8 +18,8 @@ class Game {
     var currentLevel: Int
     var currentStreak: Int
     
-    var iceLeft: Int
-    var charmLeft: Int
+    var iced: Bool
+    var charmed: Bool
     
     var paused: Bool
     var over: Bool
@@ -42,6 +42,9 @@ class Game {
         currentScore = 0
         currentLevel = 1
         
+        iced = false
+        charmed = false
+        
         paused = false
         over = false
         
@@ -56,8 +59,6 @@ class Game {
         wordsCleared = 0
         currentStreak = 0
         longestStreak = 0
-        iceLeft = 0
-        charmLeft = 0
         wordData = [[String]]()
     }
     
@@ -117,8 +118,11 @@ class Game {
     
     func tileDropped() {
         tilesDropped += 1
-        iceLeft -= 1
-        charmLeft -= 1
+        for tile in grid.tiles {
+            if tile.type == "ice" || tile.type == "charm" {
+                tile.dropsLeft -= 1
+            }
+        }
     }
     
     func updateLevelIfNeeded() {

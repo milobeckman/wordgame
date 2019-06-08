@@ -86,6 +86,10 @@ func adjustForSpecialTileRules(bag: [String: Double], rackTiles: [Tile]) -> [Str
 
 func adjustForLuck(bag: [String: Double], expected: [String: Double], actual: [String: Double]) -> [String: Double] {
     
+    if playtestOptions.noLuckAdjustment {
+        return bag
+    }
+    
     var adjusted = [String: Double]()
     
     for tileID in tileIDs {

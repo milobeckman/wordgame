@@ -94,10 +94,8 @@ class GridView {
         
         endActiveHover(tileView: tileView, position: position)
         game.tileDropped()
-        if game.iceLeft == 0 {
-            gameView.timerView.unice()
-            backgroundView.unice()
-        }
+        checkForWigglesAndExpires()
+        checkForUniceAndUncharm()
         
         // drop on blank
         if grid.tiles[position].type == "null" {
@@ -108,13 +106,15 @@ class GridView {
             if tileView.tile.type == "bomb" {
                 DispatchQueue.main.asyncAfter(deadline: .now() + dropDuration, execute: {
                     self.bomb(position: position)
+                    self.checkForUniceAndUncharm()
                 })
             }
             
             if tileView.tile.type == "ice" {
+                game.iced = true
                 gameView.timerView.ice()
                 backgroundView.ice()
-                game.iceLeft = rules.howLongIceLasts
+                tileView.tile.dropsLeft = rules.howLongIceLasts
             }
         }
         
@@ -123,10 +123,48 @@ class GridView {
             let tileToTrash = device.tileViewWithGridPosition(tileViews: tileViews, position: position)
             giveTile(tileView: tileToTrash, position: position)
             endActiveHover(tileView: tileView, position: position)
+            checkForUniceAndUncharm()
         }
         
         else if tileView.tile.type == "life" {
             revive(position: position)
+        }
+    }
+    
+    func checkForWigglesAndExpires() {
+        for tileView in tileViews where tileView.tile.type == "ice" || tileView.tile.type == "charm" {
+            if tileView.tile.dropsLeft == 1 {
+                tileView.wiggle()
+            }
+            
+            if tileView.tile.dropsLeft == 0 {
+                grid.tiles[device.gridPositionForFrame(frame: tileView.depthFrame)] = Tile()
+                tileView.expire()
+                tileViews.remove(tileView)
+            }
+        }
+    }
+    
+    func checkForUniceAndUncharm() {
+        var shouldUnice = game.iced
+        var shouldUncharm = game.charmed
+        
+        for tileView in tileViews {
+            if tileView.tile.type == "ice" {
+                shouldUnice = false
+            }
+            if tileView.tile.type == "charm" {
+                shouldUncharm = false
+            }
+        }
+        
+        if shouldUnice {
+            game.iced = false
+            gameView.timerView.unice()
+            backgroundView.unice()
+        }
+        if shouldUncharm {
+            game.charmed = false
         }
     }
     
@@ -218,6 +256,7 @@ class GridView {
             let position = device.gridPositionForFrame(frame: tileView.depthFrame)
             
             if gridPositions.contains(position) {
+                tileView.updateAndShowText()
                 giveAndEvaporateTile(tileView: tileView, position: position)
             }
         }
