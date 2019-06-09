@@ -136,8 +136,8 @@ class GameView {
     }
     
     func setupMasks() {
-        gridMask.path = CGPath(rect: device.pauseCurtainFramePaused(), transform: nil)
-        rackMask.path = CGPath(rect: device.pauseCurtainFramePaused(), transform: nil)
+        gridMask.path = CGPath(rect: device.contentMask(), transform: nil)
+        rackMask.path = CGPath(rect: device.contentMask(), transform: nil)
         gridView.view.layer.mask = gridMask
         rackView.view.layer.mask = rackMask
     }
@@ -153,16 +153,16 @@ class GameView {
             return
         }
         
-        animateMaskToRect(mask: gridMask, rect: device.pauseBarFramePaused(), duration: pauseDuration)
-        animateMaskToRect(mask: rackMask, rect: device.pauseBarFramePaused(), duration: pauseDuration)
+        animateMaskToRect(mask: gridMask, rect: device.contentMaskPaused(), duration: pauseDuration)
+        animateMaskToRect(mask: rackMask, rect: device.contentMaskPaused(), duration: pauseDuration)
         
         pauseView.pause()
         game.paused = true
     }
     
     func unpause() {
-        animateMaskToRect(mask: gridMask, rect: device.pauseCurtainFramePaused(), duration: pauseDuration)
-        animateMaskToRect(mask: rackMask, rect: device.pauseCurtainFramePaused(), duration: pauseDuration)
+        animateMaskToRect(mask: gridMask, rect: device.contentMask(), duration: pauseDuration)
+        animateMaskToRect(mask: rackMask, rect: device.contentMask(), duration: pauseDuration)
         
         game.paused = false
         pauseView.unpause()

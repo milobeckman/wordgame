@@ -276,6 +276,14 @@ class Device {
         return CGRect(x: pauseBarX, y: pauseBarY, width: screenWidth - 2.0*pauseBarX, height: timerY-1-pauseBarY)
     }
     
+    func contentMask() -> CGRect {
+        return CGRect(x: 0, y: pauseBarY, width: screenWidth, height: timerY-1-pauseBarY)
+    }
+    
+    func contentMaskPaused() -> CGRect {
+        return CGRect(x: 0, y: timerY-1, width: screenWidth, height: 1)
+    }
+    
     func menuButtonFrame(i: Int) -> CGRect {
         let totalMenuButtons = CGFloat(1)
         
