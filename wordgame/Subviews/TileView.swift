@@ -266,6 +266,31 @@ class TileView: Hashable {
     }
     
     func wiggle() {
+        let anchorX = depthFrame.midX/view.frame.width
+        let anchorY = depthFrame.midY/view.frame.height
+        setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: view)
+        UIView.animate(withDuration: wiggleDuration/8.0, delay: 0, options: .curveLinear, animations: {
+            self.view.transform = CGAffineTransform(rotationAngle: -wiggleAngle)
+        }, completion: { (finished: Bool) in
+            UIView.animate(withDuration: wiggleDuration/4.0, delay: 0, options: .curveLinear, animations: {
+                self.view.transform = CGAffineTransform(rotationAngle: wiggleAngle)
+            }, completion: { (finished: Bool) in
+                UIView.animate(withDuration: wiggleDuration/4.0, delay: 0, options: .curveLinear, animations: {
+                    self.view.transform = CGAffineTransform(rotationAngle: -wiggleAngle)
+                }, completion: { (finished: Bool) in
+                    UIView.animate(withDuration: wiggleDuration/4.0, delay: 0, options: .curveLinear, animations: {
+                        self.view.transform = CGAffineTransform(rotationAngle: wiggleAngle)
+                    }, completion: { (finished: Bool) in
+                        UIView.animate(withDuration: wiggleDuration/8.0, delay: 0, options: .curveLinear, animations: {
+                            self.view.transform = .identity
+                        }, completion: nil)
+                    })
+                })
+            })
+        })
+    }
+    
+    func wigglePartTwo() {
         
     }
     

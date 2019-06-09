@@ -32,6 +32,12 @@ let dropDuration = 0.1
 let evaporateDuration = 1.0         // 1.5
 let evaporateHeight = CGFloat(0.0)  // 6.0
 
+// TileView.wiggle()
+let wiggleDuration = 0.3
+let wiggleRatio = 0.2
+let wiggleAngle = CGFloat(0.25)
+let wiggleDamping = CGFloat(0.9)
+
 // TileView.expire()
 let expireDuration = 0.5
 let expireScale = CGFloat(1.3)

@@ -24,8 +24,8 @@ class Rules {
     
     let fairnessAdjustment = 1.0
     
-    let howLongIceLasts = 5
-    let howLongCharmLasts = 5
+    let howLongIceLasts = 3
+    let howLongCharmLasts = 3
     
     
     
