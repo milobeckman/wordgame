@@ -32,7 +32,7 @@ class PauseView {
         
         pauseButton = UIImageView(frame: device.pauseButtonFrame())
         pauseButton.image = UIImage(named: "pause")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        pauseButton.tintColor = gridSlotColorHighlight()
+        pauseButton.tintColor = pauseButtonColor()
         buttonHandler.addButton(frame: pauseButton.frame, action: "pause")
         view.addSubview(pauseButton)
         
@@ -87,7 +87,7 @@ class PauseView {
     
     func pause() {
         pauseButton.image = UIImage(named: "resume")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        pauseButton.tintColor = gridSlotColorHighlight()
+        pauseButton.tintColor = pauseButtonColor()
         
         animateMaskToRect(mask: curtainMask, rect: device.pauseCurtainFramePaused(), duration: pauseDuration)
         
@@ -103,7 +103,7 @@ class PauseView {
         makeButtonsInactive()
         
         pauseButton.image = UIImage(named: "pause")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        pauseButton.tintColor = gridSlotColorHighlight()
+        pauseButton.tintColor = pauseButtonColor()
         self.barView.alpha = 1.0
         
         animateMaskToRect(mask: curtainMask, rect: device.pauseBarFrame(), duration: pauseDuration)
@@ -128,7 +128,7 @@ class PauseView {
     }
     
     func switchToNightMode() {
-        pauseButton.tintColor = gridSlotColorHighlight()
+        pauseButton.tintColor = pauseButtonColor()
         
         for button in menuButtons {
             button.backgroundColor = menuButtonColor()

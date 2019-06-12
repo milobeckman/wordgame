@@ -28,7 +28,7 @@ class BackgroundView {
         streakView = UIImageView()
         
         spaceView = UIImageView(frame: device.spaceViewFrame(level: 0.0))
-        spaceView.image = UIImage(named: "space-v3.png")
+        spaceView.image = UIImage(named: "space-v6.png")
         view.addSubview(spaceView)
         
         middleView = UIView(frame: device.screenBounds)

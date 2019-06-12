@@ -12,7 +12,7 @@ import UIKit
 
 // GameView
 let backgroundColor = UIColor(hue: 0.6167, saturation: 0.72, brightness: 0.66, alpha: 1.0)
-let gradientNodes = [0.0, 6.0, 18.0, 23.0, 34.0, 50.0, 100.0]
+let gradientNodes = [0.0, 6.0, 18.0, 23.0, 35.0, 60.0, 100.0]
 let gradientHSBs = [[0.5111,0.14,1.00],     // white-ish blue
                     [0.5222,0.14,0.86],     // sky blue
                     [0.6167,0.57,0.6],      // evening blue
@@ -51,6 +51,8 @@ let playSomethingTextColor = [UIColor.white, UIColor.red]
 
 // PauseView
 let barColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1)
+let pauseButtonAlphaDay = CGFloat(0.35)
+let pauseButtonAlphaNight = CGFloat(0.75)
 let menuButtonAlpha = CGFloat(0.08)
 
 // TileView
@@ -179,12 +181,32 @@ func gridSlotColorReviving() -> UIColor {
     return UIColor(hue: h, saturation: s, brightness: b, alpha: a)
 }
 
+func pauseButtonAlpha() -> CGFloat {
+    if nightMode(level: game.currentLevel) {
+        return pauseButtonAlphaNight
+    } else {
+        return pauseButtonAlphaDay
+    }
+}
+
+func pauseButtonColor() -> UIColor {
+    
+    return scoreTextColor(level: game.currentLevel).withAlphaComponent(pauseButtonAlpha())
+    
+    /*
+    if !nightMode(level: game.currentLevel) {
+        return gridSlotColorHighlight()
+    } else {
+        return scoreTextColor(level: game.currentLevel)
+    }*/
+}
+
 func menuButtonColor() -> UIColor {
-    return gridSlotColor().withAlphaComponent(menuButtonAlpha)
+    return pauseButtonColor().withAlphaComponent(menuButtonAlpha)
 }
 
 func menuButtonBorderColor() -> UIColor {
-    return gridSlotColorHighlight()
+    return pauseButtonColor()
 }
 
 func menuTextColor() -> UIColor {
