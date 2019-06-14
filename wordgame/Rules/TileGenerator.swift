@@ -32,7 +32,7 @@ func newTile() -> Tile {
     return tile
 }
 
-
+// THIS IS THE MAIN TILE FREQS !
 func tileBag(level: Int, howFull: Double) -> [String: Double] {
     
     var bag = [String: Double]()
@@ -61,23 +61,30 @@ func adjustForSpecialTileRules(bag: [String: Double], rackTiles: [Tile]) -> [Str
         adjusted[tileID] = bag[tileID]!
     }
     
-    // never serve life tile if no dead squares or if you already have one
-    if game.numDeadTiles() == 0 {
-        adjusted[".life"] = 0.0
+    // never serve two of the same special tiles
+    var specialCount = 0
+    for rackTile in rackTiles {
+        if rackTile.type != "letter" {
+            specialCount += 1
+            
+            if rackTile.text.contains("*") {
+                adjusted[rackTile.text] = 0.0
+            } else {
+                adjusted["." + rackTile.type] = 0.0
+            }
+        }
     }
     
-    for rackTile in rackTiles {
-        if rackTile.type == "life" {
-            adjusted[".life"] = 0.0
+    // never serve three special tiles
+    if specialCount >= 2 {
+        for tileID in tileIDs where !"123".contains(tileID) {
+            adjusted[tileID] = 0.0
         }
     }
-
-    // never serve two clearing tiles
-    for rackTile in rackTiles {
-        if rackTile.type == "trash" || rackTile.type == "bomb" {
-            adjusted[".trash"] = 0.0
-            adjusted[".bomb"] = 0.0
-        }
+    
+    // never serve life tile if no dead squares
+    if game.numDeadTiles() == 0 {
+        adjusted[".life"] = 0.0
     }
     
     return adjusted
@@ -126,25 +133,17 @@ func randomTileIDFromBag(bag: [String: Double]) -> String {
     return errorString
 }
 
-
+// specifically for "letter" type tiles
 func canServe(tile: Tile, rackTiles: [Tile]) -> Bool {
     
-    // never serve a triple tile
     var sameCount = 0
+    var vowelCount = 0
+    var yCount = 0
+    
     for rackTile in rackTiles {
         if rackTile.type == tile.type && rackTile.text == tile.text {
             sameCount += 1
         }
-    }
-    if sameCount >= 2 {
-        return false
-    }
-    
-    
-    // never serve four vowels or four consonants
-    var vowelCount = 0
-    var yCount = 0
-    for rackTile in rackTiles {
         if rackTile.type == "letter" && "aeiou".contains(rackTile.text) {
             vowelCount += 1
         }
@@ -152,9 +151,18 @@ func canServe(tile: Tile, rackTiles: [Tile]) -> Bool {
             yCount += 1
         }
     }
+    
+    // never serve a triple tile
+    if sameCount >= 2 {
+        return false
+    }
+
+    // never serve four vowels
     if vowelCount + yCount == 3 && tile.type == "letter" && "aeiouy".contains(tile.text) {
         return false
     }
+    
+    // never serve four consonants
     if vowelCount == 0 && tile.type == "letter" && !"aeiou".contains(tile.text) {
         return false
     }

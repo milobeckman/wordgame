@@ -94,8 +94,6 @@ class GridView {
         
         endActiveHover(tileView: tileView, position: position)
         game.tileDropped()
-        checkForWigglesAndExpires()
-        checkForUniceAndUncharm()
         
         // drop on blank
         if grid.tiles[position].type == "null" {
@@ -129,6 +127,9 @@ class GridView {
         else if tileView.tile.type == "life" {
             revive(position: position)
         }
+        
+        checkForWigglesAndExpires()
+        checkForUniceAndUncharm()
     }
     
     func checkForWigglesAndExpires() {
@@ -225,6 +226,7 @@ class GridView {
         if wordPathsToClear.count > 0 {
             scoreAndClearWordPaths(wordPaths: wordPathsToClear)
             game.updateLevelIfNeeded()
+            checkForUniceAndUncharm()
         }
         
         gameView.scoreView.showyUpdate()

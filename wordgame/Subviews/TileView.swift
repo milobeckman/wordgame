@@ -266,6 +266,10 @@ class TileView: Hashable {
     }
     
     func wiggle() {
+        if shouldShowText {
+            return
+        }
+        
         let anchorX = depthFrame.midX/view.frame.width
         let anchorY = depthFrame.midY/view.frame.height
         setAnchorPoint(anchorPoint: CGPoint(x: anchorX, y: anchorY), view: view)
