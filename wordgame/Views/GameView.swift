@@ -22,11 +22,13 @@ class GameView {
     var pauseView: PauseView
     
     var gameOverView: GameOverView
+    var hoveringTileViews: [TileView]
     
     var view: UIView
     
     var gridMask: CAShapeLayer
     var rackMask: CAShapeLayer
+    
     
     init(game: Game) {
         
@@ -40,6 +42,7 @@ class GameView {
         timerView = TimerView()
         pauseView = PauseView()
         gameOverView = GameOverView(gridView: gridView, rackView: rackView)
+        hoveringTileViews = []
         
         view = UIView(frame: device.screenBounds)
         view.addSubview(backgroundView.view)
@@ -52,6 +55,7 @@ class GameView {
         gridMask = CAShapeLayer()
         rackMask = CAShapeLayer()
         setupMasks()
+        
         
         newGame()
     }
@@ -81,6 +85,25 @@ class GameView {
         backgroundView.update()
         if !night && nightMode(level: game.currentLevel) {
             switchToNightMode()
+        }
+    }
+    
+    func takeTile(tileView: TileView) {
+        hoveringTileViews.append(tileView)
+        view.addSubview(tileView.view)
+    }
+    
+    func giveTile(tileView: TileView) {
+        if let index = hoveringTileViews.index(of: tileView) {
+            hoveringTileViews.remove(at: index)
+        }
+        
+        tileView.view.removeFromSuperview()
+    }
+    
+    func hideAllTiles() {
+        for tileView in hoveringTileViews {
+            tileView.view.removeFromSuperview()
         }
     }
     
@@ -172,6 +195,8 @@ class GameView {
         game.over = true
         gridView.view.removeFromSuperview()
         view.addSubview(gameOverView.view)
+        
+        gridView.gameOver()
         pauseView.gameOver()
         gameOverView.gameOver()
         view.isUserInteractionEnabled = true

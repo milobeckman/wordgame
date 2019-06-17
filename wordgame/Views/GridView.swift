@@ -282,4 +282,11 @@ class GridView {
         tileView.evaporate()
     }
     
+    
+    func gameOver() {
+        for tileView in tileViews {
+            tileView.unfade()
+        }
+    }
+    
 }

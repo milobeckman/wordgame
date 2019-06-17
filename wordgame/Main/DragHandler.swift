@@ -51,7 +51,7 @@ class DragHandler {
                 
                 // gameView takes over custody of tile
                 gameView.rackView.giveTile(tileView: tileView, position: rackPosition)
-                gameView.view.addSubview(tileView.view)
+                gameView.takeTile(tileView: tileView)
             }
         }
     }
@@ -142,8 +142,7 @@ class DragHandler {
             let gridPosition = gridPositionForTouch[touch]!
             let rackPosition = rackPositionForTouch[touch]!
             
-
-            tileView.view.removeFromSuperview()
+            gameView.giveTile(tileView: tileView)
             
             if gridPosition == -1 {
                 
