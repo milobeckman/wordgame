@@ -10,16 +10,18 @@ import Foundation
 
 class Grid {
     
-    var tiles : [Tile]
+    var tiles: [Tile]
+    
+    var savedChoicesForWilds: [String]
     
     init() {
-        
         tiles = []
+        savedChoicesForWilds = []
         for _ in 0...15 {
             let tile = Tile(type: "null", text: "")
             tiles.append(tile)
+            savedChoicesForWilds.append("*")
         }
-        
     }
     
     func wordPathsToClear() -> [[Int]] {
@@ -96,7 +98,7 @@ class Grid {
         var word = ""
         for i in wordPath {
             if i == position {
-                word += String(repeating: "?", count: tiles[i].text.count)
+                word += "?" // CHANGE IF THERE ARE DOUBLE WILDS
             } else if tiles[i].isLetterLike() {
                 word += tiles[i].text
             } else {
@@ -123,6 +125,10 @@ class Grid {
     }
     
     func bestChoiceForWild(position: Int) -> String {
+        
+        if savedChoicesForWilds[position] != "*" {
+            return savedChoicesForWilds[position]
+        }
         
         var choices = [String]()
         
@@ -181,6 +187,35 @@ class Grid {
     func clearPositions(positions: [Int]) {
         for position in positions {
             tiles[position] = Tile()
+        }
+    }
+    
+    /* pre-decide what wilds should be, for better runtime performance */
+    
+    func preemptWildDrop(position: Int) {
+        if savedChoicesForWilds[position] != "*" {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            let choice = self.bestChoiceForWild(position: position)
+            if choice != noneString {
+                self.savedChoicesForWilds[position] = choice
+            }
+        }
+    }
+    
+    func wipeSavesAfterDrop(position: Int) {
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
+            for i in wordPath where game.grid.tiles[i].type == "null" {
+                savedChoicesForWilds[i] = "*"
+            }
+        }
+    }
+    
+    func wipeAllSaves() {
+        for i in 0...15 {
+            savedChoicesForWilds[i] = "*"
         }
     }
     

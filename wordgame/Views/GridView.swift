@@ -55,6 +55,10 @@ class GridView {
         // hover over blank
         if grid.tiles[position].type == "null" {
             gridSlotViews[position].highlight()
+            
+            if tileView.tile.type == "wild" {
+                grid.preemptWildDrop(position: position)
+            }
         }
         
         // hover trash over tile
@@ -130,6 +134,7 @@ class GridView {
         
         checkForWigglesAndExpires()
         checkForUniceAndUncharm()
+        grid.wipeSavesAfterDrop(position: position)
     }
     
     func checkForWigglesAndExpires() {
@@ -227,6 +232,7 @@ class GridView {
             scoreAndClearWordPaths(wordPaths: wordPathsToClear)
             game.updateLevelIfNeeded()
             checkForUniceAndUncharm()
+            grid.wipeAllSaves()
         }
         
         gameView.scoreView.showyUpdate()
