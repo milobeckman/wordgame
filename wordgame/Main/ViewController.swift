@@ -48,6 +48,7 @@ class ViewController: UIViewController {
         // end existing game
         gameView.timerView.ticker.invalidate()
         buttonHandler.reset()
+        gameView.gameOverView.glowing = false
         
         // start new game
         game = Game()

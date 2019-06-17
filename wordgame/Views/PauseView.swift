@@ -140,4 +140,11 @@ class PauseView {
         }
     }
     
+    func gameOver() {
+        buttonHandler.makeButtonInactive(frame: pauseButton.frame)
+        UIView.animate(withDuration: shrinkDuration, delay: waitBeforeShrinking, options: .curveLinear, animations: {
+            self.pauseButton.alpha = 0.0
+        }, completion: nil)
+    }
+    
 }

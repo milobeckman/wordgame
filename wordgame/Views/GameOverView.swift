@@ -27,6 +27,8 @@ class GameOverView {
     var wordDataBottomBar: UIView
     
     var playAgainButton: UIImageView
+    var playAgainButtonGlow: UIImageView
+    var glowing: Bool
     
     var view: UIView
     
@@ -49,6 +51,9 @@ class GameOverView {
         
         playAgainButton = UIImageView(frame: device.playAgainButtonFrame())
         playAgainButton.image = UIImage(named: "play-again")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        playAgainButtonGlow = UIImageView(frame: device.playAgainButtonFrame())
+        playAgainButtonGlow.image = UIImage(named: "play-again")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        glowing = false
         
         view = UIView(frame: device.screenBounds)
     }
@@ -122,8 +127,11 @@ class GameOverView {
         }
         
         view.addSubview(playAgainButton)
+        view.addSubview(playAgainButtonGlow)
         buttonHandler.addButton(frame: playAgainButton.frame, action: "restart")
-        playAgainButton.tintColor = statsNumberColor()
+        playAgainButton.tintColor = levelTextColor(level: game.currentLevel)
+        glowing = true
+        startGlowingPlayAgainButton()
         
         handleHighscores()
         
@@ -158,12 +166,10 @@ class GameOverView {
         
         statsStrings = []
         
-        let textStrings = ["Tiles dropped: ",
-                           "Words cleared: ",
+        let textStrings = ["Words cleared: ",
                            "Average word: ",
                            "Longest streak: "]
-        let numberStrings = [String(game.tilesDropped),
-                             String(game.wordsCleared),
+        let numberStrings = [String(game.wordsCleared),
                              String(game.averageWordScore()),
                              String(game.longestStreak)]
         
@@ -210,6 +216,24 @@ class GameOverView {
                 view.addSubview(newBestView.view)
             }
         }
+    }
+    
+    func startGlowingPlayAgainButton() {
+        if !glowing {
+            return
+        }
+        
+        playAgainButtonGlow.tintColor = UIColor.white
+        playAgainButtonGlow.alpha = 0.0
+        UIView.animate(withDuration: glowUpDuration, animations: {
+            self.playAgainButtonGlow.alpha = playAgainButtonGlowAlpha()
+        }, completion: { (finished: Bool) in
+            UIView.animate(withDuration: glowUpDuration, animations: {
+                self.playAgainButtonGlow.alpha = 0.0
+            }, completion: { (finished: Bool) in
+                self.startGlowingPlayAgainButton()
+            })
+        })
     }
     
     func sortedTileIDs(unsorted: [String: Double]) -> [String] {

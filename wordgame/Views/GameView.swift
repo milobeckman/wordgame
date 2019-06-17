@@ -169,13 +169,13 @@ class GameView {
     }
     
     func gameOver() {
-        
-        
         game.over = true
         gridView.view.removeFromSuperview()
         view.addSubview(gameOverView.view)
+        pauseView.gameOver()
         gameOverView.gameOver()
         view.isUserInteractionEnabled = true
+        
     }
     
 }

@@ -70,6 +70,11 @@ let multiplierFadeInHeight = CGFloat(2.0)
 let multiplierDisplayDuration = 1.0
 let multiplierFadeOutDuration = 0.2
 
+// GameOverView.startGlowingPlayAgainButton()
+let glowUpDuration = 1.0
+let glowAlphaDay = CGFloat(0.3)
+let glowAlphaNight = CGFloat(0.8)
+
 
 // screen refresh times
 let tickInterval = 0.02

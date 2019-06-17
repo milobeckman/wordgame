@@ -233,6 +233,14 @@ func statsNumberColor() -> UIColor {
     }
 }
 
+func playAgainButtonGlowAlpha() -> CGFloat {
+    if nightMode(level: game.currentLevel) {
+        return glowAlphaNight
+    } else {
+        return glowAlphaDay
+    }
+}
+
 func nightMode(level: Int) -> Bool {
     return level >= 10
 }
@@ -373,5 +381,6 @@ func interpolateColorHSB(start: [Double], end: [Double], fraction: Double) -> UI
     let b = CGFloat(start[2]*(1-fraction) + end[2]*fraction)
     return UIColor(hue: h, saturation: s, brightness: b, alpha: 1.0)
 }
+
 
 
