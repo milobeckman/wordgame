@@ -205,7 +205,12 @@ class GridView {
     }
     
     func bomb(position: Int) {
-        let positionsToBomb = [position-4, position-1, position, position+1, position+4]
+        // four adjacent
+        var positionsToBomb = [position-4, position-1, position, position+1, position+4]
+        // plus diagonal if corner
+        if [0,3,12,15].contains(position) {
+            positionsToBomb += [5 + position/3]
+        }
         for i in positionsToBomb {
             if (0...15).contains(i) && (position + i) % 8 != 7 {
                 if grid.tiles[i].type != "null" && grid.tiles[i].type != "dead" {
