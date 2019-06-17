@@ -97,7 +97,7 @@ class Grid {
         for i in wordPath {
             if i == position {
                 word += String(repeating: "?", count: tiles[i].text.count)
-            } else if tiles[i].type == "letter" || tiles[i].type == "wild" {
+            } else if tiles[i].isLetterLike() {
                 word += tiles[i].text
             } else {
                 return noneString
@@ -112,7 +112,7 @@ class Grid {
         for i in wordPath {
             if i == position {
                 word += choice
-            } else if tiles[i].type == "letter" || tiles[i].type == "wild" {
+            } else if tiles[i].isLetterLike() {
                 word += tiles[i].text
             } else {
                 return noneString
