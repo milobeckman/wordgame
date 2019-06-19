@@ -61,7 +61,7 @@ class BackgroundView {
         let height = device.screenWidth * zigzagHeight / zigzagWidth
         let streakImageFrame = CGRect(x: 0, y: 0, width: device.screenWidth, height: height)
         streakView = UIImageView(frame: streakImageFrame)
-        streakView.image = UIImage(named: "zigzag")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        streakView.image = UIImage(named: "zigzag")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         streakView.tintColor = badgeColorCombo
         streakView.alpha = streakViewAlpha
         view.addSubview(streakView)

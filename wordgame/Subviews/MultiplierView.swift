@@ -28,7 +28,7 @@ class MultiplierView {
         view = UIView(frame: device.screenBounds)
         
         depthView = UIImageView(frame: device.gridFrame().offsetBy(dx: device.multiplierDepth, dy: device.multiplierDepth))
-        depthView.image = UIImage(named: assetName)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        depthView.image = UIImage(named: assetName)?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         depthView.tintColor = depthColor
         depthView.layer.shadowColor = badgeShadowColor.cgColor
         depthView.layer.shadowOpacity = 1
@@ -36,7 +36,7 @@ class MultiplierView {
         depthView.layer.shadowRadius = device.multiplierShadowRadius
         
         imageView = UIImageView(frame: device.gridFrame())
-        imageView.image = UIImage(named: assetName)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        imageView.image = UIImage(named: assetName)?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         imageView.tintColor = color
         
         shineView = UIImageView(frame: device.gridFrame())

@@ -94,7 +94,7 @@ class GameView {
     }
     
     func giveTile(tileView: TileView) {
-        if let index = hoveringTileViews.index(of: tileView) {
+        if let index = hoveringTileViews.firstIndex(of: tileView) {
             hoveringTileViews.remove(at: index)
         }
         

@@ -114,7 +114,7 @@ func animateMaskToRect(mask: CAShapeLayer, rect: CGRect, duration: Double) {
     animation.fromValue = mask.path
     animation.toValue = newPath
     animation.duration = duration
-    animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+    animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
     mask.add(animation, forKey: nil)
     
     CATransaction.begin()

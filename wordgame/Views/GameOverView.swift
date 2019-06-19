@@ -50,9 +50,9 @@ class GameOverView {
         wordDataBottomBar = UIView(frame: device.wordDataBottomBarFrame())
         
         playAgainButton = UIImageView(frame: device.playAgainButtonFrame())
-        playAgainButton.image = UIImage(named: "play-again")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        playAgainButton.image = UIImage(named: "play-again")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         playAgainButtonGlow = UIImageView(frame: device.playAgainButtonFrame())
-        playAgainButtonGlow.image = UIImage(named: "play-again")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        playAgainButtonGlow.image = UIImage(named: "play-again")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         glowing = false
         
         view = UIView(frame: device.screenBounds)
@@ -173,10 +173,10 @@ class GameOverView {
                              String(game.averageWordScore()),
                              String(game.longestStreak)]
         
-        let textAttributes: [NSAttributedStringKey: Any] =
+        let textAttributes: [NSAttributedString.Key: Any] =
                                 [.foregroundColor: statsTextColor(),
                                  .font: statsTextFont as Any]
-        let numberAttributes: [NSAttributedStringKey: Any] =
+        let numberAttributes: [NSAttributedString.Key: Any] =
                                 [.foregroundColor: statsNumberColor(),
                                  .font: statsNumberFont as Any]
         
