@@ -56,7 +56,7 @@ class Device {
     var multiplierShadowRadius = CGFloat(4)
     
     var spaceViewHeightRatio = CGFloat(8.0)
-    var offsetPerLevelRaw = CGFloat(150.0)
+    var offsetPerLevelRaw = CGFloat(172.3)
     
     var gameOverGridScale = CGFloat(0.5)
     var paddingAroundStatsView = CGFloat(15)

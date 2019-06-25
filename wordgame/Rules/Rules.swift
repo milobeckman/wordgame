@@ -15,11 +15,11 @@ let errorString = "!ERROR"
 class Rules {
     
     let maxMultiplier = 3
-    let tilesPerLevel = playtestOptions.quickAdvance ? 2 : 7
+    let tilesPerLevel = playtestOptions.quickAdvance ? 2 : 6
     
     let timerStart = 20.0
     let timerDecrement = 0.933
-    let timerMinimum = 1.5
+    let timerMinimum = 2.0
     let playSomethingDuration = 0.5
     
     let fairnessAdjustment = 1.0

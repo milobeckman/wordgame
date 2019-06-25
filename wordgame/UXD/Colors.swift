@@ -12,8 +12,9 @@ import UIKit
 
 // GameView
 let backgroundColor = UIColor(hue: 0.6167, saturation: 0.72, brightness: 0.66, alpha: 1.0)
-let gradientNodes = [0.0, 6.0, 18.0, 23.0, 35.0, 60.0, 100.0]
-let gradientHSBs = [[0.5111,0.14,1.00],     // white-ish blue
+let gradientNodes = [-8.0, 1.0, 13.0, 18.0, 25.0, 50.0, 100.0]
+let gradientHSBs = [//[0.5111,0.14,1.00],
+                    [0.4917,0.07,1.0],      // white-ish blue
                     [0.5222,0.14,0.86],     // sky blue
                     [0.6167,0.57,0.6],      // evening blue
                     [0.6167,0.0,0.0],       // black
@@ -23,7 +24,7 @@ let gradientHSBs = [[0.5111,0.14,1.00],     // white-ish blue
 let middleColor = UIColor(hue: 0.5222, saturation: 0.14, brightness: 0.86, alpha: 0.1)
 
 // BackgroundView
-let gradientTopPlus = 5.0
+let gradientBottomMinus = 8.0
 let streakViewAlpha = CGFloat(0.1)
 
 // ScoreView
@@ -335,7 +336,10 @@ func badgeColor(multiplier: Int) -> UIColor {
 // interpolation
 
 func gradientBottomColor(level: Double) -> UIColor {
-    
+    return gradientTopColor(level: level - gradientBottomMinus)
+}
+
+func gradientTopColor(level: Double) -> UIColor {
     var stage = 0
     
     for i in 0..<gradientNodes.count-1 {
@@ -352,10 +356,6 @@ func gradientBottomColor(level: Double) -> UIColor {
     
     let fraction = (level - prevNode) / (nextNode - prevNode)
     return interpolateColorHSB(start: start, end: end, fraction: fraction)
-}
-
-func gradientTopColor(level: Double) -> UIColor {
-    return gradientBottomColor(level: level + gradientTopPlus)
 }
 
 func timerBarColor(fraction: Double) -> UIColor {

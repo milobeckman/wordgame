@@ -121,6 +121,7 @@ class GameView {
     }
     
     func switchToNightMode() {
+        night = true
         buttonHandler.viewController!.setNeedsStatusBarAppearanceUpdate()
         scoreView.switchToNightMode()
         pauseView.switchToNightMode()
