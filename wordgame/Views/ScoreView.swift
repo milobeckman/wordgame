@@ -99,7 +99,7 @@ class ScoreView {
         
         if displayScore < game.currentScore {
             displayScore += 1
-            if !showBestScoreView {
+            if !showBestScoreView || !showBestLevelView {
                 showBestIfBest()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + scoreTickInterval, execute: {

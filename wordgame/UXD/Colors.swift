@@ -12,7 +12,7 @@ import UIKit
 
 // GameView
 let backgroundColor = UIColor(hue: 0.6167, saturation: 0.72, brightness: 0.66, alpha: 1.0)
-let gradientNodes = [-8.0, 1.0, 13.0, 18.0, 25.0, 50.0, 100.0]
+let gradientNodes = [-8.0, 1.0, 9.0, 18.0, 25.0, 50.0, 100.0]
 let gradientHSBs = [//[0.5111,0.14,1.00],
                     [0.4917,0.07,1.0],      // white-ish blue
                     [0.5222,0.14,0.86],     // sky blue
