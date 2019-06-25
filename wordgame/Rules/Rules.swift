@@ -30,7 +30,7 @@ class Rules {
     
     
     func trueLevel(tilesServed: Int) -> Double {
-        return Double(tilesServed) / Double(tilesPerLevel) + 1.0
+        return (Double(tilesServed) / Double(tilesPerLevel)) + 1.0
     }
     
     

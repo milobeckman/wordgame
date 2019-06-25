@@ -34,6 +34,8 @@ class BackgroundView {
         middleView = UIView(frame: device.screenBounds)
         middleView.backgroundColor = middleColor
         view.addSubview(middleView)
+        
+        update()
     }
     
     func update() {
@@ -43,7 +45,7 @@ class BackgroundView {
         let top = gradientTopColor(level: trueLevel).cgColor
         gradient.colors = [top, bottom]
         
-        UIView.animate(withDuration: 5.0, animations: {
+        UIView.animate(withDuration: backgroundRiseDuration, animations: {
             self.spaceView.frame = device.spaceViewFrame(level: trueLevel)
         })
     }

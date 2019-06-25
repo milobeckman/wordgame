@@ -22,8 +22,11 @@ class PauseView {
     
     var curtainMask: CAShapeLayer
     
+    let numMenuButtons = 1
     var menuButtons: [UIView]
     var menuLabels: [UILabel]
+    var highScoreLabel: UILabel
+    
     
     
     init() {
@@ -49,6 +52,7 @@ class PauseView {
         
         menuButtons = []
         menuLabels = []
+        highScoreLabel = UILabel()
         
         addMenuButton(action: "restart", labelText: "Restart")
         setupMenu()
@@ -57,11 +61,11 @@ class PauseView {
     }
     
     func addMenuButton(action: String, labelText: String) {
-        let newButton = UIView(frame: device.menuButtonFrame(i: menuButtons.count))
+        let newButton = UIView(frame: device.menuButtonFrame(numMenuButtons: numMenuButtons, i: menuButtons.count))
         buttonHandler.addButton(frame: newButton.frame, action: action)
         menuButtons.append(newButton)
         
-        let newLabel = UILabel(frame: device.menuButtonFrame(i: menuLabels.count))
+        let newLabel = UILabel(frame: device.menuButtonFrame(numMenuButtons: numMenuButtons, i: menuLabels.count))
         newLabel.text = labelText
         menuLabels.append(newLabel)
     }
@@ -83,6 +87,19 @@ class PauseView {
             label.baselineAdjustment = .alignCenters
             curtainView.addSubview(label)
         }
+        
+        highScoreLabel = UILabel(frame: device.highScoreLabelFrame(numMenuButtons: numMenuButtons))
+        highScoreLabel.font = highScoreFont
+        highScoreLabel.textColor = levelTextColor(level: game.currentLevel)
+        highScoreLabel.textAlignment = .center
+        highScoreLabel.adjustsFontSizeToFitWidth = true
+        highScoreLabel.baselineAdjustment = .alignCenters
+        let highScore = storage.getInt(key: "bestScore")
+        if highScore > 0 {
+            highScoreLabel.text = "High score: " + String(highScore)
+        }
+        curtainView.addSubview(highScoreLabel)
+        
     }
     
     func pause() {
@@ -138,6 +155,8 @@ class PauseView {
         for label in menuLabels {
             label.textColor = menuButtonBorderColor()
         }
+        
+        highScoreLabel.textColor = levelTextColor(level: game.currentLevel)
     }
     
     func gameOver() {

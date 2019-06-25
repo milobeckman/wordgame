@@ -41,6 +41,7 @@ class Device {
     var menuButtonBorderWidth = CGFloat(4)
     var paddingBetweenMenuButtons = CGFloat(10)
     var paddingToSideOfMenuButtons = CGFloat(60)
+    var highScoreLabelHeight = CGFloat(22)
     
     var badgeRadius = CGFloat(20)
     var badgeShadowRadius = CGFloat(8)
@@ -284,18 +285,23 @@ class Device {
         return CGRect(x: 0, y: timerY-1, width: screenWidth, height: 1)
     }
     
-    func menuButtonFrame(i: Int) -> CGRect {
-        let totalMenuButtons = CGFloat(1)
+    func menuButtonFrame(numMenuButtons: Int, i: Int) -> CGRect {
         
         let curtainHeight = pauseCurtainFramePaused().height
         let curtainY = pauseCurtainFramePaused().minY
-        let menuHeight = totalMenuButtons*menuButtonHeight + (totalMenuButtons-1)*paddingBetweenMenuButtons
+        let menuHeight = CGFloat(numMenuButtons)*menuButtonHeight + CGFloat(numMenuButtons-1)*paddingBetweenMenuButtons
         
         let x = paddingToSideOfMenuButtons
         let y = curtainY + 0.5*(curtainHeight - menuHeight) + CGFloat(i)*(menuButtonHeight + paddingBetweenMenuButtons)
         let width = screenWidth - 2*paddingToSideOfMenuButtons
         
         return CGRect(x: x, y: y, width: width, height: menuButtonHeight)
+    }
+    
+    func highScoreLabelFrame(numMenuButtons: Int) -> CGRect {
+        let topButtonFrame = menuButtonFrame(numMenuButtons: numMenuButtons, i: 0)
+        let y = topButtonFrame.minY - paddingBetweenMenuButtons - highScoreLabelHeight
+        return CGRect(x: 0, y: y, width: screenWidth, height: highScoreLabelHeight)
     }
     
     

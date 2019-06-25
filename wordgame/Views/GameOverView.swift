@@ -67,7 +67,7 @@ class GameOverView {
         })
     }
     
-    func handleHighscores() {
+    func updateHighscores() {
         if game.currentScore > storage.getInt(key: "bestScore") {
             storage.putInt(key: "bestScore", value: game.currentScore)
         }
@@ -136,7 +136,7 @@ class GameOverView {
         glowing = true
         startGlowingPlayAgainButton()
         
-        handleHighscores()
+        updateHighscores()
         
     }
     

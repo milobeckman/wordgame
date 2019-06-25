@@ -110,14 +110,16 @@ class ScoreView {
     
     func showBestIfBest() {
         let bestScore = storage.getInt(key: "bestScore")
-        if displayScore > bestScore && bestScore > 0 {
+        if !showBestScoreView && displayScore > bestScore && bestScore > 0 {
             showBestScoreView = true
             repositionBestScoreView()
+            gameView.gameOverView.updateHighscores()
         }
         let bestLevel = storage.getInt(key: "bestLevel")
-        if game.currentLevel > bestLevel && bestLevel > 0 {
+        if !showBestLevelView && game.currentLevel > bestLevel && bestLevel > 0 {
             showBestLevelView = true
             repositionBestLevelView()
+            gameView.gameOverView.updateHighscores()
         }
     }
     

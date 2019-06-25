@@ -19,6 +19,9 @@ let repeatTimeCombo = 2.0
 let repeatTimeStreak = 2.0
 let streakViewFadeDuration = 0.5
 
+// BackgroundView.update()
+let backgroundRiseDuration = 5.0
+
 // switchToNightMode()
 let nightBlinkDuration = 0.2
 
