@@ -16,7 +16,7 @@ let fontBold = "BanglaSangamMN-Bold"
 
 // sizes
 let scoreTextSize = CGFloat(60)*device.fontScale
-let levelTextSize = CGFloat(13)*device.fontScale
+let levelTextSize = CGFloat(18)*device.fontScale
 let tileTextSize = CGFloat(40)*device.fontScale
 let tileScoreTextSize = CGFloat(18)*device.fontScale
 let badgeTextSize = CGFloat(20)*device.fontScale

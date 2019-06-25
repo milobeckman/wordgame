@@ -21,7 +21,7 @@ class Device {
     var paddingAboveScore = CGFloat(0)
     var scoreHeight = CGFloat(60)
     var paddingAboveLevel = CGFloat(0)
-    var levelHeight = CGFloat(14)
+    var levelHeight = CGFloat(18)
     
     var paddingAroundPauseBar = CGFloat(8)
     

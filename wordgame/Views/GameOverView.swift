@@ -86,6 +86,9 @@ class GameOverView {
         if game.longestStreak > storage.getInt(key: "bestStreak") {
             storage.putInt(key: "bestStreak", value: game.longestStreak)
         }
+        if game.currentLevel > storage.getInt(key: "bestLevel") {
+            storage.putInt(key: "bestLevel", value: game.currentLevel)
+        }
     }
     
     func shrinkGridView() {
@@ -201,8 +204,7 @@ class GameOverView {
     
     func showBestViews() {
         
-        let bestBools = [game.tilesDropped > storage.getInt(key: "bestTilesDropped"),
-                         game.wordsCleared > storage.getInt(key: "bestWordsCleared"),
+        let bestBools = [game.wordsCleared > storage.getInt(key: "bestWordsCleared"),
                          game.averageWordScore() > storage.getDouble(key: "bestAverageWordScore"),
                          game.longestStreak > storage.getInt(key: "bestStreak")]
         

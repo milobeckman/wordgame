@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-let levelPrefix = "Level: "
+let levelPrefix = "Level "
 
 class ScoreView {
     
@@ -23,6 +23,8 @@ class ScoreView {
     
     var bestScoreView: BestView
     var showBestScoreView: Bool
+    var bestLevelView: BestView
+    var showBestLevelView: Bool
     
     init(game: Game) {
         
@@ -52,6 +54,9 @@ class ScoreView {
         bestScoreView = BestView()
         view.addSubview(bestScoreView.view)
         showBestScoreView = false
+        bestLevelView = BestView()
+        view.addSubview(bestLevelView.view)
+        showBestLevelView = false
         
         updateView()
         
@@ -67,6 +72,10 @@ class ScoreView {
         bestScoreView.view.isHidden = !showBestScoreView
         if [10,100,1000].contains(displayScore) {
             repositionBestScoreView()
+        }
+        bestLevelView.view.isHidden = !showBestLevelView
+        if [10,100].contains(game.currentLevel) {
+            repositionBestLevelView()
         }
     }
     
@@ -90,11 +99,21 @@ class ScoreView {
             showBestScoreView = true
             repositionBestScoreView()
         }
+        let bestLevel = storage.getInt(key: "bestLevel")
+        if game.currentLevel > bestLevel && bestLevel > 0 {
+            showBestLevelView = true
+            repositionBestLevelView()
+        }
     }
     
     func repositionBestScoreView() {
         let x = CGFloat(String(displayScore).count)*characterWidthPerFontSize*0.5*scoreTextSize + device.screenWidth*0.5
         bestScoreView.moveTo(x: x, y: device.scoreY)
+    }
+    
+    func repositionBestLevelView() {
+        let x = CGFloat((String(game.currentLevel) + levelPrefix).count)*characterWidthPerFontSize*0.5*levelTextSize + device.screenWidth*0.5
+        bestLevelView.moveTo(x: x, y: device.levelY - device.bestHeight*0.5)
     }
     
 }

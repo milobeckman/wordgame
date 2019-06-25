@@ -128,7 +128,7 @@
 		26DD29C2224F319800238A31 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		26DD29C5224F324200238A31 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		26F341EB223FFD8D006CAA0A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		26F341F02240725E006CAA0A /* IO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IO.swift; path = ../Helpers/IO.swift; sourceTree = "<group>"; };
+		26F341F02240725E006CAA0A /* IO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO.swift; sourceTree = "<group>"; };
 		26F341F522408158006CAA0A /* Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
 		26F39564224FD911001081C1 /* 1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 1.txt; sourceTree = "<group>"; };
 		26F39566224FD91E001081C1 /* 2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 2.txt; sourceTree = "<group>"; };
@@ -167,7 +167,6 @@
 			children = (
 				260EAB7C2270A73400B005DA /* TileGenerator.swift */,
 				261FD3C52258FA99001B1AF0 /* PlaytestOptions.swift */,
-				26F341F02240725E006CAA0A /* IO.swift */,
 				26F790D32273779D00245B2C /* Settings.swift */,
 				26745C79223B0D49000BCD1B /* Rules.swift */,
 			);
@@ -331,6 +330,7 @@
 		26F341F42240813B006CAA0A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				26F341F02240725E006CAA0A /* IO.swift */,
 				26F790D52273784B00245B2C /* Storage.swift */,
 				26F341F522408158006CAA0A /* Other.swift */,
 			);
