@@ -55,6 +55,7 @@ class ViewController: UIViewController {
         backgroundView = BackgroundView()
         gameView = GameView(game: game)
         viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -101,6 +102,14 @@ class ViewController: UIViewController {
         super.touchesEnded(touches, with: event)
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if nightMode(level: game.currentLevel) {
+            return .lightContent
+        } else {
+            return .default
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

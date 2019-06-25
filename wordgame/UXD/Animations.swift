@@ -19,6 +19,9 @@ let repeatTimeCombo = 2.0
 let repeatTimeStreak = 2.0
 let streakViewFadeDuration = 0.5
 
+// switchToNightMode()
+let nightBlinkDuration = 0.2
+
 // TileView.pop()
 let popDuration = 0.5
 let popDelay = 0.15

@@ -121,7 +121,8 @@ class GameView {
     }
     
     func switchToNightMode() {
-        scoreView.updateView()
+        buttonHandler.viewController!.setNeedsStatusBarAppearanceUpdate()
+        scoreView.switchToNightMode()
         pauseView.switchToNightMode()
         for gridSlotView in gridView.gridSlotViews {
             gridSlotView.update()
