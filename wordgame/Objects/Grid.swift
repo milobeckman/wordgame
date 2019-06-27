@@ -94,11 +94,13 @@ class Grid {
         }
     }
     
-    func patternForWordPath(wordPath: [Int], position: Int) -> String {
+    func patternForWordPath(wordPath: [Int], position: Int, length: Int=1) -> String {
         var word = ""
         for i in wordPath {
             if i == position {
-                word += "?" // CHANGE IF THERE ARE DOUBLE WILDS
+                for _ in 0..<length {
+                    word += "?"
+                }
             } else if tiles[i].isLetterLike() {
                 word += tiles[i].text
             } else {
@@ -182,6 +184,21 @@ class Grid {
         }
         
         return score
+    }
+    
+    func numClearedForChoice(choice: String, position: Int) -> Int {
+        var numCleared = 0
+        
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) {
+            if wordPath.contains(position) {
+                let word = wordForWordPathWithChoice(wordPath: wordPath, position: position, choice: choice)
+                if word != noneString && rules.isWord(word: word) {
+                    numCleared += 1
+                }
+            }
+        }
+        
+        return numCleared
     }
     
     func clearPositions(positions: [Int]) {

@@ -137,42 +137,6 @@ class GridView {
         grid.wipeSavesAfterDrop(position: position)
     }
     
-    func checkForWigglesAndExpires() {
-        for tileView in tileViews where tileView.tile.type == "ice" || tileView.tile.type == "charm" {
-            if tileView.tile.dropsLeft == 1 {
-                tileView.wiggle()
-            }
-            
-            if tileView.tile.dropsLeft == 0 {
-                grid.tiles[device.gridPositionForFrame(frame: tileView.depthFrame)] = Tile()
-                tileView.expire()
-                tileViews.remove(tileView)
-            }
-        }
-    }
-    
-    func checkForUniceAndUncharm() {
-        var shouldUnice = game.iced
-        var shouldUncharm = game.charmed
-        
-        for tileView in tileViews {
-            if tileView.tile.type == "ice" {
-                shouldUnice = false
-            }
-            if tileView.tile.type == "charm" {
-                shouldUncharm = false
-            }
-        }
-        
-        if shouldUnice {
-            game.iced = false
-            gameView.timerView.unice()
-            backgroundView.unice()
-        }
-        if shouldUncharm {
-            game.charmed = false
-        }
-    }
     
     
     
@@ -281,6 +245,67 @@ class GridView {
         
         tileView.evaporate()
     }
+    
+    
+    
+    /* WIGGLES AND EXPIRES */
+    
+    func expireSomething() {
+        for tileView in tileViews {
+            if tileView.tile.type == "ice" {
+                let position = device.gridPositionForFrame(frame: tileView.depthFrame)
+                giveAndEvaporateTile(tileView: tileView, position: position)
+            }
+        }
+        
+        for tileView in tileViews {
+            if tileView.tile.type == "charm" {
+                let position = device.gridPositionForFrame(frame: tileView.depthFrame)
+                giveAndEvaporateTile(tileView: tileView, position: position)
+            }
+        }
+    }
+    
+    func checkForWigglesAndExpires() {
+        for tileView in tileViews where tileView.tile.type == "ice" || tileView.tile.type == "charm" {
+            if tileView.tile.dropsLeft == 1 {
+                tileView.wiggle()
+            }
+            
+            if tileView.tile.dropsLeft == 0 {
+                grid.tiles[device.gridPositionForFrame(frame: tileView.depthFrame)] = Tile()
+                tileView.expire()
+                tileViews.remove(tileView)
+            }
+        }
+    }
+    
+    func checkForUniceAndUncharm() {
+        var shouldUnice = game.iced
+        var shouldUncharm = game.charmed
+        
+        for tileView in tileViews {
+            if tileView.tile.type == "ice" {
+                shouldUnice = false
+            }
+            if tileView.tile.type == "charm" {
+                shouldUncharm = false
+            }
+        }
+        
+        if shouldUnice {
+            game.iced = false
+            gameView.timerView.unice()
+            backgroundView.unice()
+        }
+        if shouldUncharm {
+            game.charmed = false
+        }
+    }
+    
+    
+    
+    
     
     
     func gameOver() {

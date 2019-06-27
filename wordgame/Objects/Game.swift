@@ -162,6 +162,11 @@ class Game {
                 if tile.type == "trash" {
                     return
                 }
+                
+                if tile.type == "ice" || tile.type == "charm" {
+                    gameView.gridView.expireSomething()
+                    return
+                }
             }
             
             if numDeadTiles() > 0 {

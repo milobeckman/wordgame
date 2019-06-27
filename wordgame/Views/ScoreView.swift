@@ -113,13 +113,13 @@ class ScoreView {
         if !showBestScoreView && displayScore > bestScore && bestScore > 0 {
             showBestScoreView = true
             repositionBestScoreView()
-            gameView.gameOverView.updateHighscores()
+            storage.updateHighscores()
         }
         let bestLevel = storage.getInt(key: "bestLevel")
         if !showBestLevelView && game.currentLevel > bestLevel && bestLevel > 0 {
             showBestLevelView = true
             repositionBestLevelView()
-            gameView.gameOverView.updateHighscores()
+            storage.updateHighscores()
         }
     }
     

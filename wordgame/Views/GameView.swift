@@ -193,6 +193,8 @@ class GameView {
         pauseView.unpause()
     }
     
+
+    
     func gameOver() {
         
         // no wait! we can end an ice or charm

@@ -106,4 +106,29 @@ class Storage {
     
     
     
+    func updateHighscores() {
+        if game.currentScore > storage.getInt(key: "bestScore") {
+            storage.putInt(key: "bestScore", value: game.currentScore)
+        }
+        if game.currentLevel > storage.getInt(key: "bestLevel") {
+            storage.putInt(key: "bestLevel", value: game.currentLevel)
+        }
+    }
+    
+    func updateStats() {
+        if game.tilesDropped > storage.getInt(key: "bestTilesDropped") {
+            storage.putInt(key: "bestTilesDropped", value: game.tilesDropped)
+        }
+        if game.wordsCleared > storage.getInt(key: "bestWordsCleared") {
+            storage.putInt(key: "bestWordsCleared", value: game.wordsCleared)
+        }
+        if game.averageWordScore() > storage.getDouble(key: "bestAverageWordScore") {
+            storage.putDouble(key: "bestAverageWordScore", value: game.averageWordScore())
+        }
+        if game.longestStreak > storage.getInt(key: "bestStreak") {
+            storage.putInt(key: "bestStreak", value: game.longestStreak)
+        }
+    }
+    
+    
 }
