@@ -105,7 +105,7 @@ class WishList {
     
     func printWishList() {
         for wishListItem in wishListItems {
-            print(wishListItem.text + " @" + String(wishListItem.position) + "   +" + wishListItem.score)
+            print(wishListItem.text + " @" + String(wishListItem.position) + "   +" + String(wishListItem.score))
         }
     }
     

@@ -43,7 +43,7 @@ func tileBag(level: Int, howFull: Double) -> [String: Double] {
     bag[".life"] = 3.0
     bag[".bomb"] = level >= 5 && howFull < 1.0 ? 20.0*pow(howFull, 4.0) : 0
     bag["2"] = level >= 10 ? pow(4.0*Double(level-8), 0.5) : 0
-    bag[".ice"] = level >= 15 ? 3.0 : 0
+    bag[".ice"] = 30.0 //level >= 15 ? 3.0 : 0
     bag["3"] = level >= 20 ? pow(3.0*Double(level-18), 0.5) : 0
     
     

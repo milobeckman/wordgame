@@ -132,8 +132,6 @@ class GridView {
             revive(position: position)
         }
         
-        checkForWigglesAndExpires()
-        checkForUniceAndUncharm()
         grid.wipeSavesAfterDrop(position: position)
     }
     
@@ -250,32 +248,40 @@ class GridView {
     
     /* WIGGLES AND EXPIRES */
     
+    func expire(tileView: TileView) {
+        grid.tiles[device.gridPositionForFrame(frame: tileView.depthFrame)] = Tile()
+        tileView.expire()
+        tileViews.remove(tileView)
+    }
+    
     func expireSomething() {
         for tileView in tileViews {
             if tileView.tile.type == "ice" {
-                let position = device.gridPositionForFrame(frame: tileView.depthFrame)
-                giveAndEvaporateTile(tileView: tileView, position: position)
+                expire(tileView: tileView)
+                return
             }
         }
         
         for tileView in tileViews {
             if tileView.tile.type == "charm" {
-                let position = device.gridPositionForFrame(frame: tileView.depthFrame)
-                giveAndEvaporateTile(tileView: tileView, position: position)
+                expire(tileView: tileView)
+                return
             }
         }
     }
     
     func checkForWigglesAndExpires() {
+        if game.numDeadTiles() + game.numFullTiles() == 16 {
+            return
+        }
+        
         for tileView in tileViews where tileView.tile.type == "ice" || tileView.tile.type == "charm" {
             if tileView.tile.dropsLeft == 1 {
                 tileView.wiggle()
             }
             
             if tileView.tile.dropsLeft == 0 {
-                grid.tiles[device.gridPositionForFrame(frame: tileView.depthFrame)] = Tile()
-                tileView.expire()
-                tileViews.remove(tileView)
+                expire(tileView: tileView)
             }
         }
     }

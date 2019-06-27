@@ -77,6 +77,9 @@ class GameView {
                 serveNewTile(rackPosition: i)
             }
         }
+        
+        gridView.checkForWigglesAndExpires()
+        gridView.checkForUniceAndUncharm()
     }
     
     func serveNewTile(rackPosition: Int) {
@@ -196,17 +199,6 @@ class GameView {
 
     
     func gameOver() {
-        
-        // no wait! we can end an ice or charm
-        for tileView in gridView.tileViews {
-            if tileView.tile.type == "ice" || tileView.tile.type == "charm" {
-                game.grid.tiles[device.gridPositionForFrame(frame: tileView.depthFrame)] = Tile()
-                tileView.expire()
-                gridView.tileViews.remove(tileView)
-                gridView.checkForUniceAndUncharm()
-                return
-            }
-        }
         
         game.over = true
         gridView.view.removeFromSuperview()

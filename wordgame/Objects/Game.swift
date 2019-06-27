@@ -162,7 +162,9 @@ class Game {
                 if tile.type == "trash" {
                     return
                 }
-                
+            }
+            
+            for tile in grid.tiles {
                 if tile.type == "ice" || tile.type == "charm" {
                     gameView.gridView.expireSomething()
                     return
