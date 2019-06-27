@@ -14,13 +14,22 @@ class WishListItem {
     var text: String
     var numCleared: Int
     var score: Int
+    var dependencies: [Int]
     
     init(grid: Grid, position: Int, text: String) {
         
         self.position = position
         self.text = text
         
-        numCleared = grid.numClearedForChoice(choice: text, position: position)
+        let clearingPaths = grid.clearingPathsForChoice(choice: text, position: position)
+        numCleared = clearingPaths.count
+        dependencies = []
+        for wordPath in clearingPaths {
+            for position in wordPath where !dependencies.contains(position) {
+                dependencies += [position]
+            }
+        }
+        
         score = grid.scoreForChoice(choice: text, position: position)
     }
     

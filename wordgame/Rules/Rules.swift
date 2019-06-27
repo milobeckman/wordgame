@@ -94,6 +94,20 @@ class Rules {
         return false
     }
     
+    // including * for wilds
+    func canBeWord(word: String) -> Bool {
+        if let wordList = wordLists[word.count] {
+            let regex = word.replacingOccurrences(of: "*", with: "[a-z]")
+            for word in wordList {
+                if word.range(of: regex, options: .regularExpression) != nil {
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
+    
     
     
     /* SCORING */

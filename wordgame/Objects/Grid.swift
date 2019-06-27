@@ -16,6 +16,7 @@ class Grid {
     
     init() {
         tiles = []
+        
         savedChoicesForWilds = []
         for _ in 0...15 {
             let tile = Tile(type: "null", text: "")
@@ -59,6 +60,35 @@ class Grid {
         
         return true
     }
+    
+    
+    func takeTile(tile: Tile, position: Int) {
+        tiles[position] = tile
+        wishList.tileDropped(position: position)
+    }
+    
+    func giveTile(position: Int) {
+        tiles[position] = Tile()
+        wishList.tileDeleted(position: position)
+    }
+    
+    func clearWordPaths(wordPaths: [[Int]]) {
+        var gridPositions = [Int]()
+        for wordPath in wordPaths {
+            for i in wordPath {
+                if !gridPositions.contains(i) {
+                    gridPositions.append(i)
+                }
+            }
+        }
+        
+        clearPositions(positions: gridPositions)
+        wishList.wordPathsCleared(wordPaths: wordPaths)
+    }
+    
+    
+    
+    /* WILDS */
     
     func optimizeWilds(position: Int) {
         var activeWordPaths = [[Int]]()
@@ -175,7 +205,7 @@ class Grid {
         for wordPath in rules.legalWordPaths(level: game.currentLevel) {
             if wordPath.contains(position) {
                 let word = wordForWordPathWithChoice(wordPath: wordPath, position: position, choice: choice)
-                if word != noneString && rules.isWord(word: word) {
+                if word != noneString && rules.canBeWord(word: word) {
                     for tilePosition in wordPath {
                         score += tiles[tilePosition].score()
                     }
@@ -186,19 +216,17 @@ class Grid {
         return score
     }
     
-    func numClearedForChoice(choice: String, position: Int) -> Int {
-        var numCleared = 0
+    func clearingPathsForChoice(choice: String, position: Int) -> [[Int]] {
+        var clearingPaths = [[Int]]()
         
-        for wordPath in rules.legalWordPaths(level: game.currentLevel) {
-            if wordPath.contains(position) {
-                let word = wordForWordPathWithChoice(wordPath: wordPath, position: position, choice: choice)
-                if word != noneString && rules.isWord(word: word) {
-                    numCleared += 1
-                }
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
+            let word = wordForWordPathWithChoice(wordPath: wordPath, position: position, choice: choice)
+            if word != noneString && rules.canBeWord(word: word) {
+                clearingPaths += [wordPath]
             }
         }
         
-        return numCleared
+        return clearingPaths
     }
     
     func clearPositions(positions: [Int]) {

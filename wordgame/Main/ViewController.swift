@@ -19,6 +19,7 @@ var storage = Storage()
 var game = Game()
 var backgroundView = BackgroundView()
 var gameView = GameView(game: game)
+var wishList = WishList(grid: game.grid)
 var dragHandler = DragHandler(gameView: gameView)
 var buttonHandler = ButtonHandler()
 
@@ -54,6 +55,7 @@ class ViewController: UIViewController {
         game = Game()
         backgroundView = BackgroundView()
         gameView = GameView(game: game)
+        wishList = WishList(grid: game.grid)
         viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
     }

@@ -141,13 +141,13 @@ class GridView {
     /* BASIC CHANGES TO GRID COMPONENTS */
     
     func giveTile(tileView: TileView, position: Int) {
-        grid.tiles[position] = Tile()
+        grid.giveTile(position: position)
         tileViews.remove(tileView)
         tileView.view.removeFromSuperview()
     }
     
     func takeTile(tileView: TileView, position: Int) {
-        grid.tiles[position] = tileView.tile
+        grid.takeTile(tile: tileView.tile, position: position)
         tileViews.insert(tileView)
         view.addSubview(tileView.view)
         
@@ -215,6 +215,7 @@ class GridView {
     
     func scoreAndClearWordPaths(wordPaths: [[Int]]) {
         game.scoreWordPaths(wordPaths: wordPaths)
+        grid.clearWordPaths(wordPaths: wordPaths)
         
         var gridPositions = [Int]()
         for wordPath in wordPaths {
@@ -224,9 +225,6 @@ class GridView {
                 }
             }
         }
-        
-        grid.clearPositions(positions: gridPositions)
-        
         for tileView in tileViews {
             let position = device.gridPositionForFrame(frame: tileView.depthFrame)
             
