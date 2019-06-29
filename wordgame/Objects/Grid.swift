@@ -64,12 +64,16 @@ class Grid {
     
     func takeTile(tile: Tile, position: Int) {
         tiles[position] = tile
-        wishList.tileDropped(position: position)
+        DispatchQueue.global(qos: .userInitiated).async {
+            wishList.tileDropped(position: position)
+        }
     }
     
     func giveTile(position: Int) {
         tiles[position] = Tile()
-        wishList.tileDeleted(position: position)
+        DispatchQueue.global(qos: .userInitiated).async {
+            wishList.tileDeleted(position: position)
+        }
     }
     
     func clearWordPaths(wordPaths: [[Int]]) {
@@ -83,7 +87,9 @@ class Grid {
         }
         
         clearPositions(positions: gridPositions)
-        wishList.wordPathsCleared(wordPaths: wordPaths)
+        DispatchQueue.global(qos: .userInitiated).async {
+            wishList.wordPathsCleared(wordPaths: wordPaths)
+        }
     }
     
     

@@ -66,6 +66,10 @@ class ScoreView {
         scoreView.text = String(displayScore)
         levelView.text = levelPrefix + String(game.currentLevel)
         
+        if [100,1000].contains(displayScore) {
+            blinkScoreView()
+        }
+        
         bestScoreView.view.isHidden = !showBestScoreView
         if [10,100,1000].contains(displayScore) {
             repositionBestScoreView()
@@ -80,18 +84,37 @@ class ScoreView {
         scoreView.textColor = scoreTextColorNight
         levelView.textColor = scoreTextColorNight
         
-        let blinkOffTime = nightBlinkDuration + Double(game.currentScore - displayScore)*scoreTickInterval
-        let blinkOnTime = blinkOffTime + nightBlinkDuration
+        blinkLevelView()
+    }
     
-        DispatchQueue.main.asyncAfter(deadline: .now() + blinkOffTime, execute: {
-            self.scoreView.textColor = scoreTextColorDay
-            self.levelView.textColor = scoreTextColorDay
-        })
+    func blinkLevelView() {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + blinkOnTime, execute: {
-            self.scoreView.textColor = scoreTextColorNight
-            self.levelView.textColor = scoreTextColorNight
-        })
+        for i in 1...4 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + nightBlinkDuration*Double(i), execute: {
+                if i % 2 == 1 {
+                    self.levelView.textColor = scoreTextColorDay
+                } else {
+                    self.levelView.textColor = scoreTextColorNight
+                }
+            })
+        }
+        
+    }
+    
+    func blinkScoreView() {
+        
+        let night = nightMode(level: game.currentLevel) ? 0 : 1
+        
+        for i in 1...4 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + nightBlinkDuration*Double(i) + scoreTickInterval*Double(game.currentScore - displayScore), execute: {
+                                                
+                if (i+night) % 2 == 1 {
+                    self.scoreView.textColor = scoreTextColorDay
+                } else {
+                    self.scoreView.textColor = scoreTextColorNight
+                }
+            })
+        }
     }
     
     func showyUpdate() {
