@@ -48,6 +48,10 @@ class Grid {
             }
         }
         
+        if word.contains("*") {
+            return rules.canBeWord(word: word)
+        }
+        
         return rules.isWord(word: word)
     }
     
@@ -64,6 +68,14 @@ class Grid {
     
     func takeTile(tile: Tile, position: Int) {
         tiles[position] = tile
+        
+        if tile.type == "wild" {
+            let bestChoice = wishList.bestChoiceForWild(position: position)
+            if bestChoice != noneString {
+                tile.text = bestChoice
+            }
+        }
+        
         DispatchQueue.global(qos: .userInitiated).async {
             wishList.tileDropped(position: position)
         }
@@ -95,6 +107,20 @@ class Grid {
     
     
     /* WILDS */
+    
+    func chooseAuxiliaryWilds(position: Int, wordPaths: [[Int]]) {
+        for wordPath in wordPaths {
+            for i in wordPath where i != position && tiles[i].type == "wild" {
+                tiles[i].text = anyClearingChoice(position: i, wordPath: wordPath)
+            }
+        }
+    }
+    
+    func anyClearingChoice(position: Int, wordPath: [Int]) -> String {
+        let pattern = patternForWordPath(wordPath: wordPath, position: position)
+        
+        return choicesForWild(pattern: pattern)[0]
+    }
     
     func optimizeWilds(position: Int) {
         var activeWordPaths = [[Int]]()
@@ -163,6 +189,9 @@ class Grid {
     }
     
     func bestChoiceForWild(position: Int) -> String {
+        
+        return wishList.bestChoiceForWild(position: position)
+        // TEST!
         
         if savedChoicesForWilds[position] != "*" {
             return savedChoicesForWilds[position]
@@ -244,6 +273,7 @@ class Grid {
     /* pre-decide what wilds should be, for better runtime performance */
     
     func preemptWildDrop(position: Int) {
+        /*
         if savedChoicesForWilds[position] != "*" {
             return
         }
@@ -253,7 +283,7 @@ class Grid {
             if choice != noneString {
                 self.savedChoicesForWilds[position] = choice
             }
-        }
+        }*/
     }
     
     func wipeSavesAfterDrop(position: Int) {

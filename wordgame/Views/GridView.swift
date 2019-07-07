@@ -191,11 +191,13 @@ class GridView {
     
     func clearWordsIfPossible(position: Int) {
         
-        grid.optimizeWilds(position: position)
-        showChoicesForWilds()
-        
         let wordPathsToClear = grid.wordPathsToClear()
+        
         if wordPathsToClear.count > 0 {
+            
+            grid.chooseAuxiliaryWilds(position: position, wordPaths: wordPathsToClear)
+            showChoicesForWilds()
+            
             scoreAndClearWordPaths(wordPaths: wordPathsToClear)
             game.updateLevelIfNeeded()
             checkForUniceAndUncharm()

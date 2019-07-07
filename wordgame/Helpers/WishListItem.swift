@@ -8,13 +8,19 @@
 
 import Foundation
 
-class WishListItem {
+class WishListItem: CustomStringConvertible {
     
     var position: Int
     var text: String
     var numCleared: Int
     var score: Int
     var dependencies: [Int]
+    
+    var description: String {
+        return text + " @" + String(position)
+                    + " x" + String(numCleared)
+                    + " +" + String(score)
+    }
     
     init(grid: Grid, position: Int, text: String) {
         

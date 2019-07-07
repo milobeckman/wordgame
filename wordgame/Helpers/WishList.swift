@@ -14,144 +14,127 @@ import Foundation
 class WishList {
     
     var grid: Grid
-    var wishListItems: [WishListItem]
+    
     var wordPathFullness: [[Int]: Int]
+    var emptyPositionForWordPath: [[Int]: Int]
+    var clearingChoicesForWordPath: [[Int]: [String]]
+    
     
     
     init(grid: Grid) {
         self.grid = grid
-        wishListItems = []
         
-        // assume the grid starts empty
         wordPathFullness = [:]
+        emptyPositionForWordPath = [:]
+        clearingChoicesForWordPath = [:]
+        
         for wordPath in rules.legalWordPaths(level: game.currentLevel) {
             wordPathFullness[wordPath] = 0
         }
     }
     
-    func addWishListItem(wishListItem: WishListItem) {
-        for i in 0..<wishListItems.count {
-            if wishListItems[i].text == wishListItem.text && wishListItems[i].position == wishListItem.position {
-                wishListItems[i] = wishListItem
-                return
-            }
+    func updateWordPath(wordPath: [Int]) {
+        if wordPathFullness[wordPath] != 3 {
+            emptyPositionForWordPath[wordPath] = nil
+            clearingChoicesForWordPath[wordPath] = nil
         }
-        
-        wishListItems += [wishListItem]
-    }
-    
-    func removeWishListItemsAtPosition(position: Int) {
-        var newWishListItems = [WishListItem]()
-        for wishListItem in wishListItems {
-            if wishListItem.position != position {
-                newWishListItems += [wishListItem]
-            }
-        }
-        
-        wishListItems = newWishListItems
-    }
-    
-    func addWishListItemsForPosition(position: Int, length: Int) {
-        
-        var choices = [String]()
-        
-        for wordPath in rules.legalWordPaths(level: game.currentLevel) {
-            if wordPath.contains(position) && wordPathFullness[wordPath]! == 3 {
-                let pattern = grid.patternForWordPath(wordPath: wordPath, position: position, length: length)
-                choices += choicesForWild(pattern: pattern)
-            }
-        }
-        
-        for choice in choices {
-            let newWishListItem = WishListItem(grid: grid, position: position, text: choice)
-            addWishListItem(wishListItem: newWishListItem)
-        }
-    }
-    
-    func addWishListItemsForPositionAndPath(position: Int, wordPath: [Int], length: Int) {
-        let pattern = grid.patternForWordPath(wordPath: wordPath, position: position, length: length)
-        let choices = choicesForWild(pattern: pattern)
-        for choice in choices {
-            let newWishListItem = WishListItem(grid: grid, position: position, text: choice)
-            addWishListItem(wishListItem: newWishListItem)
-        }
-    }
-    
-    func tileDropped(position: Int) {
-        
-        removeWishListItemsAtPosition(position: position)
-        
-        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
-            wordPathFullness[wordPath]! += 1
-            if wordPathFullness[wordPath]! == 3 {
-                for emptyPosition in wordPath where grid.tiles[emptyPosition].type == "null" {
-                    addWishListItemsForPositionAndPath(position: emptyPosition, wordPath: wordPath, length: 1) // temp
+            
+        // created a 3
+        else {
+            for i in wordPath {
+                if grid.tiles[i].type == "null" {
+                    emptyPositionForWordPath[wordPath] = i
+                    clearingChoicesForWordPath[wordPath] = clearingChoices(wordPath: wordPath, position: i)
                 }
             }
+        }
+    }
+    
+    func clearingChoices(wordPath: [Int], position: Int, lengths: [Int] = [1]) -> [String] {
+        var choices = [String]()
+        
+        for length in lengths {
+            let pattern = grid.patternForWordPath(wordPath: wordPath, position: position, length: length)
+            choices += choicesForWild(pattern: pattern)
+        }
+        
+        return choices
+    }
+    
+    
+    
+    func tileDropped(position: Int) {
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
+            wordPathFullness[wordPath] = wordPathFullness[wordPath]! + 1
+            updateWordPath(wordPath: wordPath)
         }
         
         printWishList()
     }
     
     func tileDeleted(position: Int) {
-        
-        var i = 0
-        while i < wishListItems.count {
-            if wishListItems[i].dependencies.contains(position) {
-                wishListItems.remove(at: i)
-            } else {
-                i += 1
-            }
-        }
-        
         for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
-            wordPathFullness[wordPath]! -= 1
-            if wordPathFullness[wordPath]! == 3 {
-                addWishListItemsForPositionAndPath(position: position, wordPath: wordPath, length: 1) // temp
-            }
+            wordPathFullness[wordPath] = wordPathFullness[wordPath]! - 1
+            updateWordPath(wordPath: wordPath)
         }
-        
         
         printWishList()
     }
     
     func wordPathsCleared(wordPaths: [[Int]]) {
-        
         var allClearedPositions = [Int]()
         for wordPath in wordPaths {
-            allClearedPositions += wordPath
-        }
-        
-        for position in 0...15 {
-            if allClearedPositions.contains(position) {
-                for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
-                    wordPathFullness[wordPath]! -= 1
-                }
-                
-                var i = 0
-                while i < wishListItems.count {
-                    if wishListItems[i].dependencies.contains(position) {
-                        wishListItems.remove(at: i)
-                    } else {
-                        i += 1
-                    }
-                }
+            for position in wordPath where !allClearedPositions.contains(position) {
+                allClearedPositions += [position]
             }
         }
         
-        var newlyActivePositions = [Int]()
-        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPathFullness[wordPath]! == 3 {
-            for emptyPosition in wordPath where grid.tiles[emptyPosition].type == "null" {
-                newlyActivePositions += [emptyPosition]
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) {
+            for position in wordPath where allClearedPositions.contains(position) {
+                wordPathFullness[wordPath] = wordPathFullness[wordPath]! - 1
             }
+            
+            updateWordPath(wordPath: wordPath)
         }
-        
-        for newlyActivePosition in newlyActivePositions {
-            addWishListItemsForPosition(position: newlyActivePosition, length: 1) // temp
-        }
-        
         
         printWishList()
+    }
+    
+    
+    
+    func bestChoiceForWild(position: Int) -> String {
+        var choices = [String]()
+        
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
+            if wordPathFullness[wordPath] == 3 {
+                choices += clearingChoicesForWordPath[wordPath]!
+            }
+        }
+        
+        if choices.count == 0 {
+            // no way to clear this wild
+            return noneString
+        }
+        
+        // most words cleared
+        let mostCleared = modes(array: choices)
+        if mostCleared.count == 1 {
+            return mostCleared[0]
+        }
+        
+        // highest score (tiebreak)
+        var highestScoringChoice = choices[0]
+        var highestScore = 0
+        
+        for choice in choices {
+            let score = grid.scoreForChoice(choice: choice, position: position)
+            if score > highestScore {
+                highestScoringChoice = choice
+                highestScore = score
+            }
+        }
+        
+        return highestScoringChoice
     }
     
     
@@ -159,12 +142,15 @@ class WishList {
     func printWishList() {
         
         print("WISH LIST:")
-        for wishListItem in wishListItems {
-            print(wishListItem.text + " @" + String(wishListItem.position)
-                                    + " x" + String(wishListItem.numCleared)
-                                    + " +" + String(wishListItem.score))
+        
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPathFullness[wordPath] == 3 {
+            print(String(emptyPositionForWordPath[wordPath]!)
+                + ": " + clearingChoicesForWordPath[wordPath]!.description)
         }
+        
     }
+    
+    
     
     
 }
