@@ -55,10 +55,6 @@ class GridView {
         // hover over blank
         if grid.tiles[position].type == "null" {
             gridSlotViews[position].highlight()
-            
-            if tileView.tile.type == "wild" {
-                grid.preemptWildDrop(position: position)
-            }
         }
         
         // hover trash over tile
@@ -131,8 +127,6 @@ class GridView {
         else if tileView.tile.type == "life" {
             revive(position: position)
         }
-        
-        grid.wipeSavesAfterDrop(position: position)
     }
     
     
@@ -201,7 +195,6 @@ class GridView {
             scoreAndClearWordPaths(wordPaths: wordPathsToClear)
             game.updateLevelIfNeeded()
             checkForUniceAndUncharm()
-            grid.wipeAllSaves()
         }
         
         gameView.scoreView.showyUpdate()

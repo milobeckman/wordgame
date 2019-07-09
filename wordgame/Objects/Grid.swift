@@ -12,16 +12,11 @@ class Grid {
     
     var tiles: [Tile]
     
-    var savedChoicesForWilds: [String]
-    
     init() {
         tiles = []
-        
-        savedChoicesForWilds = []
         for _ in 0...15 {
-            let tile = Tile(type: "null", text: "")
-            tiles.append(tile)
-            savedChoicesForWilds.append("*")
+            let newTile = Tile()
+            tiles.append(newTile)
         }
     }
     
@@ -122,40 +117,6 @@ class Grid {
         return choicesForWild(pattern: pattern)[0]
     }
     
-    func optimizeWilds(position: Int) {
-        var activeWordPaths = [[Int]]()
-        for wordPath in rules.legalWordPaths(level: game.currentLevel) {
-            if wordPath.contains(position) && wordPathIsFull(wordPath: wordPath) {
-                activeWordPaths.append(wordPath)
-            }
-        }
-        
-        if activeWordPaths.count == 0 {
-            return
-        }
-        
-        // optimize active position first, then all
-        optimizeWildAtPosition(position: position)
-        for wordPath in activeWordPaths {
-            for i in wordPath {
-                if i != position {
-                    optimizeWildAtPosition(position: i)
-                }
-            }
-        }
-    }
-    
-    func optimizeWildAtPosition(position: Int) {
-        if tiles[position].type != "wild" {
-            return
-        }
-        
-        let bestChoice = bestChoiceForWild(position: position)
-        if bestChoice != noneString {
-            tiles[position].text = bestChoice
-        }
-    }
-    
     func patternForWordPath(wordPath: [Int], position: Int, length: Int=1) -> String {
         var word = ""
         for i in wordPath {
@@ -187,53 +148,7 @@ class Grid {
         
         return word
     }
-    
-    func bestChoiceForWild(position: Int) -> String {
-        
-        return wishList.bestChoiceForWild(position: position)
-        // TEST!
-        
-        if savedChoicesForWilds[position] != "*" {
-            return savedChoicesForWilds[position]
-        }
-        
-        var choices = [String]()
-        
-        for wordPath in rules.legalWordPaths(level: game.currentLevel) {
-            if wordPath.contains(position) {
-                let pattern = patternForWordPath(wordPath: wordPath, position: position)
-                if pattern != noneString {
-                    choices += choicesForWild(pattern: pattern)
-                }
-            }
-        }
-        
-        if choices.count == 0 {
-            // no way to clear this wild
-            return noneString
-        }
-        
-        // most words cleared
-        let mostCleared = modes(array: choices)
-        if mostCleared.count == 1 {
-            return mostCleared[0]
-        }
-        
-        // highest score (tiebreak)
-        var highestScoringChoice = choices[0]
-        var highestScore = 0
-        
-        for choice in choices {
-            let score = scoreForChoice(choice: choice, position: position)
-            if score > highestScore {
-                highestScoringChoice = choice
-                highestScore = score
-            }
-        }
-        
-        return highestScoringChoice
-    }
-    
+  
     func scoreForChoice(choice: String, position: Int) -> Int {
         var score = 0
         
@@ -250,53 +165,10 @@ class Grid {
         
         return score
     }
-    
-    func clearingPathsForChoice(choice: String, position: Int) -> [[Int]] {
-        var clearingPaths = [[Int]]()
-        
-        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
-            let word = wordForWordPathWithChoice(wordPath: wordPath, position: position, choice: choice)
-            if word != noneString && rules.canBeWord(word: word) {
-                clearingPaths += [wordPath]
-            }
-        }
-        
-        return clearingPaths
-    }
-    
+
     func clearPositions(positions: [Int]) {
         for position in positions {
             tiles[position] = Tile()
-        }
-    }
-    
-    /* pre-decide what wilds should be, for better runtime performance */
-    
-    func preemptWildDrop(position: Int) {
-        /*
-        if savedChoicesForWilds[position] != "*" {
-            return
-        }
-        
-        DispatchQueue.main.async {
-            let choice = self.bestChoiceForWild(position: position)
-            if choice != noneString {
-                self.savedChoicesForWilds[position] = choice
-            }
-        }*/
-    }
-    
-    func wipeSavesAfterDrop(position: Int) {
-        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
-            for i in wordPath where game.grid.tiles[i].type == "null" {
-                savedChoicesForWilds[i] = "*"
-            }
-        }
-    }
-    
-    func wipeAllSaves() {
-        for i in 0...15 {
-            savedChoicesForWilds[i] = "*"
         }
     }
     

@@ -33,7 +33,6 @@
 		26745C78223B0291000BCD1B /* DragHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C77223B0291000BCD1B /* DragHandler.swift */; };
 		26745C7A223B0D49000BCD1B /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26745C79223B0D49000BCD1B /* Rules.swift */; };
 		2679DCFA22C411E300080054 /* WishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679DCF922C411E300080054 /* WishList.swift */; };
-		2679DCFC22C411EA00080054 /* WishListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679DCFB22C411EA00080054 /* WishListItem.swift */; };
 		267ED5E92245E380000E2F19 /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ED5E82245E380000E2F19 /* PauseView.swift */; };
 		267ED5EE22495B69000E2F19 /* ButtonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ED5ED22495B69000E2F19 /* ButtonHandler.swift */; };
 		2682695C2241880D00915F4D /* WordList-8.txt in Resources */ = {isa = PBXBuildFile; fileRef = 268269522241880B00915F4D /* WordList-8.txt */; };
@@ -112,7 +111,6 @@
 		26745C77223B0291000BCD1B /* DragHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragHandler.swift; sourceTree = "<group>"; };
 		26745C79223B0D49000BCD1B /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		2679DCF922C411E300080054 /* WishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishList.swift; sourceTree = "<group>"; };
-		2679DCFB22C411EA00080054 /* WishListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListItem.swift; sourceTree = "<group>"; };
 		267ED5E82245E380000E2F19 /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
 		267ED5ED22495B69000E2F19 /* ButtonHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonHandler.swift; sourceTree = "<group>"; };
 		268269522241880B00915F4D /* WordList-8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WordList-8.txt"; sourceTree = "<group>"; };
@@ -336,7 +334,6 @@
 			children = (
 				26F341F02240725E006CAA0A /* IO.swift */,
 				2679DCF922C411E300080054 /* WishList.swift */,
-				2679DCFB22C411EA00080054 /* WishListItem.swift */,
 				26F790D52273784B00245B2C /* Storage.swift */,
 				26F341F522408158006CAA0A /* Other.swift */,
 			);
@@ -501,7 +498,6 @@
 				26745C6922383762000BCD1B /* Game.swift in Sources */,
 				260EAB8022721EBB00B005DA /* WordDataLineView.swift in Sources */,
 				2663D9122236028700A59810 /* ViewController.swift in Sources */,
-				2679DCFC22C411EA00080054 /* WishListItem.swift in Sources */,
 				26745C6D223838A3000BCD1B /* GridView.swift in Sources */,
 				2699DED2224F37E8000E2A10 /* Animations.swift in Sources */,
 				26F341F12240725E006CAA0A /* IO.swift in Sources */,
