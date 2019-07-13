@@ -121,8 +121,8 @@ let comboDepthColor = UIColor(hue: 0.1111, saturation: 0.8, brightness: 0.74, al
 let streakDepthColor = UIColor(hue: 0.8111, saturation: 0.8, brightness: 0.58, alpha: 1.0)
 
 // GameOverView
-let statsTextColorDay = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
-let statsTextColorNight = UIColor(red: 0.35, green: 0.35, blue: 0.35, alpha: 1)
+let statsTextColorDay = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
+let statsTextColorNight = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
 let statsNumberColorDay = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
 let statsNumberColorNight = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
 

@@ -14,15 +14,19 @@ import Foundation
 class WishList {
     
     var grid: Grid
+    var lengths: [Int]
     
     var wordPathFullness: [[Int]: Int]
     var emptyPositionForWordPath: [[Int]: Int]
     var clearingChoicesForWordPath: [[Int]: [String]]
     
+    var upToDate: Bool
     
     
-    init(grid: Grid) {
+    
+    init(grid: Grid, lengths: [Int] = [1]) {
         self.grid = grid
+        self.lengths = lengths
         
         wordPathFullness = [:]
         emptyPositionForWordPath = [:]
@@ -31,6 +35,8 @@ class WishList {
         for wordPath in rules.legalWordPaths(level: game.currentLevel) {
             wordPathFullness[wordPath] = 0
         }
+        
+        upToDate = true
     }
     
     func updateWordPath(wordPath: [Int]) {
@@ -50,7 +56,7 @@ class WishList {
         }
     }
     
-    func clearingChoices(wordPath: [Int], position: Int, lengths: [Int] = [1]) -> [String] {
+    func clearingChoices(wordPath: [Int], position: Int) -> [String] {
         var choices = [String]()
         
         for length in lengths {
@@ -69,7 +75,7 @@ class WishList {
             updateWordPath(wordPath: wordPath)
         }
         
-        printWishList()
+        checkIn()
     }
     
     func tileDeleted(position: Int) {
@@ -78,7 +84,7 @@ class WishList {
             updateWordPath(wordPath: wordPath)
         }
         
-        printWishList()
+        checkIn()
     }
     
     func wordPathsCleared(wordPaths: [[Int]]) {
@@ -97,7 +103,7 @@ class WishList {
             updateWordPath(wordPath: wordPath)
         }
         
-        printWishList()
+        checkIn()
     }
     
     
@@ -123,20 +129,39 @@ class WishList {
         }
         
         // highest score (tiebreak)
+        var choiceScores = [String: Int]()
+        for choice in mostCleared {
+            choiceScores[choice] = 0
+        }
+        
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
+            if wordPathFullness[wordPath] == 3 {
+                let scoreForThisPath = grid.scoreForWordPath(wordPath: wordPath)
+                for choice in mostCleared where clearingChoicesForWordPath[wordPath]!.contains(choice) {
+                    choiceScores[choice]! += scoreForThisPath
+                }
+            }
+        }
+        
         var highestScoringChoice = choices[0]
         var highestScore = 0
         
-        for choice in choices {
-            let score = grid.scoreForChoice(choice: choice, position: position)
-            if score > highestScore {
+        for choice in mostCleared {
+            if choiceScores[choice]! > highestScore {
                 highestScoringChoice = choice
-                highestScore = score
+                highestScore = choiceScores[choice]!
             }
         }
         
         return highestScoringChoice
     }
     
+    func checkIn() {
+        upToDate = true
+        if playtestOptions.printWishList {
+            printWishList()
+        }
+    }
     
     
     func printWishList() {

@@ -112,7 +112,7 @@ class Rules {
     
     /* SCORING */
     
-    func scoreForTiles(tiles: [Tile], multiplier: Int = 1) -> Int {
+    func scoreForTiles(tiles: [Tile]) -> Int {
         
         var score = 0
         
@@ -120,7 +120,7 @@ class Rules {
             score += tile.score()
         }
         
-        return score * multiplier
+        return score
     }
     
 }

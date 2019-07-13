@@ -20,6 +20,7 @@ var game = Game()
 var backgroundView = BackgroundView()
 var gameView = GameView(game: game)
 var wishList = WishList(grid: game.grid)
+var multiWishList = WishList(grid: game.grid, lengths: [2,3])
 var dragHandler = DragHandler(gameView: gameView)
 var buttonHandler = ButtonHandler()
 
@@ -56,6 +57,7 @@ class ViewController: UIViewController {
         backgroundView = BackgroundView()
         gameView = GameView(game: game)
         wishList = WishList(grid: game.grid)
+        multiWishList = WishList(grid: game.grid, lengths: [2,3])
         viewDidLoad()
         setNeedsStatusBarAppearanceUpdate()
     }

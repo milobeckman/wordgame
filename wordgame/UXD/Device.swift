@@ -63,7 +63,7 @@ class Device {
     var paddingAroundStatsView = CGFloat(15)
     var paddingBetweenStats = CGFloat(5)
     var gameOverHeight = CGFloat(30)
-    var statsHeight = CGFloat(20)
+    var statsHeight = CGFloat(22)
     var paddingAroundWordData = CGFloat(8)
     var wordDataWidthRatio = CGFloat(0.5)
     var wordDataMultiplierLocationRatio = CGFloat(0.7)

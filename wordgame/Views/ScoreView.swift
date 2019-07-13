@@ -66,8 +66,8 @@ class ScoreView {
         scoreView.text = String(displayScore)
         levelView.text = levelPrefix + String(game.currentLevel)
         
-        if [100,1000].contains(displayScore) {
-            blinkScoreView()
+        if [1000].contains(displayScore) {
+            blink()
         }
         
         bestScoreView.view.isHidden = !showBestScoreView
@@ -84,24 +84,10 @@ class ScoreView {
         scoreView.textColor = scoreTextColorNight
         levelView.textColor = scoreTextColorNight
         
-        blinkLevelView()
+        blink()
     }
     
-    func blinkLevelView() {
-        
-        for i in 1...4 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + nightBlinkDuration*Double(i), execute: {
-                if i % 2 == 1 {
-                    self.levelView.textColor = scoreTextColorDay
-                } else {
-                    self.levelView.textColor = scoreTextColorNight
-                }
-            })
-        }
-        
-    }
-    
-    func blinkScoreView() {
+    func blink() {
         
         let night = nightMode(level: game.currentLevel) ? 0 : 1
         
@@ -110,8 +96,10 @@ class ScoreView {
                                                 
                 if (i+night) % 2 == 1 {
                     self.scoreView.textColor = scoreTextColorDay
+                    self.levelView.textColor = scoreTextColorDay
                 } else {
                     self.scoreView.textColor = scoreTextColorNight
+                    self.levelView.textColor = scoreTextColorNight
                 }
             })
         }

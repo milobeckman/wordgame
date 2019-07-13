@@ -71,6 +71,7 @@ class Grid {
             }
         }
         
+        wishList.upToDate = false
         DispatchQueue.global(qos: .userInitiated).async {
             wishList.tileDropped(position: position)
         }
@@ -78,6 +79,8 @@ class Grid {
     
     func giveTile(position: Int) {
         tiles[position] = Tile()
+        
+        wishList.upToDate = false
         DispatchQueue.global(qos: .userInitiated).async {
             wishList.tileDeleted(position: position)
         }
@@ -94,6 +97,8 @@ class Grid {
         }
         
         clearPositions(positions: gridPositions)
+        
+        wishList.upToDate = false
         DispatchQueue.global(qos: .userInitiated).async {
             wishList.wordPathsCleared(wordPaths: wordPaths)
         }
@@ -149,21 +154,14 @@ class Grid {
         return word
     }
   
-    func scoreForChoice(choice: String, position: Int) -> Int {
-        var score = 0
+    func scoreForWordPath(wordPath: [Int]) -> Int {
         
-        for wordPath in rules.legalWordPaths(level: game.currentLevel) {
-            if wordPath.contains(position) {
-                let word = wordForWordPathWithChoice(wordPath: wordPath, position: position, choice: choice)
-                if word != noneString && rules.canBeWord(word: word) {
-                    for tilePosition in wordPath {
-                        score += tiles[tilePosition].score()
-                    }
-                }
-            }
+        var tilesInPath = [Tile]()
+        for position in wordPath {
+            tilesInPath.append(tiles[position])
         }
         
-        return score
+        return rules.scoreForTiles(tiles: tilesInPath)
     }
 
     func clearPositions(positions: [Int]) {

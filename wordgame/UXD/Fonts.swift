@@ -24,7 +24,7 @@ let bestTextSize = CGFloat(12)*device.fontScale
 let menuTextSize = CGFloat(24)*device.fontScale
 let highScoreTextSize = CGFloat(20)*device.fontScale
 let playSomethingTextSize = CGFloat(22)*device.fontScale
-let statsTextSize = CGFloat(16)*device.fontScale
+let statsTextSize = CGFloat(18)*device.fontScale
 let gameOverTextSize = CGFloat(26)*device.fontScale
 
 // combined
