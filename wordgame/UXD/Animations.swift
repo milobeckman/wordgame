@@ -34,6 +34,9 @@ let popDamping = CGFloat(0.6)
 let slideDuration = 0.2
 let dropDuration = 0.1
 
+// TimerView.showAndActivateTimer()
+let timerShowDuration = 0.6
+
 // TileView.evaporate()
 let evaporateDuration = 1.0         // 1.5
 let evaporateHeight = CGFloat(0.0)  // 6.0

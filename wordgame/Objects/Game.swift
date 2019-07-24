@@ -120,6 +120,10 @@ class Game {
         if level > currentLevel {
             currentLevel = level
         }
+        
+        if level >= rules.timerActivationLevel && !gameView.timerView.active {
+            gameView.timerView.showAndActivateTimer()
+        }
     }
     
     func numDeadTiles() -> Int {

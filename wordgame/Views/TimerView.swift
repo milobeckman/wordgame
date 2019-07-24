@@ -24,12 +24,14 @@ class TimerView {
     
     let numCriticalPhases = 3
     
+    var active: Bool
     var iced: Bool
     
     init() {
         ticker = Timer()
         totalTime = 0
         timeLeft = 0
+        active = false
         iced = false
         
         view = UIView(frame: device.screenBounds)
@@ -58,7 +60,20 @@ class TimerView {
         view.addSubview(playSomethingView)
         view.addSubview(shadowView)
         
+        hideTimer()
+    }
+    
+    func hideTimer() {
+        view.transform = CGAffineTransform(translationX: 0, y: device.timerHeight)
+    }
+    
+    func showAndActivateTimer() {
         resetTimer()
+        UIView.animate(withDuration: timerShowDuration, animations: {
+            self.view.transform = .identity
+        })
+        
+        active = true
     }
     
     func resetTimer() {

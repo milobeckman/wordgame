@@ -17,6 +17,7 @@ class Rules {
     let maxMultiplier = 3
     let tilesPerLevel = playtestOptions.quickAdvance ? 2 : 6
     
+    let timerActivationLevel = 5
     let timerStart = 20.0
     let timerDecrement = 0.933
     let timerMinimum = 2.0

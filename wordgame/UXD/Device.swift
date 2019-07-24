@@ -249,6 +249,10 @@ class Device {
         return CGRect(x: 0, y: timerY, width: screenBounds.width, height: timerHeight)
     }
     
+    func timerFrameHidden() -> CGRect {
+        return CGRect(x: 0, y: screenBounds.height, width: screenBounds.width, height: timerHeight)
+    }
+    
     func timerBarFrame(fraction: Double) -> CGRect {
         return CGRect(x: 0, y: timerY, width: CGFloat(fraction)*screenBounds.width, height: timerHeight)
     }
