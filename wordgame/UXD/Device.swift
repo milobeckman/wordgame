@@ -59,14 +59,15 @@ class Device {
     var spaceViewHeightRatio = CGFloat(8.0)
     var offsetPerLevelRaw = CGFloat(172.3)
     
-    var gameOverGridScale = CGFloat(0.5)
+    var gameOverGridScale = CGFloat(0.45)
     var paddingAroundStatsView = CGFloat(15)
     var paddingBetweenStats = CGFloat(5)
     var gameOverHeight = CGFloat(30)
     var statsHeight = CGFloat(22)
     var paddingAroundWordData = CGFloat(8)
-    var wordDataWidthRatio = CGFloat(0.5)
+    var wordDataWidthRatio = CGFloat(0.6)
     var wordDataMultiplierLocationRatio = CGFloat(0.7)
+    var multiplierShadowDepth = CGFloat(1)
     var playAgainHeight = CGFloat(70)
     var playAgainWidthRatio = CGFloat(3.0)
     

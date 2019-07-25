@@ -90,9 +90,9 @@ class GameOverView {
         gameOverLabel.adjustsFontSizeToFitWidth = true
         gameOverLabel.baselineAdjustment = .alignCenters
         if game.currentScore > storage.getInt(key: "bestScore") {
-            gameOverLabel.text = "New highscore!"
+            gameOverLabel.text = "HIGH SCORE!"
         } else {
-            gameOverLabel.text = "Game over"
+            gameOverLabel.text = "GAME OVER"
         }
         view.addSubview(gameOverLabel)
         
@@ -175,6 +175,7 @@ class GameOverView {
         for i in 0..<statsStrings.count {
             let newLabel = UILabel(frame: device.statsLabelFrame(i: i))
             newLabel.attributedText = statsStrings[i]
+            newLabel.textAlignment = .left
             statsLabels.append(newLabel)
         }
     }

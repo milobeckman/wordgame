@@ -22,6 +22,7 @@ class WordDataLineView {
     var multiplierFrame: CGRect
     
     var wordLabel: UILabel
+    var multiplierShadowLabel: UILabel
     var multiplierLabel: UILabel
     var scoreLabel: UILabel
     
@@ -44,6 +45,16 @@ class WordDataLineView {
         wordLabel.baselineAdjustment = .alignCenters
         wordLabel.text = data[0]
         
+        multiplierShadowLabel = UILabel(frame: multiplierFrame.offsetBy(dx: device.multiplierShadowDepth,
+                                                                        dy: device.multiplierShadowDepth))
+        multiplierShadowLabel.font = statsNumberFont
+        multiplierShadowLabel.textColor = UIColor.black
+        multiplierShadowLabel.textAlignment = .left
+        multiplierShadowLabel.adjustsFontSizeToFitWidth = true
+        multiplierShadowLabel.baselineAdjustment = .alignCenters
+        multiplierShadowLabel.text = data[1]
+        multiplierShadowLabel.isHidden = game.currentLevel < 15
+        
         multiplierLabel = UILabel(frame: multiplierFrame)
         multiplierLabel.font = statsNumberFont
         multiplierLabel.textColor = data[1] == "x2" ? badgeColorCombo : badgeColorStreak
@@ -62,6 +73,7 @@ class WordDataLineView {
         
         view = UIView(frame: frame)
         view.addSubview(wordLabel)
+        view.addSubview(multiplierShadowLabel)
         view.addSubview(multiplierLabel)
         view.addSubview(scoreLabel)
     }
