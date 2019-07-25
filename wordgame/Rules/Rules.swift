@@ -17,7 +17,7 @@ class Rules {
     let maxMultiplier = 3
     let tilesPerLevel = playtestOptions.quickAdvance ? 2 : 6
     
-    let timerActivationLevel = 5
+    let timerActivationLevel = 1
     let timerStart = 20.0
     let timerDecrement = 0.933
     let timerMinimum = 2.0
@@ -47,7 +47,7 @@ class Rules {
     }
     
     func timerLength(level: Int) -> Double {
-        return max(timerStart * pow(timerDecrement, Double(game.currentLevel-1)), timerMinimum)
+        return max(timerStart * pow(timerDecrement, Double(game.currentLevel-timerActivationLevel)), timerMinimum)
     }
     
     func legalWordPaths(level: Int) -> [[Int]] {

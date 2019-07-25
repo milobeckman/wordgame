@@ -269,24 +269,28 @@ class Device {
         return CGRect(x: x, y: scoreY, width: size, height: size)
     }
     
+    func pauseCurtainBottom() -> CGFloat {
+        return game.currentLevel >= rules.timerActivationLevel ? timerY-1 : screenBounds.height-1
+    }
+    
     func pauseBarFrame() -> CGRect {
         return CGRect(x: pauseBarX, y: pauseBarY, width: screenWidth - 2.0*pauseBarX, height: 1)
     }
     
     func pauseBarFramePaused() -> CGRect {
-        return CGRect(x: pauseBarX, y: timerY-1, width: screenWidth - 2.0*pauseBarX, height: 1)
+        return CGRect(x: pauseBarX, y: pauseCurtainBottom(), width: screenWidth - 2.0*pauseBarX, height: 1)
     }
     
     func pauseCurtainFramePaused() -> CGRect {
-        return CGRect(x: pauseBarX, y: pauseBarY, width: screenWidth - 2.0*pauseBarX, height: timerY-1-pauseBarY)
+        return CGRect(x: pauseBarX, y: pauseBarY, width: screenWidth - 2.0*pauseBarX, height: pauseCurtainBottom()-pauseBarY)
     }
     
     func contentMask() -> CGRect {
-        return CGRect(x: 0, y: pauseBarY, width: screenWidth, height: timerY-1-pauseBarY)
+        return CGRect(x: 0, y: pauseBarY, width: screenWidth, height: pauseCurtainBottom()-pauseBarY)
     }
     
     func contentMaskPaused() -> CGRect {
-        return CGRect(x: 0, y: timerY-1, width: screenWidth, height: 1)
+        return CGRect(x: 0, y: pauseCurtainBottom(), width: screenWidth, height: 1)
     }
     
     func menuButtonFrame(numMenuButtons: Int, i: Int) -> CGRect {

@@ -60,7 +60,11 @@ class TimerView {
         view.addSubview(playSomethingView)
         view.addSubview(shadowView)
         
-        hideTimer()
+        if rules.timerActivationLevel == 1 {
+            resetTimer()
+        } else {
+            hideTimer()
+        }
     }
     
     func hideTimer() {

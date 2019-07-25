@@ -23,7 +23,7 @@ let streakViewFadeDuration = 0.5
 let backgroundRiseDuration = 5.0
 
 // switchToNightMode()
-let nightBlinkDuration = 0.2
+let nightBlinkDuration = 0.15
 
 // TileView.pop()
 let popDuration = 0.5
