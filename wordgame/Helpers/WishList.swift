@@ -96,43 +96,6 @@ class WishList {
         return choices
     }
     
-    /*
-    
-    func tileDropped(position: Int) {
-        activateIfNeeded()
-        
-        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
-            wordPathFullness[wordPath] = wordPathFullness[wordPath]! + 1
-            updateWordPath(wordPath: wordPath)
-        }
-        
-        checkIn()
-    }
-    
-    func tileDeleted(position: Int) {
-        activateIfNeeded()
-        
-        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
-            wordPathFullness[wordPath] = wordPathFullness[wordPath]! - 1
-            updateWordPath(wordPath: wordPath)
-        }
-        
-        checkIn()
-    }
-    
-    func wordPathsCleared(wordPaths: [[Int]]) {
-        activateIfNeeded()
-        
-        var allClearedPositions = [Int]()
-        for wordPath in wordPaths {
-            for position in wordPath where !allClearedPositions.contains(position) {
-                allClearedPositions += [position]
-            }
-        }
-        
-        update(positions: allClearedPositions, delta: -1)
-    }*/
-    
     func update(positions: [Int], delta: Int) {
         for wordPath in rules.legalWordPaths(level: game.currentLevel) {
             for position in wordPath where positions.contains(position) {
