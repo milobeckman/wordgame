@@ -126,6 +126,33 @@ class Game {
         }
     }
     
+    /* WISH LISTS */
+    
+    func wishListShouldUpdate(length: Int) -> Bool {
+        
+        return length == 1
+        
+        /*
+        
+        if length == 1 {
+            return true
+        }
+        
+        if charmed || rack.hasCharm() || playtestOptions.alwaysCharmed {
+            if length == 2 && game.currentLevel >= 10 {
+                return true
+            }
+            if length == 3 && game.currentLevel >= 20 {
+                return true
+            }
+        }
+        
+        return false*/
+    }
+    
+    
+    /* GAME ENDING */
+    
     func numDeadTiles() -> Int {
         var count = 0
         for tile in grid.tiles {

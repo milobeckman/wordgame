@@ -225,6 +225,17 @@ class TileView: Hashable {
         updateView()
     }
     
+    func charm() {
+        tile = wishLists[tile.text.count-1].charm(tile: tile)
+        glintLabel.text = tile.text
+        label.text = tile.text
+        scoreGlintLabel.text = String(tile.score())
+        scoreLabel.text = String(tile.score())
+        shouldShowScore = true
+        
+        tile.waitingToBeCharmed = false
+    }
+    
     
     // animations
     

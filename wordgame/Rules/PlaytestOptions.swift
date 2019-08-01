@@ -17,6 +17,7 @@ class PlaytestOptions {
     let pauseButtonEndsGame = false
     let wipeAllStorage = false
     let noLuckAdjustment = false
-    let printWishList = false
+    let printWishList = true
+    let alwaysCharmed = false
     
 }

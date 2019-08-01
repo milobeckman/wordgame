@@ -27,7 +27,13 @@ func newTile() -> Tile {
         tile = Tile(tileID: tileID)
     }
     
-    game.updateTileCounts(expected: trueTileBag, actual: tileID)
+    if (game.charmed || playtestOptions.alwaysCharmed) && game.tilesDropped > 0 {
+        if tile.type == "letter" {
+            tile.waitingToBeCharmed = true
+        }
+    } else {
+        game.updateTileCounts(expected: trueTileBag, actual: tileID)
+    }
     
     return tile
 }

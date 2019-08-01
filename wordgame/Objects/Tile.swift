@@ -30,11 +30,14 @@ class Tile: CustomStringConvertible {
     var text: String
     
     var dropsLeft: Int
+    var waitingToBeCharmed: Bool
     
     init(type: String, text: String) {
         self.type = type
         self.text = text
+        
         dropsLeft = -1
+        waitingToBeCharmed = false
     }
     
     var description: String {

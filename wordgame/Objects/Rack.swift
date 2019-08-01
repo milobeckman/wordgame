@@ -60,4 +60,14 @@ class Rack {
         tiles[b] = temp
     }
     
+    func hasCharm() -> Bool {
+        for tile in tiles {
+            if tile.type == "charm" {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
 }

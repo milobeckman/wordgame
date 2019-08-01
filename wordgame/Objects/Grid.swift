@@ -65,25 +65,18 @@ class Grid {
         tiles[position] = tile
         
         if tile.type == "wild" {
-            let bestChoice = wishList.bestChoiceForWild(position: position)
+            let bestChoice = wishLists[0].bestChoiceForWild(position: position)
             if bestChoice != noneString {
                 tile.text = bestChoice
             }
         }
         
-        wishList.upToDate = false
-        DispatchQueue.global(qos: .userInitiated).async {
-            wishList.tileDropped(position: position)
-        }
+        updateWishLists(positions: [position], delta: 1)
     }
     
     func giveTile(position: Int) {
         tiles[position] = Tile()
-        
-        wishList.upToDate = false
-        DispatchQueue.global(qos: .userInitiated).async {
-            wishList.tileDeleted(position: position)
-        }
+        updateWishLists(positions: [position], delta: -1)
     }
     
     func clearWordPaths(wordPaths: [[Int]]) {
@@ -97,10 +90,21 @@ class Grid {
         }
         
         clearPositions(positions: gridPositions)
+        updateWishLists(positions: gridPositions, delta: -1)
+    }
+    
+    func updateWishLists(positions: [Int], delta: Int) {
         
-        wishList.upToDate = false
-        DispatchQueue.global(qos: .userInitiated).async {
-            wishList.wordPathsCleared(wordPaths: wordPaths)
+        for length in 1...3 {
+            if game.wishListShouldUpdate(length: length) {
+                wishLists[length-1].activateIfNeeded()
+                wishLists[length-1].upToDate = false
+                DispatchQueue.global(qos: .userInitiated).async {
+                    wishLists[length-1].update(positions: positions, delta: delta)
+                }
+            } else {
+                wishLists[length-1].active = false
+            }
         }
     }
     

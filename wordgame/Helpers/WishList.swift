@@ -20,6 +20,7 @@ class WishList {
     var emptyPositionForWordPath: [[Int]: Int]
     var clearingChoicesForWordPath: [[Int]: [String]]
     
+    var active: Bool
     var upToDate: Bool
     
     
@@ -36,7 +37,35 @@ class WishList {
             wordPathFullness[wordPath] = 0
         }
         
+        active = true
         upToDate = true
+    }
+    
+    func activateIfNeeded() {
+        
+        if active {
+            return
+        } else {
+            print("activating " + String(lengths[0]))
+            setupFromScratch()
+            active = true
+        }
+    }
+    
+    func setupFromScratch() {
+        
+        emptyPositionForWordPath = [:]
+        clearingChoicesForWordPath = [:]
+        
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) {
+            var fullness = 0
+            for position in wordPath where grid.tiles[position].isLetterLike() {
+                fullness += 1
+            }
+            
+            wordPathFullness[wordPath] = fullness
+            updateWordPath(wordPath: wordPath)
+        }
     }
     
     func updateWordPath(wordPath: [Int]) {
@@ -67,9 +96,11 @@ class WishList {
         return choices
     }
     
-    
+    /*
     
     func tileDropped(position: Int) {
+        activateIfNeeded()
+        
         for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
             wordPathFullness[wordPath] = wordPathFullness[wordPath]! + 1
             updateWordPath(wordPath: wordPath)
@@ -79,6 +110,8 @@ class WishList {
     }
     
     func tileDeleted(position: Int) {
+        activateIfNeeded()
+        
         for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPath.contains(position) {
             wordPathFullness[wordPath] = wordPathFullness[wordPath]! - 1
             updateWordPath(wordPath: wordPath)
@@ -88,6 +121,8 @@ class WishList {
     }
     
     func wordPathsCleared(wordPaths: [[Int]]) {
+        activateIfNeeded()
+        
         var allClearedPositions = [Int]()
         for wordPath in wordPaths {
             for position in wordPath where !allClearedPositions.contains(position) {
@@ -95,9 +130,13 @@ class WishList {
             }
         }
         
+        update(positions: allClearedPositions, delta: -1)
+    }*/
+    
+    func update(positions: [Int], delta: Int) {
         for wordPath in rules.legalWordPaths(level: game.currentLevel) {
-            for position in wordPath where allClearedPositions.contains(position) {
-                wordPathFullness[wordPath] = wordPathFullness[wordPath]! - 1
+            for position in wordPath where positions.contains(position) {
+                wordPathFullness[wordPath] = wordPathFullness[wordPath]! + delta
             }
             
             updateWordPath(wordPath: wordPath)
@@ -156,8 +195,57 @@ class WishList {
         return highestScoringChoice
     }
     
+    
+    func charm(tile: Tile) -> Tile {
+        
+        if !upToDate {
+            print("not up to date")
+            return tile
+        }
+        
+        var numClearedPerChoice = [String: Int]()
+        var numClearedPerPosition = [[String: Int]]()
+        for _ in 0...15 {
+            numClearedPerPosition.append([String: Int]())
+        }
+        
+        for wordPath in rules.legalWordPaths(level: game.currentLevel) where wordPathFullness[wordPath] == 3 {
+            for choice in clearingChoicesForWordPath[wordPath]! {
+                
+                let position = emptyPositionForWordPath[wordPath]!
+                if let count = numClearedPerPosition[position][choice] {
+                    numClearedPerPosition[position][choice] = count + 1
+                } else {
+                    numClearedPerPosition[position][choice] = 1
+                }
+                
+                if let count = numClearedPerChoice[choice] {
+                    if count < numClearedPerPosition[position][choice]! {
+                        numClearedPerChoice[choice] = numClearedPerPosition[position][choice]!
+                    }
+                } else {
+                    numClearedPerChoice[choice] = numClearedPerPosition[position][choice]!
+                }
+            }
+        }
+        
+        for i in [3,2,1] {
+            for choice in numClearedPerChoice where choice.value == i {
+                tile.text = choice.key
+                return tile
+            }
+        }
+        
+        return tile
+    }
+    
+    
     func checkIn() {
         upToDate = true
+        if game.charmed || playtestOptions.alwaysCharmed {
+            // charm the tiles ?
+        }
+        
         if playtestOptions.printWishList {
             printWishList()
         }
