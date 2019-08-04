@@ -54,7 +54,7 @@ let playSomethingTextColor = [UIColor.white, UIColor.red]
 let barColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1)
 let pauseButtonColorDay = UIColor(hue: 0.5222, saturation: 0.2, brightness: 0.6, alpha: 1)
 let pauseButtonColorNight = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
-let pauseButtonAlphaDay = CGFloat(0.75)
+let pauseButtonAlphaDay = CGFloat(0.5)
 let pauseButtonAlphaNight = CGFloat(0.75)
 let menuButtonAlpha = CGFloat(0.08)
 
@@ -195,7 +195,7 @@ func pauseButtonAlpha() -> CGFloat {
 func pauseButtonColor() -> UIColor {
     
     if !nightMode(level: game.currentLevel) {
-        return pauseButtonColorDay.withAlphaComponent(pauseButtonAlpha())
+        return gradientTopColor(level: max(Double(game.currentLevel)+7.0,11.0)).withAlphaComponent(pauseButtonAlpha())
     } else {
         return pauseButtonColorNight.withAlphaComponent(pauseButtonAlpha())
     }

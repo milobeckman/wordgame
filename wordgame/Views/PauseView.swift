@@ -102,9 +102,20 @@ class PauseView {
         
     }
     
+    func updateColors() {
+        pauseButton.tintColor = pauseButtonColor()
+        for menuButton in menuButtons {
+            menuButton.backgroundColor = menuButtonColor()
+            menuButton.layer.borderColor = menuButtonBorderColor().cgColor
+        }
+        for menuLabel in menuLabels {
+            menuLabel.textColor = menuButtonBorderColor()
+        }
+    }
+    
     func pause() {
         pauseButton.image = UIImage(named: "resume")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        pauseButton.tintColor = pauseButtonColor()
+        updateColors()
         
         animateMaskToRect(mask: curtainMask, rect: device.pauseCurtainFramePaused(), duration: pauseDuration)
         

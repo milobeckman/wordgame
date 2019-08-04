@@ -30,7 +30,7 @@ class BackgroundView {
         streakView = UIImageView()
         
         spaceView = UIImageView(frame: device.spaceViewFrame(level: 1.67))
-        spaceView.image = UIImage(named: "space-v6.png")
+        spaceView.image = UIImage(named: "space-v7.png")
         view.addSubview(spaceView)
         
         cloudView = UIImageView(frame: device.cloudViewFrame(level: 1.67))
