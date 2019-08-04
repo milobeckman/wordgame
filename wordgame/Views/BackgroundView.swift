@@ -47,8 +47,6 @@ class BackgroundView {
     func update() {
         
         let trueLevel = rules.trueLevel(tilesServed: max(game.tilesServed,4))
-        print(trueLevel)
-        
         
         let bottom = gradientBottomColor(level: trueLevel).cgColor
         let top = gradientTopColor(level: trueLevel).cgColor

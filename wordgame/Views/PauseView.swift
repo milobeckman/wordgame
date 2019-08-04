@@ -145,7 +145,7 @@ class PauseView {
     }
     
     func switchToNightMode() {
-        pauseButton.tintColor = pauseButtonColor()
+        pauseButton.tintColor = menuButtonColor()
         
         for button in menuButtons {
             button.backgroundColor = menuButtonColor()

@@ -52,7 +52,9 @@ let playSomethingTextColor = [UIColor.white, UIColor.red]
 
 // PauseView
 let barColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1)
-let pauseButtonAlphaDay = CGFloat(0.35)
+let pauseButtonColorDay = UIColor(hue: 0.5222, saturation: 0.2, brightness: 0.6, alpha: 1)
+let pauseButtonColorNight = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+let pauseButtonAlphaDay = CGFloat(0.75)
 let pauseButtonAlphaNight = CGFloat(0.75)
 let menuButtonAlpha = CGFloat(0.08)
 
@@ -183,23 +185,20 @@ func gridSlotColorReviving() -> UIColor {
 }
 
 func pauseButtonAlpha() -> CGFloat {
-    if nightMode(level: game.currentLevel) {
-        return pauseButtonAlphaNight
-    } else {
+    if !nightMode(level: game.currentLevel) {
         return pauseButtonAlphaDay
+    } else {
+        return pauseButtonAlphaNight
     }
 }
 
 func pauseButtonColor() -> UIColor {
     
-    return scoreTextColor(level: game.currentLevel).withAlphaComponent(pauseButtonAlpha())
-    
-    /*
     if !nightMode(level: game.currentLevel) {
-        return gridSlotColorHighlight()
+        return pauseButtonColorDay.withAlphaComponent(pauseButtonAlpha())
     } else {
-        return scoreTextColor(level: game.currentLevel)
-    }*/
+        return pauseButtonColorNight.withAlphaComponent(pauseButtonAlpha())
+    }
 }
 
 func menuButtonColor() -> UIColor {

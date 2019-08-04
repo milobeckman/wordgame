@@ -325,7 +325,7 @@ class Device {
     
     func spaceViewFrame(level: Double) -> CGRect {
         let height = screenWidth*spaceViewHeightRatio
-        let y = CGFloat(level-1.67)*(offsetPerLevelRaw*screenWidth/1000.0)
+        let y = -height + CGFloat(level)*(offsetPerLevelRaw*screenWidth/1000.0)
         return CGRect(x: 0, y: y, width: screenWidth, height: height)
     }
     
