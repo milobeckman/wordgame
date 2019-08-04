@@ -57,6 +57,7 @@ class Device {
     var multiplierShadowRadius = CGFloat(4)
     
     var spaceViewHeightRatio = CGFloat(8.0)
+    var cloudViewCenter = CGFloat(0.67)
     var offsetPerLevelRaw = CGFloat(172.3)
     
     var gameOverGridScale = CGFloat(0.45)
@@ -324,8 +325,14 @@ class Device {
     
     func spaceViewFrame(level: Double) -> CGRect {
         let height = screenWidth*spaceViewHeightRatio
-        let y = CGFloat(level)*(offsetPerLevelRaw*screenWidth/1000.0)-height
+        let y = CGFloat(level-1.67)*(offsetPerLevelRaw*screenWidth/1000.0)
         return CGRect(x: 0, y: y, width: screenWidth, height: height)
+    }
+    
+    func cloudViewFrame(level: Double) -> CGRect {
+        let topChunk = CGFloat(screenWidth)*0.5*cloudViewCenter
+        let y = pauseBarY - topChunk + CGFloat(level-1.67)*(offsetPerLevelRaw*screenWidth/1000.0)
+        return CGRect(x: 0, y: y, width: screenWidth, height: screenWidth/2)
     }
     
     // GameOverView

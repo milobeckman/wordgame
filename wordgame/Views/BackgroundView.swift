@@ -16,7 +16,9 @@ class BackgroundView {
     var gradient: CAGradientLayer
     var streakView: UIImageView
     var middleView: UIView
+    
     var spaceView: UIImageView
+    var cloudView: UIImageView
     
     init() {
         view = UIView(frame: device.screenBounds)
@@ -27,9 +29,13 @@ class BackgroundView {
         
         streakView = UIImageView()
         
-        spaceView = UIImageView(frame: device.spaceViewFrame(level: 0.0))
+        spaceView = UIImageView(frame: device.spaceViewFrame(level: 1.67))
         spaceView.image = UIImage(named: "space-v6.png")
         view.addSubview(spaceView)
+        
+        cloudView = UIImageView(frame: device.cloudViewFrame(level: 1.67))
+        cloudView.image = UIImage(named: "cloud.png")
+        view.addSubview(cloudView)
         
         middleView = UIView(frame: device.screenBounds)
         middleView.backgroundColor = middleColor
@@ -39,7 +45,10 @@ class BackgroundView {
     }
     
     func update() {
-        let trueLevel = rules.trueLevel(tilesServed: game.tilesServed)
+        
+        let trueLevel = rules.trueLevel(tilesServed: max(game.tilesServed,4))
+        print(trueLevel)
+        
         
         let bottom = gradientBottomColor(level: trueLevel).cgColor
         let top = gradientTopColor(level: trueLevel).cgColor
@@ -47,6 +56,7 @@ class BackgroundView {
         
         UIView.animate(withDuration: backgroundRiseDuration, animations: {
             self.spaceView.frame = device.spaceViewFrame(level: trueLevel)
+            self.cloudView.frame = device.cloudViewFrame(level: trueLevel)
         })
     }
     
