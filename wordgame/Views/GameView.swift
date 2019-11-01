@@ -86,10 +86,10 @@ class GameView {
         timerView.resetTimer()
         rackView.serveNewTile(position: rackPosition)
         backgroundView.update()
-        pauseView.pauseButton.tintColor = pauseButtonColor()
         if !night && nightMode(level: game.currentLevel) {
             switchToNightMode()
         }
+        pauseView.pauseButton.tintColor = pauseButtonColor()
     }
     
     func takeTile(tileView: TileView) {
