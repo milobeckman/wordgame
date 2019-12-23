@@ -13,6 +13,7 @@ import UIKit
 // fonts
 let font = "BanglaSangamMN"
 let fontBold = "BanglaSangamMN-Bold"
+let fontBoldItalic = "AvenirNextCondensed-BoldItalic"
 
 // sizes
 let scoreTextSize = CGFloat(60)*device.fontScale

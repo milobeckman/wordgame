@@ -19,6 +19,7 @@ class GameOverView {
     
     var statsView: UIView
     var gameOverLabel: UILabel
+    var gameOverLabelShadow: UILabel
     var statsLabels: [UILabel]
     var bestViews: [BestView]
     
@@ -41,6 +42,7 @@ class GameOverView {
         self.rackView = rackView
         
         statsView = UIView(frame: device.statsFrame())
+        gameOverLabelShadow = UILabel(frame: device.gameOverFrame().offsetBy(dx: -device.gameOverDepth, dy: device.gameOverDepth))
         gameOverLabel = UILabel(frame: device.gameOverFrame())
         statsLabels = []
         bestViews = []
@@ -76,6 +78,7 @@ class GameOverView {
         UIView.animate(withDuration: shrinkDuration, animations: {
             self.gridView.view.transform = scale
             self.rackView.view.alpha = 0.0
+            gameView.timerView.view.alpha = 0.0
         }, completion: { (finished: Bool) in
             self.showStats()
             self.showWordData()
@@ -84,17 +87,22 @@ class GameOverView {
     
     func showStats() {
         
-        gameOverLabel.font = gameOverFont
-        gameOverLabel.textColor = statsNumberColor()
-        gameOverLabel.textAlignment = .left
-        gameOverLabel.adjustsFontSizeToFitWidth = true
-        gameOverLabel.baselineAdjustment = .alignCenters
-        if game.currentScore > storage.getInt(key: "bestScore") {
-            gameOverLabel.text = "HIGH SCORE!"
-        } else {
-            gameOverLabel.text = "GAME OVER"
+        gameOverLabelShadow.textColor = gameOverShadowColor()
+        gameOverLabel.textColor = gameOverLabelColor()
+        
+        for label in [gameOverLabelShadow, gameOverLabel] {
+            label.font = gameOverFont
+            label.textAlignment = .left
+            label.adjustsFontSizeToFitWidth = true
+            label.baselineAdjustment = .alignCenters
+            if game.currentScore > storage.getInt(key: "bestScore") {
+                label.text = "High score!"
+            } else {
+                label.text = "Game over"
+            }
+            view.addSubview(label)
         }
-        view.addSubview(gameOverLabel)
+    
         
         setupStatsStrings()
         setupStatsLabels()

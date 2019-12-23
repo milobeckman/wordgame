@@ -28,8 +28,8 @@ let gradientBottomMinus = 8.0
 let streakViewAlpha = CGFloat(0.1)
 
 // ScoreView
-let scoreTextColorDay = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
-let scoreTextColorNight = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+let scoreTextColorNight = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+let scoreTextColorDay = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
 let levelTextColorDay = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)
 let levelTextColorNight = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1)
 
@@ -123,10 +123,15 @@ let comboDepthColor = UIColor(hue: 0.1111, saturation: 0.8, brightness: 0.74, al
 let streakDepthColor = UIColor(hue: 0.8111, saturation: 0.8, brightness: 0.58, alpha: 1.0)
 
 // GameOverView
-let statsTextColorDay = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
-let statsTextColorNight = UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1)
-let statsNumberColorDay = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
-let statsNumberColorNight = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+let statsTextColorDay = UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1)
+let statsNumberColorDay = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+let gameOverTextColorDay = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
+let gameOverShadowColorDay = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+
+let statsTextColorNight = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
+let statsNumberColorNight = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+let gameOverTextColorNight = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+let gameOverShadowColorNight = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
 
 
 
@@ -134,17 +139,17 @@ let statsNumberColorNight = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
 
 func levelTextColor(level: Int) -> UIColor {
     if nightMode(level: level) {
-        return scoreTextColorNight
-    } else {
         return scoreTextColorDay
+    } else {
+        return scoreTextColorNight
     }
 }
 
 func scoreTextColor(level: Int) -> UIColor {
     if nightMode(level: level) {
-        return scoreTextColorNight
-    } else {
         return scoreTextColorDay
+    } else {
+        return scoreTextColorNight
     }
 }
 
@@ -211,25 +216,41 @@ func menuButtonBorderColor() -> UIColor {
 
 func menuTextColor() -> UIColor {
     if nightMode(level: game.currentLevel) {
-        return scoreTextColorDay
-    } else {
         return scoreTextColorNight
+    } else {
+        return scoreTextColorDay
     }
 }
 
 func statsTextColor() -> UIColor {
     if nightMode(level: game.currentLevel) {
-        return statsTextColorDay
-    } else {
         return statsTextColorNight
+    } else {
+        return statsTextColorDay
     }
 }
 
 func statsNumberColor() -> UIColor {
     if nightMode(level: game.currentLevel) {
-        return statsNumberColorDay
-    } else {
         return statsNumberColorNight
+    } else {
+        return statsNumberColorDay
+    }
+}
+
+func gameOverLabelColor() -> UIColor {
+    if nightMode(level: game.currentLevel) {
+        return gameOverTextColorNight
+    } else {
+        return gameOverTextColorDay
+    }
+}
+
+func gameOverShadowColor() -> UIColor {
+    if nightMode(level: game.currentLevel) {
+        return gameOverShadowColorNight
+    } else {
+        return gameOverShadowColorDay
     }
 }
 

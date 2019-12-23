@@ -38,7 +38,7 @@ class Game {
         grid = Grid()
         rack = Rack()
         
-        tilesServed = 0 + playtestOptions.advancedStart * rules.tilesPerLevel
+        tilesServed = 0 + playtestOptions.startLevel * rules.tilesPerLevel
         currentScore = 0
         currentLevel = 1
         

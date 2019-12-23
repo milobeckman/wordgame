@@ -61,9 +61,11 @@ class Device {
     var offsetPerLevelRaw = CGFloat(172.3)
     
     var gameOverGridScale = CGFloat(0.45)
-    var paddingAroundStatsView = CGFloat(15)
-    var paddingBetweenStats = CGFloat(5)
+    var paddingAroundStatsView = CGFloat(18)
+    var paddingBetweenStats = CGFloat(8)
     var gameOverHeight = CGFloat(30)
+    var gameOverDepth = CGFloat(0.5)
+    var gameOverIndent = CGFloat(10)
     var statsHeight = CGFloat(22)
     var paddingAroundWordData = CGFloat(8)
     var wordDataWidthRatio = CGFloat(0.6)
@@ -344,7 +346,7 @@ class Device {
     }
     
     func gameOverFrame() -> CGRect {
-        return CGRect(x: statsX, y: statsY, width: statsFrame().width, height: gameOverHeight)
+        return CGRect(x: statsX + gameOverIndent, y: statsY, width: statsFrame().width, height: gameOverHeight)
     }
     
     func statsLabelFrame(i: Int) -> CGRect {

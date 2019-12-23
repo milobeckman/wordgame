@@ -81,8 +81,8 @@ class ScoreView {
     }
     
     func switchToNightMode() {
-        scoreView.textColor = scoreTextColorNight
-        levelView.textColor = scoreTextColorNight
+        scoreView.textColor = scoreTextColorDay
+        levelView.textColor = scoreTextColorDay
         
         blink()
     }
@@ -95,11 +95,11 @@ class ScoreView {
             DispatchQueue.main.asyncAfter(deadline: .now() + nightBlinkDuration*Double(i) + scoreTickInterval*Double(game.currentScore - displayScore), execute: {
                                                 
                 if (i+night) % 2 == 1 {
-                    self.scoreView.textColor = scoreTextColorDay
-                    self.levelView.textColor = scoreTextColorDay
-                } else {
                     self.scoreView.textColor = scoreTextColorNight
                     self.levelView.textColor = scoreTextColorNight
+                } else {
+                    self.scoreView.textColor = scoreTextColorDay
+                    self.levelView.textColor = scoreTextColorDay
                 }
             })
         }
