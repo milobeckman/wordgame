@@ -25,6 +25,7 @@ let bestTextSize = CGFloat(12)*device.fontScale
 let menuTextSize = CGFloat(24)*device.fontScale
 let highScoreTextSize = CGFloat(20)*device.fontScale
 let playSomethingTextSize = CGFloat(22)*device.fontScale
+let infinityTextSize = CGFloat(50)*device.fontScale
 let statsTextSize = CGFloat(18)*device.fontScale
 let gameOverTextSize = CGFloat(26)*device.fontScale
 
@@ -38,6 +39,7 @@ let bestFont = UIFont(name: fontBold, size: bestTextSize)
 let menuFont = UIFont(name: fontBold, size: menuTextSize)
 let highScoreFont = UIFont(name: font, size: highScoreTextSize)
 let playSomethingFont = UIFont(name: fontBold, size: playSomethingTextSize)
+let infinityFont = UIFont(name: fontBold, size: infinityTextSize)
 let gameOverFont = UIFont(name: fontBold, size: gameOverTextSize)
 let statsTextFont = UIFont(name: font, size: statsTextSize)
 let statsNumberFont = UIFont(name: fontBold, size: statsTextSize)

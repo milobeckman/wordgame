@@ -128,9 +128,9 @@ let statsNumberColorDay = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
 let gameOverTextColorDay = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
 let gameOverShadowColorDay = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
 
-let statsTextColorNight = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
-let statsNumberColorNight = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
-let gameOverTextColorNight = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+let statsTextColorNight = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+let statsNumberColorNight = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+let gameOverTextColorNight = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
 let gameOverShadowColorNight = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
 
 let wordDataBackgroundColor = UIColor(hue: 0.0, saturation: 0.0, brightness: 1.0, alpha: 0.1)

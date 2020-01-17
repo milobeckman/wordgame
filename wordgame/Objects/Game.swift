@@ -41,7 +41,7 @@ class Game {
         
         tilesServed = 0 + playtestOptions.startLevel * rules.tilesPerLevel
         currentScore = 0
-        currentLevel = 1
+        currentLevel = playtestOptions.startLevel
         
         iced = false
         charmed = false

@@ -20,6 +20,7 @@ class TimerView {
     var backgroundView: UIView
     var barView: UIView
     var playSomethingView: UILabel
+    var infinityView: UILabel
     var shadowView: UIView
     
     let numCriticalPhases = 3
@@ -49,6 +50,15 @@ class TimerView {
         playSomethingView.text = "Play something!"
         playSomethingView.isHidden = true
         
+        infinityView = UILabel(frame: device.infinityFrame())
+        infinityView.font = infinityFont
+        infinityView.textColor = UIColor.white
+        infinityView.textAlignment = .center
+        infinityView.adjustsFontSizeToFitWidth = false
+        infinityView.baselineAdjustment = .alignCenters
+        infinityView.text = "∞"
+        infinityView.isHidden = true
+        
         shadowView = UIView(frame: device.timerShadowFrame())
         let shadow = CAGradientLayer()
         shadow.frame = shadowView.bounds
@@ -58,6 +68,7 @@ class TimerView {
         view.addSubview(backgroundView)
         view.addSubview(barView)
         view.addSubview(playSomethingView)
+        view.addSubview(infinityView)
         view.addSubview(shadowView)
         
         if rules.timerActivationLevel == 1 {
@@ -173,11 +184,30 @@ class TimerView {
         iced = true
         barView.frame = device.timerBarFrame(fraction: 1.0)
         barView.backgroundColor = iceColor
+        infinityView.isHidden = false
+        startGlowingInfinity()
+    }
+    
+    func startGlowingInfinity() {
+        if !iced {
+            return
+        }
+        
+        UIView.animate(withDuration: glowUpDuration, animations: {
+            self.infinityView.alpha = 0.5
+        }, completion: { (finished: Bool) in
+            UIView.animate(withDuration: glowUpDuration, animations: {
+                self.infinityView.alpha = 1.0
+            }, completion: { (finished: Bool) in
+                self.startGlowingInfinity()
+            })
+        })
     }
     
     func unice() {
         iced = false
         timeLeft = totalTime
+        infinityView.isHidden = true
         updateView()
     }
     
