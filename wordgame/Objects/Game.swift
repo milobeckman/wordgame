@@ -30,6 +30,7 @@ class Game {
     
     // stats
     var tilesDropped: Int
+    var tilesDroppedSinceLastLevelIncrease: Int
     var wordsCleared: Int
     var longestStreak: Int
     var wordData: [[String]]
@@ -56,6 +57,7 @@ class Game {
         }
         
         tilesDropped = 0
+        tilesDroppedSinceLastLevelIncrease = 0
         wordsCleared = 0
         currentStreak = 0
         longestStreak = 0
@@ -98,6 +100,10 @@ class Game {
             saveWord(wordPath: wordPath, multiplier: currentMultiplier(), score: score)
             gameView.showScoreBadge(score: score, wordPath: wordPath, wordPaths: wordPaths)
         }
+        
+        // advance a level on each clear (or two for combo)
+        currentLevel += min(2, wordPaths.count)
+        tilesDroppedSinceLastLevelIncrease = 0
     }
     
     func tileServer() -> Int {
@@ -107,22 +113,11 @@ class Game {
     
     func tileDropped() {
         tilesDropped += 1
+        tilesDroppedSinceLastLevelIncrease += 1
         for tile in grid.tiles {
             if tile.type == "ice" || tile.type == "charm" {
                 tile.dropsLeft -= 1
             }
-        }
-    }
-    
-    func updateLevelIfNeeded() {
-        let level = Int(rules.trueLevel(tilesServed: tilesServed))
-        
-        if level > currentLevel {
-            currentLevel = level
-        }
-        
-        if level >= rules.timerActivationLevel && !gameView.timerView.active {
-            gameView.timerView.showAndActivateTimer()
         }
     }
     

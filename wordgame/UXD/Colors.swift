@@ -133,6 +133,8 @@ let statsNumberColorNight = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
 let gameOverTextColorNight = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
 let gameOverShadowColorNight = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
 
+let wordDataBackgroundColor = UIColor(hue: 0.0, saturation: 0.0, brightness: 1.0, alpha: 0.1)
+
 
 
 // day/night

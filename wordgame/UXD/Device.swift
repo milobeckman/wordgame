@@ -65,9 +65,10 @@ class Device {
     var paddingBetweenStats = CGFloat(8)
     var gameOverHeight = CGFloat(30)
     var gameOverDepth = CGFloat(0.5)
-    var gameOverIndent = CGFloat(10)
+    var gameOverIndent = CGFloat(0)
     var statsHeight = CGFloat(22)
     var paddingAroundWordData = CGFloat(8)
+    var paddingInsideWordData = CGFloat(6)
     var wordDataWidthRatio = CGFloat(0.6)
     var wordDataMultiplierLocationRatio = CGFloat(0.7)
     var multiplierShadowDepth = CGFloat(1)
@@ -333,7 +334,7 @@ class Device {
     
     func cloudViewFrame(level: Double) -> CGRect {
         let topChunk = CGFloat(screenWidth)*0.5*cloudViewCenter
-        let y = pauseBarY - topChunk + CGFloat(level-1.67)*(offsetPerLevelRaw*screenWidth/1000.0)
+        let y = pauseBarY - topChunk + CGFloat(level-1.0)*(offsetPerLevelRaw*screenWidth/1000.0)
         return CGRect(x: 0, y: y, width: screenWidth, height: screenWidth/2)
     }
     
@@ -357,7 +358,7 @@ class Device {
     
     func wordDataFrame() -> CGRect {
         let width = screenWidth * wordDataWidthRatio
-        let height = timerY - wordDataY - playAgainHeight - 2*paddingAroundWordData
+        let height = screenHeight - wordDataY - playAgainHeight - 2*paddingAroundWordData
         return CGRect(x: wordDataX, y: wordDataY, width: width, height: height)
     }
     
@@ -366,14 +367,14 @@ class Device {
     }
     
     func wordDataBottomBarFrame() -> CGRect {
-        let y = timerY - playAgainHeight - 2*paddingAroundWordData
+        let y = screenHeight - playAgainHeight - 2*paddingAroundWordData
         return CGRect(x: wordDataX, y: y, width: screenWidth*wordDataWidthRatio, height: 1)
     }
     
     func playAgainButtonFrame() -> CGRect {
         let width = playAgainHeight*playAgainWidthRatio
         let x = (screenWidth - width)/2
-        let y = timerY - playAgainHeight - paddingAroundWordData
+        let y = screenHeight - playAgainHeight - paddingAroundWordData
         return CGRect(x: x, y: y, width: width, height: playAgainHeight)
     }
     

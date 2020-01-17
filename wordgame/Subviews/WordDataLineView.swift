@@ -34,7 +34,8 @@ class WordDataLineView {
         let width = device.wordDataFrame().width
         let multiplierX = width*device.wordDataMultiplierLocationRatio
         frame = CGRect(x: 0, y: y, width: width, height: device.statsHeight)
-        wordAndScoreFrame = CGRect(x: 0, y: 0, width: width, height: device.statsHeight)
+        wordAndScoreFrame = CGRect(x: device.paddingInsideWordData, y: 0,
+                                   width: width - 2*device.paddingInsideWordData, height: device.statsHeight)
         multiplierFrame = CGRect(x: multiplierX, y: 0, width: width-multiplierX, height: device.statsHeight)
         
         wordLabel = UILabel(frame: wordAndScoreFrame)

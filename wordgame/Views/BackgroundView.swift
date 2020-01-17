@@ -20,6 +20,8 @@ class BackgroundView {
     var spaceView: UIImageView
     var cloudView: UIImageView
     
+    var progress = 1.0
+    
     init() {
         view = UIView(frame: device.screenBounds)
         
@@ -29,11 +31,11 @@ class BackgroundView {
         
         streakView = UIImageView()
         
-        spaceView = UIImageView(frame: device.spaceViewFrame(level: 1.67))
+        spaceView = UIImageView(frame: device.spaceViewFrame(level: 1.0))
         spaceView.image = UIImage(named: "space-v7.png")
         view.addSubview(spaceView)
         
-        cloudView = UIImageView(frame: device.cloudViewFrame(level: 1.67))
+        cloudView = UIImageView(frame: device.cloudViewFrame(level: 1.0))
         cloudView.image = UIImage(named: "cloud.png")
         view.addSubview(cloudView)
         
@@ -41,20 +43,31 @@ class BackgroundView {
         middleView.backgroundColor = middleColor
         view.addSubview(middleView)
         
-        update()
+        updateView()
     }
     
     func update() {
         
-        let trueLevel = rules.trueLevel(tilesServed: max(game.tilesServed,4))
+        let maxIncrementWithoutLevelIncrease = 1.5
+        let incrementPerTileDropped = 0.2
         
-        let bottom = gradientBottomColor(level: trueLevel).cgColor
-        let top = gradientTopColor(level: trueLevel).cgColor
+        let increment = incrementPerTileDropped * Double(game.tilesDroppedSinceLastLevelIncrease)
+        let newProgress = Double(game.currentLevel) + min(increment, maxIncrementWithoutLevelIncrease)
+        
+        if newProgress > progress {
+            progress = newProgress
+            updateView()
+        }
+    }
+    
+    func updateView() {
+        let bottom = gradientBottomColor(level: progress).cgColor
+        let top = gradientTopColor(level: progress).cgColor
         gradient.colors = [top, bottom]
         
         UIView.animate(withDuration: backgroundRiseDuration, animations: {
-            self.spaceView.frame = device.spaceViewFrame(level: trueLevel)
-            self.cloudView.frame = device.cloudViewFrame(level: trueLevel)
+            self.spaceView.frame = device.spaceViewFrame(level: self.progress)
+            self.cloudView.frame = device.cloudViewFrame(level: self.progress)
         })
     }
     

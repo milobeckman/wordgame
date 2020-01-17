@@ -18,8 +18,8 @@ class Rules {
     let tilesPerLevel = playtestOptions.quickAdvance ? 2 : 6
     
     let timerActivationLevel = 1
-    let timerStart = 20.0
-    let timerDecrement = 0.933
+    let timerStart = 25.0
+    let timerDecrement = 0.96
     let timerMinimum = 2.0
     let playSomethingDuration = 0.5
     

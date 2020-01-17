@@ -139,6 +139,7 @@ class GameOverView {
             i += 1
         }
         
+        wordDataView.backgroundColor = wordDataBackgroundColor
         wordDataTopBar.layer.borderWidth = CGFloat(1.0)
         wordDataTopBar.layer.borderColor = barColor.cgColor
         wordDataBottomBar.layer.borderWidth = CGFloat(1.0)

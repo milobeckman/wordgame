@@ -14,7 +14,7 @@ class PlaytestOptions {
     let allWordsCount = false
     let quickAdvance = false
     let startLevel = 1
-    let pauseButtonEndsGame = true
+    let pauseButtonEndsGame = false
     let wipeAllStorage = false
     let noLuckAdjustment = false
     let printWishList = false

@@ -193,7 +193,6 @@ class GridView {
             showChoicesForWilds()
             
             scoreAndClearWordPaths(wordPaths: wordPathsToClear)
-            game.updateLevelIfNeeded()
             checkForUniceAndUncharm()
         }
         
